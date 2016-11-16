@@ -1,0 +1,33 @@
+section.background {
+    position: absolute;
+    background: #FFFFFF;
+    width: 100%;
+    margin: 0;
+    overflow: hidden;
+}
+
+.graphics {
+    /*background: darkmagenta;*/
+    height: 1000px;
+    width: 100%;
+    position: absolute;
+}
+
+.main-header, .main-content, main-footer {
+    position: relative;
+    width: 80%;
+    margin: auto;
+}
+
+header.main-header {
+    position: absolute;
+    background: #FFFFFF;
+    height: 70px;
+    left: 50%;
+    margin-left: -40%;
+    margin-top: 2em;
+}
+
+.main-content {
+    padding-top: 140px;
+}
