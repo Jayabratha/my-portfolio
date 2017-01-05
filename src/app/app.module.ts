@@ -7,13 +7,15 @@ import { AppComponent } from './app.component';
 import { MeCardComponent } from './me-card/me-card.component';
 import { MyWorksCardsComponent } from './my-works-cards/my-works-cards.component';
 import { MySkillsCardsComponent } from './my-skills-cards/my-skills-cards.component';
+import { JsOnscrollDirective } from './js-onscroll.directive';
 
 @NgModule({
   declarations: [
     AppComponent,
     MeCardComponent,
     MyWorksCardsComponent,
-    MySkillsCardsComponent
+    MySkillsCardsComponent,
+    JsOnscrollDirective
   ],
   imports: [
     BrowserModule,

@@ -1,14 +1,29 @@
 /* You can add global styles to this file, and also import other style files */
+@font-face{
+    font-family:"Playfair Display";
+    src:url("assets/fonts/PlayfairDisplay-Regular.ttf");
+}
+
 body {
     margin: 0;
     padding: 0;
+    font-family: 'Playfair Display', serif;
 }
 
+* {
+    box-sizing: border-box;
+}
 .main-content section {
     margin: 2em 0;
     min-height: 400px;
 }
 
-section {
-    min-height: 100px;
+@import url("ionicons.min.css");
+
+
+/* Tab Styles - Start */
+@media (max-width: 950px) {
+    body {
+        font-size: 13px;
+    }
 }

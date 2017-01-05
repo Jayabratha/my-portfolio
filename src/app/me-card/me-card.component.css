@@ -1,5 +1,171 @@
+.main-header {
+    background: #fff;
+    box-shadow: 0 1px 4px rgba(0,0,0,.04);
+    border-bottom: 1px solid rgba(0,0,0,.09);
+    padding: 10em 0 2em; 
+}
+
 .me-card {
     position: relative;
-    min-height: 500px;
+    max-width: 55em;
+    width: 80%;
+    height: 19.3em;
+    margin: 0 auto 0;
     background: #FFFFFF;
+    transition: all 0.5s ease-out;
+    overflow: hidden;
+}
+
+.my-dp {
+    position: relative;
+    float: left;
+    width: 35%;
+    height: 19.3em;
+    overflow: hidden;
+    z-index: 5;
+    transition: all 0.5s ease-in;
+}
+
+.my-dp>img {
+    height: 100%;
+    float: right;
+}
+
+.my-card {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    padding: 2em;
+    padding-left: 40%;
+    color: #FFFFFF;
+    background: linear-gradient(140deg, #f31b48, #f31b48, #940590, #0ab779);  
+}
+
+.name {
+    position: relative;
+    font-family: 'Playfair Display', serif;
+    font-size: 5em;
+    line-height: 1em;
+    transition: all 0.5s ease-in;
+}
+
+.title {
+    padding: 2em 0;
+    font-size: 1em;
+    font-family: 'Playfair Display', serif;
+    text-transform: uppercase;
+    letter-spacing: 0.5em;
+    transition: all 0.5s ease-in;
+}
+
+.github-link {
+    position: absolute;
+    right: 0.5em;
+    font-size: 2.5em;
+    top: 0.5em;
+    transition: all 0.5s ease-in;
+}
+
+/* Fixed Header Styles - Start */
+.main-header.fix-header {
+    position: fixed;
+    width: 100%;
+    padding: 3em 0 0;
+}
+
+.fix-header .me-card {
+    position: relative;
+    height: 0.15em;
+}
+
+.fix-header .my-dp,
+.fix-header .name,
+.fix-header .title,
+.fix-header .github-link  {
+    opacity: 0;
+    font-size: 1em;
+}
+
+.fix-header .my-card {
+    position: relative;
+    width: 100%;
+    padding: 0.5em;
+}
+
+.fix-header ul.site-nav-list {
+    padding: 0;
+    height: 0;
+    opacity: 0;
+    overflow: hidden;
+}
+
+/* Nav Style */
+ul.site-nav-list {
+    list-style: none;
+    max-width: 55em;
+    width: 80%;
+    height: 4em;
+    margin: 0 auto;
+    padding: 5em 0 2em;
+    transition: all 0.5s ease-in;
+}
+
+ul.site-nav-list li {
+    font-size: 1.1em;
+    float: left;
+    padding: 1em;
+    text-transform: uppercase;
+    text-align: center;
+    width: 20%;
+    color: #b2b2b2;
+}
+
+ul.site-nav-list li.active {
+    color: black;
+}
+
+/* Tab Styles - Start */
+@media (max-width: 950px) {
+    .me-card {
+        width: 90%;
+    }
+}
+/* Tab Styles - End */
+
+/* Mobile Styles - Start */
+@media (max-width: 500px) {
+    .main-header {
+        padding-top: 1.5em; 
+    }
+
+    .me-card {
+        height: auto;
+    }
+
+    .my-card, .my-dp {
+        width: 100%;
+        height: auto;
+        font-size: 10px;
+    }
+
+    .my-dp {
+        width: 100%;
+        height: auto;
+    }
+
+    .my-dp>img {
+        width: 100%;
+        height: auto;
+    }
+
+    .my-card {
+        margin-top: 95%;
+        padding-left: 2em;
+        background: linear-gradient(140deg, #f31b48, #940590, #0ab779);
+    }
+
+    /* Fixed Header Styles - Start */
+    .fix-header .my-card {
+        margin-top: 0
+    }
 }

@@ -1,6 +1,6 @@
 section.background {
     position: absolute;
-    background: #FFFFFF;
+    background: #fafafa;
     width: 100%;
     margin: 0;
     overflow: hidden;
@@ -19,15 +19,31 @@ section.background {
     margin: auto;
 }
 
-header.main-header {
-    position: absolute;
-    background: #FFFFFF;
-    height: 70px;
-    left: 50%;
-    margin-left: -40%;
-    margin-top: 2em;
+.js-logo {
+    position: relative;
+    display: inline-block;
+    background: black;
+    width: 5em;
+    height: 4em;
 }
 
-.main-content {
-    padding-top: 140px;
+/* Tab Styles - Start */
+
+@media (max-width: 950px) {
+    .main-header, .main-content, main-footer {
+        width: 90%;
+    }
+}
+/* Tab Styles - End */
+
+/* Mobile Styles - Start */
+@media (max-width: 500px) {
+    header.main-header {
+        background: transparent;
+        z-index: 5;
+    }
+    .js-logo {
+        background: #FFFFFF;
+        margin-left: 0.5em;
+    }
 }
