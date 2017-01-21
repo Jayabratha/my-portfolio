@@ -1,4 +1,6 @@
 .main-header {
+    position: absolute;
+    width: 100%;
     background: #fff;
     box-shadow: 0 1px 4px rgba(0,0,0,.04);
     border-bottom: 1px solid rgba(0,0,0,.09);
@@ -6,7 +8,6 @@
 }
 
 .me-card {
-    position: relative;
     max-width: 55em;
     width: 80%;
     height: 19.3em;
@@ -70,7 +71,7 @@
 .main-header.fix-header {
     position: fixed;
     width: 100%;
-    padding: 3em 0 0;
+    padding: 50px 0 0;
 }
 
 .fix-header .me-card {
@@ -83,13 +84,11 @@
 .fix-header .title,
 .fix-header .github-link  {
     opacity: 0;
-    font-size: 1em;
 }
 
 .fix-header .my-card {
     position: relative;
     width: 100%;
-    padding: 0.5em;
 }
 
 .fix-header ul.site-nav-list {

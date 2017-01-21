@@ -1,9 +1,9 @@
-<div class="main-header" appJsOnscroll >
+<div class="main-header" [ngClass]="{'fix-header': isHeaderFix}" >
     <section class="me-card">
         <div class="my-dp">
             <img title="My Picture" alt="Jayabratha's Photo" src="assets/images/my-pic.jpg" />
         </div>
-        <div class="my-card">
+        <div id="test" class="my-card" appJsOnscroll padding=50 (onStateChange)="headerStateChange($event)">
             <div class="name"><span>Jayabratha Saha</span></div>
             <div class="title">Designer & Developer</div>
             <div class="github-link"><i class="ion-social-github"></i></div>
