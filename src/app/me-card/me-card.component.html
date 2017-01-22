@@ -1,4 +1,8 @@
-<div class="main-header" [ngClass]="{'fix-header': isHeaderFix}" >
+<div class="main-header" [ngClass]="{'fix-header': isHeaderFix, 'initial-header': isInitial}" >
+    <section class="hello-card">
+        <div class="overlay"></div>
+        <div class="hello"><span>Hello World!</span></div>
+    </section>
     <section class="me-card">
         <div class="my-dp">
             <img title="My Picture" alt="Jayabratha's Photo" src="assets/images/my-pic.jpg" />

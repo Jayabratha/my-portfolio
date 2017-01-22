@@ -7,7 +7,14 @@ import { Component } from '@angular/core';
 })
 export class MeCardComponent {
 
+  isInitial: boolean = true;
   isHeaderFix : boolean;
+
+  constructor() {
+    setTimeout(() => {
+      this.isInitial = false;
+    }, 2000);
+  }
 
   headerStateChange(state: string) {
     if (state === 'fix') {
@@ -16,10 +23,4 @@ export class MeCardComponent {
       this.isHeaderFix = false;
     }
   }
-  // constructor() { }
-
-  // ngOnInit() {
-  // }
-
-
 }
