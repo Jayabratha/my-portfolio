@@ -6,17 +6,14 @@ section.background {
     overflow: hidden;
 }
 
-.graphics {
-    /*background: darkmagenta;*/
-    height: 1000px;
-    width: 100%;
-    position: absolute;
-}
-
 .main-header, .main-content, main-footer {
     position: relative;
     width: 80%;
     margin: auto;
+}
+
+.main-content {
+    min-height: 1000px;
 }
 
 .js-logo {

@@ -7,10 +7,12 @@
         <div class="my-dp">
             <img title="My Picture" alt="Jayabratha's Photo" src="assets/images/my-pic.jpg" />
         </div>
-        <div id="test" class="my-card" appJsOnscroll padding=50 (onStateChange)="headerStateChange($event)">
-            <div class="name"><span>Jayabratha Saha</span></div>
-            <div class="title">Designer & Developer</div>
-            <div class="github-link"><i class="ion-social-github"></i></div>
+        <div class="my-card-wrapper" appJsOnscroll padding=50 (onStateChange)="headerStateChange($event)">
+            <div id="test" class="my-card">
+                <div class="name"><span>Jayabratha Saha</span></div>
+                <div class="title">Designer & Developer</div>
+                <div class="github-link"><i class="ion-social-github"></i></div>
+            </div>
         </div>
     </section>
     <nav class="site-nav">
