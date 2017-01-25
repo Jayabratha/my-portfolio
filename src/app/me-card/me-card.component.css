@@ -6,6 +6,46 @@
     border-bottom: 1px solid rgba(0,0,0,.09);
     padding: 10em 0 2em; 
 }
+.logo-menu {
+    position: fixed;
+    max-width: 55em;
+    top: 0;
+    width: 80%;
+    margin: 8px auto;
+    left: 0;
+    right: 0;
+}
+.menu-section, .logo-section {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 45px;
+    background: #333333;
+    opacity: 1;
+    transition: all 0.5s;
+}
+.menu-icon, .menu-icon:after, .menu-icon:before {
+    position: absolute;
+    background-color: #FFF;
+    top: 22px;
+    margin-left: 15px;
+    width: 30px;
+    height: 1px;
+    content: '';
+    -webkit-transition: all .5s;
+    transition: all .5s;
+}
+.menu-icon:before {
+    top: 0;
+    margin: 0;
+}
+.menu-icon:after {
+    top: 0;
+    margin: 0;
+}
+.logo-section {
+    margin-left: -63px;
+}
 
 .hello-card {
     position: absolute;
@@ -81,6 +121,10 @@
     transition: all 0.5s ease-in;
 }
 /* Initial Header Styles - Start */
+.initial-header .menu-section, .initial-header .logo-section {
+    opacity: 0;
+    transition: none;
+}
 .initial-header .hello-card {
     opacity: 1;
 }
@@ -111,9 +155,17 @@
 .main-header.fix-header {
     position: fixed;
     width: 100%;
-    padding: 50px 0 0;
+    padding: 60px 0 0;
 }
-
+.fix-header .logo-section {
+    margin-left: -2px;
+}
+.fix-header .menu-icon:before {
+    top: -8px;
+}
+.fix-header .menu-icon:after {
+    top: 8px;
+}
 .fix-header .me-card {
     position: relative;
     height: 0.15em;
@@ -160,12 +212,12 @@ ul.site-nav-list li {
     text-transform: uppercase;
     text-align: center;
     width: 20%;
-    color: #b2b2b2;
+    color: #333333
 }
 
-ul.site-nav-list li.active {
+/*ul.site-nav-list li.active {
     color: black;
-}
+}*/
 
 /* Tab Styles - Start */
 @media (max-width: 950px) {
@@ -177,6 +229,29 @@ ul.site-nav-list li.active {
 
 /* Mobile Styles - Start */
 @media (max-width: 650px) {
+    .logo-menu {
+        margin: 20px auto;
+        z-index: 7;
+        width: 90%;
+        padding: 5px;
+    }
+    .menu-section, .logo-section {
+        background: #FFFFFF;
+    }
+    .logo-section {
+        margin-left: -2px;
+    }
+    .menu-icon, .menu-icon:before, .menu-icon:after {
+        background: #333333;
+    }
+    .menu-icon:before {      
+        top: -8px;
+        margin: 0;
+    }
+    .menu-icon:after {
+        top: 8px;
+        margin: 0;
+    }
     .hello-card {
         margin-top: 3em;
     }
@@ -223,6 +298,16 @@ ul.site-nav-list li.active {
     }
 
     /* Fixed Header Styles - Start */
+    .fix-header .logo-menu {
+        margin: 8px auto;
+        padding: 0;
+    }
+    .fix-header .menu-section, .fix-header .logo-section {
+        background: #333333;
+    }
+    .fix-header .menu-icon, .fix-header .menu-icon:before, .fix-header .menu-icon:after {
+        background: #FFFFFF;
+    }
     .fix-header .my-dp {
         display: none;
     }

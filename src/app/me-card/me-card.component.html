@@ -1,4 +1,10 @@
 <div class="main-header" [ngClass]="{'fix-header': isHeaderFix, 'initial-header': isInitial}" >
+    <div class="logo-menu">
+        <div class="menu-section">
+            <div class="menu-icon"></div>
+        </div>
+        <div class="logo-section"></div>
+    </div>
     <section class="hello-card">
         <div class="overlay"></div>
         <div class="hello"><span>Hello World!</span></div>
@@ -7,7 +13,7 @@
         <div class="my-dp">
             <img title="My Picture" alt="Jayabratha's Photo" src="assets/images/my-pic.jpg" />
         </div>
-        <div class="my-card-wrapper" appJsOnscroll padding=50 (onStateChange)="headerStateChange($event)">
+        <div class="my-card-wrapper" appJsOnscroll padding=60 (onStateChange)="headerStateChange($event)">
             <div id="test" class="my-card">
                 <div class="name"><span>Jayabratha Saha</span></div>
                 <div class="title">Designer & Developer</div>
