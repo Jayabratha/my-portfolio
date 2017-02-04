@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'me-card',
@@ -8,6 +8,7 @@ import { Component } from '@angular/core';
 export class MeCardComponent {
 
   isInitial: boolean = true;
+  showMenu: boolean = false;
   isHeaderFix : boolean;
 
   constructor() {
@@ -22,5 +23,9 @@ export class MeCardComponent {
     } else if (state === 'scroll') {
       this.isHeaderFix = false;
     }
+  }
+
+  toggleMenu() {
+    this.showMenu = !this.showMenu;
   }
 }

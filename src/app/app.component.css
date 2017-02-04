@@ -6,14 +6,15 @@ section.background {
     overflow: hidden;
 }
 
-.main-header, .main-content, main-footer {
-    position: relative;
+.center-stage {
     width: 80%;
+    max-width: 55em;
     margin: auto;
 }
 
 .main-content {
-    min-height: 1000px;
+    min-height: 2000px;
+    margin-top: 10em;
 }
 
 .js-logo {
@@ -24,11 +25,46 @@ section.background {
     height: 4em;
 }
 
-/* Tab Styles - Start */
+/* Overview Styles - Start */
+.overview {
+    position: relative;
+    display: inline-block;
+    background: #FFFFFF;
+    width: 100%;
+    min-height: 400px;
+    margin: 3em 0;
+    box-shadow: 0 1px 4px rgba(0,0,0,.05);
+    border: 1px solid rgba(0,0,0,.09);
+    transform: translateY(0);
+    transition: transform 1s;
+}
+.overview.below-view {
+   transform: translateY(300px);
+}
+.overview.above-view {
+   transform: translateY(-300px);
+}
+.overview .overview-dp {
+    position: absolute;
+    width: 35%;
+    background: #333333;
+    height: 100%;
+}
+.overview:nth-child(odd) .overview-dp {
+    right: 0;
+}
+/* Overview Styles - End */
 
+/* Tab Styles - Start */
 @media (max-width: 950px) {
-    .main-header, .main-content, main-footer {
+    .center-stage {
         width: 90%;
+    }
+    .main-content {
+        margin-top: 40em;
+    }
+    .main-content.fix-header {
+        margin-top: 31em;
     }
 }
 /* Tab Styles - End */

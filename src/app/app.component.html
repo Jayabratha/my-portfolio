@@ -1,8 +1,22 @@
 <section class="background">
   <me-card></me-card>
-  <div class="main-content">
-        <app-my-works-cards></app-my-works-cards>
-        <app-my-skills-cards></app-my-skills-cards>
+  <div class="main-content center-stage" [ngClass]="{'fix-header': isHeaderFix}">
+      <div class="overview art-overview below-view" appJsOnscroll [viewportCheck]=true [padding]=200 (onStateChange)="animateEnter($event)" >
+        <div class="overview-dp">            
+        </div>
+        <div class="overview-content-wrapper">
+            <div class="overview-content">
+            </div>
+        </div>
+      </div>
+      <div class="overview art-overview below-view" appJsOnscroll [viewportCheck]=true [padding]=200 (onStateChange)="animateEnter($event)" >
+        <div class="overview-dp">            
+        </div>
+        <div class="overview-content-wrapper">
+            <div class="overview-content">
+            </div>
+        </div>
+      </div>
   </div>
   <footer class="main-footer"></footer>
 </section>
