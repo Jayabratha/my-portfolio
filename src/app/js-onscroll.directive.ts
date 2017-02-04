@@ -23,7 +23,6 @@ export class JsOnscrollDirective {
       if ((this.elem.offsetTop + this.padding) <= (window.pageYOffset + window.innerHeight) && !this.hasEntered) {
         this.renderer.setElementClass(this.elem, 'below-view', false);
         this.hasEntered = true;
-        console.log("enter");
       }
       // if ((this.elem.offsetTop + this.elem.offsetHeight - this.padding) <= document.body.scrollTop && !this.hasLeft) {
       //   this.renderer.setElementClass(this.elem, 'above-view', true);

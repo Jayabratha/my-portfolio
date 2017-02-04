@@ -63,19 +63,9 @@
     overflow: hidden;
 }
 
-.my-dp {
-    position: relative;
-    float: left;
-    width: 35%;
+.dp.my-dp {
     height: 19.3em;
-    overflow: hidden;
-    z-index: 5;
     transition: opacity 0.5s ease-in;
-}
-
-.my-dp>img {
-    height: 100%;
-    float: right;
 }
 
 .my-card {
@@ -91,6 +81,7 @@
 
 .name {
     position: relative;
+    width: 5em;
     font-family: 'Playfair Display', serif;
     font-size: 5em;
     line-height: 1em;
@@ -270,14 +261,6 @@ ul.site-nav-list li {
     transform: rotate(-135deg);
 }
 
-/* Tab Styles - Start */
-@media (max-width: 950px) {
-    .center-stage {
-        width: 90%;
-    }
-}
-/* Tab Styles - End */
-
 /* Mobile Styles - Start */
 @media (max-width: 650px) {
     .logo-menu {
@@ -297,36 +280,20 @@ ul.site-nav-list li {
     .main-header {
         padding-top: 1.5em; 
     }
-
     .me-card {
         position: relative;
         height: 41.5em;
     }
-
     .my-card-wrapper {
         position: relative;
         margin-top: 95%;
         height: 14.4em;
     }
-
-    .my-card, .my-dp {
+    .my-card {
+        position: absolute;
         width: 100%;
         height: auto;
         font-size: 10px;
-    }
-
-    .my-dp {
-        width: 100%;
-        height: auto;
-    }
-
-    .my-dp>img {
-        width: 100%;
-        height: auto;
-    }
-
-    .my-card {
-        position: absolute;
         bottom: 0;
         padding-left: 2em;
         background: linear-gradient(140deg, #f31b48, #940590, #0ab779);
@@ -382,6 +349,12 @@ ul.site-nav-list li {
         margin-top: 0;
     }
     /* Initial Header Styles - End */
+}
+
+@media (max-width: 650px) {
+    .dp.my-dp {
+        height: 100%;
+    }
 }
 
 @media (max-width: 650px) and (min-width: 450px) {

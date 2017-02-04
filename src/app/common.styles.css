@@ -1,0 +1,39 @@
+.center-stage {
+    width: 80%;
+    max-width: 55em;
+    margin-left: auto;
+    margin-right: auto;
+}
+.dp {
+    position: relative;
+    float: left;
+    width: 35%;
+    height: 19.3em;
+    overflow: hidden;
+    z-index: 5;
+}
+.dp>img {
+    height: 100%;
+    float: right;
+}
+
+/* Tab Styles - Start */
+@media (max-width: 950px) {
+    .center-stage {
+        width: 90%;
+    }
+}
+/* Tab Styles - End */
+
+/* Mobile Styles - Start */
+@media (max-width: 650px) {
+    .dp {
+        width: 100%;
+    }
+
+    .dp>img {
+        width: 100%;
+        height: auto;
+    }
+}
+/* Mobile Styles - End */

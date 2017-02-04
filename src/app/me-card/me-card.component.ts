@@ -3,7 +3,7 @@ import { Component, Output, EventEmitter } from '@angular/core';
 @Component({
   selector: 'me-card',
   templateUrl: './me-card.component.html',
-  styleUrls: ['./me-card.component.css']
+  styleUrls: ['./me-card.component.css', './../common.styles.css']
 })
 export class MeCardComponent {
 
