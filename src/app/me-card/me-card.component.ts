@@ -10,6 +10,7 @@ export class MeCardComponent {
   isInitial: boolean = true;
   showMenu: boolean = false;
   isHeaderFix : boolean;
+  activeNav: string = "";
 
   constructor() {
     setTimeout(() => {

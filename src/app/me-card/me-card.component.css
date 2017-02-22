@@ -8,7 +8,7 @@
     background: #fff;
     box-shadow: 0 1px 4px rgba(0,0,0,.04);
     border-bottom: 1px solid rgba(0,0,0,.09);
-    padding: 10em 0 2em; 
+    padding: 10em 0 0; 
 }
 .logo-menu {
     position: fixed;
@@ -225,7 +225,7 @@
 ul.site-nav-list {
     list-style: none;
     width: 100%;
-    height: 4em;
+    height: 10em;
     margin: 0 auto;
     padding: 5em 0 2em;
     transition: all 0.5s ease-in;
@@ -260,6 +260,43 @@ ul.site-nav-list li {
     -o-transform: rotate(-135deg);
     transform: rotate(-135deg);
 }
+
+/* Nav Highlighter - Start */
+.nav-highlighter {
+    position: relative; 
+    height: 2px;
+    width: 40%;
+    background: #FFFFFF;
+    -webkit-transition: all 0.5s ease-out;
+    -moz-transition: all 0.5s ease-out;
+    transition: all 0.5s ease-out;
+}
+.nav-highlighter.art {
+    background: #f31b48;
+    left: 0;
+    width: 20%;
+}
+.nav-highlighter.work {
+    background: #c6116b;
+    left: 20%;
+    width: 20%;
+}
+.nav-highlighter.skills {
+    background: #940590;
+    left: 40%;
+    width: 20%;
+}
+.nav-highlighter.about {
+    background: #654388;
+    left: 60%;
+    width: 20%;
+}
+.nav-highlighter.contact {
+    background: #0ab779;
+    left: 80%;
+    width: 20%;
+}
+/* Nav Highlighter - End */
 
 /* Mobile Styles - Start */
 @media (max-width: 650px) {
