@@ -20,6 +20,7 @@
 .menu-section, .logo-section {
     position: relative;
     display: inline-block;
+    vertical-align: top;
     width: 50px;
     height: 38px;
     background: #333333;
@@ -238,7 +239,8 @@ ul.site-nav-list li {
     text-transform: uppercase;
     text-align: center;
     width: 20%;
-    color: #333333
+    color: #333333;
+    cursor: pointer;
 }
 /* Nav Style - End */
 
@@ -265,7 +267,8 @@ ul.site-nav-list li {
 .nav-highlighter {
     position: relative; 
     height: 2px;
-    width: 40%;
+    left: 0;
+    width: 0;
     background: #FFFFFF;
     -webkit-transition: all 0.5s ease-out;
     -moz-transition: all 0.5s ease-out;
@@ -287,7 +290,7 @@ ul.site-nav-list li {
     width: 20%;
 }
 .nav-highlighter.about {
-    background: #654388;
+    background: #28a6e4;
     left: 60%;
     width: 20%;
 }
@@ -297,6 +300,15 @@ ul.site-nav-list li {
     width: 20%;
 }
 /* Nav Highlighter - End */
+
+/* Logo Style */
+.icon-logo-svg:before {
+    content: "a";
+    margin-top: -3px;
+    display: block;
+    font-size: 50px;
+    color: #FFFFFF;
+}
 
 /* Mobile Styles - Start */
 @media (max-width: 650px) {

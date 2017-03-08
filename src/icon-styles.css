@@ -1,0 +1,136 @@
+@charset "UTF-8";
+
+@font-face {
+  font-family: "font-icons";
+  src:url("assets/fonts/font-icons.eot");
+  src:url("assets/fonts/font-icons.eot?#iefix") format("embedded-opentype"),
+    url("assets/fonts/font-icons.woff") format("woff"),
+    url("assets/fonts/font-icons.ttf") format("truetype"),
+    url("assets/fonts/font-icons.svg#font-icons") format("svg");
+  font-weight: normal;
+  font-style: normal;
+
+}
+
+[data-icon]:before {
+  font-family: "font-icons" !important;
+  content: attr(data-icon);
+  font-style: normal !important;
+  font-weight: normal !important;
+  font-variant: normal !important;
+  text-transform: none !important;
+  speak: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+[class^="icon-"]:before,
+[class*=" icon-"]:before {
+  font-family: "font-icons" !important;
+  font-style: normal !important;
+  font-weight: normal !important;
+  font-variant: normal !important;
+  text-transform: none !important;
+  speak: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-logo-svg:before {
+  content: "\61";
+}
+.icon-android-arrow-forward:before {
+  content: "\62";
+}
+.icon-android-add:before {
+  content: "\63";
+}
+.icon-android-done:before {
+  content: "\64";
+}
+.icon-android-close:before {
+  content: "\65";
+}
+.icon-android-calendar:before {
+  content: "\66";
+}
+.icon-chevron-right:before {
+  content: "\67";
+}
+.icon-chevron-left:before {
+  content: "\68";
+}
+.icon-load-c:before {
+  content: "\6a";
+}
+.icon-ribbon-a:before {
+  content: "\6b";
+}
+.icon-social-github:before {
+  content: "\6c";
+}
+.icon-social-linkedin:before {
+  content: "\6d";
+}
+.icon-social-facebook:before {
+  content: "\6e";
+}
+.icon-upload:before {
+  content: "\6f";
+}
+.icon-university:before {
+  content: "\70";
+}
+.icon-social-whatsapp:before {
+  content: "\71";
+}
+.icon-social-chrome:before {
+  content: "\72";
+}
+.icon-heart:before {
+  content: "\73";
+}
+.icon-chatbubbles:before {
+  content: "\74";
+}
+.icon-disc:before {
+  content: "\69";
+}
+.icon-asterisk:before {
+  content: "\75";
+}
+.icon-aperture:before {
+  content: "\76";
+}
+.icon-android-star:before {
+  content: "\77";
+}
+.icon-android-share-alt:before {
+  content: "\78";
+}
+.icon-android-more-vertical:before {
+  content: "\79";
+}
+.icon-android-more-horizontal:before {
+  content: "\7a";
+}
+.icon-android-globe:before {
+  content: "\41";
+}
+.icon-android-arrow-back:before {
+  content: "\42";
+}
+.icon-android-color-palette:before {
+  content: "\43";
+}
+.icon-android-compass:before {
+  content: "\44";
+}
+.icon-android-bookmark:before {
+  content: "\45";
+}
+.icon-ios-location:before {
+  content: "\46";
+}
