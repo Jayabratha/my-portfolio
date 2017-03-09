@@ -23,6 +23,11 @@
         width: 90%;
     }
 }
+@media (max-width: 650px) and (min-width: 450px) {
+    .center-stage {
+        width: 60%;
+    }
+}
 /* Tab Styles - End */
 
 /* Mobile Styles - Start */

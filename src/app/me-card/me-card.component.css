@@ -23,18 +23,21 @@
     vertical-align: top;
     width: 50px;
     height: 38px;
-    background: #333333;
+    background: #454545;
     opacity: 1;
     transition: margin 0.5s;
 }
+.menu-section {
+    background: transparent;
+}
 .menu-icon, .menu-icon-top, .menu-icon-bottom {
     position: absolute;
-    background-color: #FFF;
+    background-color: #454545;
     top: 19px;
-    margin-left: 11px;
+    margin-left: 5px;
     left: 0;
     width: 28px;
-    height: 1px;
+    height: 2px;
     content: '';
     -webkit-transition: all .5s;
     transition: all .5s;
@@ -140,6 +143,7 @@
 .main-header.fix-header {
     position: fixed;
     width: 100%;
+    height: 62px;
     padding: 60px 0 0;
     z-index: 10;
 }
@@ -183,7 +187,7 @@
 /* Show Menu Styles - Start */
 .fix-header.show-menu .me-card {
     position: relative;
-    height: 35em;
+    height: 33em;
 }
 .fix-header.show-menu .my-card {
     height: 33.5em;
@@ -239,7 +243,7 @@ ul.site-nav-list li {
     text-transform: uppercase;
     text-align: center;
     width: 20%;
-    color: #333333;
+    color: #454545;
     cursor: pointer;
 }
 /* Nav Style - End */
@@ -299,15 +303,21 @@ ul.site-nav-list li {
     left: 80%;
     width: 20%;
 }
+.fix-header .nav-highlighter-wrapper {
+    display: none;
+}
 /* Nav Highlighter - End */
 
 /* Logo Style */
+.logo-section i {
+    color: #FFFFFF;
+}
+
 .icon-logo-svg:before {
     content: "a";
     margin-top: -3px;
     display: block;
     font-size: 50px;
-    color: #FFFFFF;
 }
 
 /* Mobile Styles - Start */
@@ -321,13 +331,13 @@ ul.site-nav-list li {
         background: #FFFFFF;
     }
     .menu-icon, .menu-icon-top, .menu-icon-bottom {
-        background: #333333;
+        background: #454545;
     }
     .hello-card {
         margin-top: 3em;
     }
     .main-header {
-        padding-top: 1.5em; 
+        padding: 1.5em 0; 
     }
     .me-card {
         position: relative;
@@ -357,11 +367,11 @@ ul.site-nav-list li {
         margin: 12px auto;
         padding: 0;
     }
-    .fix-header .menu-section, .fix-header .logo-section {
-        background: #333333;
+    .fix-header .logo-section {
+        background: #454545;
     }
     .fix-header .menu-icon, .fix-header .menu-icon-top, .fix-header .menu-icon-bottom {
-        background: #FFFFFF;
+        background: #454545;
     }
     .fix-header .my-dp {
         display: none;
@@ -404,6 +414,12 @@ ul.site-nav-list li {
     .dp.my-dp {
         height: 100%;
     }
+    .logo-section i {
+        color: #454545;
+    }
+    .fix-header .logo-section i {
+        color: #FFFFFF;
+    }
 }
 
 @media (max-width: 650px) and (min-width: 450px) {
@@ -415,7 +431,6 @@ ul.site-nav-list li {
         width: 80%;
         max-width: 370px;
     }
-
 }
 
 @media (max-width: 400px) {
