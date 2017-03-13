@@ -1,7 +1,7 @@
 <section class="background">
-  <me-card></me-card>
-  <div class="main-content center-stage" [ngClass]="{'fix-header': isHeaderFix}">
-      <div class="overview art-overview below-view" appJsOnscroll [viewportCheck]=true [padding]=200 (onStateChange)="animateEnter($event)" >
+  <me-card (onStateChange)="restoreOverviewsInitial($event)"></me-card>
+  <div class="main-content center-stage">
+      <div class="overview art-overview below-view" appJsOnscroll [restoreInitial]="restoreInitial" [viewportCheck]=true [padding]=200 (onStateChange)="animateEnter($event)" >
         <div class="dp overview-dp">            
         </div>
         <div class="overview-content-wrapper">
@@ -9,7 +9,7 @@
             </div>
         </div>
       </div>
-      <div class="overview art-overview below-view" appJsOnscroll [viewportCheck]=true [padding]=200 (onStateChange)="animateEnter($event)" >
+      <div class="overview art-overview below-view" appJsOnscroll [restoreInitial]="restoreInitial" [viewportCheck]=true [padding]=200 (onStateChange)="animateEnter($event)" >
         <div class="dp overview-dp">            
         </div>
         <div class="overview-content-wrapper">
@@ -17,7 +17,7 @@
             </div>
         </div>
       </div>
-      <div class="overview art-overview below-view" appJsOnscroll [viewportCheck]=true [padding]=200 (onStateChange)="animateEnter($event)" >
+      <div class="overview art-overview below-view" appJsOnscroll [restoreInitial]="restoreInitial" [viewportCheck]=true [padding]=200 (onStateChange)="animateEnter($event)" >
         <div class="dp overview-dp">            
         </div>
         <div class="overview-content-wrapper">
@@ -25,7 +25,7 @@
             </div>
         </div>
       </div>
-      <div class="overview art-overview below-view" appJsOnscroll [viewportCheck]=true [padding]=200 (onStateChange)="animateEnter($event)" >
+      <div class="overview art-overview below-view" appJsOnscroll [restoreInitial]="restoreInitial" [viewportCheck]=true [padding]=200 (onStateChange)="animateEnter($event)" >
         <div class="dp overview-dp">            
         </div>
         <div class="overview-content-wrapper">
@@ -33,7 +33,7 @@
             </div>
         </div>
       </div>
-      <div class="overview art-overview below-view" appJsOnscroll [viewportCheck]=true [padding]=200 (onStateChange)="animateEnter($event)" >
+      <div class="overview art-overview below-view" appJsOnscroll [restoreInitial]="restoreInitial" [viewportCheck]=true [padding]=200 (onStateChange)="animateEnter($event)" >
         <div class="dp overview-dp">            
         </div>
         <div class="overview-content-wrapper">
