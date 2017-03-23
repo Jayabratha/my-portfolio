@@ -8,6 +8,7 @@ import { MeCardComponent } from './me-card/me-card.component';
 import { MyWorksCardsComponent } from './my-works-cards/my-works-cards.component';
 import { MySkillsCardsComponent } from './my-skills-cards/my-skills-cards.component';
 import { JsOnscrollDirective } from './js-onscroll.directive';
+import { JsCarouselComponent } from './js-carousel/js-carousel.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { JsOnscrollDirective } from './js-onscroll.directive';
     MeCardComponent,
     MyWorksCardsComponent,
     MySkillsCardsComponent,
-    JsOnscrollDirective
+    JsOnscrollDirective,
+    JsCarouselComponent
   ],
   imports: [
     BrowserModule,
