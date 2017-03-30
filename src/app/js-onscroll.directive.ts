@@ -11,12 +11,15 @@ export class JsOnscrollDirective {
 
   elem: HTMLElement;
   elemInitialOffset: number;
+  elemViewportOffset: number;
   hasEntered: boolean = false;
   hasLeft: boolean = false;
 
   constructor(private renderer: Renderer, private el: ElementRef) { 
     this.elem = this.el.nativeElement;
     this.elemInitialOffset = this.elem.offsetTop;
+    this.elemViewportOffset = this.elem.getBoundingClientRect().top;
+    console.log(this.elemInitialOffset);
   }
 
   @HostListener('window:scroll') onScroll() {
@@ -29,7 +32,7 @@ export class JsOnscrollDirective {
         this.renderer.setElementClass(this.elem, 'below-view', false);
         this.hasEntered = true;
       }
-    } else if (document.body.scrollTop > this.elemInitialOffset - this.padding ) {
+    } else if (document.body.scrollTop > this.elemViewportOffset - this.padding ) {
       this.onStateChange.emit('fix');
     }  else {
       this.onStateChange.emit('scroll');

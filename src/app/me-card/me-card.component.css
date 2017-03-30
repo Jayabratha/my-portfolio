@@ -6,9 +6,19 @@
 .main-header {
     position: relative;
     background: #fff;
+    height: 38em;
     box-shadow: 0 1px 4px rgba(0,0,0,.04);
+    border: thin solid #FFFFFF;
     border-bottom: 1px solid rgba(0,0,0,.09);
-    padding: 10em 0 0; 
+    padding: 0;
+    transition: height 0.5s;
+    overflow: hidden;
+}
+.absolute-bottom {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
 }
 .logo-menu {
     position: fixed;
@@ -16,6 +26,7 @@
     margin: 11px auto;
     left: 0;
     right: 0;
+    z-index: 30;
 }
 .menu-section, .logo-section {
     position: relative;
@@ -52,6 +63,7 @@
     left: 0;
     right: 0;
     margin: 0 auto;
+    margin-top: 2.8em;
     font-size: 4em;
     line-height: 1em;
     color: #696969;
@@ -59,12 +71,22 @@
     transition: opacity 0.5s;
 }
 
+.me-card-wrapper {
+    position: relative;
+    margin-top: 10em;
+    left: 0;
+    right: 0;
+    height: 19.3em;
+    overflow: hidden;
+}
 .me-card {
+    position: absolute;
     height: 19.3em;
     margin: 0 auto 0;
-    background: #FFFFFF;
-    transition: all 0.5s ease-out;
-    overflow: hidden;
+    transform: translateY(0);
+    left: 0;
+    right: 0;
+    transition: transform .5s ease-out;
 }
 
 .dp.my-dp {
@@ -113,13 +135,13 @@
     opacity: 0;
     transition: none;
 }
+
 .initial-header .hello-card {
     opacity: 1;
 }
 
 .initial-header .me-card {
-    margin-top: 19.25em;
-    height: 0.15em;
+    transform: translateY(19.2em);
     transition: none;
 }
 
@@ -133,7 +155,6 @@
     opacity: 0;
 }
 .initial-header .my-card {
-    height: 0.15em;
     padding-top: 0;
     padding-bottom: 0;
 }
@@ -156,6 +177,9 @@
 .fix-header .menu-icon-bottom {
     top: 27px;
 }
+.fix-header .me-card-wrapper {
+    margin-top: -2px;
+}
 .fix-header .me-card {
     position: relative;
     height: 0.15em;
@@ -177,20 +201,23 @@
 }
 
 .fix-header ul.site-nav-list {
-    padding: 0;
-    height: 0;
     opacity: 0;
-    overflow: hidden;
 }
 /* Fixed Header Styles - End */
 
 /* Show Menu Styles - Start */
+.fix-header.show-menu {
+    overflow: visible;
+}
 .fix-header.show-menu .me-card {
     position: relative;
     height: 33em;
 }
 .fix-header.show-menu .my-card {
     height: 33.5em;
+}
+.fix-header.show-menu .me-card-wrapper {
+    height: auto;
 }
 .fix-header.show-menu .site-nav {
     position: absolute;
@@ -206,7 +233,7 @@
     width: 100%;
     min-height: 5em;
     height: auto;
-    padding: 4em 0;
+    padding: 3em 0;
     opacity: 1;
 }
 .fix-header ul.site-nav-list li {
@@ -214,12 +241,10 @@
     float: none;
     text-transform: none;
     padding: 0;
-    padding-top: 0.2em;
     text-align: center;
     width: 70%;
     margin: 0 auto;
     color: #FFFFFF;
-    transition: padding-top 1s;
 }
 .fix-header.show-menu ul.site-nav-list li {
     padding-top: 0.6em;
@@ -337,23 +362,26 @@ ul.site-nav-list li {
         margin-top: 3em;
     }
     .main-header {
+        height: 45em;
         padding: 1.5em 0; 
     }
+    .me-card-wrapper {
+        height: 41.5em;
+    }
     .me-card {
-        position: relative;
         height: 41.5em;
     }
     .my-card-wrapper {
         position: relative;
         margin-top: 95%;
         height: 14.4em;
+        z-index: 10;
     }
     .my-card {
         position: absolute;
         width: 100%;
         height: auto;
         font-size: 10px;
-        bottom: 0;
         padding-left: 2em;
         background: linear-gradient(140deg, #f31b48, #940590, #0ab779);
     }
@@ -366,6 +394,7 @@ ul.site-nav-list li {
     .fix-header .logo-menu {
         margin: 12px auto;
         padding: 0;
+        z-index: 20;
     }
     .fix-header .logo-section {
         background: #454545;
@@ -393,13 +422,11 @@ ul.site-nav-list li {
 
     /* Initial Header Styles - Start */
     .initial-header .me-card {
-        margin-top: 41.5em;
-        height: 0.15em;
+        transform: translateY(41.3em);
     }
     .initial-header .my-card-wrapper {
         position: relative;
         margin-top: 0;
-        height: 0.15em;
     }
     .initial-header .my-dp {
         display: none;
@@ -412,7 +439,7 @@ ul.site-nav-list li {
 
 @media (max-width: 650px) {
     .dp.my-dp {
-        height: 100%;
+        height: 71%;
     }
     .logo-section i {
         color: #454545;
@@ -437,17 +464,15 @@ ul.site-nav-list li {
     .me-card {
         height: 38.5em;
     }
-    .initial-header .me-card {
-        margin-top: 38.5em;
-        height: 0.15em;
+    .dp.my-dp {
+        height: 68%;
     }
 }
 @media (max-width: 330px) {
     .me-card {
         height: 35.5em;
     }
-    .initial-header .me-card {
-        margin-top: 35.5em;
-        height: 0.15em;
+    .dp.my-dp {
+        height: 63%;
     }
 }

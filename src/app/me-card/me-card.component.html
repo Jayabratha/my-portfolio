@@ -13,19 +13,21 @@
         <div class="overlay"></div>
         <div class="hello"><span>Hello World!</span></div>
     </section>
-    <section class="me-card center-stage">
-        <div class="dp my-dp">
-            <app-js-carousel slideCount=5></app-js-carousel>
-        </div>
-        <div class="my-card-wrapper" appJsOnscroll padding=60 (onStateChange)="headerStateChange($event)">
-            <div id="test" class="my-card">
-                <div class="name"><span>Jayabratha Saha</span></div>
-                <div class="title">Designer & Developer</div>
-                <div class="github-link"><i class="icon-social-github"></i></div>
+    <section class="me-card-wrapper center-stage">
+        <div class="me-card">
+            <div class="dp my-dp">
+                <app-js-carousel slideCount=5></app-js-carousel>
+            </div>
+            <div class="my-card-wrapper" appJsOnscroll padding=60 (onStateChange)="headerStateChange($event)">
+                <div id="test" class="my-card">
+                    <div class="name"><span>Jayabratha Saha</span></div>
+                    <div class="title">Designer & Developer</div>
+                    <div class="github-link"><i class="icon-social-github"></i></div>
+                </div>
             </div>
         </div>
     </section>
-    <nav class="site-nav center-stage">
+    <nav class="site-nav center-stage absolute-bottom">
         <ul class="site-nav-list">
             <li (mouseenter)="activeNav='art'" (mouseleave)="activeNav=''">Art</li>
             <li (mouseenter)="activeNav='work'" (mouseleave)="activeNav=''">Work</li>
@@ -34,7 +36,7 @@
             <li (mouseenter)="activeNav='contact'" (mouseleave)="activeNav=''">Contact</li>
         </ul>
     </nav>
-    <div class="nav-highlighter-wrapper center-stage">
+    <div class="nav-highlighter-wrapper center-stage absolute-bottom">
         <div class="nav-highlighter" [ngClass]="activeNav"></div>
     </div>
 </div>

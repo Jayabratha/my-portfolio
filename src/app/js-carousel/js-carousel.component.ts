@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, OnDestroy, ElementRef } from '@angular/core';
+import { Component, Input, OnInit, OnDestroy, ElementRef, HostListener } from '@angular/core';
 
 @Component({
   selector: 'app-js-carousel',
@@ -13,19 +13,26 @@ export class JsCarouselComponent implements OnInit, OnDestroy {
   slideArray;
   slideLength;
   carouselId;
+  isPaused;
 
   ngOnInit() {
     this.el = this.elementRef.nativeElement;
     this.slideArray = this.el.querySelectorAll('.carousel-item');
-    this.carouselId = setInterval(() => {
-      this.showNext();
-    }, 5000);
+    this.start();
   }
 
   ngOnDestroy() {
     if (this.carouselId) {
       clearInterval(this.carouselId);
     }
+  }
+
+  @HostListener('mouseenter') onMouseEnter() {
+    this.pause();
+  }
+
+  @HostListener('mouseleave') onMouseLeave() {
+    this.start();
   }
 
   showNext() {
@@ -37,9 +44,6 @@ export class JsCarouselComponent implements OnInit, OnDestroy {
   }
 
   getIndexOf(element) {
-    //return this.slideArray.indexOf(element);
-    console.log(element);
-    console.log(this.slideArray);
     let i;
     this.slideLength = this.slideArray.length;
 
@@ -81,6 +85,18 @@ export class JsCarouselComponent implements OnInit, OnDestroy {
       activeElement.classList.remove("active");
       nextElement.classList.add("active");
     }, 810);
+  }
+
+  start() {
+    this.isPaused = false;
+    this.carouselId = setInterval(() => {
+      this.showNext();
+    }, 5000);
+  }
+
+  pause() {
+    this.isPaused = true;
+    clearInterval(this.carouselId);
   }
 
 }
