@@ -94,6 +94,10 @@
     transition: opacity 0.5s ease-in;
 }
 
+.my-card-wrapper {
+    height: 19.3em;
+}
+
 .my-card {
     position: relative;
     width: 100%;
@@ -105,13 +109,15 @@
     transition: all 0.5s; 
 }
 
-.name {
+h1.name {
     position: relative;
     width: 5em;
     font-family: 'Playfair Display', serif;
     font-size: 5em;
-    line-height: 1em;
+    line-height: 0.95em;
     transition: opacity 0.5s;
+    margin: 0;
+    font-weight: normal;
 }
 
 .title {
@@ -366,6 +372,7 @@ ul.site-nav-list li {
         padding: 1.5em 0; 
     }
     .me-card-wrapper {
+        margin-top: 0;
         height: 41.5em;
     }
     .me-card {
@@ -454,8 +461,8 @@ ul.site-nav-list li {
         width: 80%;
         max-width: 370px;
     }
-    .logo-menu {
-        width: 80%;
+    .logo-menu.center-stage {
+        width: 70%;
         max-width: 370px;
     }
 }

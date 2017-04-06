@@ -45,6 +45,34 @@ section.background {
 .overview:nth-child(odd) .overview-dp {
     float: right;
 }
+
+.overview h2 {
+    font-size: 4em;
+    font-weight: normal;
+    color: #FFFFFF;
+    padding: 50px;
+}
+
+.overview .alpha-initial-bg {
+    position: absolute;
+    font-size: 20em;
+    top: -150px;
+    left: -29px;
+    color: #FFFFFF;
+    opacity: 0.05;
+}
+
+.overview .underline {
+    height: 5px;
+    width: 100px;
+    background: #f31b48;
+    position: absolute;
+    top: 25px;
+    bottom: 0;
+    margin: auto;
+    left: 0;
+    right: 0;
+}
 /* Overview Styles - End */
 
 /* Tab Styles - Start */

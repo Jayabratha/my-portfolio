@@ -13,6 +13,38 @@ export class MeCardComponent {
   isHeaderFix : boolean;
   activeNav: string = "";
 
+  slideList: Object[] = [{
+    id: "slide1",
+    url: "assets/images/my-pic.jpg",
+    title: "My pic 1",
+    alt: "My pic 1",
+    description: ""
+  },{
+    id: "slide2",
+    url: "assets/images/my-pic1.jpg",
+    title: "My pic 2",
+    alt: "My pic 2",
+    description: ""
+  },{
+    id: "slide3",
+    url: "assets/images/my-pic2.jpg",
+    title: "My pic 3",
+    alt: "My pic 3",
+    description: ""
+  },{
+    id: "slide4",
+    url: "assets/images/my-pic3.jpg",
+    title: "My pic 4",
+    alt: "My pic 4",
+    description: ""
+  },{
+    id: "slide5",
+    url: "assets/images/my-pic4.jpg",
+    title: "My pic 5",
+    alt: "My pic 5",
+    description: ""
+  }]
+
   constructor() {
     setTimeout(() => {
       this.isInitial = false;

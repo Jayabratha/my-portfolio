@@ -61,9 +61,16 @@
     height: 100%;
     color: #FFFFFF;
     font-size: 2em;
-    padding-top: 4.2em;
     opacity: 0;
     transition: opacity 1s;
+}
+
+.arrow-btn i {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    height: 25px;
+    margin: auto;
 }
 
 .carousel-wrapper:hover .arrow-btn {
@@ -75,8 +82,25 @@
     box-shadow: inset 10px 0 15px 0 rgba(0, 0, 0, 0.25);
 }
 
+.arrow-btn.left i {
+    left: 0;
+}
+
 .arrow-btn.right {
     right: 0;
     box-shadow: inset -10px 0 15px 0 rgba(0, 0, 0, 0.25);
 }
+
+.arrow-btn.right i {
+    right: 0;
+}
 /* Carousel Styles - End */
+
+/* Mobile Styles - Start */
+@media (max-width: 650px) {
+    .arrow-btn i {
+        height: 70px;
+        font-size: 1.5em;
+    }
+}
+/* Mobile Styles - End */

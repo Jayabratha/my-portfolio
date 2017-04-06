@@ -1,25 +1,19 @@
 <div class="carousel-wrapper">
   <ul class="carousel-list">
-    <li id="item1" class="carousel-item active">
-        <img title="My Picture" alt="Jayabratha's Photo" src="assets/images/my-pic.jpg" />
-    </li>
-    <li id="item2" class="carousel-item">
-        <img title="My Picture" alt="Jayabratha's Photo" src="assets/images/my-pic1.jpg" />
-    </li>
-    <li id="item3" class="carousel-item">
-        <img title="My Picture" alt="Jayabratha's Photo" src="assets/images/my-pic2.jpg" />
-    </li>
-    <li id="item4" class="carousel-item">
-        <img title="My Picture" alt="Jayabratha's Photo" src="assets/images/my-pic3.jpg" />
-    </li>
-    <li id="item5" class="carousel-item">
-        <img title="My Picture" alt="Jayabratha's Photo" src="assets/images/my-pic4.jpg" />
+    <li id="{{item.id}}" class="carousel-item" 
+        *ngFor="let item of slideItems; let first = first" 
+        [ngClass]="{'active': item.active,
+                    'left': item.left,
+                    'right': item.right,
+                    'next': item.next,
+                    'prev': item.prev}">
+        <img title="{{item.title}}" alt="{{item.alt}}" src="{{item.url}}" />
     </li>
   </ul>
   <div class="arrow-btn left" (click)="showPrev()">
-    <i class="icon-chevron-left"></i>
+    <i class="icon-android-arrow-back"></i>
   </div>
   <div class="arrow-btn right" (click)="showNext()">
-    <i class="icon-chevron-right"></i>
+    <i class="icon-android-arrow-forward"></i>
   </div>
 </div>

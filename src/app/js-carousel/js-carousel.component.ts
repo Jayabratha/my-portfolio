@@ -6,18 +6,28 @@ import { Component, Input, OnInit, OnDestroy, ElementRef, HostListener } from '@
   styleUrls: ['./js-carousel.component.css']
 })
 export class JsCarouselComponent implements OnInit, OnDestroy {
-  @Input() slideCount : number = 0;
+  @Input() slideItems : { id: string,
+                          url: string,
+                          title: string,
+                          alt: string,
+                          description: string,
+                          active: boolean,
+                          left: boolean,
+                          right: boolean,
+                          next: boolean,
+                          prev: boolean
+                        }[];
   constructor(private elementRef: ElementRef) { }
 
-  el;
-  slideArray;
+  activeSlide;
   slideLength;
   carouselId;
   isPaused;
 
   ngOnInit() {
-    this.el = this.elementRef.nativeElement;
-    this.slideArray = this.el.querySelectorAll('.carousel-item');
+    this.slideLength = this.slideItems.length;
+    this.activeSlide = this.slideItems[0];
+    this.activeSlide.active = true;
     this.start();
   }
 
@@ -43,47 +53,45 @@ export class JsCarouselComponent implements OnInit, OnDestroy {
     this.slide('right');
   }
 
-  getIndexOf(element) {
+  getIndexOf(slide) {
     let i;
-    this.slideLength = this.slideArray.length;
-
     for(i = 0; i < this.slideLength; i++) {
-      let slideElem = this.slideArray[i];
-      if (slideElem.id === element.id) {
+      let thisSlide = this.slideItems[i];
+      if (thisSlide.id === slide.id) {
         return i;
       }
     }
   }
 
-  getNextElement(direction, activeElement) {
-    const activeElemIndex = this.getIndexOf(activeElement);
+  getNextElement(direction, slide) {
+    const activeElemIndex = this.getIndexOf(slide);
     const lastIndex = this.slideLength - 1;
     const delta = direction === 'right' ? -1 : 1;
-    const itemIndex = ( activeElemIndex + delta ) % this.slideLength;
+    const itemIndex = (activeElemIndex + delta ) % this.slideLength;
 
-    return itemIndex === -1 ? this.slideArray[lastIndex] : this.slideArray[itemIndex];
+    return itemIndex === -1 ? this.slideItems[lastIndex] : this.slideItems[itemIndex];
   }
 
   slide(direction) {
     let nextPrevClass = "";
-    const activeElement = this.el.querySelector('.active');
-    const nextElement = this.getNextElement(direction, activeElement);
+    const nextSlide = this.getNextElement(direction, this.activeSlide);
     if (direction === 'left') {
       nextPrevClass = "next";
     } else {
       nextPrevClass = "prev";
     }
-    nextElement.classList.add(nextPrevClass);
+    nextSlide[nextPrevClass] = true;
     setTimeout(() => {
-      activeElement.classList.add(direction);
-      nextElement.classList.add(direction);
+      this.activeSlide[direction] = true;
+      nextSlide[direction] = true;
     }, 10);
     setTimeout(() => {
-      activeElement.classList.remove(direction);
-      nextElement.classList.remove(direction);
-      nextElement.classList.remove(nextPrevClass);
-      activeElement.classList.remove("active");
-      nextElement.classList.add("active");
+      this.activeSlide[direction] = false;
+      nextSlide[direction] = false;
+      nextSlide[nextPrevClass] = false;
+      this.activeSlide["active"] = false;
+      nextSlide["active"] = true;
+      this.activeSlide = nextSlide;
     }, 810);
   }
 

@@ -16,11 +16,11 @@
     <section class="me-card-wrapper center-stage">
         <div class="me-card">
             <div class="dp my-dp">
-                <app-js-carousel slideCount=5></app-js-carousel>
+                <app-js-carousel [slideItems]=slideList></app-js-carousel>
             </div>
             <div class="my-card-wrapper" appJsOnscroll padding=60 (onStateChange)="headerStateChange($event)">
                 <div id="test" class="my-card">
-                    <div class="name"><span>Jayabratha Saha</span></div>
+                    <h1 class="name">Jayabratha Saha</h1>
                     <div class="title">Designer & Developer</div>
                     <div class="github-link"><i class="icon-social-github"></i></div>
                 </div>

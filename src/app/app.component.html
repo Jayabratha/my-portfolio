@@ -2,7 +2,10 @@
   <me-card (onStateChange)="restoreOverviewsInitial($event)"></me-card>
   <div class="main-content center-stage">
       <div class="overview art-overview below-view" appJsOnscroll [restoreInitial]="restoreInitial" [viewportCheck]=true [padding]=200 (onStateChange)="animateEnter($event)" >
-        <div class="dp overview-dp">            
+        <div class="dp overview-dp">
+          <h2>Art</h2>
+          <div class="alpha-initial-bg">A</div>  
+          <div class="underline"></div>      
         </div>
         <div class="overview-content-wrapper">
             <div class="overview-content">
