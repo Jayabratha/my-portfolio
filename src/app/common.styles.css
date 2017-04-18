@@ -17,6 +17,19 @@
     float: right;
 }
 
+/* Button Styles - Start */
+button {
+    position: relative;
+    display: block;
+    border: thin solid;
+    padding: 15px;
+    background: transparent;
+    margin: auto;
+    font-family: 'Playfair Display', serif;
+    letter-spacing: 4px;
+}
+/* Button Styles - End */
+
 /* Tab Styles - Start */
 @media (max-width: 950px) {
     .center-stage {

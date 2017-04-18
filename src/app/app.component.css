@@ -50,7 +50,8 @@ section.background {
     font-size: 4em;
     font-weight: normal;
     color: #FFFFFF;
-    padding: 50px;
+    padding: 50px 0;
+    text-align: center;
 }
 
 .overview .alpha-initial-bg {
@@ -72,6 +73,44 @@ section.background {
     margin: auto;
     left: 0;
     right: 0;
+}
+
+.overview-content-wrapper {
+    height: 100.5%;
+    width: 74%;
+    background-size: 120%;
+    background-position: right;
+    background-repeat: no-repeat;
+}
+.art-overview .overview-content-wrapper {
+    background-image: url(assets/images/sketch.jpg);
+}
+
+.art-overview .underline {
+    background: #f31b48;
+}
+.work-overview .underline {
+    background: #c6116b;
+}
+.skills-overview .underline {
+    background: #940590;
+}
+.about-overview .underline {
+    background: #28a6e4;
+}
+.contact-overview .underline {
+    background: #0ab779;
+}
+.overview button {
+    border-color: #FFFFFF;
+    color: #FFFFFF;
+    transition: background 0.5s;
+}
+
+.overview button:hover {
+    background: #FFFFFF;
+    color: #333333;
+    font-weight: bold;
 }
 /* Overview Styles - End */
 

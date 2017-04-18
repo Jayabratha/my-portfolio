@@ -78,6 +78,7 @@
     right: 0;
     height: 19.3em;
     overflow: hidden;
+    transition: height .5s ease-out;
 }
 .me-card {
     position: absolute;
@@ -106,7 +107,7 @@
     padding-left: 40%;
     color: #FFFFFF;
     background: linear-gradient(140deg, #f31b48, #f31b48, #940590, #0ab779);
-    transition: all 0.5s; 
+    transition: all 0.6s; 
 }
 
 h1.name {
@@ -185,10 +186,10 @@ h1.name {
 }
 .fix-header .me-card-wrapper {
     margin-top: -2px;
+    height: 0.15em;
 }
 .fix-header .me-card {
     position: relative;
-    height: 0.15em;
 }
 
 .fix-header .my-dp,
@@ -468,8 +469,17 @@ ul.site-nav-list li {
 }
 
 @media (max-width: 400px) {
+    .main-header {
+        height: 42em;
+    }
+    .me-card-wrapper {
+        height: 39em;
+    }
     .me-card {
         height: 38.5em;
+    }
+    .initial-header .me-card {
+        transform: translateY(38.85em);
     }
     .dp.my-dp {
         height: 68%;
