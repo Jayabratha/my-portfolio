@@ -83,13 +83,13 @@ section.background {
     background-repeat: no-repeat;
 }
 .art-overview .overview-content-wrapper {
-    background-image: url(assets/images/sketch.jpg);
+    background-image: url(../assets/images/sketch.jpg);
 }
 
 .art-overview .underline {
     background: #f31b48;
 }
-.work-overview .underline {
+.projects-overview .underline {
     background: #c6116b;
 }
 .skills-overview .underline {
@@ -126,6 +126,11 @@ section.background {
 /* Tab Styles - End */
 
 /* Mobile Styles - Start */
+@media (max-width: 650px) {
+    .overview button {
+        margin-top: -30px;
+    }
+}
 @media (max-width: 500px) {
     header.main-header {
         background: transparent;
