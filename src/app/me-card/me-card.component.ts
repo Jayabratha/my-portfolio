@@ -54,11 +54,8 @@ export class MeCardComponent {
   headerStateChange(state: string) {
     if (state === 'fix') {
       this.isHeaderFix = true;
-      this.onStateChange.emit('enable');
     } else if (state === 'scroll' && this.isHeaderFix) {
       this.isHeaderFix = false;
-      this.onStateChange.emit('restore');
-      console.log("Restore");
     }
   }
 

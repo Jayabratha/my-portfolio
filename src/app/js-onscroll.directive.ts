@@ -6,7 +6,6 @@ import { Directive, ElementRef, HostListener, Renderer, EventEmitter, Output, In
 export class JsOnscrollDirective {
   @Input() padding: number = 0;
   @Input() viewportCheck: boolean = false;
-  @Input() restoreInitial: boolean = false;
   @Output() onStateChange = new EventEmitter<string>();
 
   elem: HTMLElement;
@@ -24,7 +23,7 @@ export class JsOnscrollDirective {
 
   @HostListener('window:scroll') onScroll() {
     if (this.viewportCheck) {
-      if (this.restoreInitial) {
+      if (window.pageYOffset === 0) {
         this.renderer.setElementClass(this.elem, 'below-view', true);
         this.hasEntered = false;
       }

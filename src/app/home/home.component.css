@@ -1,0 +1,94 @@
+/* Overview Styles - Start */
+.overview {
+    position: relative;
+    display: inline-block;
+    background: #FFFFFF;
+    width: 100%;
+    height: 25em;
+    margin: 3em 0;
+    box-shadow: 0 1px 4px rgba(0,0,0,.05);
+    border: 1px solid rgba(0,0,0,.09);
+    transform: translateY(0);
+    transition: transform 1s;
+}
+.overview.below-view {
+   transform: translateY(300px);
+}
+.overview.above-view {
+   transform: translateY(-300px);
+}
+.dp.overview-dp {
+    background: #333333;
+    height: 25em;
+}
+.overview:nth-child(odd) .overview-dp {
+    float: right;
+}
+.overview h2 {
+    font-size: 4em;
+    font-weight: normal;
+    color: #FFFFFF;
+    padding: 50px 0;
+    text-align: center;
+}
+.overview .alpha-initial-bg {
+    position: absolute;
+    font-size: 20em;
+    top: -150px;
+    left: -29px;
+    color: #FFFFFF;
+    opacity: 0.05;
+}
+.overview .underline {
+    height: 5px;
+    width: 100px;
+    background: #f31b48;
+    position: absolute;
+    top: 25px;
+    bottom: 0;
+    margin: auto;
+    left: 0;
+    right: 0;
+}
+.overview-content-wrapper {
+    height: 100.5%;
+    width: 74%;
+    background-size: 120%;
+    background-position: right;
+    background-repeat: no-repeat;
+}
+.art-overview .overview-content-wrapper {
+    background-image: url(../../assets/images/sketch.jpg);
+}
+.art-overview .underline {
+    background: #f31b48;
+}
+.projects-overview .underline {
+    background: #c6116b;
+}
+.skills-overview .underline {
+    background: #940590;
+}
+.about-overview .underline {
+    background: #28a6e4;
+}
+.contact-overview .underline {
+    background: #0ab779;
+}
+.overview button {
+    border-color: #FFFFFF;
+    color: #FFFFFF;
+    transition: background 0.5s;
+}
+.overview button:hover {
+    background: #FFFFFF;
+    color: #333333;
+    font-weight: bold;
+}
+/* Overview Styles - End */
+
+@media (max-width: 650px) {
+    .overview button {
+        margin-top: -30px;
+    }
+}
