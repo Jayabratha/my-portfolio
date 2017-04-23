@@ -1,19 +1,13 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router'; 
+import { Router } from '@angular/router';
+import { AppStateService } from './app-state.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css', './common.styles.css']
+  styleUrls: ['./app.component.css', './common.styles.css'],
+  providers: [AppStateService]
 })
 export class AppComponent {
-  restoreInitial : boolean = false;
-
-  restoreOverviewsInitial(state: string) {
-    if (state === 'enable') {
-      this.restoreInitial = false;
-    } else if (state === 'restore') {
-      this.restoreInitial = true;
-    }
-  }
+  
 }

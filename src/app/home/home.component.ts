@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { AppStateService } from '../app-state.service';
 
 @Component({
   selector: 'app-home',
@@ -6,5 +7,7 @@ import { Component, Input } from '@angular/core';
   styleUrls: ['./home.component.css', './../common.styles.css']
 })
 export class HomeComponent {
-  @Input() restoreInitial: boolean = false;
+  constructor(private appState: AppStateService) {
+    this.appState.setHeaderState(false);
+  }
 }

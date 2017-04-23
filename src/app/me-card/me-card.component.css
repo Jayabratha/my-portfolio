@@ -9,7 +9,7 @@
     height: 38em;
     box-shadow: 0 1px 4px rgba(0,0,0,.04);
     border: thin solid #FFFFFF;
-    border-bottom: 1px solid rgba(0,0,0,.09);
+    border-bottom: none;
     padding: 0;
     transition: height 0.5s;
     overflow: hidden;
@@ -174,6 +174,7 @@ h1.name {
     height: 62px;
     padding: 60px 0 0;
     z-index: 10;
+    height: 0;
 }
 .fix-header .logo-section {
     margin-left: -2px;

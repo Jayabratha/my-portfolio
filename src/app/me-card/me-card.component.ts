@@ -1,17 +1,23 @@
-import { Component, Output, EventEmitter } from '@angular/core';
+import { Component, Output, EventEmitter, OnDestroy } from '@angular/core';
+import { AppStateService } from '../app-state.service';
+import { Subscription }   from 'rxjs/Subscription';
+import { Router, NavigationStart }    from '@angular/router';
 
 @Component({
   selector: 'me-card',
   templateUrl: './me-card.component.html',
   styleUrls: ['./me-card.component.css', './../common.styles.css']
 })
-export class MeCardComponent {
+export class MeCardComponent implements OnDestroy {
   @Output() onStateChange = new EventEmitter<string>();
 
   isInitial: boolean = true;
   showMenu: boolean = false;
   isHeaderFix : boolean;
   activeNav: string = "";
+  subscription: Subscription;
+  activateScroll: boolean = false;
+
 
   slideList: Object[] = [{
     id: "slide1",
@@ -45,17 +51,41 @@ export class MeCardComponent {
     description: ""
   }]
 
-  constructor() {
+  constructor(private appState: AppStateService, private router: Router) {
+    this.subscription = appState.getHeaderState().subscribe(
+      (isHeaderFix : boolean) => {
+        this.isHeaderFix = isHeaderFix;
+        console.log("Header State Change");
+      }
+    );
+
+    this.router.events.subscribe(
+      (event) => {
+        if (event instanceof NavigationStart) {
+          if (event.url === "" || event.url === "/home") {
+            this.activateScroll = true;
+          } else {
+            this.activateScroll = false;
+          }
+        }
+      });
+
     setTimeout(() => {
       this.isInitial = false;
     }, 2000);
   }
 
+  ngOnDestroy() {
+    // prevent memory leak when component destroyed
+    this.subscription.unsubscribe();
+    console.log("Destroy");
+  }
+
   headerStateChange(state: string) {
     if (state === 'fix') {
-      this.isHeaderFix = true;
+      this.appState.setHeaderState(true);
     } else if (state === 'scroll' && this.isHeaderFix) {
-      this.isHeaderFix = false;
+      this.appState.setHeaderState(false);
     }
   }
 

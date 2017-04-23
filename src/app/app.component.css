@@ -8,7 +8,6 @@ section.background {
 
 .main-content {
     min-height: 2000px;
-    margin-top: 12em;
 }
 
 .js-logo {
@@ -20,9 +19,9 @@ section.background {
 }
 
 /* Tab Styles - Start */
-@media (max-width: 950px) {
+@media (max-width: 650px) {
     .main-content {
-        margin-top: 30em;
+        padding-top: 30em;
     }
     .main-content.fix-header {
         margin-top: 31em;

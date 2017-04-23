@@ -18,7 +18,7 @@
             <div class="dp my-dp">
                 <app-js-carousel [slideItems]=slideList></app-js-carousel>
             </div>
-            <div class="my-card-wrapper" appJsOnscroll padding=60 (onStateChange)="headerStateChange($event)">
+            <div class="my-card-wrapper" appJsOnscroll padding=60 [activateScroll]=activateScroll (onStateChange)="headerStateChange($event)">
                 <div id="test" class="my-card">
                     <h1 class="name">Jayabratha Saha</h1>
                     <div class="title">Artist & Developer</div>
@@ -29,7 +29,7 @@
     </section>
     <nav class="site-nav center-stage absolute-bottom">
         <ul class="site-nav-list">
-            <li (mouseenter)="activeNav='art'" (mouseleave)="activeNav=''">Art</li>
+            <li (mouseenter)="activeNav='art'" (mouseleave)="activeNav=''" routerLink="/art">Art</li>
             <li (mouseenter)="activeNav='projects'" (mouseleave)="activeNav=''">Projects</li>
             <li (mouseenter)="activeNav='skills'" (mouseleave)="activeNav=''">Blog</li>
             <li (mouseenter)="activeNav='about'" (mouseleave)="activeNav=''">About</li>

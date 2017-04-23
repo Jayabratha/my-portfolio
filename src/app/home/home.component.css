@@ -1,4 +1,7 @@
 /* Overview Styles - Start */
+.home-content {
+    margin-top: 10em;
+}
 .overview {
     position: relative;
     display: inline-block;
