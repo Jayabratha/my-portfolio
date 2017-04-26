@@ -16,7 +16,7 @@
     <section class="me-card-wrapper center-stage">
         <div class="me-card">
             <div class="dp my-dp">
-                <app-js-carousel [slideItems]=slideList></app-js-carousel>
+                <app-js-carousel [slideItems]=slideList [play]=play></app-js-carousel>
             </div>
             <div class="my-card-wrapper" appJsOnscroll padding=60 [activateScroll]=activateScroll (onStateChange)="headerStateChange($event)">
                 <div id="test" class="my-card">

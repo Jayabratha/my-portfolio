@@ -7,6 +7,7 @@ export class JsOnscrollDirective {
   @Input() padding: number = 0;
   @Input() viewportCheck: boolean = false;
   @Input() activateScroll: boolean = true;
+  @Input() restoreInitial: boolean = false;
   @Output() onStateChange = new EventEmitter<string>();
 
   elem: HTMLElement;
@@ -25,7 +26,7 @@ export class JsOnscrollDirective {
   @HostListener('window:scroll') onScroll() {
     if (this.activateScroll) {
       if (this.viewportCheck) {
-        if (window.pageYOffset === 0) {
+        if (this.restoreInitial) {
           this.renderer.setElementClass(this.elem, 'below-view', true);
           this.hasEntered = false;
         }
@@ -35,6 +36,7 @@ export class JsOnscrollDirective {
         }
       } else if (document.body.scrollTop > this.elemViewportOffset - this.padding) {
         this.onStateChange.emit('fix');
+        console.log("Fix");
       } else {
         this.onStateChange.emit('scroll');
       }

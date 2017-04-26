@@ -1,28 +1,47 @@
-import { Component, Input, OnInit, OnDestroy, ElementRef, HostListener } from '@angular/core';
+import { Component, Input, SimpleChanges, OnChanges, OnInit, OnDestroy, ElementRef, HostListener } from '@angular/core';
 
 @Component({
   selector: 'app-js-carousel',
   templateUrl: './js-carousel.component.html',
   styleUrls: ['./js-carousel.component.css']
 })
-export class JsCarouselComponent implements OnInit, OnDestroy {
-  @Input() slideItems : { id: string,
-                          url: string,
-                          title: string,
-                          alt: string,
-                          description: string,
-                          active: boolean,
-                          left: boolean,
-                          right: boolean,
-                          next: boolean,
-                          prev: boolean
-                        }[];
+export class JsCarouselComponent implements OnChanges, OnInit, OnDestroy {
+  @Input() play: boolean = true;
+  @Input() slideItems: {
+    id: string,
+    url: string,
+    title: string,
+    alt: string,
+    description: string,
+    active: boolean,
+    left: boolean,
+    right: boolean,
+    next: boolean,
+    prev: boolean
+  }[];
+
   constructor(private elementRef: ElementRef) { }
 
   activeSlide;
   slideLength;
   carouselId;
   isPaused;
+
+  ngOnChanges(changes: SimpleChanges) {
+    let currentValue;
+    for (let propName in changes) {
+      if (propName === 'play') {
+        currentValue = changes[propName].currentValue;
+        if (currentValue) {
+          this.start();
+          console.log("Carousel Played");
+        } else {
+          this.pause();
+          console.log("Carousel Paused");
+        }
+      }
+    }
+  }
 
   ngOnInit() {
     this.slideLength = this.slideItems.length;
@@ -55,7 +74,7 @@ export class JsCarouselComponent implements OnInit, OnDestroy {
 
   getIndexOf(slide) {
     let i;
-    for(i = 0; i < this.slideLength; i++) {
+    for (i = 0; i < this.slideLength; i++) {
       let thisSlide = this.slideItems[i];
       if (thisSlide.id === slide.id) {
         return i;
@@ -67,7 +86,7 @@ export class JsCarouselComponent implements OnInit, OnDestroy {
     const activeElemIndex = this.getIndexOf(slide);
     const lastIndex = this.slideLength - 1;
     const delta = direction === 'right' ? -1 : 1;
-    const itemIndex = (activeElemIndex + delta ) % this.slideLength;
+    const itemIndex = (activeElemIndex + delta) % this.slideLength;
 
     return itemIndex === -1 ? this.slideItems[lastIndex] : this.slideItems[itemIndex];
   }

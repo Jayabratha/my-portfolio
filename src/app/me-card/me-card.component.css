@@ -278,6 +278,7 @@ ul.site-nav-list li {
     width: 20%;
     color: #454545;
     cursor: pointer;
+    outline: none;
 }
 /* Nav Style - End */
 

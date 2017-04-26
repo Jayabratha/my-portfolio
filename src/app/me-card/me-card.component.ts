@@ -1,4 +1,4 @@
-import { Component, Output, EventEmitter, OnDestroy } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { AppStateService } from '../app-state.service';
 import { Subscription }   from 'rxjs/Subscription';
 import { Router, NavigationStart }    from '@angular/router';
@@ -9,14 +9,14 @@ import { Router, NavigationStart }    from '@angular/router';
   styleUrls: ['./me-card.component.css', './../common.styles.css']
 })
 export class MeCardComponent implements OnDestroy {
-  @Output() onStateChange = new EventEmitter<string>();
 
   isInitial: boolean = true;
   showMenu: boolean = false;
   isHeaderFix : boolean;
   activeNav: string = "";
   subscription: Subscription;
-  activateScroll: boolean = false;
+  activateScroll: boolean = true;
+  play: boolean = true;
 
 
   slideList: Object[] = [{
@@ -55,6 +55,11 @@ export class MeCardComponent implements OnDestroy {
     this.subscription = appState.getHeaderState().subscribe(
       (isHeaderFix : boolean) => {
         this.isHeaderFix = isHeaderFix;
+        if(isHeaderFix) {
+          this.play = false;
+        } else {
+          this.play = true;
+        }
         console.log("Header State Change");
       }
     );
@@ -62,11 +67,12 @@ export class MeCardComponent implements OnDestroy {
     this.router.events.subscribe(
       (event) => {
         if (event instanceof NavigationStart) {
-          if (event.url === "" || event.url === "/home") {
+          if (event.url === "/" || event.url === "/home") {
             this.activateScroll = true;
           } else {
             this.activateScroll = false;
           }
+          window.scrollTo(0, 0);
         }
       });
 
