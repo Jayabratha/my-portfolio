@@ -1,16 +1,15 @@
 import { Component } from '@angular/core';
 import { AppStateService } from '../app-state.service';
-//import { trigger, state, animate, transition, style } from '@angular/animations';
 import { routeAnimation } from '../animations/animations';
 
 @Component({
-  selector: 'app-art',
-  templateUrl: './art.component.html',
-  styleUrls: ['./art.component.css', './../app.component.css', './../common.styles.css'],
+  selector: 'app-contact',
+  templateUrl: './contact.component.html',
+  styleUrls: ['./contact.component.css', './../app.component.css', './../common.styles.css'],
   animations: [routeAnimation()],
   host: { '[@routeAnimation]': '' }
 })
-export class ArtComponent {
+export class ContactComponent{
 
   constructor(private appState: AppStateService) {
     this.appState.setHeaderState(true);

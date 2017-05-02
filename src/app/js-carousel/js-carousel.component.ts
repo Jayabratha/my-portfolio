@@ -25,7 +25,6 @@ export class JsCarouselComponent implements OnChanges, OnInit, OnDestroy {
   activeSlide;
   slideLength;
   carouselId;
-  isPaused;
 
   ngOnChanges(changes: SimpleChanges) {
     let currentValue;
@@ -34,10 +33,8 @@ export class JsCarouselComponent implements OnChanges, OnInit, OnDestroy {
         currentValue = changes[propName].currentValue;
         if (currentValue) {
           this.start();
-          console.log("Carousel Played");
         } else {
           this.pause();
-          console.log("Carousel Paused");
         }
       }
     }
@@ -115,14 +112,17 @@ export class JsCarouselComponent implements OnChanges, OnInit, OnDestroy {
   }
 
   start() {
-    this.isPaused = false;
+    //Clear if a interval is set
+    if (this.carouselId) {
+      clearInterval(this.carouselId);
+    }
+    //Start a new Carousel
     this.carouselId = setInterval(() => {
       this.showNext();
     }, 5000);
   }
 
   pause() {
-    this.isPaused = true;
     clearInterval(this.carouselId);
   }
 

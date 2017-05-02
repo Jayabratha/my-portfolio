@@ -18,6 +18,22 @@ section.background {
     height: 4em;
 }
 
+/* Route Components Base Styles - Start */
+.content {
+    position: relative;
+    min-height: 800px;
+    padding-top: 5em;
+}
+
+.content h1 {
+    padding: 0.2em 0.2em 0.5em;
+    font-size: 3em;
+    margin: 0;
+    color: #454545;
+    font-weight: normal;
+}
+/* Route Components Base Styles - End */
+
 /* Tab Styles - Start */
 @media (max-width: 650px) {
     .main-content {

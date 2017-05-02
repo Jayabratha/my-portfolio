@@ -10,10 +10,17 @@ import { MeCardComponent } from './me-card/me-card.component';
 import { JsOnscrollDirective } from './js-onscroll.directive';
 import { JsCarouselComponent } from './js-carousel/js-carousel.component';
 import { ArtComponent } from './art/art.component';
+import { ProjectsComponent } from './projects/projects.component';
+import { AboutComponent } from './about/about.component';
+import { ContactComponent } from './contact/contact.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 const appRoutes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'art', component: ArtComponent },
+  { path: 'projects', component: ProjectsComponent },
+  { path: 'about', component: AboutComponent },
+  { path: 'contact', component: ContactComponent },
   {
     path: '',
     redirectTo: '/home',
@@ -28,27 +35,17 @@ const appRoutes: Routes = [
     JsOnscrollDirective,
     JsCarouselComponent,
     HomeComponent,
-    ArtComponent
+    ArtComponent,
+    ProjectsComponent,
+    AboutComponent,
+    ContactComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
-    RouterModule.forRoot([
-      {
-        path: 'home',
-        component: HomeComponent
-      },
-      {
-        path: 'art',
-        component: ArtComponent
-      },
-      {
-        path: '',
-        redirectTo: '/home',
-        pathMatch: 'full'
-      }
-    ])
+    BrowserAnimationsModule,
+    RouterModule.forRoot(appRoutes)
   ],
   providers: [],
   bootstrap: [AppComponent]
