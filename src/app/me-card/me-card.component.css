@@ -12,7 +12,7 @@
     border-bottom: none;
     padding: 0;
     transition: height 0.5s;
-    overflow: hidden;
+    /*overflow: hidden;*/
 }
 .absolute-bottom {
     position: absolute;
@@ -207,42 +207,24 @@ h1.name {
     padding-top: 0;
     padding-bottom: 0;
 }
-
-.fix-header ul.site-nav-list {
-    opacity: 0;
-}
-/* Fixed Header Styles - End */
-
-/* Show Menu Styles - Start */
-.fix-header.show-menu {
-    overflow: visible;
-}
-.fix-header.show-menu .me-card {
-    position: relative;
-    height: 33em;
-}
-.fix-header.show-menu .my-card {
-    height: 33.5em;
-}
-.fix-header.show-menu .me-card-wrapper {
-    height: auto;
-}
-.fix-header.show-menu .site-nav {
+.fix-header .site-nav {
     position: absolute;
-    top: 4em;
-    height: 30em;
+    top: 58px;
+    height: 0;
     margin: 0 auto;
     left: 0;
     right: 0;
     width: 80%;
+    overflow: hidden;
+    transition: height 0.5s;
 }
-.fix-header.show-menu .site-nav-list {
+.fix-header ul.site-nav-list {
     position: relative;
     width: 100%;
     min-height: 5em;
     height: auto;
     padding: 3em 0;
-    opacity: 1;
+    opacity: 0;
 }
 .fix-header ul.site-nav-list li {
     font-size: 2.5em;
@@ -253,9 +235,27 @@ h1.name {
     width: 70%;
     margin: 0 auto;
     color: #FFFFFF;
-}
-.fix-header.show-menu ul.site-nav-list li {
     padding-top: 0.6em;
+}
+
+/* Fixed Header Styles - End */
+
+/* Show Menu Styles - Start */
+.fix-header.show-menu .me-card {
+    position: relative;
+    height: 33em;
+}
+.fix-header.show-menu .my-card {
+    height: 33.5em;
+}
+.fix-header.show-menu .me-card-wrapper {
+    height: 35em;
+}
+.fix-header.show-menu .site-nav {
+    height: 30em;
+}
+.fix-header.show-menu ul.site-nav-list {
+    opacity: 1;
 }
 /* Show Menu Styles - End */
 
