@@ -37,7 +37,7 @@ section.background {
 /* Tab Styles - Start */
 @media (max-width: 650px) {
     .main-content {
-        padding-top: 30em;
+        padding-top: 1em;
     }
     .main-content.fix-header {
         margin-top: 31em;
