@@ -11,11 +11,15 @@ export class HomeComponent implements OnDestroy {
 
   subscription: Subscription;
   restoreInitial: boolean = false;
+  isHeaderFix: boolean = false;
 
   constructor(private appState: AppStateService) {
+    //Set Header State to false to expand the header on load
     appState.setHeaderState(false);
     this.subscription = appState.getHeaderState().subscribe(
       (isHeaderFix : boolean) => {
+        this.isHeaderFix = isHeaderFix;
+        //Restore the state of the overview cards if the header is not fixed
         if (!isHeaderFix) {
           this.restoreInitial = true;
         }       
@@ -25,6 +29,5 @@ export class HomeComponent implements OnDestroy {
   ngOnDestroy() {
     // prevent memory leak when component destroyed
     this.subscription.unsubscribe();
-    console.log("Destroy");
   }
 }

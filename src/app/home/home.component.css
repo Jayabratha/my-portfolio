@@ -2,6 +2,9 @@
 .home-content {
     margin-top: 10em;
 }
+.home-content.hide {
+    opacity: 0;
+}
 .overview {
     position: relative;
     display: inline-block;

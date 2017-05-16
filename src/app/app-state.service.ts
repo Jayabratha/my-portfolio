@@ -10,7 +10,6 @@ export class AppStateService {
   setHeaderState(isFix: boolean): void {
     this.isHeaderFix = isFix;
     this.headerSubject.next(isFix);
-    console.log("Setting Header State");
   }
 
   getHeaderState(): Observable<boolean> {

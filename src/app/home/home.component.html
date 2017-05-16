@@ -1,4 +1,4 @@
-<div class="home-content center-stage">
+<div class="home-content center-stage" [ngClass]="{'hide': !isHeaderFix}">
   <div class="overview art-overview below-view" appJsOnscroll [viewportCheck]=true [restoreInitial]=restoreInitial [padding]=200>
     <div class="dp overview-dp">
       <h2>Art</h2>
