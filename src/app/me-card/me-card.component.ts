@@ -1,4 +1,4 @@
-import { Component, OnDestroy } from '@angular/core';
+import { Component, OnDestroy, ElementRef, Renderer } from '@angular/core';
 import { AppStateService } from '../app-state.service';
 import { Subscription } from 'rxjs/Subscription';
 import { Router, NavigationStart } from '@angular/router';
@@ -51,7 +51,10 @@ export class MeCardComponent implements OnDestroy {
     description: ""
   }]
 
-  constructor(private appState: AppStateService, private router: Router) {
+  constructor(private appState: AppStateService,
+    private router: Router,
+    private el: ElementRef,
+    private renderer: Renderer) {
     this.subscription = appState.getHeaderState().subscribe(
       (isHeaderFix: boolean) => {
         this.isHeaderFix = isHeaderFix;
@@ -60,7 +63,6 @@ export class MeCardComponent implements OnDestroy {
         } else {
           this.play = true;
         }
-        console.log("Header State Change");
       }
     );
 
@@ -76,17 +78,20 @@ export class MeCardComponent implements OnDestroy {
             this.activateScroll = false;
             this.isInitial = false;
           }
+          //Scroll to top when coming to home from other view
           window.scrollTo(0, 0);
+          // Prevent auto position of scroll on page refresh instead keep on top
+          window.addEventListener("beforeunload", function (event) {
+            renderer.setElementStyle(el.nativeElement, 'display', 'none');
+            window.scrollTo(0, 0);
+          });
         }
       });
-
-
   }
 
   ngOnDestroy() {
     // prevent memory leak when component destroyed
     this.subscription.unsubscribe();
-    console.log("Destroy");
   }
 
   headerStateChange(state: string) {

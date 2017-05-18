@@ -20,7 +20,6 @@ export class JsOnscrollDirective {
     this.elem = this.el.nativeElement;
     this.elemInitialOffset = this.elem.offsetTop;
     this.elemViewportOffset = this.elem.getBoundingClientRect().top;
-    console.log(this.elemInitialOffset);
   }
 
   @HostListener('window:scroll') onScroll() {
@@ -36,7 +35,6 @@ export class JsOnscrollDirective {
         }
       } else if (document.body.scrollTop > this.elemViewportOffset - this.padding) {
         this.onStateChange.emit('fix');
-        console.log("Fix");
       } else {
         this.onStateChange.emit('scroll');
       }

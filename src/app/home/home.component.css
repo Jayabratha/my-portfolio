@@ -1,6 +1,8 @@
 /* Overview Styles - Start */
 .home-content {
     margin-top: 10em;
+    opacity: 1;
+    transition: opacity 1s;
 }
 .home-content.hide {
     opacity: 0;
