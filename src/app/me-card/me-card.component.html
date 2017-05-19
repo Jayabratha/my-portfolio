@@ -29,11 +29,11 @@
     </section>
     <nav class="site-nav center-stage absolute-bottom">
         <ul class="site-nav-list">
-            <li (mouseenter)="activeNav='art'" (mouseleave)="activeNav=''" routerLink="/art" (click)="showMenu = false;">Art</li>
-            <li (mouseenter)="activeNav='projects'" (mouseleave)="activeNav=''" routerLink="/projects" (click)="showMenu = false;">Projects</li>
-            <li (mouseenter)="activeNav='skills'" (mouseleave)="activeNav=''" routerLink="/home" (click)="showMenu = false;">Blog</li>
-            <li (mouseenter)="activeNav='about'" (mouseleave)="activeNav=''" routerLink="/about" (click)="showMenu = false;">About</li>
-            <li (mouseenter)="activeNav='contact'" (mouseleave)="activeNav=''" routerLink="/contact" (click)="showMenu = false;">Contact</li>
+            <li #navItem (mouseenter)="activeNav='art'" (mouseleave)="activeNav=''" routerLink="/art" (click)="showMenu = false;">Art</li>
+            <li #navItem (mouseenter)="activeNav='projects'" (mouseleave)="activeNav=''" routerLink="/projects" (click)="showMenu = false;">Projects</li>
+            <li #navItem (mouseenter)="activeNav='skills'" (mouseleave)="activeNav=''" routerLink="/home" (click)="showMenu = false;">Blog</li>
+            <li #navItem (mouseenter)="activeNav='about'" (mouseleave)="activeNav=''" routerLink="/about" (click)="showMenu = false;">About</li>
+            <li #navItem (mouseenter)="activeNav='contact'" (mouseleave)="activeNav=''" routerLink="/contact" (click)="showMenu = false;">Contact</li>
         </ul>
     </nav>
     <div class="nav-highlighter-wrapper center-stage absolute-bottom">

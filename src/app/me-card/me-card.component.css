@@ -278,6 +278,8 @@ ul.site-nav-list li {
     color: #454545;
     cursor: pointer;
     outline: none;
+    opacity: 0;
+    transition: opacity 0.8s;
 }
 /* Nav Style - End */
 

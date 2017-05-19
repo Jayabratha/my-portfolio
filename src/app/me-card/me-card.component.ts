@@ -1,4 +1,4 @@
-import { Component, OnDestroy, ElementRef, Renderer } from '@angular/core';
+import { Component, AfterViewInit, OnDestroy, ElementRef, Renderer, ViewChildren, QueryList } from '@angular/core';
 import { AppStateService } from '../app-state.service';
 import { Subscription } from 'rxjs/Subscription';
 import { Router, NavigationStart } from '@angular/router';
@@ -8,7 +8,8 @@ import { Router, NavigationStart } from '@angular/router';
   templateUrl: './me-card.component.html',
   styleUrls: ['./me-card.component.css', './../common.styles.css']
 })
-export class MeCardComponent implements OnDestroy {
+export class MeCardComponent implements AfterViewInit, OnDestroy {
+  @ViewChildren('navItem') navItems: QueryList<ElementRef>;
 
   isInitial: boolean = true;
   showMenu: boolean = false;
@@ -73,6 +74,12 @@ export class MeCardComponent implements OnDestroy {
             this.activateScroll = true;
             setTimeout(() => {
               this.isInitial = false;
+              //Animate the nav bar
+              this.navItems.forEach((elem, index) => {
+                setTimeout(() => {
+                  elem.nativeElement.style['opacity'] = 1;
+                }, index * 100);               
+              });
             }, 2000);
           } else {
             this.activateScroll = false;
@@ -87,6 +94,10 @@ export class MeCardComponent implements OnDestroy {
           });
         }
       });
+  }
+
+  ngAfterViewInit() {
+     console.log(this.navItems);
   }
 
   ngOnDestroy() {
