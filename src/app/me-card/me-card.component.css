@@ -279,7 +279,13 @@ ul.site-nav-list li {
     cursor: pointer;
     outline: none;
     opacity: 0;
-    transition: opacity 0.8s;
+    transform: translateY(20px);
+    transition: opacity 0.5s, transform 0.6s;
+}
+
+ul.site-nav-list li.show {
+    opacity: 1;
+    transform: translateY(0);
 }
 /* Nav Style - End */
 

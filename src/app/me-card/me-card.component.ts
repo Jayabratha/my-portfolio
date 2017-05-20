@@ -1,4 +1,4 @@
-import { Component, AfterViewInit, OnDestroy, ElementRef, Renderer, ViewChildren, QueryList } from '@angular/core';
+import { Component, AfterViewInit, OnDestroy, ElementRef, Renderer2, ViewChildren, QueryList } from '@angular/core';
 import { AppStateService } from '../app-state.service';
 import { Subscription } from 'rxjs/Subscription';
 import { Router, NavigationStart } from '@angular/router';
@@ -18,7 +18,6 @@ export class MeCardComponent implements AfterViewInit, OnDestroy {
   subscription: Subscription;
   activateScroll: boolean = true;
   play: boolean = true;
-
 
   slideList: Object[] = [{
     id: "slide1",
@@ -50,19 +49,44 @@ export class MeCardComponent implements AfterViewInit, OnDestroy {
     title: "My pic 5",
     alt: "My pic 5",
     description: ""
-  }]
+  }];
+
+  animateNavItems() {
+    if (this.navItems) {
+      this.navItems.forEach((elem, index) => {
+        setTimeout(() => {
+         this.renderer.addClass(elem.nativeElement, 'show');
+        }, index * 150);
+      });
+    }
+  }
+
+  hideNavItems() {
+    if (this.navItems) {
+      this.navItems.forEach((elem, index) => {
+        setTimeout(() => {
+          this.renderer.removeClass(elem.nativeElement, 'show');
+        }, index * 150);
+      });
+    }
+  }
 
   constructor(private appState: AppStateService,
     private router: Router,
     private el: ElementRef,
-    private renderer: Renderer) {
+    private renderer: Renderer2) {
+
     this.subscription = appState.getHeaderState().subscribe(
       (isHeaderFix: boolean) => {
         this.isHeaderFix = isHeaderFix;
         if (isHeaderFix) {
           this.play = false;
+          this.hideNavItems();
         } else {
           this.play = true;
+          if (!this.isInitial) {
+            this.animateNavItems();
+          }
         }
       }
     );
@@ -75,11 +99,7 @@ export class MeCardComponent implements AfterViewInit, OnDestroy {
             setTimeout(() => {
               this.isInitial = false;
               //Animate the nav bar
-              this.navItems.forEach((elem, index) => {
-                setTimeout(() => {
-                  elem.nativeElement.style['opacity'] = 1;
-                }, index * 100);               
-              });
+              this.animateNavItems();
             }, 2000);
           } else {
             this.activateScroll = false;
@@ -89,7 +109,7 @@ export class MeCardComponent implements AfterViewInit, OnDestroy {
           window.scrollTo(0, 0);
           // Prevent auto position of scroll on page refresh instead keep on top
           window.addEventListener("beforeunload", function (event) {
-            renderer.setElementStyle(el.nativeElement, 'display', 'none');
+            renderer.setStyle(el.nativeElement, 'display', 'none');
             window.scrollTo(0, 0);
           });
         }
@@ -97,7 +117,7 @@ export class MeCardComponent implements AfterViewInit, OnDestroy {
   }
 
   ngAfterViewInit() {
-     console.log(this.navItems);
+    console.log(this.navItems);
   }
 
   ngOnDestroy() {
@@ -115,5 +135,10 @@ export class MeCardComponent implements AfterViewInit, OnDestroy {
 
   toggleMenu() {
     this.showMenu = !this.showMenu;
+    if (this.showMenu) {
+      this.animateNavItems();
+    } else {
+      this.hideNavItems();
+    }
   }
 }
