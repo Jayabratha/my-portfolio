@@ -1,3 +1,7 @@
-.art-content {
-    
+.art-list li {
+    display: table-cell;
+}
+.art-list img {
+    max-height: 26em;
+    border: thin solid #e3e3e3;
 }

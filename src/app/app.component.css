@@ -6,10 +6,6 @@ section.background {
     overflow: hidden;
 }
 
-.main-content {
-    min-height: 2000px;
-}
-
 .js-logo {
     position: relative;
     display: inline-block;
@@ -21,7 +17,6 @@ section.background {
 /* Route Components Base Styles - Start */
 .content {
     position: relative;
-    min-height: 800px;
     padding-top: 5em;
 }
 
