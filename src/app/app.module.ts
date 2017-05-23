@@ -4,12 +4,12 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { Routes, RouterModule } from '@angular/router';
 
+import { ArtModule } from './art/art.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { MeCardComponent } from './me-card/me-card.component';
 import { JsOnscrollDirective } from './js-onscroll.directive';
 import { JsCarouselComponent } from './js-carousel/js-carousel.component';
-import { ArtComponent } from './art/art.component';
 import { ProjectsComponent } from './projects/projects.component';
 import { AboutComponent } from './about/about.component';
 import { ContactComponent } from './contact/contact.component';
@@ -17,7 +17,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 const appRoutes: Routes = [
   { path: 'home', component: HomeComponent },
-  { path: 'art', component: ArtComponent },
+  { path: 'art', loadChildren: './art/art.module#ArtModule'},
   { path: 'projects', component: ProjectsComponent },
   { path: 'about', component: AboutComponent },
   { path: 'contact', component: ContactComponent },
@@ -35,7 +35,6 @@ const appRoutes: Routes = [
     JsOnscrollDirective,
     JsCarouselComponent,
     HomeComponent,
-    ArtComponent,
     ProjectsComponent,
     AboutComponent,
     ContactComponent
