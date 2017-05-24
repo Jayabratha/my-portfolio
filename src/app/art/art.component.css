@@ -1,8 +1,7 @@
 .art-list li {
-    display: table-cell;
+    display: inline-block;
 }
 .art-list img {
-    max-height: 22em;
+    max-height: 19em;
     border: thin solid #e3e3e3;
-    margin: 1px;
 }
