@@ -1,7 +1,27 @@
 .art-list li {
-    display: inline-block;
+    overflow: hidden;
+    padding: 0px 2px;
+    margin: 1px 0;
+    height: 20em;
 }
+
 .art-list img {
-    max-height: 19em;
+    height: 100%;
     border: thin solid #e3e3e3;
+}
+
+/* For Phones - Start */
+@media (max-width: 600px) {
+    /*.art-list li.potrait {
+        width: 50%;
+    }*/
+    .art-list li {
+        width: 100%;
+        height: auto;
+    }
+
+    .art-list img {
+        width: 100%;
+        height: auto;
+    }
 }
