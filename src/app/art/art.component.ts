@@ -1,21 +1,19 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, ViewChildren, QueryList, AfterViewInit } from '@angular/core';
 import { AppStateService } from '../app-state.service';
 import { routeAnimation } from '../animations/animations';
 
 @Component({
-  selector: 'app-art',
-  templateUrl: './art.component.html',
-  styleUrls: ['./art.component.css', './../app.component.css', './../common.styles.css'],
-  animations: [routeAnimation()],
-  host: { '[@routeAnimation]': '' }
+    selector: 'app-art',
+    templateUrl: './art.component.html',
+    styleUrls: ['./art.component.css', './../app.component.css', './../common.styles.css'],
+    animations: [routeAnimation()],
+    host: { '[@routeAnimation]': '' }
 })
 export class ArtComponent {
 
-  constructor(private appState: AppStateService) {
-    this.appState.setHeaderState(true);
-  }
+    @ViewChildren('imgItem') imageItems: QueryList<ElementRef>;
 
-  artList: Object[] = [{
+    artList: Object[] = [{
         id: "art1",
         url: "../assets/images/art/Farah.jpg",
         title: "Farah",
@@ -86,5 +84,13 @@ export class ArtComponent {
         description: "",
         isPotraitMode: true
     }];
+
+    constructor(private appState: AppStateService) {
+        this.appState.setHeaderState(true);
+    }
+
+    ngAfterViewInit() {
+     console.log(this.imageItems);
+   }
 
 }

@@ -14,6 +14,7 @@ import { ProjectsComponent } from './projects/projects.component';
 import { AboutComponent } from './about/about.component';
 import { ContactComponent } from './contact/contact.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ImageOnLoadDirective } from './image-on-load.directive';
 
 const appRoutes: Routes = [
   { path: 'home', component: HomeComponent },

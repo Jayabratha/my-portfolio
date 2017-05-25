@@ -1,4 +1,5 @@
 .art-list li {
+    position: relative;
     overflow: hidden;
     padding: 0px 2px;
     margin: 1px 0;
@@ -6,8 +7,17 @@
 }
 
 .art-list img {
+    position: absolute;
     height: 100%;
     border: thin solid #e3e3e3;
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 0.5s, transform 0.8s;
+}
+
+.art-list img.hide {
+    opacity: 0;
+    transform: translateY(200px);
 }
 
 /* For Phones - Start */
