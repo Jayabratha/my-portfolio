@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
 
 import { ArtComponent } from './art.component';
@@ -9,6 +10,9 @@ const artRoutes: Routes = [
 
 @NgModule({
     declarations: [ArtComponent],
-    imports: [RouterModule.forChild(artRoutes)]
+    imports: [
+        CommonModule,
+        RouterModule.forChild(artRoutes)]
 })
-export class ArtModule {}
+export class ArtModule {
+}

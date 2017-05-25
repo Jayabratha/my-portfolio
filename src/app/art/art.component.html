@@ -4,40 +4,14 @@
       <h1>Art</h1>
     </div>
     <div class="content-wrapper">
+      <div class="side-info">
+      </div>
       <div class="list-wrapper center-stage">
         <ul class="art-list">
-          <li>
-            <img src="../assets/images/art/Farah.jpg" title="Farah" />
-          </li>
-          <li>
-            <img src="../assets/images/art/MenModel.jpg" title="Men Model" />
-          </li>
-          <li>
-            <img src="../assets/images/art/Fabric.jpg" title="Fabric" />
-          </li>
-          <li>
-            <img src="../assets/images/art/Mortality.jpg" title="Mortality" />
-          </li>
-          <li>
-            <img src="../assets/images/art/Angelina.jpg" title="Angelina" />
-          </li>
-          <li>
-            <img src="../assets/images/art/Water.jpg" title="Water" />
-          </li>
-          <li>
-            <img src="../assets/images/art/Elena.jpg" title="Elena" />
-          </li>
-          <li>
-            <img src="../assets/images/art/Marmaid.jpg" title="Marmaid" />
-          </li>
-          <li>
-            <img src="../assets/images/art/Twilight.jpg" title="Twilight" />
-          </li>
-          <li>
-            <img src="../assets/images/art/WomenBack.jpg" title="WomenBack" />
-          </li>
-          <li>
-            <img src="../assets/images/art/PoP.jpg" title="PoP" />
+          <li id="{{item.id}}" 
+          *ngFor="let item of artList; let first = first"
+           [ngClass]="{'landscape': !item.isProtaitMode}">
+            <img title="{{item.title}}" alt="{{item.alt}}" src="{{item.url}}" />
           </li>
         </ul>
       </div>
