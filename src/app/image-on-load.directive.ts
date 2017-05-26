@@ -1,16 +1,15 @@
-import { Directive, ElementRef, Input, SimpleChanges, OnChanges, Renderer2 } from '@angular/core';
+import { Directive, ElementRef, Input, SimpleChanges, QueryList, OnChanges, Renderer2 } from '@angular/core';
 
 @Directive({
   selector: '[appImageOnLoad]'
 })
 export class ImageOnLoadDirective implements OnChanges {
-  @Input() imageItems;
+  @Input() imageItems: QueryList<ElementRef>;
 
   constructor(private renderer: Renderer2) {
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    let currentValue;
     for (let propName in changes) {
       let imageList = changes[propName].currentValue;
 
@@ -20,9 +19,7 @@ export class ImageOnLoadDirective implements OnChanges {
           this.renderer.addClass(elem.nativeElement, 'hide');
           elem.nativeElement.onload = () => {
             i++;
-            console.log("Image Loaded: " + i);
             if (i === imageList.length) {
-              console.log("All Image Loaded");
               setTimeout(() => {
                 imageList.forEach((elem, index) => {
                   setTimeout(() => {
