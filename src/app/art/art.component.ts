@@ -12,6 +12,7 @@ import { routeAnimation } from '../animations/animations';
 export class ArtComponent {
 
     @ViewChildren('imgItem') imageItems: QueryList<ElementRef>;
+    @ViewChildren('loader') loaderItems: QueryList<ElementRef>;
 
     artList: Object[] = [{
         id: "art1",
@@ -91,6 +92,7 @@ export class ArtComponent {
 
     ngAfterViewInit() {
      console.log(this.imageItems);
+     console.log(this.loaderItems);
    }
 
 }
