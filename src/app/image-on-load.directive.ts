@@ -33,7 +33,7 @@ export class ImageOnLoadDirective implements OnChanges {
                         this.renderer.removeClass(elem.nativeElement, 'hide');
                       }, index * 200);
                     });
-                  }, 800);
+                  }, 1000);
                 }
               }
             });
