@@ -33,7 +33,8 @@ export class JsOnscrollDirective {
           this.renderer.setElementClass(this.elem, 'below-view', false);
           this.hasEntered = true;
         }
-      } else if (document.body.scrollTop > this.elemViewportOffset - this.padding) {
+      } else if ((document.documentElement && document.documentElement.scrollTop) || document.body.scrollTop >
+                  this.elemViewportOffset - this.padding) {
         this.onStateChange.emit('fix');
       } else {
         this.onStateChange.emit('scroll');
