@@ -40,6 +40,34 @@ section.background {
     margin: 0;
     padding: 1em 0.5em;
 }
+
+.main-footer {
+    position: relative;
+    width: 100%;
+    height: 10em;
+    background: #333;
+    margin-top: 5em;
+    text-align: center;
+    padding-top: 3em;
+}
+
+.logo-section {
+    position: relative;
+    display: inline-block;
+    width: 50px;
+    height: 38px;
+    background: #797979;
+    opacity: 1;
+    margin: auto;
+}
+
+.icon-logo-svg:before {
+    content: "a";
+    display: block;
+    font-size: 51px;
+    height: 44px;
+    background: #797979;
+}
 /* Route Components Base Styles - End */
 
 /* Tab Styles - Start */

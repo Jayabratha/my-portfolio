@@ -54,6 +54,13 @@ ul {
         transform:rotate(360deg);
     }
 }
+
+.clearfix:before,
+.clearfix:after {
+    content: '';
+    display: table;
+    clear: both;
+}
 /* Button Styles - Start */
 button {
     position: relative;
