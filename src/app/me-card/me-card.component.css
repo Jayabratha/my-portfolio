@@ -364,7 +364,7 @@ ul.site-nav-list li.show {
 /* Mobile Styles - Start */
 @media (max-width: 650px) {
     .logo-menu {
-        margin: 20px auto;
+        margin: 9px auto;
         z-index: 7;
         padding: 5px;
     }
@@ -379,7 +379,7 @@ ul.site-nav-list li.show {
     }
     .main-header {
         height: 45em;
-        padding: 1.5em 0; 
+        padding: 0.5em 0; 
     }
     .me-card-wrapper {
         margin-top: 0;
@@ -393,6 +393,7 @@ ul.site-nav-list li.show {
         margin-top: 95%;
         height: 14.4em;
         z-index: 10;
+        transition: height 0.5s;
     }
     .my-card {
         position: absolute;
@@ -409,7 +410,6 @@ ul.site-nav-list li.show {
 
     /* Fixed Header Styles - Start */
     .fix-header .logo-menu {
-        margin: 12px auto;
         padding: 0;
         z-index: 20;
     }
@@ -419,6 +419,12 @@ ul.site-nav-list li.show {
     .fix-header .menu-icon, .fix-header .menu-icon-top, .fix-header .menu-icon-bottom {
         background: #454545;
     }
+    .fix-header .me-card-wrapper {
+        height: auto;
+    }
+    .fix-header .me-card {
+        height: auto;
+    }
     .fix-header .my-dp {
         display: none;
     }
@@ -427,7 +433,7 @@ ul.site-nav-list li.show {
     }
     .fix-header .my-card-wrapper {
         margin-top: 0;
-        height: 0;
+        height: 0.15em;
     }
     .fix-header .site-nav {
         display: block;
