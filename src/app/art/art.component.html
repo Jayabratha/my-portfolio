@@ -9,7 +9,6 @@
       </div>
       <div class="list-wrapper center-stage" appImageOnLoad [imageItems]="imageItems" [loaderItems]="loaderItems" [loadingClass]="'animate'">
         <div class="loading-icon" #loader>
-          <i class="icon-load-c"></i>
         </div>
         <ul class="art-list clearfix">
           <li id="{{item.id}}" *ngFor="let item of artList; let first = first" [ngClass]="{'potrait col-xs-4 col-sm-3 col-md-3 col-lg-3': item.isPotraitMode,

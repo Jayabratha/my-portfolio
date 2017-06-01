@@ -18,6 +18,37 @@ body {
     margin: 2em 0;
     min-height: 400px;
 }
+.loading-icon {
+    position: absolute;
+    font-size: 3em;
+    color: #454545;
+    margin: auto;
+    width: 1em;
+    height: 1em;
+    left: 0;
+    right: 0;
+    display: none;
+    border-top: 2px solid #454545;
+    border-right: 3px solid #454545;
+    border-bottom: 3px solid transparent;
+    border-radius: 50%;
+}
+.loading-icon.animate {
+    display: block;
+    animation-name: spin;
+    animation-duration: 500ms;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+}
+@keyframes spin {
+    from {
+        transform:rotate(0deg);
+    }
+    to {
+        transform:rotate(360deg);
+    }
+}
+
 
 @import url("icon-styles.css");
 

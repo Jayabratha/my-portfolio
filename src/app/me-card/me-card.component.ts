@@ -1,7 +1,7 @@
 import { Component, AfterViewInit, OnDestroy, ElementRef, Renderer2, ViewChildren, QueryList } from '@angular/core';
 import { AppStateService } from '../app-state.service';
 import { Subscription } from 'rxjs/Subscription';
-import { Router, NavigationStart } from '@angular/router';
+import { Router, NavigationStart, NavigationEnd } from '@angular/router';
 
 @Component({
   selector: 'me-card',
@@ -55,7 +55,7 @@ export class MeCardComponent implements AfterViewInit, OnDestroy {
     if (this.navItems) {
       this.navItems.forEach((elem, index) => {
         setTimeout(() => {
-         this.renderer.addClass(elem.nativeElement, 'show');
+          this.renderer.addClass(elem.nativeElement, 'show');
         }, index * 150);
       });
     }
@@ -105,13 +105,15 @@ export class MeCardComponent implements AfterViewInit, OnDestroy {
             this.activateScroll = false;
             this.isInitial = false;
           }
-          //Scroll to top when coming to home from other view
-          window.scrollTo(0, 0);
           // Prevent auto position of scroll on page refresh instead keep on top
           window.addEventListener("beforeunload", function (event) {
             renderer.setStyle(el.nativeElement, 'display', 'none');
             window.scrollTo(0, 0);
           });
+        }
+        if (event instanceof NavigationEnd) {
+          //Scroll to top when route load
+          window.scrollTo(0, 0);
         }
       });
   }
