@@ -30,13 +30,13 @@ section.background {
     margin: 0;
     color: #454545;
     font-weight: normal;
+    border-bottom: thin dotted #cdcdcd;
 }
 
 .content h2 {
     font-weight: normal;
     font-size: 1em;
     letter-spacing: 0.15em;
-    border-top: thin dotted #cdcdcd;
     margin: 0;
     padding: 1em 0.5em;
 }

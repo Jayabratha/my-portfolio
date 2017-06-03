@@ -34,8 +34,13 @@
     font-size: 4em;
     font-weight: normal;
     color: #FFFFFF;
-    padding: 50px 0;
+    padding: 35px 0;
     text-align: center;
+    transform: translateY(0);
+    transition: transform 1.5s;
+}
+.overview.below-view h2 {
+    transform: translateY(50px);
 }
 .overview .alpha-initial-bg {
     position: absolute;
@@ -55,6 +60,10 @@
     margin: auto;
     left: 0;
     right: 0;
+    transition: width 1.5s;
+}
+.overview.below-view .underline {
+    width: 10px;
 }
 .overview-content-wrapper {
     height: 100.5%;
