@@ -4,6 +4,16 @@
     src: url("assets/fonts/PlayfairDisplay-Regular.eot"),
          url("assets/fonts/PlayfairDisplay-Regular.ttf") format('truetype');
 }
+@font-face{
+    font-family: "Roboto";
+    src: url("assets/fonts/Roboto-Thin.ttf") format('truetype');
+    font-weight: 100;
+}
+@font-face{
+    font-family: "Roboto";
+    src: url("assets/fonts/Roboto-Regular.ttf") format('truetype');
+    font-weight: 300;
+}
 
 body {
     margin: 0;

@@ -26,9 +26,12 @@ ul {
 }
 p {
     line-height: 2em;
-    letter-spacing: 0.05em;
     padding: 0 0.5em;
     text-align: justify;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 300;
+    font-size: 1.15em;
+    color: #848484;
 }
 .clearfix:before,
 .clearfix:after {

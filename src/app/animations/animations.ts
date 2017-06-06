@@ -10,7 +10,7 @@ export function routeAnimation() {
         ]),
         transition(':leave', [
             style({position: 'fixed', width: '100%', opacity: 1}),
-            animate('0.5s ease-out', style({ opacity: 0 }))
+            animate('0.3s ease-out', style({ opacity: 0 }))
         ])
     ]);
 }
