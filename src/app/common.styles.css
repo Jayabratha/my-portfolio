@@ -25,13 +25,13 @@ ul {
     list-style: none;
 }
 p {
-    line-height: 2em;
+    line-height: 1.7em;
     padding: 0 0.5em;
     text-align: justify;
     font-family: 'Roboto', sans-serif;
-    font-weight: 300;
+    font-weight: 100;
     font-size: 1.15em;
-    color: #848484;
+    color: #454545;;
 }
 .clearfix:before,
 .clearfix:after {

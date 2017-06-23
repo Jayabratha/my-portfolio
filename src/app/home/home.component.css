@@ -22,6 +22,9 @@
 .overview.below-view {
    transform: translateY(300px);
 }
+.overview.above-view {
+   transform: translateY(-300px);
+}
 
 .dp.overview-dp {
     background: #333333;

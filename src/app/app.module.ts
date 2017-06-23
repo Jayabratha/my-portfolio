@@ -15,6 +15,7 @@ import { AboutComponent } from './about/about.component';
 import { ContactComponent } from './contact/contact.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ImageOnLoadDirective } from './image-on-load.directive';
+import { LoadAnimateDirective } from './load-animate.directive';
 
 const appRoutes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -38,7 +39,8 @@ const appRoutes: Routes = [
     HomeComponent,
     ProjectsComponent,
     AboutComponent,
-    ContactComponent
+    ContactComponent,
+    LoadAnimateDirective
   ],
   imports: [
     BrowserModule,

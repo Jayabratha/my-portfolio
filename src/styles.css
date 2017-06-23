@@ -4,15 +4,15 @@
     src: url("assets/fonts/PlayfairDisplay-Regular.eot"),
          url("assets/fonts/PlayfairDisplay-Regular.ttf") format('truetype');
 }
+
 @font-face{
     font-family: "Roboto";
-    src: url("assets/fonts/Roboto-Thin.ttf") format('truetype');
+    src: url("assets/fonts/Roboto-Light.ttf") format('truetype');
     font-weight: 100;
 }
-@font-face{
-    font-family: "Roboto";
-    src: url("assets/fonts/Roboto-Regular.ttf") format('truetype');
-    font-weight: 300;
+
+* {
+    box-sizing: border-box;
 }
 
 body {
@@ -20,10 +20,20 @@ body {
     padding: 0;
     font-family: 'Playfair Display', serif;
 }
-
-* {
-    box-sizing: border-box;
+body::-webkit-scrollbar {
+    width: 6px;
+	background-color: transparent;
 }
+ 
+body::-webkit-scrollbar-track {
+	background-color: transparent;
+}
+
+body::-webkit-scrollbar-thumb
+{
+	background-color: #ccc;
+}
+
 .main-content section {
     margin: 2em 0;
     min-height: 400px;

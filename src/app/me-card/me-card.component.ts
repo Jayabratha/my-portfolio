@@ -20,12 +20,6 @@ export class MeCardComponent implements AfterViewInit, OnDestroy {
   play: boolean = true;
 
   slideList: Object[] = [{
-    id: "slide1",
-    url: "assets/images/my-pic.jpg",
-    title: "My pic 1",
-    alt: "My pic 1",
-    description: ""
-  }, {
     id: "slide2",
     url: "assets/images/my-pic1.jpg",
     title: "My pic 2",
@@ -48,6 +42,12 @@ export class MeCardComponent implements AfterViewInit, OnDestroy {
     url: "assets/images/my-pic4.jpg",
     title: "My pic 5",
     alt: "My pic 5",
+    description: ""
+  },{
+    id: "slide1",
+    url: "assets/images/my-pic.jpg",
+    title: "My pic 1",
+    alt: "My pic 1",
     description: ""
   }];
 
@@ -111,6 +111,7 @@ export class MeCardComponent implements AfterViewInit, OnDestroy {
             window.scrollTo(0, 0);
           });
         }
+        
         if (event instanceof NavigationEnd) {
           //Scroll to top when route load
           window.scrollTo(0, 0);
@@ -131,6 +132,7 @@ export class MeCardComponent implements AfterViewInit, OnDestroy {
     if (state === 'fix') {
       this.appState.setHeaderState(true);
     } else if (state === 'scroll' && this.isHeaderFix) {
+      console.log("Scrollable");
       this.appState.setHeaderState(false);
     }
   }
