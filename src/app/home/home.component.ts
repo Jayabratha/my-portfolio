@@ -32,6 +32,10 @@ export class HomeComponent implements OnDestroy {
       });
   }
 
+  updateSlideCount(state: string, count: number) {
+    this.stepCount = count;
+  }
+
   @HostListener('window:wheel', ['$event'])
   onWheelRotate(ev) {
     let delta;
@@ -42,22 +46,34 @@ export class HomeComponent implements OnDestroy {
       } else {
         delta = -1 * ev.deltaY;
       }
-      console.log(this.stepCount);
+
       if (delta < 0) {
         this.stepCount = this.stepCount < 6 ? this.stepCount + 1 : 6;
-        console.log("DOWN: " + this.stepCount);
         window.scrollTo(0, this.steps[this.stepCount]);
       } else {
         this.stepCount = this.stepCount > 0 ? this.stepCount - 1 : 0;
-        console.log("UP: " + this.steps[this.stepCount]);
         window.scrollTo(0, this.steps[this.stepCount]);
       }
 
       this.decounce = true;
       setTimeout(() => {
-          this.decounce = false;
+        this.decounce = false;
       }, 100);
 
+    }
+  }
+
+  @HostListener('window:keydown', ['$event'])
+  onArrowUpDown(ev) {
+    var keycode = ev.keyCode;
+    if (keycode === 40) {
+      ev.preventDefault();
+      this.stepCount = this.stepCount < 6 ? this.stepCount + 1 : 6;
+      window.scrollTo(0, this.steps[this.stepCount]);
+    } else if (keycode === 38) {
+      ev.preventDefault();
+      this.stepCount = this.stepCount > 0 ? this.stepCount - 1 : 0;
+      window.scrollTo(0, this.steps[this.stepCount]);
     }
   }
 

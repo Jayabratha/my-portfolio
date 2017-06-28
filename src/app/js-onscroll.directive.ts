@@ -10,6 +10,7 @@ export class JsOnscrollDirective implements OnInit, OnDestroy {
   @Input() activateScroll: boolean = true;
   @Input() restoreInitial: Subject<any>;
   @Output() onStateChange = new EventEmitter<string>();
+  @Output() updateSlideIndex = new EventEmitter<string>();
 
   elem: HTMLElement;
   elemInitialOffset: number;
@@ -47,6 +48,7 @@ export class JsOnscrollDirective implements OnInit, OnDestroy {
           if (!this.hasEntered) {
             this.renderer.setElementClass(this.elem, 'below-view', false);
             this.hasEntered = true;
+            this.updateSlideIndex.emit('entered');
           }
         } else {
           if (this.hasEntered) {
@@ -65,6 +67,7 @@ export class JsOnscrollDirective implements OnInit, OnDestroy {
           if (this.hasLeft) {
             this.renderer.setElementClass(this.elem, 'above-view', false);
             this.hasLeft = false;
+            this.updateSlideIndex.emit('entered');
           }
         }
       } else if ( scrollPosition > this.elemViewportOffset - this.padding) {
