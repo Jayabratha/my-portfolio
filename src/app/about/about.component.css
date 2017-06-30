@@ -5,3 +5,41 @@
 .about-content ul.site-nav-list li {
     width: 33.3%;
 }
+
+.content section h2 {
+    color: #FFFFFF;
+    padding-left: 0;
+    border-bottom: thin dotted;
+    margin-bottom: 1em;
+}
+
+section.my-skills {
+    background: #454545;
+}
+
+section.my-work-experience {
+    background: #9C27B0;
+}
+
+.skill-container {
+    position: relative;
+}
+
+.skill-tiles-container li {
+    padding: 2px;
+}
+.skill-tile {
+    position: relative;
+    height: 9em;
+    width: 100%;
+    background: #FFFFFF;
+}
+
+.next-btn {
+    position: absolute;
+    right: 0;
+    height: 3em;
+    width: 3em;
+    top: -1.5em;
+    background: #9C27B0;
+}

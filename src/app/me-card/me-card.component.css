@@ -1,13 +1,8 @@
-.center-stage {
-    width: 80%;
-    max-width: 55em;
-    margin: auto;
-}
 .main-header {
     position: relative;
     background: #fff;
     height: 38em;
-    box-shadow: 0 1px 4px rgba(0,0,0,.04);
+    box-shadow: 0 2px 20px rgba(0,0,0,.1);
     border: thin solid #FFFFFF;
     border-bottom: none;
     padding: 0;
