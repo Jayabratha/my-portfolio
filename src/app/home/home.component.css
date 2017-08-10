@@ -16,14 +16,6 @@
     margin: 3em 0;
     box-shadow: 0 1px 4px rgba(0,0,0,.05);
     border: 1px solid rgba(0,0,0,.09);
-    transform: translateY(0);
-    transition: transform 0.8s ease-out;
-}
-.overview.below-view {
-   transform: translateY(300px);
-}
-.overview.above-view {
-   transform: translateY(-300px);
 }
 
 .dp.overview-dp {

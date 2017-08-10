@@ -13,6 +13,11 @@
     margin-bottom: 1em;
 }
 
+section {
+    padding: 30px;
+    margin: 50px auto;
+}
+
 section.my-skills {
     background: #454545;
 }

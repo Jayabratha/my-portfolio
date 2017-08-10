@@ -101,3 +101,27 @@ ul.site-nav-list li.show {
     }
 }
 /* Mobile Styles - End */
+
+/* Scroll Directive Styles - Start */
+[appJsOnscroll] {
+    transform: translateY(0);
+    transition: transform 0.7s ease-out, opacity 0.7s;
+    opacity: 1;
+}
+.below-view {
+   transform: translateY(100px);
+   opacity: 0;
+}
+.above-view {
+   transform: translateY(-100px);
+   opacity: 0;
+}
+.overview.below-view {
+   transform: translateY(200px);
+   opacity: 0;
+}
+.overview.above-view {
+   transform: translateY(-200px);
+   opacity: 0;
+}
+/* Scroll Directive Styles - End */

@@ -58,7 +58,7 @@ export class HomeComponent implements OnDestroy {
       this.decounce = true;
       setTimeout(() => {
         this.decounce = false;
-      }, 100);
+      }, 1000);
 
     }
   }
