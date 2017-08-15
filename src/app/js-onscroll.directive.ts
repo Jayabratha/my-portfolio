@@ -79,7 +79,7 @@ export class JsOnscrollDirective implements OnInit, OnDestroy {
       this.renderer.setElementClass(this.elem, 'below-view', true);
       setTimeout(() => {
         this.checkAndUpdateClass();
-      }, 800);
+      }, 900);
     }  
   }
 

@@ -1,4 +1,4 @@
-import { Component, ElementRef, ViewChildren, QueryList, AfterViewInit } from '@angular/core';
+import { Component, ElementRef, ViewChildren, QueryList, AfterViewInit, Renderer2 } from '@angular/core';
 import { AppStateService } from '../app-state.service';
 import { routeAnimation } from '../animations/animations';
 
@@ -12,7 +12,37 @@ import { routeAnimation } from '../animations/animations';
 export class ArtComponent {
 
     @ViewChildren('imgItem') imageItems: QueryList<ElementRef>;
-    @ViewChildren('loader') loaderItems: QueryList<ElementRef>;
+
+    constructor(private appState: AppStateService, private renderer: Renderer2) {
+        this.appState.setHeaderState(true);
+    }
+
+    ngAfterViewInit() {
+        this.imageItems.forEach((elem, index) => {
+            this.renderer.addClass(elem.nativeElement, 'hide');
+        });
+   }
+
+    imageLoadProress: number = 0;
+    isLoading: boolean = true;
+
+    updateProgress(progress: number) {
+        this.imageLoadProress = progress;
+        console.log(progress);
+    }
+
+    onLoadComplete(complete: boolean) {
+        if (complete) {
+            setTimeout(() => {
+                this.isLoading = false;
+                this.imageItems.forEach((elem, index) => {
+                    setTimeout(() => {
+                      this.renderer.removeClass(elem.nativeElement, 'hide');
+                    }, index * 200);
+                  });
+            }, 1000);           
+        }
+    }
 
     artList: Object[] = [{
         id: "art1",
@@ -85,14 +115,5 @@ export class ArtComponent {
         description: "",
         isPotraitMode: true
     }];
-
-    constructor(private appState: AppStateService) {
-        this.appState.setHeaderState(true);
-    }
-
-    ngAfterViewInit() {
-     console.log(this.imageItems);
-     console.log(this.loaderItems);
-   }
 
 }

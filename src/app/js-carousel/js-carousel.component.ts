@@ -1,4 +1,19 @@
-import { Component, Input, SimpleChanges, OnChanges, OnInit, OnDestroy, ElementRef, HostListener } from '@angular/core';
+import {
+  Component,
+  Input,
+  Output,
+  EventEmitter,
+  SimpleChanges,
+  OnChanges,
+  OnInit,
+  OnDestroy,
+  ElementRef,
+  HostListener,
+  ViewChildren,
+  QueryList,
+  AfterViewInit,
+  ChangeDetectorRef
+} from '@angular/core';
 
 @Component({
   selector: 'app-js-carousel',
@@ -6,6 +21,8 @@ import { Component, Input, SimpleChanges, OnChanges, OnInit, OnDestroy, ElementR
   styleUrls: ['./js-carousel.component.css']
 })
 export class JsCarouselComponent implements OnChanges, OnInit, OnDestroy {
+  @ViewChildren('carouselItem') carouselItems: QueryList<ElementRef>;
+
   @Input() play: boolean = true;
   @Input() slideItems: {
     id: string,
@@ -20,14 +37,40 @@ export class JsCarouselComponent implements OnChanges, OnInit, OnDestroy {
     prev: boolean
   }[];
 
-  constructor(private elementRef: ElementRef) { }
+  @Output() carouselReady = new EventEmitter<boolean>();
+  @Output() carouselLoading = new EventEmitter<number>();
+
+  constructor(private elementRef: ElementRef, private cdRef: ChangeDetectorRef) {
+  }
 
   activeSlide;
   slideLength;
   carouselId;
+  imageLoadProress: number = 0;
+  isLoading: boolean = true;
+
+  ngAfterViewInit() {
+    this.cdRef.detectChanges();
+  }
+
+  updateProgress(progress: number) {
+    this.imageLoadProress = progress;
+    this.carouselLoading.emit(progress);
+  }
+
+  onLoadComplete(complete: boolean) {
+    if (complete) {
+      setTimeout(() => {
+        this.isLoading = false;
+        this.carouselReady.emit(true);
+        this.start();
+      }, 2000);
+    }
+  }
 
   ngOnChanges(changes: SimpleChanges) {
     let currentValue;
+    console.log(changes);
     for (let propName in changes) {
       if (propName === 'play') {
         currentValue = changes[propName].currentValue;
@@ -44,7 +87,6 @@ export class JsCarouselComponent implements OnChanges, OnInit, OnDestroy {
     this.slideLength = this.slideItems.length;
     this.activeSlide = this.slideItems[0];
     this.activeSlide.active = true;
-    this.start();
   }
 
   ngOnDestroy() {

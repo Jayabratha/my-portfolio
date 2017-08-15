@@ -14,9 +14,13 @@
         <div class="hello"><span>Hello World!</span></div>
     </section>
     <section class="me-card-wrapper center-stage">
-        <div class="me-card">
+        <div class="me-card" [style.width]="carouselLoadProgress + '%'">
             <div class="dp my-dp">
-                <app-js-carousel [slideItems]=slideList [play]=play></app-js-carousel>
+                <app-js-carousel 
+                [slideItems]=slideList 
+                [play]=play
+                (carouselReady)="onCarouselReady($event)"
+                (carouselLoading)="onCarouselLoadProgress($event)"></app-js-carousel>
             </div>
             <div class="my-card-wrapper" appJsOnscroll padding=60 [activateScroll]=activateScroll (onStateChange)="headerStateChange($event)">
                 <div class="my-card">

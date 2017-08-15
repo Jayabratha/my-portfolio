@@ -84,7 +84,7 @@
     left: 0;
     right: 0;
     background: linear-gradient(140deg, #f31b48, #f31b48, #940590, #0ab779);
-    transition: transform 0.5s ease-out;
+    transition: transform 0.5s ease-out, width 0.5s ease-out;
 }
 
 .dp.my-dp {

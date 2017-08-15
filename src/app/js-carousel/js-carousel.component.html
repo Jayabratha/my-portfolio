@@ -1,5 +1,11 @@
 <div class="carousel-wrapper">
-  <ul class="carousel-list">
+  <div class="loading-icon" [ngClass]="{'animate': isLoading}">
+    </div>
+  <ul class="carousel-list"
+      appImageOnLoad     
+      [imageItems]="carouselItems" 
+      (progress)="updateProgress($event)" 
+      (complete)="onLoadComplete($event)">
     <li id="{{item.id}}" class="carousel-item" 
         *ngFor="let item of slideItems; let first = first" 
         [ngClass]="{'active': item.active,
@@ -7,7 +13,7 @@
                     'right': item.right,
                     'next': item.next,
                     'prev': item.prev}">
-        <img title="{{item.title}}" alt="{{item.alt}}" src="{{item.url}}" />
+        <img #carouselItem title="{{item.title}}" alt="{{item.alt}}" src="{{item.url}}" />
     </li>
   </ul>
   <div class="arrow-btn left" (click)="showPrev()">

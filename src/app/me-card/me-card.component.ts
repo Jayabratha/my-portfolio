@@ -8,7 +8,7 @@ import { Router, NavigationStart, NavigationEnd } from '@angular/router';
   templateUrl: './me-card.component.html',
   styleUrls: ['./me-card.component.css', './../common.styles.css']
 })
-export class MeCardComponent implements AfterViewInit, OnDestroy {
+export class MeCardComponent implements OnDestroy {
   @ViewChildren('navItem') navItems: QueryList<ElementRef>;
 
   isInitial: boolean = true;
@@ -18,18 +18,13 @@ export class MeCardComponent implements AfterViewInit, OnDestroy {
   subscription: Subscription;
   activateScroll: boolean = true;
   play: boolean = true;
+  carouselLoadProgress: number = 0;
 
   slideList: Object[] = [{
     id: "slide2",
     url: "assets/images/my-pic1.jpg",
     title: "My pic 2",
     alt: "My pic 2",
-    description: ""
-  }, {
-    id: "slide3",
-    url: "assets/images/my-pic2.jpg",
-    title: "My pic 3",
-    alt: "My pic 3",
     description: ""
   }, {
     id: "slide4",
@@ -96,11 +91,6 @@ export class MeCardComponent implements AfterViewInit, OnDestroy {
         if (event instanceof NavigationStart) {
           if (event.url === "/" || event.url === "/home") {
             this.activateScroll = true;
-            setTimeout(() => {
-              this.isInitial = false;
-              //Animate the nav bar
-              this.animateNavItems();
-            }, 2000);
           } else {
             this.activateScroll = false;
             this.isInitial = false;
@@ -119,8 +109,16 @@ export class MeCardComponent implements AfterViewInit, OnDestroy {
       });
   }
 
-  ngAfterViewInit() {
-    console.log(this.navItems);
+  onCarouselReady(isReady) {
+    if(isReady) {
+      this.isInitial = false;
+      //Animate the nav bar
+      this.animateNavItems();
+    }
+  }
+
+  onCarouselLoadProgress(progress) {
+    this.carouselLoadProgress = progress;
   }
 
   ngOnDestroy() {

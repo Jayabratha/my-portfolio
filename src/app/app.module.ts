@@ -10,6 +10,7 @@ import { HomeComponent } from './home/home.component';
 import { MeCardComponent } from './me-card/me-card.component';
 import { JsOnscrollDirective } from './js-onscroll.directive';
 import { JsCarouselComponent } from './js-carousel/js-carousel.component';
+import { ArtComponent } from './art/art.component';
 import { ProjectsComponent } from './projects/projects.component';
 import { AboutComponent } from './about/about.component';
 import { ContactComponent } from './contact/contact.component';
@@ -19,7 +20,8 @@ import { LoadAnimateDirective } from './load-animate.directive';
 
 const appRoutes: Routes = [
   { path: 'home', component: HomeComponent },
-  { path: 'art', loadChildren: './art/art.module#ArtModule'},
+  // { path: 'art', loadChildren: './art/art.module#ArtModule'},
+  { path: 'art', component: ArtComponent },
   { path: 'projects', component: ProjectsComponent },
   { path: 'about', component: AboutComponent },
   { path: 'contact', component: ContactComponent },
@@ -37,9 +39,11 @@ const appRoutes: Routes = [
     JsOnscrollDirective,
     JsCarouselComponent,
     HomeComponent,
+    ArtComponent,
     ProjectsComponent,
     AboutComponent,
     ContactComponent,
+    ImageOnLoadDirective,
     LoadAnimateDirective
   ],
   imports: [

@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
-import { ImageOnLoadDirective } from '../image-on-load.directive';
 
 import { ArtComponent } from './art.component';
 
@@ -10,9 +9,7 @@ const artRoutes: Routes = [
 ]
 
 @NgModule({
-    declarations: [ArtComponent,
-    ImageOnLoadDirective
-    ],
+    declarations: [ArtComponent],
     imports: [
         CommonModule,
         RouterModule.forChild(artRoutes)]
