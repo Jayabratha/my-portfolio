@@ -76,6 +76,17 @@
     overflow: hidden;
     transition: height 0.5s ease-out;
 }
+
+@-webkit-keyframes progress-bar {
+    0% { width: 0; }
+ }
+ @-moz-keyframes progress-bar {
+    0% { width: 0; }
+ }
+ keyframes progress-bar {
+    0% { width: 0; }
+ }
+
 .me-card {
     position: absolute;
     height: 100%;
@@ -84,7 +95,10 @@
     left: 0;
     right: 0;
     background: linear-gradient(140deg, #f31b48, #f31b48, #940590, #0ab779);
-    transition: transform 0.5s ease-out, width 0.5s ease-out;
+    transition: transform 0.5s ease-out;
+    -webkit-animation: progress-bar 2s;
+    -moz-animation: progress-bar 2s;
+    animation: progress-bar 2s;
 }
 
 .dp.my-dp {

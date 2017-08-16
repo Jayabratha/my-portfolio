@@ -9,7 +9,7 @@ const artRoutes: Routes = [
 ]
 
 @NgModule({
-    declarations: [ArtComponent],
+    // declarations: [ArtComponent],
     imports: [
         CommonModule,
         RouterModule.forChild(artRoutes)]
