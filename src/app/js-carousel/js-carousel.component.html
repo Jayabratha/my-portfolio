@@ -5,7 +5,8 @@
       appImageOnLoad     
       [imageItems]="carouselItems" 
       (progress)="updateProgress($event)" 
-      (complete)="onLoadComplete($event)">
+      (complete)="onLoadComplete($event)"
+      [hidden]="isLoading">
     <li id="{{item.id}}" class="carousel-item" 
         *ngFor="let item of slideItems; let first = first" 
         [ngClass]="{'active': item.active,

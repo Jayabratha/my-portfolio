@@ -31,14 +31,39 @@ section.my-work-experience {
     position: relative;
 }
 
+.skill-tiles-container ul {
+    padding: 0 120px 0 50px;
+}
+
 .skill-tiles-container li {
     padding: 2px;
+    height: 200px;
 }
-.skill-tile {
-    position: relative;
-    height: 9em;
-    width: 100%;
-    background: #FFFFFF;
+.skill-wrapper {
+    background: url(/assets/web-icons.png) no-repeat 0 0;
+    background-size: 200px;
+    height: 200px;
+    width: 200px;
+    position: absolute;
+    transform: translate3d(0, 0, 0);
+    opacity: 1;
+    transition: transform 0.5s ease-out, opacity 0.5s;
+}
+.skill-wrapper.hide {
+    transform: translate3d(0, 100px, 0);
+    opacity: 0;
+}
+.skill-wrapper.angular {
+    background-position: 0 0;
+}
+.skill-wrapper.js {
+    background-position: 0 -200px;
+}
+.skill-wrapper.ts {
+    background-position: 0 -400px;
+}
+.skill-wrapper.html {
+    background-position: 0 -600px;
 }
 
 .next-btn {

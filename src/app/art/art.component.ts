@@ -28,7 +28,6 @@ export class ArtComponent {
 
     updateProgress(progress: number) {
         this.imageLoadProress = progress;
-        console.log(progress);
     }
 
     onLoadComplete(complete: boolean) {

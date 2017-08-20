@@ -4,7 +4,7 @@
         [viewportCheck]=true 
         [restoreInitial]=restoreInitial 
         [padding]=300
-        (updateSlideIndex)="updateSlideCount($event, 1)">
+        (enteredViewport)="updateSlideCount($event, 1)">
     <div class="dp overview-dp">
       <h2>Art</h2>
       <div class="alpha-initial-bg">A</div>
@@ -21,7 +21,7 @@
         [viewportCheck]=true 
         [restoreInitial]=restoreInitial 
         [padding]=300 
-        (updateSlideIndex)="updateSlideCount($event, 2)">
+        (enteredViewport)="updateSlideCount($event, 2)">
     <div class="dp overview-dp">
       <h2>Projects</h2>
       <div class="alpha-initial-bg">w</div>
@@ -38,7 +38,7 @@
         [viewportCheck]=true 
         [restoreInitial]=restoreInitial 
         [padding]=300
-        (updateSlideIndex)="updateSlideCount($event, 3)">
+        (enteredViewport)="updateSlideCount($event, 3)">
     <div class="dp overview-dp">
       <h2>Blog</h2>
       <div class="alpha-initial-bg">S</div>
@@ -55,7 +55,7 @@
         [viewportCheck]=true 
         [restoreInitial]=restoreInitial 
         [padding]=300
-        (updateSlideIndex)="updateSlideCount($event, 4)">
+        (enteredViewport)="updateSlideCount($event, 4)">
     <div class="dp overview-dp">
       <h2>About</h2>
       <div class="alpha-initial-bg">A</div>
@@ -72,7 +72,8 @@
         [viewportCheck]=true 
         [restoreInitial]=restoreInitial 
         [padding]=300
-        (updateSlideIndex)="updateSlideCount($event, 5)">
+        (enteredViewport)="updateSlideCount($event, 5)"
+        [checkAboveView]=false>
     <div class="dp overview-dp">
       <h2>Contact</h2>
       <div class="alpha-initial-bg">C</div>

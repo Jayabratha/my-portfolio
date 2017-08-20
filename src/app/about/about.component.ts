@@ -1,4 +1,4 @@
-import { Component, AfterViewInit, ViewChildren, QueryList, ElementRef, Renderer2 } from '@angular/core';
+import { Component, ViewChildren, QueryList, ElementRef, Renderer2 } from '@angular/core';
 import { AppStateService } from '../app-state.service';
 import { routeAnimation } from '../animations/animations';
 
@@ -9,22 +9,22 @@ import { routeAnimation } from '../animations/animations';
   animations: [routeAnimation()],
   host: { '[@routeAnimation]': '' }
 })
-export class AboutComponent implements AfterViewInit {
-  @ViewChildren('navItem') navItems: QueryList<ElementRef>;
+export class AboutComponent {
+  @ViewChildren('skillItem') skillItems: QueryList<ElementRef>;
 
   constructor(private appState: AppStateService, private renderer: Renderer2) {
     this.appState.setHeaderState(true);
   }
 
-  ngAfterViewInit() {
-    if (this.navItems) {
+  animateSkills() {
+    if (this.skillItems) {
       setTimeout(() => {
-        this.navItems.forEach((elem, index) => {
+        this.skillItems.forEach((elem, index) => {
           setTimeout(() => {
-            this.renderer.addClass(elem.nativeElement, 'show');
+            this.renderer.removeClass(elem.nativeElement, 'hide');
           }, index * 150);
         });      
-      }, 1000);
+      }, 500);
     }
   }
 

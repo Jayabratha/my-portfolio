@@ -18,7 +18,7 @@
     height: 100%;
     display: none;
     overflow: hidden;
-    transform: translateX(0);
+    transform: translate3d(0, 0, 0);
 }
 
 .carousel-item.active,
@@ -37,17 +37,17 @@
 
 .carousel-item.next.left,
 .carousel-item.prev.right {
-    transform: translateX(0);
+    transform: translate3d(0, 0, 0);
 }
 
 .carousel-item.prev,
 .carousel-item.left {
-    transform: translateX(-100%);
+    transform: translate3d(-100%, 0, 0);
 }
 
 .carousel-item.next,
 .carousel-item.right {
-    transform: translateX(100%);
+    transform: translate3d(100%, 0, 0);
 }
 
 .carousel-item>img {
