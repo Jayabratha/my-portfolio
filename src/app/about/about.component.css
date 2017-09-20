@@ -10,8 +10,14 @@
     color: #FFFFFF;
     font-family: Playfair Display;
     padding-left: 0;
+    padding-top: 10px;
     border-bottom: thin dotted;
     margin-bottom: 1em;
+}
+
+.content section p {
+    color: white;
+    padding: 40px 50px 10px;
 }
 
 section {
@@ -64,6 +70,24 @@ section.my-work-experience {
 }
 .skill-wrapper.html {
     background-position: 0 -600px;
+}
+
+.exp-wrapper {
+    padding: 10px 0;
+    color: white;
+}
+
+.exp-wrapper h3 {
+    font-size: 30px;
+    font-family: Roboto;
+    font-weight: normal;
+    margin: 0.5em 0;
+}
+
+.exp-wrapper .time {
+    font-size: 23px;
+    font-weight: lighter;
+    font-family: Roboto;
 }
 
 .next-btn {
