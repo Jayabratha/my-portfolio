@@ -7,7 +7,7 @@
 }
 
 .content section h2 {
-    color: #FFFFFF;
+    color: #454545;
     font-family: Playfair Display;
     padding-left: 0;
     padding-top: 10px;
@@ -16,22 +16,21 @@
 }
 
 .content section p {
-    color: white;
-    padding: 40px 50px 10px;
+    padding: 2em 0.5em 1em;
 }
 
 section {
-    padding: 30px;
+    padding: 30px 0;
     margin: 50px auto;
 }
 
-section.my-skills {
+/* section.my-skills {
     background: #454545;
 }
 
 section.my-work-experience {
     background: #9C27B0;
-}
+} */
 
 .skill-container {
     position: relative;
@@ -74,27 +73,23 @@ section.my-work-experience {
 
 .exp-wrapper {
     padding: 10px 0;
-    color: white;
+    color: #454545;
 }
 
 .exp-wrapper h3 {
-    font-size: 30px;
+    font-size: 1.6em;
     font-family: Roboto;
     font-weight: normal;
     margin: 0.5em 0;
 }
 
 .exp-wrapper .time {
-    font-size: 23px;
+    font-size: 1.4em;
     font-weight: lighter;
     font-family: Roboto;
 }
 
-.next-btn {
-    position: absolute;
-    right: 0;
-    height: 3em;
-    width: 3em;
-    top: -1.5em;
-    background: #9C27B0;
+.logo-wrapper img {
+    width: 95%;
+    max-width: 200px;
 }
