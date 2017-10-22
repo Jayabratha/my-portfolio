@@ -15,7 +15,7 @@
     margin-bottom: 1em;
 }
 
-.content section p {
+p.sub_desc {
     padding: 2em 0.5em 1em;
 }
 
@@ -24,25 +24,17 @@ section {
     margin: 50px auto;
 }
 
-/* section.my-skills {
-    background: #454545;
-}
-
-section.my-work-experience {
-    background: #9C27B0;
-} */
-
 .skill-container {
     position: relative;
 }
 
-.skill-tiles-container ul {
-    padding: 0 120px 0 50px;
+.skill-list {
+    overflow: hidden;
 }
 
 .skill-tiles-container li {
     padding: 2px;
-    height: 200px;
+    height: 195px;
 }
 .skill-wrapper {
     background: url(/assets/web-icons.png) no-repeat 0 0;
@@ -60,15 +52,19 @@ section.my-work-experience {
 }
 .skill-wrapper.angular {
     background-position: 0 0;
+    background-color: #c22b28;
 }
 .skill-wrapper.js {
     background-position: 0 -200px;
+    background-color: #fdc72c;
 }
 .skill-wrapper.ts {
     background-position: 0 -400px;
+    background-color: #007acc;
 }
 .skill-wrapper.html {
     background-position: 0 -600px;
+    background-color: #ff5426;
 }
 
 .exp-wrapper {
