@@ -21,6 +21,7 @@
 .dp.overview-dp {
     background: #333333;
     height: 25em;
+    text-align: center;
 }
 .overview:nth-child(odd) .overview-dp {
     float: right;
@@ -85,13 +86,14 @@
 .contact-overview .underline {
     background: #0ab779;
 }
-.overview button {
+.overview .button-wrapper button {
     border-color: #FFFFFF;
     color: #FFFFFF;
-    transition: background 0.5s;
 }
-.overview button:hover {
+.overview .button-wrapper .background {
     background: #FFFFFF;
+}
+.overview .button-wrapper:hover button {
     color: #333333;
     font-weight: bold;
 }
