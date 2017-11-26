@@ -17,12 +17,14 @@ import { ContactComponent } from './contact/contact.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ImageOnLoadDirective } from './image-on-load.directive';
 import { LoadAnimateDirective } from './load-animate.directive';
+import { BlogComponent } from './blog/blog.component';
 
 const appRoutes: Routes = [
   { path: 'home', component: HomeComponent },
   // { path: 'art', loadChildren: './art/art.module#ArtModule'},
   { path: 'art', component: ArtComponent },
   { path: 'projects', component: ProjectsComponent },
+  { path: 'blog', component: BlogComponent },
   { path: 'about', component: AboutComponent },
   { path: 'contact', component: ContactComponent },
   {
@@ -44,7 +46,8 @@ const appRoutes: Routes = [
     AboutComponent,
     ContactComponent,
     ImageOnLoadDirective,
-    LoadAnimateDirective
+    LoadAnimateDirective,
+    BlogComponent
   ],
   imports: [
     BrowserModule,
