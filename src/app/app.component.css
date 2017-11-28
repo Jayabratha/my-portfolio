@@ -33,6 +33,10 @@ section.background {
     border-bottom: thin dotted #cdcdcd;
 }
 
+.content-wrapper {
+    padding: 15px 0;
+}
+
 .content h2 {
     font-size: 2em;
     font-family: Roboto;
@@ -41,7 +45,7 @@ section.background {
     padding: 25px 0;
 }
 
-.content .main h2 {
+.content h2.main {
     font-size: 2em;
     font-family: Playfair Display;
     font-weight: 100;
@@ -51,28 +55,33 @@ section.background {
     float: left;
     color: #FFFFFF;
     padding: 25px;
-    margin: 21px 21px 21px 0;
+    margin: 0;
     line-height: 1.5em;
     min-height: 10em;
 }
 
-.content.art-content .main h2 {
+.content .feature-content {
+    width: 60%;
+    float: left;
+}
+
+.content.art-content h2.main {
     background: linear-gradient(140deg, #f31b48, #c6116b);
 }
 
-.content.projects-content .main h2 {
+.content.projects-content h2.main {
     background: linear-gradient(140deg, #c6116b, #940590);
 }
 
-.content.blog-content .main h2 {
+.content.blog-content h2.main {
     background: linear-gradient(140deg, #940590, #28a6e4);
 }
 
-.content.about-content .main h2 {
+.content.about-content h2.main {
     background: linear-gradient(140deg, #28a6e4, #0ab779);
 }
 
-.content.contact-content .main h2 {
+.content.contact-content h2.main {
     background: linear-gradient(140deg, #0ab779, #0ab732);
 }
 
@@ -113,9 +122,13 @@ section.background {
     .main-content.fix-header {
         margin-top: 31em;
     }
-    .content .main h2 {
+    .content h2.main {
         width: 100%;
         min-height: 4em;
+    }
+
+    .content .feature-content {
+        width: 100%;
     }
 }
 /* Tab Styles - End */

@@ -28,7 +28,8 @@ p {
     font-family: 'Roboto', sans-serif;
     font-weight: 200;
     font-size: 1.1em;
-    color: #454545;;
+    color: #454545;
+    margin: 0;
 }
 .clearfix:before,
 .clearfix:after {
