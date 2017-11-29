@@ -18,6 +18,15 @@ section.background {
     min-height: 1000px;
 }
 
+/* Input Styles - start */
+input, textarea {
+    padding: 10px;
+    font-size: 1.1em;
+    margin: 0 0 10px;
+    border: 2px solid #ccc;
+}
+/* Input Styles - end */
+
 /* Route Components Base Styles - Start */
 .content {
     position: relative;

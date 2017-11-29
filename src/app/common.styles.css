@@ -56,7 +56,7 @@ p {
 button {
     position: relative;
     display: block;
-    border: thin solid;
+    border: 2px solid;
     padding: 15px;
     background: transparent;
     margin: auto;

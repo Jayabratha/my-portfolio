@@ -1,0 +1,29 @@
+.contact-form {
+    padding-left: 10px;
+}
+
+.last-name {
+    border-left: none;
+}
+
+.message {
+    height: 149px;
+}
+
+.button-wrapper {
+    width: 100%;
+}
+
+.button-wrapper .background {
+    background: #0ab732;
+}
+
+button.submit-contact {
+    width: 100%;
+    border-color: #0ab732;
+    color: #0ab732;
+}
+
+.button-wrapper:hover button {
+    color: #ffffff;
+}
