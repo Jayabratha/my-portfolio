@@ -2,12 +2,16 @@
     padding-left: 10px;
 }
 
-.last-name {
+.input-wrapper input.last-name {
     border-left: none;
 }
 
+.input-wrapper div.border-highlight {
+    background: #0ab779;
+}
+
 .message {
-    height: 149px;
+    height: 132px;
 }
 
 .button-wrapper {
@@ -15,13 +19,14 @@
 }
 
 .button-wrapper .background {
-    background: #0ab732;
+    background: #0ab779;
 }
 
 button.submit-contact {
     width: 100%;
-    border-color: #0ab732;
-    color: #0ab732;
+    border-color: #0ab779;
+    color: #0ab779;
+    font-size: 1.1em;
 }
 
 .button-wrapper:hover button {

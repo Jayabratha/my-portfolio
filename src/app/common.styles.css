@@ -66,6 +66,44 @@ button {
 }
 /* Button Styles - End */
 
+
+/* Input Styles - start */
+.input-wrapper {
+    margin: 0 0 10px;
+}
+
+.input-wrapper label {
+    display: block;
+    height: 0;
+    width: 0;
+    overflow: hidden;
+}
+
+.input-wrapper .border-highlight {
+    height: 2px;
+    background: black;
+    position: relative;
+    top: -2px;
+    width: 0;
+    -webkit-transition: width 0.2s ease-in;
+    -moz-transition: width 0.2s ease-in;
+    transition: width 0.2s ease-in;
+}
+
+.input-wrapper:hover .border-highlight {
+    width: 100%;
+}
+
+.input-wrapper input, .input-wrapper textarea {
+    display: block;
+    padding: 10px;
+    font-size: 1.1em;
+    border: 2px solid #ccc;
+    font-family: 'Playfair Display', serif;
+    width: 100%;
+}
+/* Input Styles - end */
+
 /* Nav Style - Start*/
 ul.site-nav-list {
     list-style: none;
