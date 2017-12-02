@@ -102,6 +102,14 @@ button {
     font-family: 'Playfair Display', serif;
     width: 100%;
 }
+
+.show-error .input-wrapper input.ng-invalid+.border-highlight,
+.show-error .input-wrapper textarea.ng-invalid+.border-highlight,
+.input-wrapper input.ng-invalid.ng-touched+.border-highlight,
+.input-wrapper textarea.ng-invalid.ng-touched+.border-highlight {
+    width: 100%;
+    background: #F44336;
+}
 /* Input Styles - end */
 
 /* Nav Style - Start*/
@@ -142,6 +150,26 @@ ul.site-nav-list li.show {
 }
 /* Nav Style - End */
 
+.act-icon {
+    font-size: 2em;
+    height: 19px;
+    width: 48px;
+    overflow: hidden;
+    display: inline-block;
+}
+
+.act-icon:before {
+    position: relative;
+    top: -9px;
+    left: 0;
+    -webkit-transition: left 0.5s;
+    -moz-transition: left 0.5s;
+    transition: left 0.5s;
+}
+
+button:hover .act-icon:before {
+    left: 10px;
+}
 
 /* Tab Styles - Start */
 @media (max-width: 950px) {

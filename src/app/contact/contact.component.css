@@ -11,7 +11,7 @@
 }
 
 .message {
-    height: 132px;
+    height: 143px;
 }
 
 .button-wrapper {
@@ -25,8 +25,10 @@
 button.submit-contact {
     width: 100%;
     border-color: #0ab779;
-    color: #0ab779;
+    color: #454545;;
     font-size: 1.1em;
+    padding: 10px;
+    letter-spacing: normal;
 }
 
 .button-wrapper:hover button {

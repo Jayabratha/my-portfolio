@@ -15,4 +15,19 @@ export class ContactComponent{
     this.appState.setHeaderState(true);
   }
 
+  showError: boolean = false;
+
+  messageData = {
+    firstName: "",
+    lastName: "",
+    email: "",
+    message: ""
+  }
+
+  onSubmit(isFormValid) {
+    if (!isFormValid) {
+      this.showError = true;
+    }
+  }
+
 }

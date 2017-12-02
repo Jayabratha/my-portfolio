@@ -71,6 +71,12 @@
     bottom: 0;
     height: 25px;
     margin: auto;
+    font-size: 1.3em;
+}
+
+.arrow-btn i:before {
+    position: relative;
+    top: -10px;
 }
 
 .carousel-wrapper:hover .arrow-btn {

@@ -3,30 +3,30 @@
   <div class="content-wrapper below-view" appJsOnscroll [viewportCheck]=true [checkAboveView]=false>
     <h2 class="main">Send me an email here</h2>
     <div class="feature-content">
-      <form class="contact-form container">
+      <form class="contact-form container" [ngClass]="{'show-error': showError}" (ngSubmit)="onSubmit(contactForm.form.valid)" #contactForm="ngForm">
         <div class="input-wrapper col-md-6">
             <label for="firstName">First Name</label>
-            <input id="firstName" name="firstName" type="text" class="first-name" placeholder="First Name" />
+            <input id="firstName" name="firstName" type="text" class="first-name" placeholder="First Name" [(ngModel)]="messageData.firstName" required />
             <div class="border-highlight"></div>
         </div>
         <div class="input-wrapper col-md-6">
             <label for="lastName">Last Name</label>
-            <input id="lastName" name="lastName" type="text" class="last-name" placeholder="Last Name" />
+            <input id="lastName" name="lastName" type="text" class="last-name" placeholder="Last Name" [(ngModel)]="messageData.lastName" />
             <div class="border-highlight"></div>
         </div>
         <div class="input-wrapper col-md-12">
             <label for="email">Email</label>
-            <input id="email" name="email" type="email" class="email" placeholder="Email" />
+            <input id="email" name="email" type="email" class="email" placeholder="Email" [(ngModel)]="messageData.email" required />
             <div class="border-highlight"></div>
         </div>
         <div class="input-wrapper message-wrapper col-md-12">
             <label for="mesage">Your Message</label>
-            <textarea id="message" name="message" class="message" placeholder="Type in your message"></textarea>
+            <textarea id="message" name="message" class="message" placeholder="Type in your message" [(ngModel)]="messageData.message" required ></textarea>
             <div class="border-highlight"></div>
         </div>       
         <div class="button-wrapper">
           <div class="background"></div>
-          <button class="submit-contact" type="submit">SEND EMAIL</button>
+          <button type="submit" class="submit-contact" type="submit">Send Email<span class="act-icon icon-ios-arrow-thin-right"></span></button>
         </div>
       </form>
     </div>

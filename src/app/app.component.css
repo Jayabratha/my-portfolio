@@ -78,11 +78,11 @@ section.background {
 }
 
 .content.about-content h2.main {
-    background: linear-gradient(140deg, #28a6e4, #0ab779);
+    background: linear-gradient(140deg, #28a6e4, #0ab732);
 }
 
 .content.contact-content h2.main {
-    background: linear-gradient(140deg, #0ab779, #0ab732);
+    background: linear-gradient(140deg, #0ab779, #0ab70f);
 }
 
 .main-footer {

@@ -3,6 +3,14 @@
     font-family: "Playfair Display";
     src: url("assets/fonts/PlayfairDisplay-Regular.eot"),
          url("assets/fonts/PlayfairDisplay-Regular.ttf") format('truetype');
+    font-weight: 400;
+}
+
+@font-face{
+    font-family: "Playfair Display";
+    src: url("assets/fonts/PlayfairDisplay-Bold.eot"),
+         url("assets/fonts/PlayfairDisplay-Bold.ttf") format('truetype');
+    font-weight: 700;
 }
 
 @font-face{
