@@ -16,6 +16,7 @@ export class ContactComponent{
     this.appState.setHeaderState(true);
   }
 
+  emailSent: boolean = false;
   showError: boolean = false;
 
   messageData = {
@@ -25,8 +26,8 @@ export class ContactComponent{
     message: ""
   }
 
-  onSubmit(isFormValid) {
-    if (!isFormValid) {
+  onSubmit(form) {
+    if (!form.valid) {
       this.showError = true;
     } else {
       console.log(this.messageData);
@@ -42,7 +43,15 @@ export class ContactComponent{
       `;
 
       let formRequest = { name, email, message, date, html };
-      this.db.list('/messages').push(formRequest);
+      this.db.list('/messages').push(formRequest).then(() => {
+        form.reset();
+        this.showError = false;
+        this.emailSent = true;
+        setTimeout(() => {
+          this.emailSent = false;
+        }, 5000);
+      },() => {
+      });
     }
   }
 
