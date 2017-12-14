@@ -52,10 +52,16 @@
 .logo-section {
     margin-left: -53px;
 }
-
+.search-button {
+    float: right;
+    font-size: 1.8em;
+    margin: 4px 8px;
+    color: #454545;
+}
 .hello-card {
     position: absolute;
-    width: 3em;
+    width: 10em;
+    text-align: center;
     left: 0;
     right: 0;
     margin: 0 auto;
@@ -65,6 +71,13 @@
     color: #696969;
     opacity: 0;
     transition: opacity 0.5s;
+}
+
+.loading-icon.initial-loader {
+    position: relative;
+    margin-bottom: 0.2em;
+    height: 0.25em;
+    width: 0.25em;
 }
 
 .me-card-wrapper {
@@ -102,7 +115,7 @@
     transform: translateY(0);
     left: 0;
     right: 0;
-    background: linear-gradient(140deg, #f31b48, #f31b48, #940590, #0ab779);
+    background: linear-gradient(140deg, #ff9800, #f31b48, #940590, #0ab779);
     transition: transform 0.5s ease-out;
     -webkit-animation: progress-bar 2s;
     -moz-animation: progress-bar 2s;
@@ -156,7 +169,7 @@ h1.name {
     transition: opacity 0.5s ease-in;
 }
 /* Initial Header Styles - Start */
-.initial-header .menu-section, .initial-header .logo-section {
+.initial-header .menu-section, .initial-header .logo-menu {
     opacity: 0;
     transition: none;
 }

@@ -8,10 +8,12 @@
         <div class="logo-section" routerLink="/home" (click)="showMenu = false;">
             <i class="icon-logo-svg"></i>
         </div>
+        <i class="search-button icon-ios-search"></i>
     </div>
     <section class="hello-card">
         <div class="overlay"></div>
-        <div class="hello"><span>Hello World!</span></div>
+        <div class="initial-loader loading-icon animate"></div>
+        <div class="hello"><span>Hello there!</span></div>     
     </section>
     <section class="me-card-wrapper center-stage">
         <div class="me-card" [style.width]="carouselLoadProgress + '%'">
