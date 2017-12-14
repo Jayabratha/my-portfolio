@@ -31,6 +31,7 @@
             </div>
         </div>
     </section>
+    <div class="menu-background" [hidden]="!showMenu" (click)="toggleMenu()"></div>
     <nav class="site-nav center-stage absolute-bottom">
         <ul class="site-nav-list">
             <li #navItem (mouseenter)="activeNav='art'" (mouseleave)="activeNav=''" routerLink="/art" (click)="showMenu = false;">Art</li>
