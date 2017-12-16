@@ -1,4 +1,4 @@
-<div class="main-header" [ngClass]="{'fix-header': isHeaderFix || showMenu, 'initial-header': isInitial, 'show-menu': showMenu}" >
+<div class="main-header" [ngClass]="{'fix-header': isHeaderFix || showMenu, 'initial-header': isInitial, 'show-menu': showMenu, 'search-header': showSearch }">
     <div class="logo-menu center-stage">
         <div class="menu-section" (click)="toggleMenu()">
             <div class="menu-icon-top"></div>
@@ -8,32 +8,40 @@
         <div class="logo-section" routerLink="/home" (click)="showMenu = false;">
             <i class="icon-logo-svg"></i>
         </div>
-        <i class="search-button icon-ios-search"></i>
+        <div class="search-wrapper">
+            <form class="search-form">
+                <input type="text" class="search" />
+                <button type="button" (click)="toggleSearch()">
+                    <i class="search-button icon-ios-search"></i>
+                </button>
+            </form>
+        </div>
+
     </div>
     <section class="hello-card">
         <div class="overlay"></div>
         <div class="initial-loader loading-icon animate"></div>
-        <div class="hello"><span>Hello there!</span></div>     
+        <div class="hello">
+            <span>Hello there!</span>
+        </div>
     </section>
     <section class="me-card-wrapper center-stage">
         <div class="me-card" [style.width]="carouselLoadProgress + '%'">
             <div class="dp my-dp">
-                <app-js-carousel 
-                [slideItems]=slideList 
-                [play]=play
-                (carouselReady)="onCarouselReady($event)"
-                (carouselLoading)="onCarouselLoadProgress($event)"></app-js-carousel>
+                <app-js-carousel [slideItems]=slideList [play]=play (carouselReady)="onCarouselReady($event)" (carouselLoading)="onCarouselLoadProgress($event)"></app-js-carousel>
             </div>
             <div class="my-card-wrapper" appJsOnscroll padding=60 [activateScroll]=activateScroll (onStateChange)="headerStateChange($event)">
                 <div class="my-card">
                     <h1 class="name">Jayabratha Saha</h1>
                     <div class="title">Artist & Developer</div>
-                    <div class="github-link"><i class="icon-social-github"></i></div>
+                    <div class="github-link">
+                        <i class="icon-social-github"></i>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
-    <div class="menu-background" [hidden]="!showMenu" (click)="toggleMenu()"></div>
+    <div class="menu-background" [hidden]="!showMenu && !showSearch" (click)="hideMenuAndSearch()"></div>
     <nav class="site-nav center-stage absolute-bottom">
         <ul class="site-nav-list">
             <li #navItem (mouseenter)="activeNav='art'" (mouseleave)="activeNav=''" routerLink="/art" (click)="showMenu = false;">Art</li>

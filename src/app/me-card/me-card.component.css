@@ -33,6 +33,7 @@
     transition: margin 0.5s;
     outline: none;
     cursor: pointer;
+    z-index: 1;
 }
 .menu-section {
     background: transparent;
@@ -198,49 +199,73 @@ h1.name {
 }
 /* Initial Header Styles - End */
 
-/* Fixed Header Styles - Start */
-.main-header.fix-header {
+/* Fixed n Search Header Styles - Start */
+.main-header.fix-header,
+.main-header.search-header {
     position: fixed;
     width: 100%;
     height: 61px;
     z-index: 10;
 }
-.fix-header .hello-card {
+.fix-header .hello-card,
+.search-header .hello-card {
     height: 0;
     margin: 0;
+    overflow: hidden;
 }
 
 .fix-header .logo-section {
     margin-left: 0;
 }
-
 .fix-header .menu-icon-top {
     top: 11px;
 }
 .fix-header .menu-icon-bottom {
     top: 27px;
 }
-.fix-header .me-card-wrapper {
+.search-header .logo-section {
+    margin-left: -53px;
+}
+.search-header .menu-icon-top {
+    top: 19px;
+}
+.search-header .menu-icon-bottom {
+    top: 19px;
+}
+
+.fix-header .me-card-wrapper,
+.search-header .me-card-wrapper {
     margin-top: 59px;
     height: 2px;
 }
-.fix-header .me-card {
+
+.fix-header .me-card,
+.search-header .me-card {
     position: relative;
 }
 
 .fix-header .my-dp,
 .fix-header .name,
 .fix-header .title,
-.fix-header .github-link  {
+.fix-header .github-link,
+.search-header .my-dp,
+.search-header .name,
+.search-header .title,
+.search-header .github-link  {
     opacity: 0;
 }
 
-.fix-header .my-card {
+.fix-header .my-card,
+.search-header .my-card {
     position: relative;
     width: 100%;
     height: 2px;
     padding-top: 0;
     padding-bottom: 0;
+}
+
+.search-header .site-nav {
+    display: none;
 }
 .fix-header .site-nav {
     position: absolute;
@@ -277,18 +302,21 @@ h1.name {
 /* Fixed Header Styles - End */
 
 /* Show Menu Styles - Start */
-.show-menu .me-card {
+.show-menu .me-card,
+.search-header .me-card {
     position: relative;
-    /*height: 33em;*/
 }
-.show-menu .my-card>* {
+.show-menu .my-card>*,
+.search-header .my-card>* {
     display: none;
 }
-.show-menu .me-card-wrapper {
+.show-menu .me-card-wrapper,
+.search-header .me-card-wrapper {
     height: 35em;
     z-index: 1;
 }
-.show-menu .site-nav {
+.show-menu .site-nav,
+.search-header .site-nav {
     height: 30em;
 }
 .show-menu ul.site-nav-list {
@@ -356,7 +384,7 @@ h1.name {
 }
 /* Nav Highlighter - End */
 
-/* Logo Style */
+/* Logo Style - Start */
 .logo-section i {
     color: #FFFFFF;
 }
@@ -367,6 +395,42 @@ h1.name {
     display: block;
     font-size: 50px;
 }
+/* Logo Style - Start */
+
+/* Search Style - Start */
+.search-wrapper {
+    position: absolute;
+    display: inline-block;
+    width: 100%;
+    left: 0;
+    padding-left: 55px;
+}
+
+.search-wrapper input {
+    float: right;
+    width: 0;
+    height: 38px;
+    border: none;
+    background: #f5f4f4;
+    box-shadow: 0 -10px 25px 0px rgba(0,0,0,0.05) inset;
+    -webkit-transition: width 0.5s ease-out;
+    -moz-transition: width 0.5s ease-out;
+    transition: width 0.5s ease-out;
+}
+
+.search-header .search-wrapper input {
+    width: 100%;
+}
+
+.search-wrapper button {
+    position: absolute;
+    right: 0;
+    top: 0;
+    border: none;
+    height: 38px;
+    padding: 0;
+}
+/* Search Style - End */
 
 /* Mobile Styles - Start */
 @media (max-width: 650px) {
@@ -427,35 +491,48 @@ h1.name {
         display: none;
     }
 
-    /* Fixed Header Styles - Start */
-    .fix-header .logo-menu {
+    /* Fixed & Search Header Styles - Start */
+    .fix-header .logo-menu,
+    .search-header .logo-menu {
         z-index: 20;
     }
-    .fix-header .logo-section {
+    .fix-header .logo-section, 
+    .search-header .logo-section {
         background: #454545;
     }
-    .fix-header .menu-icon, .fix-header .menu-icon-top, .fix-header .menu-icon-bottom {
+    .fix-header .menu-icon, 
+    .fix-header .menu-icon-top, 
+    .fix-header .menu-icon-bottom,
+    .search-header .menu-icon, 
+    .search-header .menu-icon-top, 
+    .search-header .menu-icon-bottom {
         background: #454545;
     }
-    .fix-header .me-card-wrapper {
+    .fix-header .me-card-wrapper,
+    .seach-header .me-card-wrapper {
         margin-top: 51px;
     }
-    .fix-header .me-card {
+    .fix-header .me-card,
+    .search-header .me-card {
         height: 2px;
     }
-    .fix-header .my-card-wrapper {
+    .fix-header .my-card-wrapper,
+    .search-header .my-card-wrapper {
         margin-top: 0;
     }
-    .fix-header .my-dp {
+    .fix-header .my-dp,
+    .search-header .my-dp {
         display: none;
     }
-    .fix-header .my-card {
+    .fix-header .my-card,
+    .search-header .my-card {
         margin-top: 0
     }
     .fix-header .site-nav {
         display: block;
     }
-    .fix-header.show-menu .my-card {
+    .fix-header.show-menu .my-card,
+    .search-header.show-menu .my-card {
         height: 43.5em;
     }
     /* Fixed Header Styles - End */

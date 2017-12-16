@@ -13,6 +13,7 @@ export class MeCardComponent implements OnDestroy {
 
   isInitial: boolean = true;
   showMenu: boolean = false;
+  showSearch: boolean = false;
   isHeaderFix: boolean;
   activeNav: string = "";
   subscription: Subscription;
@@ -142,5 +143,14 @@ export class MeCardComponent implements OnDestroy {
     } else {
       this.hideNavItems();
     }
+  }
+
+  toggleSearch() {
+    this.showSearch = !this.showSearch;
+  }
+
+  hideMenuAndSearch() {
+    this.showMenu = false;
+    this.showSearch = false;
   }
 }
