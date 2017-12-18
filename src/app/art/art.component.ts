@@ -1,6 +1,9 @@
-import { Component, ElementRef, ViewChildren, QueryList, AfterViewInit, Renderer2 } from '@angular/core';
+import { Component, ElementRef, ViewChildren, OnInit, QueryList, AfterViewInit, Renderer2 } from '@angular/core';
 import { AppStateService } from '../app-state.service';
 import { routeAnimation } from '../animations/animations';
+import { AngularFireDatabase } from 'angularfire2/database';
+import { Observable } from 'rxjs/Observable';
+import * as firebase from 'firebase';
 
 @Component({
     selector: 'app-art',
@@ -9,110 +12,43 @@ import { routeAnimation } from '../animations/animations';
     animations: [routeAnimation()],
     host: { '[@routeAnimation]': '' }
 })
-export class ArtComponent {
+export class ArtComponent implements OnInit {
 
     @ViewChildren('imgItem') imageItems: QueryList<ElementRef>;
 
-    constructor(private appState: AppStateService, private renderer: Renderer2) {
+    private storage = firebase.storage();
+
+    imageList: Array<Object>;
+    isLoading: boolean = true;
+
+    constructor(private appState: AppStateService, private renderer: Renderer2, private db: AngularFireDatabase) {
         this.appState.setHeaderState(true);
     }
 
-    ngAfterViewInit() {
-        this.imageItems.forEach((elem, index) => {
-            this.renderer.addClass(elem.nativeElement, 'hide');
+    ngOnInit() {
+        //Get list of images
+        this.db.list('/artImages').valueChanges().map((fileList) => {
+            fileList.forEach((file: any) => {
+                let storageRef = this.storage.ref();
+                storageRef.child(file.filePath).getDownloadURL().then((url) => {
+                    Object.assign(file, {url: url});
+                });               
+            });
+            return fileList;
+        }).subscribe((images) => {
+            this.imageList = images;
         });
-   }
-
-    imageLoadProress: number = 0;
-    isLoading: boolean = true;
-
-    updateProgress(progress: number) {
-        this.imageLoadProress = progress;
     }
 
-    onLoadComplete(complete: boolean) {
-        if (complete) {
-            setTimeout(() => {
-                this.isLoading = false;
-                this.imageItems.forEach((elem, index) => {
-                    setTimeout(() => {
-                      this.renderer.removeClass(elem.nativeElement, 'hide');
-                    }, index * 200);
-                  });
-            }, 1000);           
-        }
+    ngAfterViewInit() {
+        setTimeout(() => {
+            this.isLoading = false;
+            this.imageItems.forEach((elem, index) => {
+                setTimeout(() => {
+                    this.renderer.removeClass(elem.nativeElement, 'hide');
+                }, index * 200);
+            });
+        }, 3000);
     }
-
-    artList: Object[] = [{
-        id: "art1",
-        url: "../assets/images/art/Farah.jpg",
-        title: "Farah",
-        alt: "Farah",
-        description: "",
-        isPotraitMode: true
-    }, {
-        id: "art2",
-        url: "../assets/images/art/MenModel.jpg",
-        title: "Men Model",
-        alt: "Men Model",
-        description: "",
-        isPotraitMode: false
-    }, {
-        id: "art3",
-        url: "../assets/images/art/Fabric.jpg",
-        title: "Fabric",
-        alt: "Fabric",
-        description: "",
-        isPotraitMode: true
-    }, {
-        id: "art4",
-        url: "../assets/images/art/Mortality.jpg",
-        title: "Mortality",
-        alt: "Mortality",
-        description: "",
-        isPotraitMode: true
-    }, {
-        id: "art5",
-        url: "../assets/images/art/Angelina.jpg",
-        title: "Angelina",
-        alt: "Angelina",
-        description: "",
-        isPotraitMode: true
-    }, {
-        id: "art6",
-        url: "../assets/images/art/Water.jpg",
-        title: "Water",
-        alt: "Water",
-        description: "",
-        isPotraitMode: false
-    }, {
-        id: "art7",
-        url: "../assets/images/art/Elena.jpg",
-        title: "Elena",
-        alt: "Elena",
-        description: "",
-        isPotraitMode: true
-    }, {
-        id: "art8",
-        url: "../assets/images/art/Marmaid.jpg",
-        title: "Marmaid",
-        alt: "Marmaid",
-        description: "",
-        isPotraitMode: true
-    }, {
-        id: "art9",
-        url: "../assets/images/art/Twilight.jpg",
-        title: "Twilight",
-        alt: "Twilight",
-        description: "",
-        isPotraitMode: true
-    }, {
-        id: "art10",
-        url: "../assets/images/art/PoP.jpg",
-        title: "Price Of Persia",
-        alt: "Price Of Persia",
-        description: "",
-        isPotraitMode: true
-    }];
 
 }
