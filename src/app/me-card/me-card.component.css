@@ -406,12 +406,21 @@ h1.name {
     padding-left: 55px;
 }
 
+.search-wrapper label {
+    height: 0;
+    width: 0;
+    overflow: hidden;
+    display: block;
+}
+
 .search-wrapper input {
     float: right;
     width: 0;
     height: 38px;
     border: none;
     background: #f5f4f4;
+    font-size: 1em;
+    font-family: 'Roboto', sans-serif;
     box-shadow: 0 -10px 25px 0px rgba(0,0,0,0.05) inset;
     -webkit-transition: width 0.5s ease-out;
     -moz-transition: width 0.5s ease-out;
@@ -420,6 +429,7 @@ h1.name {
 
 .search-header .search-wrapper input {
     width: 100%;
+    padding: 0 10px;
 }
 
 .search-wrapper button {
@@ -429,6 +439,13 @@ h1.name {
     border: none;
     height: 38px;
     padding: 0;
+    outline: none;
+}
+
+.search-result-wrapper {
+    padding: 20px 55px;
+    color: #FFFFFF;
+    font-size: 1.5em;
 }
 /* Search Style - End */
 

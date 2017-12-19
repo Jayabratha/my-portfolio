@@ -1,4 +1,4 @@
-import { Component, AfterViewInit, OnDestroy, ElementRef, Renderer2, ViewChildren, QueryList } from '@angular/core';
+import { Component, AfterViewInit, OnDestroy, ElementRef, Renderer2, ViewChild, ViewChildren, QueryList } from '@angular/core';
 import { AppStateService } from '../app-state.service';
 import { Subscription } from 'rxjs/Subscription';
 import { Router, NavigationStart, NavigationEnd } from '@angular/router';
@@ -10,6 +10,7 @@ import { Router, NavigationStart, NavigationEnd } from '@angular/router';
 })
 export class MeCardComponent implements OnDestroy {
   @ViewChildren('navItem') navItems: QueryList<ElementRef>;
+  @ViewChild('searchInput') searchInput: ElementRef;
 
   isInitial: boolean = true;
   showMenu: boolean = false;
@@ -39,7 +40,7 @@ export class MeCardComponent implements OnDestroy {
     title: "My pic 5",
     alt: "My pic 5",
     description: ""
-  },{
+  }, {
     id: "slide1",
     url: "assets/images/my-pic.jpg",
     title: "My pic 1",
@@ -102,7 +103,7 @@ export class MeCardComponent implements OnDestroy {
             window.scrollTo(0, 0);
           });
         }
-        
+
         if (event instanceof NavigationEnd) {
           //Scroll to top when route load
           window.scrollTo(0, 0);
@@ -111,7 +112,7 @@ export class MeCardComponent implements OnDestroy {
   }
 
   onCarouselReady(isReady) {
-    if(isReady) {
+    if (isReady) {
       this.isInitial = false;
       //Animate the nav bar
       this.animateNavItems();
@@ -147,10 +148,25 @@ export class MeCardComponent implements OnDestroy {
 
   toggleSearch() {
     this.showSearch = !this.showSearch;
+    if (this.showSearch) {
+      this.play = false;
+      this.searchInput.nativeElement.focus();
+      this.hideNavItems();
+    } else {
+      setTimeout(() => {
+        this.animateNavItems();
+      }, 500);
+    }
   }
 
-  hideMenuAndSearch() {
+  hideMenu() {
     this.showMenu = false;
+  }
+
+  hideSearch() {
     this.showSearch = false;
+    setTimeout(() => {
+      this.animateNavItems();
+    }, 500);
   }
 }

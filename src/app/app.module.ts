@@ -21,6 +21,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ImageOnLoadDirective } from './image-on-load.directive';
 import { LoadAnimateDirective } from './load-animate.directive';
 import { BlogComponent } from './blog/blog.component';
+import { ClickedOutDirective } from './clicked-out.directive';
 
 const appRoutes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -50,7 +51,8 @@ const appRoutes: Routes = [
     ContactComponent,
     ImageOnLoadDirective,
     LoadAnimateDirective,
-    BlogComponent
+    BlogComponent,
+    ClickedOutDirective
   ],
   imports: [
     BrowserModule,

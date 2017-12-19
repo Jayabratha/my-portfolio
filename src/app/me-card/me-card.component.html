@@ -1,6 +1,6 @@
 <div class="main-header" [ngClass]="{'fix-header': isHeaderFix || showMenu, 'initial-header': isInitial, 'show-menu': showMenu, 'search-header': showSearch }">
     <div class="logo-menu center-stage">
-        <div class="menu-section" (click)="toggleMenu()">
+        <div class="menu-section" (click)="toggleMenu($event); $event.stopPropagation();">
             <div class="menu-icon-top"></div>
             <div class="menu-icon"></div>
             <div class="menu-icon-bottom"></div>
@@ -8,10 +8,11 @@
         <div class="logo-section" routerLink="/home" (click)="showMenu = false;">
             <i class="icon-logo-svg"></i>
         </div>
-        <div class="search-wrapper">
+        <div class="search-wrapper" (clickedOut)="hideSearch()">
             <form class="search-form">
-                <input type="text" class="search" />
-                <button type="button" (click)="toggleSearch()">
+                <label for="searchTerm">Search</label>
+                <input #searchInput id="searchTerm" type="text" class="search" placeholder="Search" />
+                <button type="submit" (click)="toggleSearch(); $event.stopPropagation();">
                     <i class="search-button icon-ios-search"></i>
                 </button>
             </form>
@@ -27,6 +28,9 @@
     </section>
     <section class="me-card-wrapper center-stage">
         <div class="me-card" [style.width]="carouselLoadProgress + '%'">
+            <div class="search-result-wrapper" [hidden]="!showSearch">
+                Search Results would appear here....
+            </div>
             <div class="dp my-dp">
                 <app-js-carousel [slideItems]=slideList [play]=play (carouselReady)="onCarouselReady($event)" (carouselLoading)="onCarouselLoadProgress($event)"></app-js-carousel>
             </div>
@@ -41,8 +45,7 @@
             </div>
         </div>
     </section>
-    <div class="menu-background" [hidden]="!showMenu && !showSearch" (click)="hideMenuAndSearch()"></div>
-    <nav class="site-nav center-stage absolute-bottom">
+    <nav class="site-nav center-stage absolute-bottom" (clickedOut)="hideMenu()">
         <ul class="site-nav-list">
             <li #navItem (mouseenter)="activeNav='art'" (mouseleave)="activeNav=''" routerLink="/art" (click)="showMenu = false;">Art</li>
             <li #navItem (mouseenter)="activeNav='projects'" (mouseleave)="activeNav=''" routerLink="/projects" (click)="showMenu = false;">Projects</li>
@@ -55,3 +58,4 @@
         <div class="nav-highlighter" [ngClass]="activeNav"></div>
     </div>
 </div>
+<div class="menu-background" [hidden]="!showMenu && !showSearch"></div>
