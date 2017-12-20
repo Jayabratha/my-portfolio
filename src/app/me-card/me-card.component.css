@@ -416,6 +416,7 @@ h1.name {
 .search-wrapper input {
     float: right;
     width: 0;
+    padding: 0;
     height: 38px;
     border: none;
     background: #f5f4f4;
