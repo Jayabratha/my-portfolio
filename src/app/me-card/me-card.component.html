@@ -12,7 +12,7 @@
             <form class="search-form">
                 <label for="searchTerm">Search</label>
                 <input #searchInput id="searchTerm" type="text" class="search" placeholder="Search" />
-                <button type="submit" (click)="toggleSearch(); $event.stopPropagation();">
+                <button type="submit" label="Search" aria-label="Search content" (click)="toggleSearch(); $event.stopPropagation();">
                     <i class="search-button icon-ios-search"></i>
                 </button>
             </form>
@@ -28,23 +28,25 @@
     </section>
     <section class="me-card-wrapper center-stage">
         <div class="me-card" [style.width]="carouselLoadProgress + '%'">
-            <div class="search-result-wrapper" [hidden]="!showSearch">
-                Search Results would appear here....
-            </div>
-            <div class="dp my-dp">
-                <app-js-carousel [slideItems]=slideList [play]=play (carouselReady)="onCarouselReady($event)" (carouselLoading)="onCarouselLoadProgress($event)"></app-js-carousel>
-            </div>
-            <div class="my-card-wrapper" appJsOnscroll padding=60 [activateScroll]=activateScroll (onStateChange)="headerStateChange($event)">
-                <div class="my-card">
-                    <h1 class="name">Jayabratha Saha</h1>
-                    <div class="title">Artist & Developer</div>
-                    <div class="github-link">
-                        <i class="icon-social-github"></i>
+            <div class="name-card" [attr.aria-hidden]="isHeaderFix || showMenu || showSearch">
+                <div class="dp my-dp">
+                    <app-js-carousel [slideItems]=slideList [play]=play (carouselReady)="onCarouselReady($event)" (carouselLoading)="onCarouselLoadProgress($event)"></app-js-carousel>
+                </div>
+                <div class="my-card-wrapper" appJsOnscroll padding=60 [activateScroll]=activateScroll (onStateChange)="headerStateChange($event)">
+                    <div class="my-card">
+                        <h1 class="name">Jayabratha Saha</h1>
+                        <div class="title">Artist & Developer</div>
+                        <div class="github-link">
+                            <i class="icon-social-github"></i>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
+    <div class="search-result-wrapper" [hidden]="!showSearch" [attr.aria-hidden]="!showSearch">
+        Search Results would appear here....
+    </div>
     <nav class="site-nav center-stage absolute-bottom" (clickedOut)="hideMenu()">
         <ul class="site-nav-list">
             <li #navItem (mouseenter)="activeNav='art'" (mouseleave)="activeNav=''" routerLink="/art" (click)="showMenu = false;">Art</li>

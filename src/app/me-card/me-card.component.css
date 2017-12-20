@@ -125,7 +125,7 @@
 
 .dp.my-dp {
     height: 19.3em;
-    transition: opacity 0.5s ease-in;
+    transition: opacity 0.3s ease-in;
 }
 
 .my-card-wrapper {
@@ -443,6 +443,13 @@ h1.name {
 }
 
 .search-result-wrapper {
+    position: absolute;
+    top: 58px;
+    z-index: 2;
+    margin: 0 auto;
+    left: 0;
+    right: 0;
+    max-width: 36.66em;
     padding: 20px 55px;
     color: #FFFFFF;
     font-size: 1.5em;
