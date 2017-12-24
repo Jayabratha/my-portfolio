@@ -1,21 +1,46 @@
-.art-list li {
+.image-wrapper {
     position: relative;
     overflow: hidden;
-    padding: 0px 2px;
-    margin: 1px 0;
+    margin: 1px;
     height: 20em;
+    cursor: pointer;
 }
 
-.art-list img {
+.image-wrapper img {
     position: relative;
     height: 100%;
-    border: thin solid #e3e3e3;
     opacity: 1;
     transform: translate3d(0, 0, 0);
     transition: opacity 0.5s, transform 0.8s;
+    -webkit-transition: all 0.5s linear;
+    transition: all 0.5s linear;
+    -webkit-transform: scale3d(1, 1, 1);
+    transform: scale3d(1, 1, 1);
 }
 
-.art-list img.hide {
+.image-wrapper .image-title {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    padding: 5px 10px 20px;
+    background: #0db079;
+    color: #ffff;
+    font-size: 1.3em;
+    -webkit-transition: transform 0.3s linear;
+    transition: transform 0.3s linear;
+    transform: translate3d(0, 53px, 0);
+}
+
+.image-wrapper:hover .image-title {
+    transform: translate3d(0, 0, 0);
+}
+
+.image-wrapper:hover img {
+    -webkit-transform: scale3d(1.2, 1.2, 1);
+    transform: scale3d(1.2, 1.2, 1);
+}
+
+.image-wrapper img.hide {
     opacity: 0;
     transform: translate3d(0, 200px, 0);
 }
@@ -25,12 +50,12 @@
     /*.art-list li.potrait {
         width: 50%;
     }*/
-    .art-list li {
+    .image-wrapper li {
         width: 100%;
         height: auto;
     }
 
-    .art-list img {
+    .image-wrapper img {
         width: 100%;
         height: auto;
     }
