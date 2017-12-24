@@ -1,5 +1,6 @@
 const functions = require('firebase-functions');
 const admin = require('firebase-admin');
+const request = require('request-promise');
 
 admin.initializeApp(functions.config().firebase);
 
@@ -11,9 +12,13 @@ admin.initializeApp(functions.config().firebase);
 // });
 
 const nodemailer = require('nodemailer');
-const gmailEmail = encodeURIComponent(functions.config().gmail.email);
-const gmailPassword = encodeURIComponent(functions.config().gmail.password);
+const firebaseConfig = functions.config();
+const gmailEmail = encodeURIComponent(firebaseConfig.gmail.email);
+const gmailPassword = encodeURIComponent(firebaseConfig.gmail.password);
 const mailTransport = nodemailer.createTransport(`smtps://${gmailEmail}:${gmailPassword}@smtp.gmail.com`);
+
+const elasticSearchConfig = firebaseConfig.elasticsearch;
+
 const db = admin.database();
 
 exports.sendContactMessage = functions.database.ref('/messages/{pushKey}').onWrite(event => {
@@ -63,7 +68,30 @@ exports.updateImageList = functions.storage.object().onChange(event => {
 
   //If an art image is added make a file entry to DB
   if (contentType.startsWith('image/') && filePath.startsWith('artImages/')) {
-    db.ref('/artImages').push().set(imageFileObj);
-    return;
+    return db.ref('/artImages').push().set(imageFileObj);   
   }
-})
+});
+
+exports.updateImagesIndex = functions.database.ref('/artImages/{pushKey}').onWrite(event => {
+  let postData = event.data.val();
+  let imageId = event.params.pushKey; 
+
+  console.log(postData);
+
+  let elasticSearchUrl = elasticSearchConfig.url + '/images/image/' +  imageId;
+  let elasticSearchMethod = postData ? 'POST' : 'DELETE';
+
+  return request({
+    method: elasticSearchMethod,
+    url: elasticSearchUrl,
+    auth: {
+      username: elasticSearchConfig.user,
+      password: elasticSearchConfig.password
+    },
+    body: postData,
+    json: true
+  }).then(response => {
+    console.log(response);
+  });
+
+});
