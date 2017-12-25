@@ -34,3 +34,30 @@ button.submit-contact {
 .button-wrapper:hover button {
     color: #ffffff;
 }
+
+.tile-wrapper.facebook {
+    background-color: #3b5998;
+}
+.tile-wrapper.instagram {
+    background-color: #ffffff;
+}
+.tile-wrapper.linkedin {
+    background-color: #0077b5;
+}
+.tile-wrapper.whatsapp {
+    background-color: #25D366;
+}
+
+.tile-wrapper.instagram i:before {
+    content: "";
+    background: url("../../assets/instagram.png");
+    background-repeat: no-repeat;
+    height: 100px;
+    width: 100px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+}

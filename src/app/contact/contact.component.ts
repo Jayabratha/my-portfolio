@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewChildren, QueryList, ElementRef, Renderer2 } from '@angular/core';
 import { AppStateService } from '../app-state.service';
 import { routeAnimation } from '../animations/animations';
 import { AngularFireDatabase } from 'angularfire2/database';
@@ -12,7 +12,9 @@ import { AngularFireDatabase } from 'angularfire2/database';
 })
 export class ContactComponent{
 
-  constructor(private appState: AppStateService, private db: AngularFireDatabase) {
+  @ViewChildren('tileItem') skillItems: QueryList<ElementRef>;
+
+  constructor(private appState: AppStateService, private db: AngularFireDatabase, private renderer: Renderer2) {
     this.appState.setHeaderState(true);
   }
 
@@ -52,6 +54,18 @@ export class ContactComponent{
         }, 5000);
       },() => {
       });
+    }
+  }
+
+  animateTiles() {
+    if (this.skillItems) {
+      setTimeout(() => {
+        this.skillItems.forEach((elem, index) => {
+          setTimeout(() => {
+            this.renderer.removeClass(elem.nativeElement, 'hide');
+          }, index * 150);
+        });      
+      }, 500);
     }
   }
 

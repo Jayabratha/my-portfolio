@@ -1,37 +1,83 @@
 <div class="content contact-content center-stage">
   <h1>Contact</h1>
-  <div class="content-wrapper below-view" appJsOnscroll [viewportCheck]=true [checkAboveView]=false>
+  <div class="content-wrapper clearfix below-view" appJsOnscroll [viewportCheck]=true [checkAboveView]=false>
     <h2 class="main">Send me an email here</h2>
     <div class="feature-content">
       <form class="contact-form container" [ngClass]="{'show-error': showError}" (ngSubmit)="onSubmit(contactForm)" #contactForm="ngForm">
         <div class="input-wrapper col-md-6">
-            <label for="firstName">First Name</label>
-            <input id="firstName" name="firstName" type="text" class="first-name" placeholder="First Name" [(ngModel)]="messageData.firstName" required />
-            <div class="border-highlight"></div>
+          <label for="firstName">First Name</label>
+          <input id="firstName" name="firstName" type="text" class="first-name" placeholder="First Name" [(ngModel)]="messageData.firstName"
+            required />
+          <div class="border-highlight"></div>
         </div>
         <div class="input-wrapper col-md-6">
-            <label for="lastName">Last Name</label>
-            <input id="lastName" name="lastName" type="text" class="last-name" placeholder="Last Name" [(ngModel)]="messageData.lastName" />
-            <div class="border-highlight"></div>
+          <label for="lastName">Last Name</label>
+          <input id="lastName" name="lastName" type="text" class="last-name" placeholder="Last Name" [(ngModel)]="messageData.lastName"
+          />
+          <div class="border-highlight"></div>
         </div>
         <div class="input-wrapper col-md-12">
-            <label for="email">Email</label>
-            <input id="email" name="email" type="email" class="email" placeholder="Email" [(ngModel)]="messageData.email" required />
-            <div class="border-highlight"></div>
+          <label for="email">Email</label>
+          <input id="email" name="email" type="email" class="email" placeholder="Email" [(ngModel)]="messageData.email" required />
+          <div class="border-highlight"></div>
         </div>
         <div class="input-wrapper message-wrapper col-md-12">
-            <label for="mesage">Your Message</label>
-            <textarea id="message" name="message" class="message" placeholder="Type in your message" [(ngModel)]="messageData.message" required ></textarea>
-            <div class="border-highlight"></div>
-        </div>       
+          <label for="mesage">Your Message</label>
+          <textarea id="message" name="message" class="message" placeholder="Type in your message" [(ngModel)]="messageData.message"
+            required></textarea>
+          <div class="border-highlight"></div>
+        </div>
         <div class="button-wrapper">
           <div class="background"></div>
           <button type="submit" class="submit-contact" type="submit">
-            <span [hidden]="emailSent"><span>Send Email</span><span class="act-icon icon-ios-arrow-thin-right"></span></span>
-            <span [hidden]="!emailSent"><span class="act-icon icon-ios-checkmark-outline"></span><span>Email Sent Successfully</span></span>
+            <span [hidden]="emailSent">
+              <span>Send Email</span>
+              <span class="act-icon icon-ios-arrow-thin-right"></span>
+            </span>
+            <span [hidden]="!emailSent">
+              <span class="act-icon icon-ios-checkmark-outline"></span>
+              <span>Email Sent Successfully</span>
+            </span>
           </button>
         </div>
       </form>
     </div>
   </div>
+  <section class="my-tiles below-view" appJsOnscroll [viewportCheck]=true [padding]=100 [checkAboveView]=false (enteredViewport)="animateTiles()">
+    <div class="tiles-wrapper">
+      <h2>Follow me on</h2>
+      <div class="tiles-container">
+        <ul class="clearfix skill-list">
+          <li class="col-xs-6 col-sm-6 col-md-3 col-lg-3">
+            <div #tileItem class="tile-wrapper facebook hide">
+              <a href="https://www.facebook.com/jayabratha.saha">
+                <i class="icon-social-facebook"></i>
+              </a>
+            </div>
+          </li>
+          <li class="col-xs-6 col-sm-6 col-md-3 col-lg-3">
+            <div #tileItem class="tile-wrapper instagram hide">
+              <a href="https://www.instagram.com/jay.letsc/">
+                <i class="icon-social-instagram"></i>
+              </a>
+            </div>
+          </li>
+          <li class="col-xs-6 col-sm-6 col-md-3 col-lg-3">
+            <div #tileItem class="tile-wrapper linkedin hide">
+              <a href="https://www.linkedin.com/in/jayabratha-saha-6b56a86a/">
+                <i class="icon-social-linkedin-outline"></i>
+              </a>
+            </div>
+          </li>
+          <li class="col-xs-6 col-sm-6 col-md-3 col-lg-3">
+            <div #tileItem class="tile-wrapper whatsapp hide">
+              <a href="tel:+918442862983">
+                <i class="icon-social-whatsapp-outline"></i>
+              </a>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
 </div>

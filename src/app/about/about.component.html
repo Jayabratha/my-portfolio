@@ -15,22 +15,30 @@
       </p>
     </div>
   </div>
-  <section class="my-skills below-view" appJsOnscroll [viewportCheck]=true [padding]=100 [checkAboveView]=false (enteredViewport)="animateSkills()">
-    <div class="skill-container">
+  <section class="my-tiles below-view" appJsOnscroll [viewportCheck]=true [padding]=100 [checkAboveView]=false (enteredViewport)="animateSkills()">
+    <div class="tiles-wrapper">
       <h2>Tech Skills</h2>
-      <div class="skill-tiles-container">
+      <div class="tiles-container">
         <ul class="clearfix skill-list">
           <li class="col-xs-6 col-sm-6 col-md-3 col-lg-3">
-            <div #skillItem class="skill-wrapper angular hide"></div>
+            <div #skillItem class="tile-wrapper angular hide">
+              <i class="icon-social-angular"></i>
+            </div>
           </li>
           <li class="col-xs-6 col-sm-6 col-md-3 col-lg-3">
-            <div #skillItem class="skill-wrapper js hide"></div>
+            <div #skillItem class="tile-wrapper js hide">
+              <i class="icon-social-javascript"></i>
+            </div>
           </li>
           <li class="col-xs-6 col-sm-6 col-md-3 col-lg-3">
-            <div #skillItem class="skill-wrapper ts hide"></div>
+            <div #skillItem class="tile-wrapper ts hide">
+              <i class="icon-social-html5"></i>
+            </div>
           </li>
           <li class="col-xs-6 col-sm-6 col-md-3 col-lg-3">
-            <div #skillItem class="skill-wrapper html hide"></div>
+            <div #skillItem class="tile-wrapper html hide">
+              <i class="icon-social-css3"></i>
+            </div>
           </li>
         </ul>
       </div>
