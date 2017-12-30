@@ -1,6 +1,10 @@
 const functions = require('firebase-functions');
 const admin = require('firebase-admin');
 const request = require('request-promise');
+const gcs = require('@google-cloud/storage')();
+const sharp = require('sharp');
+const path = require('path');
+const os = require('os');
 
 admin.initializeApp(functions.config().firebase);
 
@@ -40,18 +44,21 @@ exports.sendContactMessage = functions.database.ref('/messages/{pushKey}').onWri
   });
 });
 
-exports.updateImageList = functions.storage.object().onChange(event => {
+exports.processImageUpload = functions.storage.object().onChange(event => {
   const object = event.data;
+
+  const fileBucket = object.bucket;
   const filePath = object.name;
   const fileName = filePath.split('/').pop();
+  const fileNameSplit = fileName.split('.');
+  const fileNameWithoutExtn = fileNameSplit[0];
+  const fileExtn = fileNameSplit[1];
   const fileSize = object.size;
+  const bucket = gcs.bucket(fileBucket);
+  const tempFilePath = path.join(os.tmpdir(), fileName);
   const contentType = object.contentType;
   const resourceState = object.resourceState;
   const metageneration = object.metageneration;
-
-  imageFileObj = {fileName, filePath, fileSize, contentType};
-
-  console.log(imageFileObj);
 
   // Exit if this is a move or deletion event.
   if (resourceState === 'not_exists') {
@@ -66,19 +73,42 @@ exports.updateImageList = functions.storage.object().onChange(event => {
     return;
   }
 
-  //If an art image is added make a file entry to DB
+  //If an art image is added make a file entry to DB and create a thumbnail
   if (contentType.startsWith('image/') && filePath.startsWith('artImages/')) {
-    return db.ref('/artImages').push().set(imageFileObj);   
+
+    return bucket.file(filePath).download({
+      destination: tempFilePath
+    }).then(() => {
+
+      let newFileName = `${fileNameWithoutExtn}_thumb.${fileExtn}`;
+      let newFileTemp = path.join(os.tmpdir(), newFileName);
+      let newFilePath = `thumbs/${newFileName}`;
+      let thumbPath = newFilePath;
+      let imageFileObj = { fileName, filePath, thumbPath, fileSize, contentType };
+
+      console.log(imageFileObj);
+
+      db.ref('/artImages').push().set(imageFileObj);
+
+      sharp(tempFilePath)
+        .resize(null, 320)
+        .toFile(newFileTemp, (err, info) => {
+
+          bucket.upload(newFileTemp, {
+            destination: newFilePath
+          });
+        });
+    });
   }
 });
 
 exports.updateImagesIndex = functions.database.ref('/artImages/{pushKey}').onWrite(event => {
   let postData = event.data.val();
-  let imageId = event.params.pushKey; 
+  let imageId = event.params.pushKey;
 
   console.log(postData);
 
-  let elasticSearchUrl = elasticSearchConfig.url + '/images/image/' +  imageId;
+  let elasticSearchUrl = elasticSearchConfig.url + '/images/image/' + imageId;
   let elasticSearchMethod = postData ? 'POST' : 'DELETE';
 
   return request({

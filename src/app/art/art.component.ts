@@ -30,7 +30,7 @@ export class ArtComponent implements OnInit {
         this.db.list('/artImages').valueChanges().map((fileList) => {
             fileList.forEach((file: any) => {
                 let storageRef = this.storage.ref();
-                storageRef.child(file.filePath).getDownloadURL().then((url) => {
+                storageRef.child(file.thumbPath).getDownloadURL().then((url) => {
                     Object.assign(file, {url: url});
                 });               
             });
