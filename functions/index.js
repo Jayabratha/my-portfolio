@@ -5,8 +5,15 @@ const gcs = require('@google-cloud/storage')();
 const sharp = require('sharp');
 const path = require('path');
 const os = require('os');
+const elasticsearch = require('elasticsearch');
 
 admin.initializeApp(functions.config().firebase);
+
+const esClient = new elasticsearch.Client({
+  host: 'http://104.197.103.148//elasticsearch/',
+  httpAuth: 'user:WVSfStr1h5Gm',
+  log: 'trace'
+});
 
 // // Create and Deploy Your First Cloud Functions
 // // https://firebase.google.com/docs/functions/write-firebase-functions
@@ -25,6 +32,7 @@ const elasticSearchConfig = firebaseConfig.elasticsearch;
 
 const db = admin.database();
 
+//Send Contact Email
 exports.sendContactMessage = functions.database.ref('/messages/{pushKey}').onWrite(event => {
   const snapshot = event.data;
   // Only send email for new messages.
@@ -44,6 +52,7 @@ exports.sendContactMessage = functions.database.ref('/messages/{pushKey}').onWri
   });
 });
 
+//Process Image upload to create thumbnail, DB entry
 exports.processImageUpload = functions.storage.object().onChange(event => {
   const object = event.data;
 
@@ -102,6 +111,7 @@ exports.processImageUpload = functions.storage.object().onChange(event => {
   }
 });
 
+//Update the Elasticsearch Index when image is uploaded
 exports.updateImagesIndex = functions.database.ref('/artImages/{pushKey}').onWrite(event => {
   let postData = event.data.val();
   let imageId = event.params.pushKey;
@@ -124,4 +134,34 @@ exports.updateImagesIndex = functions.database.ref('/artImages/{pushKey}').onWri
     console.log(response);
   });
 
+});
+
+//Check if Elasticsearch server is avialable
+exports.isSearchAvailable = functions.https.onRequest((request, response) => {
+  esClient.ping({
+    requestTimeout: 30000,
+  }, function (error) {
+    if (error) {
+      console.error('elasticsearch cluster is down!');
+      response.send('elasticsearch cluster is down!');
+    } else {
+      console.log('All is well');
+      response.send('All is well');
+    }
+  });
+});
+
+//Search with keyword
+exports.search = functions.https.onRequest((request, response) => {
+  console.log(request.query.keyword);
+  esClient.search({
+    q: request.query.keyword
+  }).then(function (resp) {
+      var hits = resp.hits.hits;
+      console.log(hits);
+      response.send(resp);
+  }, function (err) {
+      console.trace(err.message);
+      response.send(err);
+  });
 });

@@ -1,14 +1,15 @@
-import { Component, AfterViewInit, OnDestroy, ElementRef, Renderer2, ViewChild, ViewChildren, QueryList } from '@angular/core';
+import { Component, AfterViewInit,OnInit,  OnDestroy, ElementRef, Renderer2, ViewChild, ViewChildren, QueryList } from '@angular/core';
 import { AppStateService } from '../app-state.service';
 import { Subscription } from 'rxjs/Subscription';
 import { Router, NavigationStart, NavigationEnd } from '@angular/router';
+import { ElasticsearchService } from '../elasticsearch.service';
 
 @Component({
   selector: 'me-card',
   templateUrl: './me-card.component.html',
   styleUrls: ['./me-card.component.css', './../common.styles.css']
 })
-export class MeCardComponent implements OnDestroy {
+export class MeCardComponent implements OnInit, OnDestroy {
   @ViewChildren('navItem') navItems: QueryList<ElementRef>;
   @ViewChild('searchInput') searchInput: ElementRef;
 
@@ -71,9 +72,12 @@ export class MeCardComponent implements OnDestroy {
   constructor(private appState: AppStateService,
     private router: Router,
     private el: ElementRef,
-    private renderer: Renderer2) {
+    private renderer: Renderer2,
+    private elasticsearch: ElasticsearchService) {   
+  }
 
-    this.subscription = appState.getHeaderState().subscribe(
+  ngOnInit() {
+    this.subscription = this.appState.getHeaderState().subscribe(
       (isHeaderFix: boolean) => {
         this.isHeaderFix = isHeaderFix;
         if (isHeaderFix) {
@@ -98,8 +102,8 @@ export class MeCardComponent implements OnDestroy {
             this.isInitial = false;
           }
           // Prevent auto position of scroll on page refresh instead keep on top
-          window.addEventListener("beforeunload", function (event) {
-            renderer.setStyle(el.nativeElement, 'display', 'none');
+          window.addEventListener("beforeunload", (event) => {
+            this.renderer.setStyle(this.el.nativeElement, 'display', 'none');
             window.scrollTo(0, 0);
           });
         }
@@ -109,6 +113,11 @@ export class MeCardComponent implements OnDestroy {
           window.scrollTo(0, 0);
         }
       });
+
+      //Check ElasticSearch Server
+      this.elasticsearch.isAvailable()
+            .then( response => console.log(response) );
+
   }
 
   onCarouselReady(isReady) {
