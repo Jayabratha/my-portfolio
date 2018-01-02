@@ -2,6 +2,7 @@ import { Component, ElementRef, ViewChildren, OnInit, QueryList, AfterViewInit, 
 import { AppStateService } from '../app-state.service';
 import { routeAnimation } from '../animations/animations';
 import { AngularFireDatabase } from 'angularfire2/database';
+import { Subject } from 'rxjs/Subject';
 import { Observable } from 'rxjs/Observable';
 import * as firebase from 'firebase';
 
@@ -18,7 +19,7 @@ export class ArtComponent implements OnInit {
 
     private storage = firebase.storage();
 
-    imageList: Array<Object>;
+    imageList: Array<Object> = [];
     isLoading: boolean = true;
 
     constructor(private appState: AppStateService, private renderer: Renderer2, private db: AngularFireDatabase) {
@@ -27,28 +28,53 @@ export class ArtComponent implements OnInit {
 
     ngOnInit() {
         //Get list of images
-        this.db.list('/artImages').valueChanges().map((fileList) => {
+        this.db.list('/artImages').valueChanges().subscribe((fileList) => {
+            let promises = [];
             fileList.forEach((file: any) => {
                 let storageRef = this.storage.ref();
-                storageRef.child(file.thumbPath).getDownloadURL().then((url) => {
-                    Object.assign(file, {url: url});
-                });               
+                promises.push(storageRef.child(file.thumbPath).getDownloadURL().then((url) => {
+                    Object.assign(file, { url: url });
+                }));
             });
-            return fileList;
-        }).subscribe((images) => {
-            this.imageList = images;
+            //Set the images once all download urls have been fetched
+            Promise.all(promises).then(() => {
+                this.isLoading = false;
+                this.imageList = fileList;
+            });
         });
     }
 
     ngAfterViewInit() {
-        setTimeout(() => {
-            this.isLoading = false;
-            this.imageItems.forEach((elem, index) => {
-                setTimeout(() => {
-                    this.renderer.removeClass(elem.nativeElement, 'hide');
-                }, index * 200);
-            });
-        }, 3000);
+        let i = 1;
+        let imagesCount = 0;
+        let loadedImagesCount: Subject<number> = new Subject<number>();
+
+        this.imageItems.changes.subscribe((imageItems) => {
+            imagesCount = this.imageList.length;
+            if (imageItems.length === imagesCount) {
+                imageItems.forEach((elem, index) => {
+                    let imageElem = elem.nativeElement;
+                    if (imageElem.complete) {
+                        loadedImagesCount.next(i++);
+                    } else {
+                        imageElem.addEventListener('load', () => {
+                            loadedImagesCount.next(i++);
+                        });
+                    }
+                });
+            }
+        });
+
+        loadedImagesCount.asObservable().subscribe((count) => {
+            if (count === imagesCount) {
+                this.imageItems.forEach((elem, index) => {
+                    let imageElem = elem.nativeElement;
+                    setTimeout(() => {
+                        this.renderer.removeClass(imageElem, 'hide');
+                    }, index * 150);
+                });
+            }
+        });
     }
 
 }
