@@ -116,7 +116,7 @@ export class MeCardComponent implements OnInit, OnDestroy {
 
       //Check ElasticSearch Server
       this.elasticsearch.isAvailable()
-            .then( response => console.log(response) );
+            .subscribe( response => console.log(response) );
 
   }
 

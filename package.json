@@ -23,7 +23,7 @@
     "@angular/router": "^5.0.5",
     "angularfire2": "^5.0.0-rc.4",
     "core-js": "^2.4.1",
-    "firebase": "^4.7.0",
+    "firebase": "^4.8.0",
     "firebase-functions": "^0.7.3",
     "rxjs": "^5.5.3",
     "ts-helpers": "^1.1.1",
@@ -32,6 +32,8 @@
   },
   "devDependencies": {
     "@angular/cli": "^1.5.5",
+    "@angular/compiler": "^5.0.5",
+    "@angular/compiler-cli": "^5.0.5",
     "@types/jasmine": "^2.2.30",
     "@types/node": "^6.0.42",
     "codelyzer": "1.0.0-beta.1",

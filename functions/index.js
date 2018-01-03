@@ -6,6 +6,8 @@ const sharp = require('sharp');
 const path = require('path');
 const os = require('os');
 const elasticsearch = require('elasticsearch');
+const cors = require('cors');
+const corsFn = cors();
 
 admin.initializeApp(functions.config().firebase);
 
@@ -138,30 +140,34 @@ exports.updateImagesIndex = functions.database.ref('/artImages/{pushKey}').onWri
 
 //Check if Elasticsearch server is avialable
 exports.isSearchAvailable = functions.https.onRequest((request, response) => {
-  esClient.ping({
-    requestTimeout: 30000,
-  }, function (error) {
-    if (error) {
-      console.error('elasticsearch cluster is down!');
-      response.send('elasticsearch cluster is down!');
-    } else {
-      console.log('All is well');
-      response.send('All is well');
-    }
+  corsFn(request, response, function () {
+    esClient.ping({
+      requestTimeout: 30000,
+    }, function (error) {
+      if (error) {
+        console.error('elasticsearch cluster is down!');
+        response.send('elasticsearch cluster is down!');
+      } else {
+        console.log('All is well');
+        response.send('All is well');
+      }
+    });
   });
 });
 
 //Search with keyword
 exports.search = functions.https.onRequest((request, response) => {
-  console.log(request.query.keyword);
-  esClient.search({
-    q: request.query.keyword
-  }).then(function (resp) {
+  corsFn(request, response, function () {
+    console.log(request.query.keyword);
+    esClient.search({
+      q: request.query.keyword
+    }).then(function (resp) {
       var hits = resp.hits.hits;
       console.log(hits);
       response.send(resp);
-  }, function (err) {
+    }, function (err) {
       console.trace(err.message);
       response.send(err);
+    });
   });
 });
