@@ -55,7 +55,7 @@ section.background {
     float: left;
     color: #FFFFFF;
     padding: 25px;
-    margin: 0;
+    margin: 0 0 20px;
     line-height: 1.5em;
     min-height: 10em;
 }
@@ -152,13 +152,15 @@ p.sub_desc {
 }
 
 .tiles-container li {
-    height: 205px;
+    height: 16vw;
+    min-height: 155px;
+    padding: 4px;
 }
 .tile-wrapper {
     background-size: 200px;
-    height: 200px;
-    width: 200px;
-    position: absolute;
+    height: 95%;
+    width: 100%;
+    position: relative;
     transform: translate3d(0, 0, 0);
     opacity: 1;
     box-shadow: 0 0 5px 1px rgba(0, 0,0,0.2);
@@ -169,7 +171,7 @@ p.sub_desc {
     opacity: 0;
 }
 .tile-wrapper i {
-    font-size: 7em;
+    font-size: 6em;
     color: #FFFFFF;
     width: 100%;
     height: 100%;
@@ -184,7 +186,7 @@ p.sub_desc {
 
 .tile-wrapper i:before {
     position: relative;
-    top: 35px;
+    top: 3vw;
     left: 0;
     right: 0;
 }

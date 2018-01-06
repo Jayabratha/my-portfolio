@@ -96,7 +96,8 @@
     top: 59px;
     width: 100%;
     height: 100vh;
-    background: #06060638;
+    background: #edebebd9;
+    z-index: 2;
 }
 
 @-webkit-keyframes progress-bar {
@@ -124,6 +125,8 @@
 }
 
 .dp.my-dp {
+    position: absolute;
+    top: 0;
     height: 19.3em;
     transition: opacity 0.3s ease-in;
 }
@@ -470,6 +473,9 @@ h1.name {
     .logo-section {
         margin-left: 0;
         transition: background 0.5s;
+    }
+    .search-wrapper button {
+        display: none;
     }
     .menu-icon-top {
         top: 11px;

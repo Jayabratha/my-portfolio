@@ -2,10 +2,6 @@
     padding-left: 10px;
 }
 
-.input-wrapper input.last-name {
-    border-left: none;
-}
-
 .input-wrapper div.border-highlight {
     background: #0ab779;
 }
@@ -60,4 +56,16 @@ button.submit-contact {
     right: 0;
     bottom: 0;
     margin: auto;
+}
+
+@media (min-width: 992px) {
+    .input-wrapper input.last-name {
+        border-left: none;
+    }
+}
+
+@media (max-width: 650px) {
+    .contact-form {
+        padding-left: 0;
+    }
 }
