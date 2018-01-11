@@ -45,6 +45,11 @@
     transform: translate3d(0, 200px, 0);
 }
 
+.feature-content {
+    background-image: url(../../assets/images/sketch.jpg);
+    background-size: 100%;
+}
+
 /* For Phones - Start */
 @media (max-width: 600px) {
     /*.art-list li.potrait {

@@ -9,10 +9,10 @@
             <i class="icon-logo-svg"></i>
         </div>
         <div class="search-wrapper" (clickedOut)="hideSearch()">
-            <form class="search-form">
+            <form class="search-form" (ngSubmit)="search(keyword)">
                 <label for="searchTerm">Search</label>
-                <input #searchInput id="searchTerm" type="text" class="search" placeholder="Search" />
-                <button type="submit" label="Search" aria-label="Search content" (click)="toggleSearch(); $event.stopPropagation();">
+                <input #searchInput id="searchTerm" name="keyword" type="text" class="search" placeholder="Search" [(ngModel)]="keyword" />
+                <button type="button" label="Search" aria-label="Search content" (click)="toggleSearch(); $event.stopPropagation();">
                     <i class="search-button icon-ios-search"></i>
                 </button>
             </form>
@@ -45,7 +45,10 @@
         </div>
     </section>
     <div class="search-result-wrapper" [hidden]="!showSearch" [attr.aria-hidden]="!showSearch">
-        Search Results would appear here....
+        <div class="initial-message">
+            <i class="icon-ios-search"></i>
+            <div>Type in above to see matched content</div>
+        </div>
     </div>
     <nav class="site-nav center-stage absolute-bottom" (clickedOut)="hideMenu()">
         <ul class="site-nav-list">

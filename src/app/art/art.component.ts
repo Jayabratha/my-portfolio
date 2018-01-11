@@ -20,7 +20,7 @@ export class ArtComponent implements OnInit {
     private storage = firebase.storage();
 
     imageList: Array<Object> = [];
-    isLoading: boolean = true;
+    isLoading: boolean = false;
 
     constructor(private appState: AppStateService, private renderer: Renderer2, private db: AngularFireDatabase) {
         this.appState.setHeaderState(true);
@@ -30,6 +30,7 @@ export class ArtComponent implements OnInit {
         //Get list of images
         this.db.list('/artImages').valueChanges().subscribe((fileList) => {
             let promises = [];
+            this.isLoading = true;
             fileList.forEach((file: any) => {
                 let storageRef = this.storage.ref();
                 promises.push(storageRef.child(file.thumbPath).getDownloadURL().then((url) => {
@@ -38,7 +39,6 @@ export class ArtComponent implements OnInit {
             });
             //Set the images once all download urls have been fetched
             Promise.all(promises).then(() => {
-                this.isLoading = false;
                 this.imageList = fileList;
             });
         });
@@ -67,6 +67,7 @@ export class ArtComponent implements OnInit {
 
         loadedImagesCount.asObservable().subscribe((count) => {
             if (count === imagesCount) {
+                this.isLoading = false;
                 this.imageItems.forEach((elem, index) => {
                     let imageElem = elem.nativeElement;
                     setTimeout(() => {

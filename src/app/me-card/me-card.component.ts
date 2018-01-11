@@ -22,6 +22,7 @@ export class MeCardComponent implements OnInit, OnDestroy {
   activateScroll: boolean = true;
   play: boolean = true;
   carouselLoadProgress: number = 0;
+  keyword: string = "";
 
   slideList: Object[] = [{
     id: "slide2",
@@ -177,5 +178,9 @@ export class MeCardComponent implements OnInit, OnDestroy {
     setTimeout(() => {
       this.animateNavItems();
     }, 500);
+  }
+
+  search(keyword) {
+    console.log(keyword);
   }
 }

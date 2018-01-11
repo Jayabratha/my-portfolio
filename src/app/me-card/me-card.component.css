@@ -61,11 +61,8 @@
 }
 .hello-card {
     position: absolute;
-    width: 10em;
+    width: 100%;
     text-align: center;
-    left: 0;
-    right: 0;
-    margin: 0 auto;
     margin-top: 2.8em;
     font-size: 4em;
     line-height: 1em;
@@ -453,10 +450,20 @@ h1.name {
     margin: 0 auto;
     left: 0;
     right: 0;
-    max-width: 36.66em;
+    max-width: 47em;
     padding: 20px 55px;
     color: #FFFFFF;
+    height: 35em;
+}
+
+.search-result-wrapper .initial-message {
+    text-align: center;
     font-size: 1.5em;
+    margin-top: 5em;
+}
+
+.search-result-wrapper .initial-message i {
+    font-size: 3em;
 }
 /* Search Style - End */
 
