@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AppStateService } from './app-state.service';
 import { ElasticsearchService } from './elasticsearch.service';
@@ -9,6 +9,9 @@ import { ElasticsearchService } from './elasticsearch.service';
   styleUrls: ['./app.component.css', './common.styles.css'],
   providers: [AppStateService, ElasticsearchService]
 })
-export class AppComponent {
-  
+export class AppComponent implements OnInit {
+
+  ngOnInit() {
+
+  }
 }

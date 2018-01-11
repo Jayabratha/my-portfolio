@@ -32,8 +32,8 @@
                 <div class="dp my-dp">
                     <app-js-carousel [slideItems]=slideList [play]=play (carouselReady)="onCarouselReady($event)" (carouselLoading)="onCarouselLoadProgress($event)"></app-js-carousel>
                 </div>
-                <div class="my-card-wrapper" appJsOnscroll padding=60 [activateScroll]="activateScroll" (onStateChange)="headerStateChange($event)">
-                    <div class="my-card">
+                <div class="my-card-wrapper" >
+                    <div class="my-card" appJsOnscroll padding=60 [activateScroll]="activateScroll" (onStateChange)="headerStateChange($event)">
                         <h1 class="name">Jayabratha Saha</h1>
                         <div class="title">Artist & Developer</div>
                         <div class="github-link">

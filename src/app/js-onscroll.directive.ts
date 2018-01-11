@@ -14,13 +14,50 @@ export class JsOnscrollDirective implements OnInit, OnDestroy {
   @Output() enteredViewport = new EventEmitter<string>();
 
   elem: HTMLElement;
-  elemInitialOffset: number;
   elemViewportOffset: number;
   hasEntered: boolean = false;
   hasLeft: boolean = false;
+  isMobile: boolean = false;
+
+  constructor(private renderer: Renderer, private el: ElementRef) {
+    this.elem = this.el.nativeElement;
+  }
+
+  ngOnInit() {
+    let deviceWidth = window.screen.width;
+
+    if (deviceWidth < 650) {
+      this.isMobile = true;
+      console.log("Mobile device", deviceWidth);
+    }
+  }
+
+  activate() {
+    this.elemViewportOffset = this.elem.getBoundingClientRect().top; 
+    
+    console.log(this.elemViewportOffset);
+
+    if (this.restoreInitial) {
+      this.restoreInitial.subscribe(event => {
+        this.renderer.setElementClass(this.elem, 'below-view', true);
+        this.hasEntered = false;
+      });
+    }
+
+    if (this.viewportCheck) {
+      this.renderer.setElementClass(this.elem, 'below-view', true);
+      setTimeout(() => {
+        this.checkAndUpdateClass();
+      }, 850);
+    }
+
+  }
 
   checkAndUpdateClass = function () {
     let scrollPosition = (document.documentElement && document.documentElement.scrollTop) || document.body.scrollTop;
+
+    console.log(scrollPosition);
+
     if (this.activateScroll) {
       if (this.viewportCheck) {
 
@@ -44,7 +81,7 @@ export class JsOnscrollDirective implements OnInit, OnDestroy {
             if (!this.hasLeft) {
               this.renderer.setElementClass(this.elem, 'above-view', true);
               this.hasLeft = true;
-            }          
+            }
           } else {
             if (this.hasLeft) {
               this.renderer.setElementClass(this.elem, 'above-view', false);
@@ -53,34 +90,16 @@ export class JsOnscrollDirective implements OnInit, OnDestroy {
             }
           }
         }
-        
-      } else if ( scrollPosition > this.elemViewportOffset - this.padding) {
+
+      } else if (scrollPosition === 0) {
+        this.onStateChange.emit('scroll');
+      } else if (scrollPosition > this.elemViewportOffset - this.padding) {
+        console.log("Fix:", scrollPosition, this.elemViewportOffset - this.padding);
         this.onStateChange.emit('fix');
       } else {
         this.onStateChange.emit('scroll');
       }
     }
-  }
-
-  constructor(private renderer: Renderer, private el: ElementRef) {
-    this.elem = this.el.nativeElement;
-    this.elemInitialOffset = this.elem.offsetTop;
-    this.elemViewportOffset = this.elem.getBoundingClientRect().top;
-  }
-
-  ngOnInit() {
-    if (this.restoreInitial) {
-      this.restoreInitial.subscribe(event => {
-        this.renderer.setElementClass(this.elem, 'below-view', true);
-        this.hasEntered = false;
-      });
-    }
-    if (this.viewportCheck) {
-      this.renderer.setElementClass(this.elem, 'below-view', true);
-      setTimeout(() => {
-        this.checkAndUpdateClass();
-      }, 850);
-    }  
   }
 
   @HostListener('window:scroll') onScroll() {

@@ -1,8 +1,9 @@
-import { Component, AfterViewInit,OnInit,  OnDestroy, ElementRef, Renderer2, ViewChild, ViewChildren, QueryList } from '@angular/core';
+import { Component, AfterViewInit, OnInit,  OnDestroy, ElementRef, Renderer2, ViewChild, ViewChildren, QueryList } from '@angular/core';
 import { AppStateService } from '../app-state.service';
 import { Subscription } from 'rxjs/Subscription';
 import { Router, NavigationStart, NavigationEnd } from '@angular/router';
 import { ElasticsearchService } from '../elasticsearch.service';
+import { JsOnscrollDirective } from '../js-onscroll.directive';
 
 @Component({
   selector: 'me-card',
@@ -12,6 +13,7 @@ import { ElasticsearchService } from '../elasticsearch.service';
 export class MeCardComponent implements OnInit, OnDestroy {
   @ViewChildren('navItem') navItems: QueryList<ElementRef>;
   @ViewChild('searchInput') searchInput: ElementRef;
+  @ViewChild(JsOnscrollDirective) scrollDirective: JsOnscrollDirective;
 
   isInitial: boolean = true;
   showMenu: boolean = false;
@@ -126,6 +128,9 @@ export class MeCardComponent implements OnInit, OnDestroy {
       this.isInitial = false;
       //Animate the nav bar
       this.animateNavItems();
+      setTimeout(() => {
+        this.scrollDirective.activate();
+      }, 600);     
     }
   }
 

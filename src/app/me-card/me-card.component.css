@@ -517,7 +517,7 @@ h1.name {
         transition: height 0.5s;
     }
     .my-card {
-        position: absolute;
+        position: relative;
         width: 100%;
         height: auto;
         font-size: 10px;
