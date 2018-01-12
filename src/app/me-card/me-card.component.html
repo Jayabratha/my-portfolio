@@ -26,14 +26,14 @@
             <span>Hello there!</span>
         </div>
     </section>
-    <section class="me-card-wrapper center-stage">
+    <section class="me-card-wrapper center-stage" appJsOnscroll [padding]=requiredPadding [activateScroll]="activateScroll" (onStateChange)="headerStateChange($event)">
         <div class="me-card" [style.width]="carouselLoadProgress + '%'">
             <div class="name-card" [attr.aria-hidden]="isHeaderFix || showMenu || showSearch">
                 <div class="dp my-dp">
                     <app-js-carousel [slideItems]=slideList [play]=play (carouselReady)="onCarouselReady($event)" (carouselLoading)="onCarouselLoadProgress($event)"></app-js-carousel>
                 </div>
                 <div class="my-card-wrapper" >
-                    <div class="my-card" appJsOnscroll padding=60 [activateScroll]="activateScroll" (onStateChange)="headerStateChange($event)">
+                    <div class="my-card">
                         <h1 class="name">Jayabratha Saha</h1>
                         <div class="title">Artist & Developer</div>
                         <div class="github-link">

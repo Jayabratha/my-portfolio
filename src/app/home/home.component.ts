@@ -50,27 +50,28 @@ export class HomeComponent implements OnInit, OnDestroy {
   @HostListener('window:wheel', ['$event'])
   onWheelRotate(ev) {
     let delta;
-    ev.preventDefault();
-    if (!this.decounce) {
-      if (ev.wheelDelta) {
-        delta = ev.wheelDelta;
-      } else {
-        delta = -1 * ev.deltaY;
+    if (!this.isMobile) {
+      ev.preventDefault();
+      if (!this.decounce) {
+        if (ev.wheelDelta) {
+          delta = ev.wheelDelta;
+        } else {
+          delta = -1 * ev.deltaY;
+        }
+
+        if (delta < 0) {
+          this.stepCount = this.stepCount < 6 ? this.stepCount + 1 : 6;
+          window.scrollTo(0, this.steps[this.stepCount]);
+        } else {
+          this.stepCount = this.stepCount > 0 ? this.stepCount - 1 : 0;
+          window.scrollTo(0, this.steps[this.stepCount]);
+        }
+
+        this.decounce = true;
+        setTimeout(() => {
+          this.decounce = false;
+        }, 1000);
       }
-
-      if (delta < 0) {
-        this.stepCount = this.stepCount < 6 ? this.stepCount + 1 : 6;
-        window.scrollTo(0, this.steps[this.stepCount]);
-      } else {
-        this.stepCount = this.stepCount > 0 ? this.stepCount - 1 : 0;
-        window.scrollTo(0, this.steps[this.stepCount]);
-      }
-
-      this.decounce = true;
-      setTimeout(() => {
-        this.decounce = false;
-      }, 1000);
-
     }
   }
 

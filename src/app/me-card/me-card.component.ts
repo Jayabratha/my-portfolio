@@ -3,7 +3,6 @@ import { AppStateService } from '../app-state.service';
 import { Subscription } from 'rxjs/Subscription';
 import { Router, NavigationStart, NavigationEnd } from '@angular/router';
 import { ElasticsearchService } from '../elasticsearch.service';
-import { JsOnscrollDirective } from '../js-onscroll.directive';
 
 @Component({
   selector: 'me-card',
@@ -13,7 +12,6 @@ import { JsOnscrollDirective } from '../js-onscroll.directive';
 export class MeCardComponent implements OnInit, OnDestroy {
   @ViewChildren('navItem') navItems: QueryList<ElementRef>;
   @ViewChild('searchInput') searchInput: ElementRef;
-  @ViewChild(JsOnscrollDirective) scrollDirective: JsOnscrollDirective;
 
   isInitial: boolean = true;
   showMenu: boolean = false;
@@ -25,6 +23,8 @@ export class MeCardComponent implements OnInit, OnDestroy {
   play: boolean = true;
   carouselLoadProgress: number = 0;
   keyword: string = "";
+  isMobile: boolean = false;
+  requiredPadding: number = 60;
 
   slideList: Object[] = [{
     id: "slide2",
@@ -52,26 +52,6 @@ export class MeCardComponent implements OnInit, OnDestroy {
     description: ""
   }];
 
-  animateNavItems() {
-    if (this.navItems) {
-      this.navItems.forEach((elem, index) => {
-        setTimeout(() => {
-          this.renderer.addClass(elem.nativeElement, 'show');
-        }, index * 150);
-      });
-    }
-  }
-
-  hideNavItems() {
-    if (this.navItems) {
-      this.navItems.forEach((elem, index) => {
-        setTimeout(() => {
-          this.renderer.removeClass(elem.nativeElement, 'show');
-        }, index * 150);
-      });
-    }
-  }
-
   constructor(private appState: AppStateService,
     private router: Router,
     private el: ElementRef,
@@ -80,6 +60,15 @@ export class MeCardComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
+
+    let deviceWidth = window.screen.width;
+
+    if (deviceWidth < 650) {
+      this.isMobile = true;
+      this.requiredPadding = -320;
+      console.log("Mobile device", deviceWidth);
+    }
+
     this.subscription = this.appState.getHeaderState().subscribe(
       (isHeaderFix: boolean) => {
         this.isHeaderFix = isHeaderFix;
@@ -123,14 +112,31 @@ export class MeCardComponent implements OnInit, OnDestroy {
 
   }
 
+  animateNavItems() {
+    if (this.navItems) {
+      this.navItems.forEach((elem, index) => {
+        setTimeout(() => {
+          this.renderer.addClass(elem.nativeElement, 'show');
+        }, index * 150);
+      });
+    }
+  }
+
+  hideNavItems() {
+    if (this.navItems) {
+      this.navItems.forEach((elem, index) => {
+        setTimeout(() => {
+          this.renderer.removeClass(elem.nativeElement, 'show');
+        }, index * 150);
+      });
+    }
+  }
+
   onCarouselReady(isReady) {
     if (isReady) {
       this.isInitial = false;
       //Animate the nav bar
-      this.animateNavItems();
-      setTimeout(() => {
-        this.scrollDirective.activate();
-      }, 600);     
+      this.animateNavItems();    
     }
   }
 

@@ -30,9 +30,7 @@ export class JsOnscrollDirective implements OnInit, OnDestroy {
       this.isMobile = true;
       console.log("Mobile device", deviceWidth);
     }
-  }
 
-  activate() {
     this.elemViewportOffset = this.elem.getBoundingClientRect().top; 
     
     console.log(this.elemViewportOffset);
@@ -50,7 +48,6 @@ export class JsOnscrollDirective implements OnInit, OnDestroy {
         this.checkAndUpdateClass();
       }, 850);
     }
-
   }
 
   checkAndUpdateClass = function () {
@@ -60,6 +57,7 @@ export class JsOnscrollDirective implements OnInit, OnDestroy {
 
     if (this.activateScroll) {
       if (this.viewportCheck) {
+        this.renderer.setElementClass(this.elem, 'view-check', true);
 
         //Check if Below View
         if ((this.elem.offsetTop + this.padding) <= (window.pageYOffset + window.innerHeight)) {
@@ -91,9 +89,7 @@ export class JsOnscrollDirective implements OnInit, OnDestroy {
           }
         }
 
-      } else if (scrollPosition === 0) {
-        this.onStateChange.emit('scroll');
-      } else if (scrollPosition > this.elemViewportOffset - this.padding) {
+      } if (scrollPosition > this.elemViewportOffset - this.padding) {
         console.log("Fix:", scrollPosition, this.elemViewportOffset - this.padding);
         this.onStateChange.emit('fix');
       } else {
