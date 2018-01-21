@@ -6,16 +6,16 @@ section.background {
     overflow: hidden;
 }
 
+.main-content {
+    min-height: 50em;
+}
+
 .js-logo {
     position: relative;
     display: inline-block;
     background: black;
     width: 5em;
     height: 4em;
-}
-
-.main-content {
-    min-height: 1000px;
 }
 
 /* Route Components Base Styles - Start */
@@ -55,7 +55,6 @@ section.background {
     float: left;
     color: #FFFFFF;
     padding: 25px;
-    margin: 0 0 20px;
     line-height: 1.5em;
     min-height: 10em;
 }
@@ -63,7 +62,7 @@ section.background {
 .content .feature-content {
     width: 60%;
     float: left;
-    padding-left: 10px;
+    padding-left: 1em;
     min-height: 20em;
 }
 
@@ -90,11 +89,11 @@ section.background {
 .main-footer {
     position: relative;
     width: 100%;
-    height: 10em;
+    height: 6em;
     background: #333;
-    margin-top: 5em;
+    margin-top: 2em;
     text-align: center;
-    padding-top: 3em;
+    padding-top: 1em;
 }
 
 .logo-section {
@@ -213,6 +212,7 @@ p.sub_desc {
     .content .feature-content {
         width: 100%;
         padding-left: 0;
+        padding-top: 1em;
     }
 
     .feature-content p {

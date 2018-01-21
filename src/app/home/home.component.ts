@@ -24,6 +24,8 @@ export class HomeComponent implements OnInit, OnDestroy {
   ngOnInit() {
     let deviceWidth = window.screen.width;
 
+    console.log("Device Width", deviceWidth);
+
     if (deviceWidth < 650) {
       this.isMobile = true;
       console.log("Mobile device", deviceWidth);
