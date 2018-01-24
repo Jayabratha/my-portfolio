@@ -2,10 +2,10 @@
 .home-content {
     margin-top: 15em;
     opacity: 1;
-    transition: opacity 1s;
 }
 .home-content.hide {
     opacity: 0;
+    /* transform: translateY(45em); */
 }
 .overview {
     position: relative;
@@ -101,7 +101,7 @@
 
 @media (max-width: 650px) {
     .home-content {
-        margin-top: 30em;
+        display: none;
     }
     .overview button {
         margin-top: -30px;

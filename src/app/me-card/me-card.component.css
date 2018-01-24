@@ -1,5 +1,5 @@
 .main-header {
-    position: absolute;
+    position: relative;
     width: 100%;
     background: #fff;
     height: 38em;
@@ -8,6 +8,7 @@
     border-bottom: none;
     padding: 0;
     transition: height 0.5s;
+    margin-bottom: 5em;
 }
 .absolute-bottom {
     position: absolute;
