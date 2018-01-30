@@ -95,7 +95,6 @@ export class MeCardComponent implements OnInit, OnDestroy {
           }
           // Prevent auto position of scroll on page refresh instead keep on top
           window.addEventListener("beforeunload", (event) => {
-            this.renderer.setStyle(this.el.nativeElement, 'display', 'none');
             window.scrollTo(0, 0);
           });
         }
