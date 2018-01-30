@@ -1,6 +1,6 @@
 <div class="content contact-content center-stage">
   <h1>Contact</h1>
-  <div class="content-wrapper clearfix below-view" appJsOnscroll [viewportCheck]=true [checkAboveView]=false>
+  <div class="content-wrapper view-check clearfix below-view" appJsOnscroll [viewportCheck]=true [checkAboveView]=false>
     <h2 class="main">Send me an email here</h2>
     <div class="feature-content">
       <form class="contact-form container" [ngClass]="{'show-error': showError}" (ngSubmit)="onSubmit(contactForm)" #contactForm="ngForm">
@@ -43,7 +43,7 @@
       </form>
     </div>
   </div>
-  <section class="my-tiles below-view" appJsOnscroll [viewportCheck]=true [padding]=100 [checkAboveView]=false (enteredViewport)="animateTiles()">
+  <section class="my-tiles view-check below-view" appJsOnscroll [viewportCheck]=true [padding]=100 [checkAboveView]=false (enteredViewport)="animateTiles()">
     <div class="tiles-wrapper">
       <h2>Follow me on</h2>
       <div class="tiles-container">
@@ -58,14 +58,14 @@
           <li class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
             <div #tileItem class="tile-wrapper instagram hide">
               <a href="https://www.instagram.com/jay.letsc/">
-                <i class="icon-social-instagram"></i>
+                <img src="../../assets/instagram.png" alt="Instagram Link" />
               </a>
             </div>
           </li>
           <li class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
             <div #tileItem class="tile-wrapper linkedin hide">
               <a href="https://www.linkedin.com/in/jayabratha-saha-6b56a86a/">
-                <i class="icon-social-linkedin-outline"></i>
+                <i class="icon-linkedin-square"></i>
               </a>
             </div>
           </li>

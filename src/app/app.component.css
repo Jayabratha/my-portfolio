@@ -160,14 +160,12 @@ p.sub_desc {
 }
 
 .tiles-container li {
-    height: 16vw;
-    min-height: 155px;
     padding: 4px;
 }
 .tile-wrapper {
     background-size: 200px;
-    height: 95%;
-    width: 100%;
+    height: 20vw;
+    max-height: 13em;
     position: relative;
     transform: translate3d(0, 0, 0);
     opacity: 1;
@@ -179,7 +177,7 @@ p.sub_desc {
     opacity: 0;
 }
 .tile-wrapper i {
-    font-size: 6em;
+    font-size: 11vw;
     color: #FFFFFF;
     width: 100%;
     height: 100%;
@@ -188,15 +186,20 @@ p.sub_desc {
     transform: scale3d(1, 1, 1);
     transition: transform 0.5s;
 }
-.tile-wrapper:hover i {
+.tile-wrapper:hover i,
+.tile-wrapper:hover img {
     transform: scale3d(1.2, 1.2, 1);
 }
 
 .tile-wrapper i:before {
-    position: relative;
-    top: 3vw;
+    position: absolute;
     left: 0;
     right: 0;
+    top: 0.1em;
+    bottom: 0;
+    width: 11vw;
+    height: 11vw;
+    margin: auto;
 }
 
 .tile-wrapper a {
@@ -242,3 +245,27 @@ p.sub_desc {
     }
 }
 /* Mobile Styles - End */
+
+/* Large Screen - Start */
+@media (min-width: 1200px) {
+    .tile-wrapper i {
+        font-size: 7em;
+    }
+
+    .tile-wrapper i:before {
+        top: 0.05em;
+        width: 7vw;
+        height: 7vw;
+    }
+}
+@media (min-width: 1800px) {
+    .tile-wrapper i {
+        font-size: 6em;
+    }
+    
+    .tile-wrapper i:before {
+        width: 5vw;
+        height: 5vw;
+    }
+}
+/* Large Screen - End */

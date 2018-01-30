@@ -1,6 +1,6 @@
 <div class="content art-content center-stage">
   <h1>Art</h1>
-  <div class="content-wrapper clearfix below-view" appJsOnscroll [viewportCheck]=true [checkAboveView]=false>
+  <div class="content-wrapper view-check clearfix below-view" appJsOnscroll [viewportCheck]=true [checkAboveView]=false>
     <h2 class="main">A collection of my sketches and paintings</h2>
     <div class="feature-content">
     </div>
@@ -8,7 +8,7 @@
   <div class="list-wrapper">
     <div class="loading-icon" [ngClass]="{'animate': isLoading}">
     </div>
-    <ul class="art-list clearfix">
+    <ul class="art-list clearfix" [hidden]="isLoading">
       <li id="{{item.id}}" *ngFor="let item of imageList; let first = first" class="col-xs-12" [ngClass]="{'potrait col-sm-3 col-md-3 col-lg-3': item.isPortrait,
                        'landscape col-sm-6 col-md-6 col-lg-6': !item.isPortrait}">
         <div class="image-wrapper">
