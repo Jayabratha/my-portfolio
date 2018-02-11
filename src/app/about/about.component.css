@@ -12,20 +12,22 @@
 .tile-wrapper.js {
     background-color: #fdc72c;
 }
-.tile-wrapper.ts {
+.tile-wrapper.css {
     background-color: #007acc;
 }
 .tile-wrapper.html {
     background-color: #ff5426;
 }
-
-.logo-wrapper {
-    padding: 15px 0;
+.tile-wrapper.ts {
+    background-color: #0074c1
+}
+.tile-wrapper.firebase {
+    background-color: #ffffff;
 }
 
 .exp-wrapper {
     padding: 10px 0;
-    color: #454545;
+    color: #454545;    
 }
 
 .exp-wrapper h3 {
@@ -41,7 +43,29 @@
     font-family: Roboto;
 }
 
+.logo-wrapper {
+    padding: 1em 1em 0 0;
+    width: 24vw;
+    max-width: 12em;
+    height: 18em;
+    float: left;
+}
+
 .logo-wrapper img {
     width: 95%;
     max-width: 200px;
+}
+
+.exp-header {
+    height: auto;
+}
+
+@media (max-width: 650px) {
+    .logo-wrapper {
+        height: 8em;
+    }
+
+    .exp-header {
+        height: 6em;
+    }
 }

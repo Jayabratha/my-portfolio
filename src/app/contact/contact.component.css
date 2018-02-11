@@ -40,36 +40,9 @@ button.submit-contact {
     background-color: #25D366;
 }
 
-.tile-wrapper.instagram img {
-    height: 11vw;
-    width: 11vw;
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    margin: auto;
-    transform: scale3d(1, 1, 1);
-    transition: transform 0.5s;
-}
 
 @media (min-width: 992px) {
     .input-wrapper input.last-name {
         border-left: none;
     }
 }
-
-/* Large Screen - Start */
-@media (min-width: 1200px) {
-    .tile-wrapper.instagram img {
-        width: 7vw;
-        height: 7vw;
-    }
-}
-@media (min-width: 1800px) {
-    .tile-wrapper.instagram img {
-        width: 5vw;
-        height: 5vw;
-    }
-}
-/* Large Screen - End */
