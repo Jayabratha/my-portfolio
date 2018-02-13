@@ -53,18 +53,11 @@
 .list-wrapper {
     position: relative;
     min-height: 50em;
+    margin-bottom: 10em;
 }
 
 /* For Phones - Start */
 @media (max-width: 600px) {
-    li.landscape .image-wrapper {
-        height: 18em;
-    }
-
-    li.potrait .image-wrapper {
-        height: 32em;
-    }
-
     .image-wrapper img {
         width: 100%;
         height: auto;
