@@ -2,7 +2,8 @@
     position: relative;
     overflow: hidden;
     margin: 1px;
-    height: 20em;
+    height: 60vw;
+    max-height: 20em;
     cursor: pointer;
 }
 
@@ -28,7 +29,7 @@
     font-size: 1.3em;
     -webkit-transition: transform 0.3s linear;
     transition: transform 0.3s linear;
-    transform: translate3d(0, 53px, 0);
+    transform: translate3d(0, 5em, 0);
 }
 
 .image-wrapper:hover .image-title {
@@ -48,6 +49,7 @@
 .feature-content {
     background-image: url(../../assets/images/sketch.jpg);
     background-size: 100%;
+    background-repeat: no-repeat;
 }
 
 .list-wrapper {
