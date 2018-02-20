@@ -12,7 +12,7 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   subscription: Subscription;
   isHeaderFix: boolean = false;
-  steps: Array<number> = [0, 140, 640, 1140, 1670, 2170, 2670];
+  steps: Array<number> = [0, 140, 640, 1140, 1670, 2170];
   stepCount: number = 0;
   decounce: boolean = false;
   isMobile: boolean = false;
@@ -49,6 +49,11 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.stepCount = count;
   }
 
+  setStepCount(stepCount) {
+    this.stepCount = stepCount;
+    window.scrollTo(0, this.steps[this.stepCount]);
+  }
+
   @HostListener('window:wheel', ['$event'])
   onWheelRotate(ev) {
     let delta;
@@ -62,7 +67,7 @@ export class HomeComponent implements OnInit, OnDestroy {
         }
 
         if (delta < 0) {
-          this.stepCount = this.stepCount < 6 ? this.stepCount + 1 : 6;
+          this.stepCount = this.stepCount < 5 ? this.stepCount + 1 : 5;
           window.scrollTo(0, this.steps[this.stepCount]);
         } else {
           this.stepCount = this.stepCount > 0 ? this.stepCount - 1 : 0;

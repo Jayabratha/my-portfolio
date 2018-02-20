@@ -7,6 +7,60 @@
     opacity: 0;
     /* transform: translateY(45em); */
 }
+
+.scroll-indicator {
+    display: block;
+    position: fixed;
+    margin: auto;
+    right: 2em;
+    top: -2em;
+    bottom: 0;
+    width: 1px;
+    height: 19.3em;
+}
+
+.home-anchors {
+    width: 15px;
+    height: 15px;
+    background: transparent;
+    border-radius: 50%;
+    position: relative;
+    border: thin solid transparent;
+    margin-bottom: 2.95em;
+    cursor: pointer;
+}
+
+.home-anchors .inner-dot {
+    position: absolute;
+    background: #adadad;
+    border-radius: 50%;
+    width: 3px;
+    height: 3px;
+    margin: auto;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+.home-anchors:hover {
+    border: thin solid #adadad;
+}
+
+.home-anchors:hover .inner-dot {
+    background: #2196F3;
+}
+
+.home-anchors.active {
+    border: thin solid #2196f3b8;
+}
+
+.home-anchors.active .inner-dot {
+    width: 5px;
+    height: 5px;
+    background: #2196F3;
+}
+
 .overview {
     position: relative;
     display: inline-block;

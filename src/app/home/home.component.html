@@ -80,3 +80,23 @@
     </div>
   </div>
 </div>
+<div class="scroll-indicator">
+  <div class="me home-anchors" [ngClass]="{'active': stepCount === 0}" (click)="setStepCount(0)">
+    <div class="inner-dot"></div>
+  </div>
+  <div class="art home-anchors" [ngClass]="{'active': stepCount === 1}" (click)="setStepCount(1)">
+    <div class="inner-dot"></div>
+  </div>
+  <div class="projects home-anchors" [ngClass]="{'active': stepCount === 2}" (click)="setStepCount(2)">
+    <div class="inner-dot"></div>
+  </div>
+  <div class="blog home-anchors" [ngClass]="{'active': stepCount === 3}" (click)="setStepCount(3)">
+    <div class="inner-dot"></div>
+  </div>
+  <div class="about home-anchors" [ngClass]="{'active': stepCount === 4}" (click)="setStepCount(4)">
+    <div class="inner-dot"></div>
+  </div>
+  <div class="contact home-anchors" [ngClass]="{'active': stepCount === 5}" (click)="setStepCount(5)">
+    <div class="inner-dot"></div>
+  </div>
+</div>
