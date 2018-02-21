@@ -1,86 +1,96 @@
 <div class="home-content center-stage" [ngClass]="{'hide': !isHeaderFix}">
-  <div class="overview art-overview below-view" appJsOnscroll [viewportCheck]=true [restoreInitial]=restoreInitial [padding]=200
-    (enteredViewport)="updateSlideCount($event, 1)">
-    <div class="dp overview-dp">
-      <h2>Art</h2>
-      <div class="alpha-initial-bg">A</div>
-      <div class="underline"></div>
-      <div class="button-wrapper">
-        <div class="background"></div>
-        <button routerLink="/art">VIEW GALLERY</button>
+  <div class="overview-wrapper">
+    <div class="overview art-overview below-view" appJsOnscroll [viewportCheck]=true [restoreInitial]=restoreInitial [padding]=200
+      (enteredViewport)="updateSlideCount($event, 1)">
+      <div class="dp overview-dp">
+        <h2>Art</h2>
+        <div class="alpha-initial-bg">A</div>
+        <div class="underline"></div>
+        <div class="button-wrapper">
+          <div class="background"></div>
+          <button routerLink="/art">VIEW GALLERY</button>
+        </div>
       </div>
-    </div>
-    <div class="overview-content-wrapper">
-      <div class="overview-content">
-      </div>
-    </div>
-  </div>
-  <div class="overview projects-overview below-view" appJsOnscroll [viewportCheck]=true [restoreInitial]=restoreInitial [padding]=200
-    (enteredViewport)="updateSlideCount($event, 2)">
-    <div class="dp overview-dp">
-      <h2>Projects</h2>
-      <div class="alpha-initial-bg">P</div>
-      <div class="underline"></div>
-      <div class="button-wrapper">
-        <div class="background"></div>
-        <button routerLink="/projects">VIEW PROJECTS</button>
-      </div>
-    </div>
-    <div class="overview-content-wrapper">
-      <div class="overview-content">
+      <div class="overview-content-wrapper">
+        <div class="overview-content">
+        </div>
       </div>
     </div>
   </div>
-  <div class="overview skills-overview below-view" appJsOnscroll [viewportCheck]=true [restoreInitial]=restoreInitial [padding]=200
-    (enteredViewport)="updateSlideCount($event, 3)">
-    <div class="dp overview-dp">
-      <h2>Blog</h2>
-      <div class="alpha-initial-bg">B</div>
-      <div class="underline"></div>
-      <div class="button-wrapper">
-        <div class="background"></div>
-        <button>GO TO BLOG</button>
+  <div class="overview-wrapper">
+    <div class="overview projects-overview below-view" appJsOnscroll [viewportCheck]=true [restoreInitial]=restoreInitial [padding]=200
+      (enteredViewport)="updateSlideCount($event, 2)">
+      <div class="dp overview-dp">
+        <h2>Projects</h2>
+        <div class="alpha-initial-bg">P</div>
+        <div class="underline"></div>
+        <div class="button-wrapper">
+          <div class="background"></div>
+          <button routerLink="/projects">VIEW PROJECTS</button>
+        </div>
       </div>
-    </div>
-    <div class="overview-content-wrapper">
-      <div class="overview-content">
-      </div>
-    </div>
-  </div>
-  <div class="overview about-overview below-view" appJsOnscroll [viewportCheck]=true [restoreInitial]=restoreInitial [padding]=200
-    (enteredViewport)="updateSlideCount($event, 4)">
-    <div class="dp overview-dp">
-      <h2>About</h2>
-      <div class="alpha-initial-bg">A</div>
-      <div class="underline"></div>
-      <div class="button-wrapper">
-        <div class="background"></div>
-        <button routerLink="/about">ABOUT ME</button>
-      </div>
-    </div>
-    <div class="overview-content-wrapper">
-      <div class="overview-content">
+      <div class="overview-content-wrapper">
+        <div class="overview-content">
+        </div>
       </div>
     </div>
   </div>
-  <div class="overview contact-overview below-view" appJsOnscroll [viewportCheck]=true [restoreInitial]=restoreInitial [padding]=200
-    (enteredViewport)="updateSlideCount($event, 5)" [checkAboveView]=false>
-    <div class="dp overview-dp">
-      <h2>Contact</h2>
-      <div class="alpha-initial-bg">C</div>
-      <div class="underline"></div>
-      <div class="button-wrapper">
-        <div class="background"></div>
-        <button routerLink="/contact">CONTACT ME</button>
+  <div class="overview-wrapper">
+    <div class="overview skills-overview below-view" appJsOnscroll [viewportCheck]=true [restoreInitial]=restoreInitial [padding]=200
+      (enteredViewport)="updateSlideCount($event, 3)">
+      <div class="dp overview-dp">
+        <h2>Blog</h2>
+        <div class="alpha-initial-bg">B</div>
+        <div class="underline"></div>
+        <div class="button-wrapper">
+          <div class="background"></div>
+          <button>GO TO BLOG</button>
+        </div>
+      </div>
+      <div class="overview-content-wrapper">
+        <div class="overview-content">
+        </div>
       </div>
     </div>
-    <div class="overview-content-wrapper">
-      <div class="overview-content">
+  </div>
+  <div class="overview-wrapper">
+    <div class="overview about-overview below-view" appJsOnscroll [viewportCheck]=true [restoreInitial]=restoreInitial [padding]=200
+      (enteredViewport)="updateSlideCount($event, 4)">
+      <div class="dp overview-dp">
+        <h2>About</h2>
+        <div class="alpha-initial-bg">A</div>
+        <div class="underline"></div>
+        <div class="button-wrapper">
+          <div class="background"></div>
+          <button routerLink="/about">ABOUT ME</button>
+        </div>
+      </div>
+      <div class="overview-content-wrapper">
+        <div class="overview-content">
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="overview-wrapper">
+    <div class="overview contact-overview below-view" appJsOnscroll [viewportCheck]=true [restoreInitial]=restoreInitial [padding]=200
+      (enteredViewport)="updateSlideCount($event, 5)" [checkAboveView]=false>
+      <div class="dp overview-dp">
+        <h2>Contact</h2>
+        <div class="alpha-initial-bg">C</div>
+        <div class="underline"></div>
+        <div class="button-wrapper">
+          <div class="background"></div>
+          <button routerLink="/contact">CONTACT ME</button>
+        </div>
+      </div>
+      <div class="overview-content-wrapper">
+        <div class="overview-content">
+        </div>
       </div>
     </div>
   </div>
 </div>
-<div class="scroll-indicator">
+<div class="scroll-indicator" [hidden]="this.isMobile">
   <div class="me home-anchors" [ngClass]="{'active': stepCount === 0}" (click)="setStepCount(0)">
     <div class="inner-dot"></div>
   </div>

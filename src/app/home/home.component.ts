@@ -12,7 +12,7 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   subscription: Subscription;
   isHeaderFix: boolean = false;
-  steps: Array<number> = [0, 140, 640, 1140, 1670, 2170];
+  steps: Array<number> = [0, 140, 940, 1740, 2540, 3340];
   stepCount: number = 0;
   decounce: boolean = false;
   isMobile: boolean = false;
