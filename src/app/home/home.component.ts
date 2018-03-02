@@ -50,8 +50,10 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   setStepCount(stepCount) {
-    this.stepCount = stepCount;
-    window.scrollTo(0, this.steps[this.stepCount]);
+    window.scrollTo(0, this.steps[stepCount]);
+    setTimeout(() => {
+      this.stepCount = stepCount;
+    }, 10);
   }
 
   @HostListener('window:wheel', ['$event'])

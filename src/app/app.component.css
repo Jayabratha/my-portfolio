@@ -12,7 +12,7 @@ section.background {
 }
 
 .main-content.fixed-header {
-    min-height: 100em;
+    min-height: 50em;
 }
 
 .js-logo {

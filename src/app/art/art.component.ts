@@ -68,12 +68,14 @@ export class ArtComponent implements OnInit {
         loadedImagesCount.asObservable().subscribe((count) => {
             if (count === imagesCount) {
                 this.isLoading = false;
-                this.imageItems.forEach((elem, index) => {
-                    let imageElem = elem.nativeElement;
-                    setTimeout(() => {
-                        this.renderer.removeClass(imageElem, 'hide');
-                    }, index * 150);
-                });
+                setTimeout(() => {
+                    this.imageItems.forEach((elem, index) => {
+                        let imageElem = elem.nativeElement;
+                        setTimeout(() => {
+                            this.renderer.removeClass(imageElem, 'hide');
+                        }, index * 150);
+                    });
+                }, 200);
             }
         });
     }

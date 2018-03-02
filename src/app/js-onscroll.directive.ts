@@ -6,6 +6,8 @@ import { Subject } from 'rxjs/Subject';
 })
 export class JsOnscrollDirective implements OnInit, OnDestroy {
   @Input() padding: number = 0;
+  @Input() belowClass: string = 'below-view';
+  @Input() aboveClass: string = 'above-view';
   @Input() viewportCheck: boolean = false;
   @Input() activateScroll: boolean = true;
   @Input() restoreInitial: Subject<any>;
@@ -37,13 +39,13 @@ export class JsOnscrollDirective implements OnInit, OnDestroy {
 
     if (this.restoreInitial) {
       this.restoreInitial.subscribe(event => {
-        this.renderer.setElementClass(this.elem, 'below-view', true);
+        this.renderer.setElementClass(this.elem, this.belowClass, true);
         this.hasEntered = false;
       });
     }
 
     if (this.viewportCheck) {
-      this.renderer.setElementClass(this.elem, 'below-view', true);
+      this.renderer.setElementClass(this.elem, this.belowClass, true);
       setTimeout(() => {
         this.checkAndUpdateClass();
       }, 850);
@@ -62,13 +64,13 @@ export class JsOnscrollDirective implements OnInit, OnDestroy {
         //Check if Below View
         if ((this.elem.offsetTop + this.padding) <= (window.pageYOffset + window.innerHeight)) {
           if (!this.hasEntered) {
-            this.renderer.setElementClass(this.elem, 'below-view', false);
+            this.renderer.setElementClass(this.elem, this.belowClass, false);
             this.hasEntered = true;
             this.enteredViewport.emit('entered');
           }
         } else {
           if (this.hasEntered) {
-            this.renderer.setElementClass(this.elem, 'below-view', true);
+            this.renderer.setElementClass(this.elem, this.belowClass, true);
             this.hasEntered = false;
           }
         }
@@ -77,12 +79,12 @@ export class JsOnscrollDirective implements OnInit, OnDestroy {
         if (this.checkAboveView) {
           if ((this.elem.offsetTop - 50) < window.pageYOffset) {
             if (!this.hasLeft) {
-              this.renderer.setElementClass(this.elem, 'above-view', true);
+              this.renderer.setElementClass(this.elem, this.aboveClass, true);
               this.hasLeft = true;
             }
           } else {
             if (this.hasLeft) {
-              this.renderer.setElementClass(this.elem, 'above-view', false);
+              this.renderer.setElementClass(this.elem, this.aboveClass, false);
               this.hasLeft = false;
               this.enteredViewport.emit('entered');
             }
