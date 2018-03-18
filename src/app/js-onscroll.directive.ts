@@ -55,8 +55,6 @@ export class JsOnscrollDirective implements OnInit, OnDestroy {
   checkAndUpdateClass = function () {
     let scrollPosition = (document.documentElement && document.documentElement.scrollTop) || document.body.scrollTop;
 
-    console.log(scrollPosition);
-
     if (this.activateScroll) {
       if (this.viewportCheck) {
         this.renderer.setElementClass(this.elem, 'view-check', true);

@@ -1,0 +1,25 @@
+<div class="gallery" [ngClass]="{'show': show}">
+  <div class="current-image">
+    <div class="image-container" 
+        appImageOnLoad     
+        [imageItems]="currentImg"
+        (complete)="onLoadComplete($event)"
+        >
+      <img #currentI src="{{galleryItem.fileUrl}}" alt="{{galleryItem.title}}" [hidden]="isLoading"/>
+      <div class="initial-loader loading-icon animate" [hidden]="!isLoading"></div>
+    </div>
+    <div class="image-info-panel">
+    </div>
+  </div>
+  <div class="image-list-wrapper" [ngClass]="{'show': showList}">
+    <ul class="art-list clearfix">
+      <li id="{{item.id}}" *ngFor="let item of galleryList; let first = first">
+        <img class="art-images" #imgItem routerLink="/art/gallery/{{item.title}}" [ngClass]="{'active': checkIfCurrentItem(item)}" class="hide" title="{{item.title}}" src="{{item.thumbUrl}}"
+        />
+      </li>
+    </ul>
+  </div>
+  <div class="close-button" routerLink="/art">
+    <span class="icon-android-close"></span>
+  </div>
+</div>

@@ -22,11 +22,20 @@ import { ImageOnLoadDirective } from './image-on-load.directive';
 import { LoadAnimateDirective } from './load-animate.directive';
 import { BlogComponent } from './blog/blog.component';
 import { ClickedOutDirective } from './clicked-out.directive';
+import { GalleryComponent } from './gallery/gallery.component';
 
 const appRoutes: Routes = [
   { path: 'home', component: HomeComponent },
   // { path: 'art', loadChildren: './art/art.module#ArtModule'},
-  { path: 'art', component: ArtComponent },
+  { path: 'art',
+   component: ArtComponent,
+    children: [
+      {
+        path: 'gallery/:title',
+        component: GalleryComponent
+      }
+    ]
+  },
   { path: 'projects', component: ProjectsComponent },
   { path: 'blog', component: BlogComponent },
   { path: 'about', component: AboutComponent },
@@ -52,7 +61,8 @@ const appRoutes: Routes = [
     ImageOnLoadDirective,
     LoadAnimateDirective,
     BlogComponent,
-    ClickedOutDirective
+    ClickedOutDirective,
+    GalleryComponent
   ],
   imports: [
     BrowserModule,

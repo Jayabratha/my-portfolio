@@ -4,6 +4,7 @@ import { routeAnimation } from '../animations/animations';
 import { AngularFireDatabase } from 'angularfire2/database';
 import { Subject } from 'rxjs/Subject';
 import { Observable } from 'rxjs/Observable';
+import { Router } from '@angular/router';
 import * as firebase from 'firebase';
 
 @Component({
@@ -22,7 +23,7 @@ export class ArtComponent implements OnInit {
     imageList: Array<Object> = [];
     isLoading: boolean = false;
 
-    constructor(private appState: AppStateService, private renderer: Renderer2, private db: AngularFireDatabase) {
+    constructor(private appState: AppStateService, private renderer: Renderer2, private db: AngularFireDatabase, private router: Router) {
         this.appState.setHeaderState(true);
     }
 
@@ -34,12 +35,17 @@ export class ArtComponent implements OnInit {
             fileList.forEach((file: any) => {
                 let storageRef = this.storage.ref();
                 promises.push(storageRef.child(file.thumbPath).getDownloadURL().then((url) => {
-                    Object.assign(file, { url: url });
+                    Object.assign(file, { thumbUrl: url });
+                }));
+                promises.push(storageRef.child(file.filePath).getDownloadURL().then((url) => {
+                    Object.assign(file, { fileUrl: url });
                 }));
             });
             //Set the images once all download urls have been fetched
             Promise.all(promises).then(() => {
                 this.imageList = fileList;
+                this.appState.setGalleryList(this.imageList);
+                console.log(fileList);
             });
         });
     }
@@ -78,6 +84,11 @@ export class ArtComponent implements OnInit {
                 }, 200);
             }
         });
+    }
+
+    showInGallery(item) {
+        this.appState.setGalleryItem(item);
+        this.router.navigate(['/art/gallery/' + item.title]);
     }
 
 }

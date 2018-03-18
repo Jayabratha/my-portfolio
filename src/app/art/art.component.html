@@ -5,14 +5,15 @@
     <div class="feature-content">
     </div>
   </div>
+  <router-outlet></router-outlet>
   <div class="list-wrapper">
     <div class="loading-icon" [ngClass]="{'animate': isLoading}">
     </div>
     <ul class="art-list clearfix" [hidden]="isLoading">
       <li id="{{item.id}}" *ngFor="let item of imageList; let first = first" [ngClass]="{'potrait col-xs-6 col-sm-3 col-md-3 col-lg-3': item.isPortrait,
                        'landscape col-xs-12 col-sm-6 col-md-6 col-lg-6': !item.isPortrait}">
-        <div class="image-wrapper">
-          <img class="art-images" #imgItem class="hide" title="{{item.title}}" src="{{item.url}}" />
+        <div class="image-wrapper" (click)="showInGallery(item)">
+          <img class="art-images" #imgItem class="hide" title="{{item.title}}" src="{{item.thumbUrl}}" />
           <div class="image-title">{{item.title}}</div>
         </div>
       </li>
