@@ -28,6 +28,7 @@ export class ImageOnLoadDirective implements OnChanges {
       switch (propName) {
         case 'imageItems':
           imageList = changes[propName].currentValue;
+          console.log(imageList);
           if (imageList) {
             imagesCount = imageList.length;
             imageList.forEach((elem, index) => {

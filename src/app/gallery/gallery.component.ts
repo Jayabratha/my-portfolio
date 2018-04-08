@@ -1,4 +1,5 @@
 import { Component, OnInit, OnDestroy, ViewChildren, QueryList, ElementRef } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
 import { AppStateService } from '../app-state.service';
 import { Subscription } from 'rxjs/Subscription';
 
@@ -9,17 +10,18 @@ import { Subscription } from 'rxjs/Subscription';
 })
 export class GalleryComponent implements OnInit, OnDestroy {
 
-  constructor(private appState: AppStateService) { }
+  constructor(private appState: AppStateService, private route: ActivatedRoute, private router: Router) { }
 
   show: boolean = false;
   showList: boolean = false;
   listSubscription: Subscription;
   currentItemSubscribtion: Subscription;
   galleryList: Array<any> = [];
-  galleryItem: any;
+  currentItem: any;
+  currentItemTitle: string = "";
+  currentItemIndex: number = 0;
+  
   isLoading: boolean = true;
-
-  @ViewChildren('currentI') currentImg: QueryList<ElementRef>;;
 
   ngOnInit() {
     this.listSubscription = this.appState.getGalleryList().subscribe((galleryList) => {
@@ -28,18 +30,32 @@ export class GalleryComponent implements OnInit, OnDestroy {
         this.show = true;
         this.showList = true;
         this.hideList();
+        if (this.currentItemTitle) {
+          this.checkForCurrentItem(this.galleryList, this.currentItemTitle);
+        }
       }
     });
 
-    this.currentItemSubscribtion = this.appState.getGalleryItem().subscribe((galleryItem) => {
-      this.galleryItem = galleryItem;
-      console.log(galleryItem);
+    this.route.params.subscribe(params => {
+      this.currentItemTitle = params.title;
+      if (this.galleryList.length) {
+        this.checkForCurrentItem(this.galleryList, this.currentItemTitle);
+      }
     });
 
-    if (!this.galleryItem) {
-      this.galleryItem = this.galleryList[0];
+    if (!this.currentItem) {
+      this.currentItem = this.galleryList[0];
     }
+  }
 
+  checkForCurrentItem(itemList, itemTitle) {
+    let i, galleryListLength = itemList.length;
+      for (i = 0; i < galleryListLength; i++) {
+        if (itemList[i].title === itemTitle) {
+          this.currentItem = itemList[i];
+          this.currentItemIndex = i;
+        }
+      }
   }
 
   hideList() {
@@ -49,7 +65,7 @@ export class GalleryComponent implements OnInit, OnDestroy {
   }
 
   checkIfCurrentItem(item) {
-    if (item && this.galleryItem && item.title === this.galleryItem.title) {
+    if (item && this.currentItem && item.title === this.currentItem.title) {
       return true;
     } else {
       return false;
@@ -61,7 +77,32 @@ export class GalleryComponent implements OnInit, OnDestroy {
   }
 
   onLoadComplete() {
-    console.log("Test");
     this.isLoading = false;
+  }
+
+  nextImage() {
+    if (this.currentItemIndex === (this.galleryList.length - 1)) {
+      this.currentItemIndex = 0;
+    } else {
+      this.currentItemIndex++;
+    }
+    let item = this.galleryList[this.currentItemIndex];
+    this.changeImage(item);
+  }
+
+  prevImage() {
+    if (this.currentItemIndex === 0) {
+      this.currentItemIndex = this.galleryList.length - 1;
+    } else {
+      this.currentItemIndex--;
+    }
+    let item = this.galleryList[this.currentItemIndex];
+    this.changeImage(item);
+  }
+
+  changeImage(item) {
+    this.isLoading = true;
+    this.appState.setGalleryItem(item);
+    this.router.navigate(['/art/gallery/' + item.title]);
   }
 }

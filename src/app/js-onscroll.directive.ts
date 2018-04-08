@@ -30,12 +30,9 @@ export class JsOnscrollDirective implements OnInit, OnDestroy {
 
     if (deviceWidth < 650) {
       this.isMobile = true;
-      console.log("Mobile device", deviceWidth);
     }
 
-    this.elemViewportOffset = this.elem.getBoundingClientRect().top; 
-    
-    console.log(this.elemViewportOffset);
+    this.elemViewportOffset = this.elem.getBoundingClientRect().top;
 
     if (this.restoreInitial) {
       this.restoreInitial.subscribe(event => {
@@ -90,7 +87,6 @@ export class JsOnscrollDirective implements OnInit, OnDestroy {
         }
 
       } if (scrollPosition > this.elemViewportOffset - this.padding) {
-        console.log("Fix:", scrollPosition, this.elemViewportOffset - this.padding);
         this.onStateChange.emit('fix');
       } else {
         this.onStateChange.emit('scroll');

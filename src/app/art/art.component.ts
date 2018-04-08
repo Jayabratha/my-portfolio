@@ -45,7 +45,7 @@ export class ArtComponent implements OnInit {
             Promise.all(promises).then(() => {
                 this.imageList = fileList;
                 this.appState.setGalleryList(this.imageList);
-                console.log(fileList);
+                this.isLoading = false;
             });
         });
     }

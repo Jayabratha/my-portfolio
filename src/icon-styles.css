@@ -2,11 +2,11 @@
 
 @font-face {
   font-family: "untitled-font-2";
-  src:url("assets/fonts/untitled-font-2.eot");
-  src:url("assets/fonts/untitled-font-2.eot?#iefix") format("embedded-opentype"),
-    url("assets/fonts/untitled-font-2.woff") format("woff"),
-    url("assets/fonts/untitled-font-2.ttf") format("truetype"),
-    url("assets/fonts/untitled-font-2.svg#untitled-font-2") format("svg");
+  src:url("./assets/fonts/untitled-font-2.eot");
+  src:url("./assets/fonts/untitled-font-2.eot?#iefix") format("embedded-opentype"),
+    url("./assets/fonts/untitled-font-2.woff") format("woff"),
+    url("./assets/fonts/untitled-font-2.ttf") format("truetype"),
+    url("./assets/fonts/untitled-font-2.svg#untitled-font-2") format("svg");
   font-weight: normal;
   font-style: normal;
 
@@ -41,12 +41,6 @@
 .icon-logo-svg:before {
   content: "\61";
 }
-.icon-android-arrow-forward:before {
-  content: "\62";
-}
-.icon-android-add:before {
-  content: "\63";
-}
 .icon-load-c:before {
   content: "\6a";
 }
@@ -77,17 +71,11 @@
 .icon-heart:before {
   content: "\73";
 }
-.icon-chatbubbles:before {
-  content: "\74";
-}
 .icon-disc:before {
   content: "\69";
 }
 .icon-asterisk:before {
   content: "\75";
-}
-.icon-aperture:before {
-  content: "\76";
 }
 .icon-android-star:before {
   content: "\77";
@@ -103,9 +91,6 @@
 }
 .icon-android-globe:before {
   content: "\41";
-}
-.icon-android-arrow-back:before {
-  content: "\42";
 }
 .icon-android-color-palette:before {
   content: "\43";
@@ -125,20 +110,8 @@
 .icon-ios-arrow-left:before {
   content: "\48";
 }
-.icon-chevron-left:before {
-  content: "\68";
-}
-.icon-chevron-right:before {
-  content: "\67";
-}
 .icon-android-calendar:before {
   content: "\66";
-}
-.icon-android-close:before {
-  content: "\65";
-}
-.icon-android-done:before {
-  content: "\64";
 }
 .icon-paper-airplane:before {
   content: "\49";
@@ -263,15 +236,39 @@
 .icon-android-search:before {
   content: "\2d";
 }
-.icon-arrow-resize:before {
-  content: "\2e";
-}
-.icon-arrow-expand:before {
-  content: "\2f";
-}
-.icon-arrow-shrink:before {
-  content: "\3a";
-}
 .icon-linkedin-square:before {
   content: "\3b";
+}
+.icon-ios-close-empty:before {
+  content: "\3c";
+}
+.icon-ios-checkmark-empty:before {
+  content: "\3d";
+}
+.icon-social-nodejs:before {
+  content: "\67";
+}
+.icon-trophy:before {
+  content: "\68";
+}
+.icon-trash-b:before {
+  content: "\74";
+}
+.icon-ios-help:before {
+  content: "\76";
+}
+.icon-ios-information:before {
+  content: "\2e";
+}
+.icon-ios-arrow-up:before {
+  content: "\2f";
+}
+.icon-ios-arrow-down:before {
+  content: "\3a";
+}
+.icon-images:before {
+  content: "\3e";
+}
+.icon-image:before {
+  content: "\3f";
 }

@@ -1,25 +1,31 @@
 <div class="gallery" [ngClass]="{'show': show}">
   <div class="current-image">
-    <div class="image-container" 
-        appImageOnLoad     
-        [imageItems]="currentImg"
-        (complete)="onLoadComplete($event)"
-        >
-      <img #currentI src="{{galleryItem.fileUrl}}" alt="{{galleryItem.title}}" [hidden]="isLoading"/>
+    <div class="image-container" *ngIf="currentItem">
       <div class="initial-loader loading-icon animate" [hidden]="!isLoading"></div>
+      <div class="image-wrapper" [hidden]="isLoading">
+        <img [src]="currentItem.fileUrl" alt="{{currentItem.title}}" (load)="onLoadComplete($event)" />
+        <div class="image-info-panel">
+          <h1>{{currentItem.title}}</h1>
+          <div class="desc">{{currentItem.desc}}</div>
+        </div>
+      </div>
     </div>
-    <div class="image-info-panel">
+    <div class="arrow-btn left" (click)="prevImage()">
+      <i class="icon-ios-arrow-thin-left"></i>
+    </div>
+    <div class="arrow-btn right" (click)="nextImage()">
+      <i class="icon-ios-arrow-thin-right"></i>
     </div>
   </div>
   <div class="image-list-wrapper" [ngClass]="{'show': showList}">
     <ul class="art-list clearfix">
       <li id="{{item.id}}" *ngFor="let item of galleryList; let first = first">
-        <img class="art-images" #imgItem routerLink="/art/gallery/{{item.title}}" [ngClass]="{'active': checkIfCurrentItem(item)}" class="hide" title="{{item.title}}" src="{{item.thumbUrl}}"
-        />
+        <img class="art-images" [ngClass]="{'active': checkIfCurrentItem(item)}" class="hide" title="{{item.title}}" [src]="item.thumbUrl"
+          (click)="changeImage(item)" />
       </li>
     </ul>
   </div>
-  <div class="close-button" routerLink="/art">
-    <span class="icon-android-close"></span>
+  <div class="top-icons close-button" routerLink="/art">
+    <span class="icon-ios-close-empty"></span>
   </div>
 </div>

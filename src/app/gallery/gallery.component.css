@@ -28,10 +28,9 @@
     height: 100%;
 }
 
-.close-button {
+.top-icons {
     position: fixed;
     top: 0;
-    right: 0;
     margin: 0.25em;
     font-size: 2em;
     color: #FFFFFF;
@@ -41,8 +40,16 @@
     transition: opacity 0.5s;
 }
 
-.close-button:hover {
+.top-icons:hover {
     opacity: 1;
+}
+
+.info-button {
+    left: 0;
+}
+
+.close-button {
+    right: 0
 }
 
 .image-list-wrapper {
@@ -85,11 +92,59 @@
 }
 
 .image-list-wrapper img {
-    opacity: 0.4;
+    opacity: 0.5;
 }
 
 .image-list-wrapper img:hover,
 .image-list-wrapper img.active {
     opacity: 1;
     box-shadow: 0 0 0 2px #FFFFFF;
+}
+
+.image-wrapper {
+    height: 100%;
+    width: 100%;
+}
+
+.image-container .loading-icon {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+}
+
+.image-info-panel {
+    display: inline-block;
+    height: 100%;
+    width: 20vw;
+    margin-left: -5px;
+    background: #333333;
+    vertical-align: top;
+    padding: 20px;
+    color: #FFFFFF;   
+    text-align: left;
+}
+
+.image-info-panel h1 {
+    font-weight: 100;
+    font-size: 2em;
+    margin: 0;
+}
+
+.image-info-panel .desc {
+    font-family: 'Roboto', sans-serif;
+    padding: 8px 3px;
+    font-size: 15px;
+}
+
+.current-image .arrow-btn {
+    opacity: 0.4;
+}
+.current-image .arrow-btn:hover {
+    opacity: 1;
+}
+.current-image .arrow-btn.left {
+    left: 5px;
+}
+.current-image .arrow-btn.right {
+    right: 5px;
 }

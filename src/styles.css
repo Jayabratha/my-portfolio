@@ -78,6 +78,47 @@ body::-webkit-scrollbar-thumb
     }
 }
 
+/* Left Right Arrow Styles - Start */
+.arrow-btn {
+    position: absolute;
+    top: 0;
+    height: 100%;
+    color: #FFFFFF;
+    font-size: 2em;
+}
+
+.arrow-btn i {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    height: 25px;
+    margin: auto;
+    font-size: 1.3em;
+}
+
+.arrow-btn i:before {
+    position: relative;
+    top: -10px;
+}
+
+.arrow-btn.left {
+    left: 0;
+    box-shadow: inset 10px 0 15px 0 rgba(0, 0, 0, 0.25);
+}
+
+.arrow-btn.left i {
+    left: 0;
+}
+
+.arrow-btn.right {
+    right: 0;
+    box-shadow: inset -10px 0 15px 0 rgba(0, 0, 0, 0.25);
+}
+
+.arrow-btn.right i {
+    right: 0;
+}
+/* Left Right Arrow Styles - End */
 
 @import url("icon-styles.css");
 
