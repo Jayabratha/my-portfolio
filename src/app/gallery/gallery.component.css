@@ -132,8 +132,9 @@
 
 .image-info-panel .desc {
     font-family: 'Roboto', sans-serif;
-    padding: 8px 3px;
-    font-size: 15px;
+    padding: 8px 2px;
+    font-size: 21px;
+    font-weight: 100;
 }
 
 .current-image .arrow-btn {
