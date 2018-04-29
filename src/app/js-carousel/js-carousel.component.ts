@@ -46,26 +46,31 @@ export class JsCarouselComponent implements OnChanges, OnInit, OnDestroy {
   activeSlide;
   slideLength;
   carouselId;
+  loadCount: number = 0;
+  itemCount: number = 0;
   imageLoadProress: number = 0;
   isLoading: boolean = true;
 
   ngAfterViewInit() {
     this.cdRef.detectChanges();
+    this.itemCount = this.carouselItems.length;
   }
 
-  updateProgress(progress: number) {
-    this.imageLoadProress = progress;
+  updateProgress(e) {
+    this.loadCount++;
+    let progress = (this.loadCount/this.itemCount) * 100;
     this.carouselLoading.emit(progress);
+    if (progress === 100) {
+      this.onLoadComplete();
+    }
   }
 
-  onLoadComplete(complete: boolean) {
-    if (complete) {
+  onLoadComplete() {
       setTimeout(() => {
         this.isLoading = false;
         this.carouselReady.emit(true);
         this.start();
-      }, 2000);
-    }
+    }, 1000);
   }
 
   ngOnChanges(changes: SimpleChanges) {

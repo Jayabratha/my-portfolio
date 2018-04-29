@@ -11,7 +11,8 @@
         <div class="search-wrapper" (clickedOut)="hideSearch()">
             <form class="search-form" (ngSubmit)="search(keyword)">
                 <label for="searchTerm">Search</label>
-                <input #searchInput id="searchTerm" name="keyword" type="text" class="search" placeholder="Search" [(ngModel)]="keyword" />
+                <input #searchInput id="searchTerm" name="keyword" type="text" class="search" placeholder="Search" [(ngModel)]="keyword"
+                />
                 <button type="button" label="Search" aria-label="Search content" (click)="toggleSearch(); $event.stopPropagation();">
                     <i class="search-button icon-ios-search"></i>
                 </button>
@@ -27,19 +28,15 @@
         </div>
     </section>
     <section class="me-card-wrapper center-stage" appJsOnscroll [padding]=requiredPadding [activateScroll]="activateScroll" (onStateChange)="headerStateChange($event)">
-        <div class="me-card" [style.width]="carouselLoadProgress + '%'">
-            <div class="name-card" [attr.aria-hidden]="isHeaderFix || showMenu || showSearch">
-                <div class="dp my-dp">
-                    <app-js-carousel [slideItems]=slideList [play]=play (carouselReady)="onCarouselReady($event)" (carouselLoading)="onCarouselLoadProgress($event)"></app-js-carousel>
-                </div>
-                <div class="my-card-wrapper" >
-                    <div class="my-card">
-                        <h1 class="name">Jayabratha Saha</h1>
-                        <div class="title">Artist & Developer</div>
-                        <div class="github-link">
-                            <i class="icon-social-github"></i>
-                        </div>
-                    </div>
+        <div class="me-card" [style.width]="carouselLoadProgress + '%'" [attr.aria-hidden]="isHeaderFix || showMenu || showSearch">
+            <div class="dp my-dp">
+                <app-js-carousel [slideItems]=slideList [play]=play (carouselReady)="onCarouselReady($event)" (carouselLoading)="onCarouselLoadProgress($event)"></app-js-carousel>
+            </div>
+            <div class="my-card-wrapper">
+                <h1 class="name">Jayabratha Saha</h1>
+                <div class="title">Artist & Developer</div>
+                <div class="github-link">
+                    <i class="icon-social-github"></i>
                 </div>
             </div>
         </div>

@@ -18,7 +18,6 @@ import { ProjectsComponent } from './projects/projects.component';
 import { AboutComponent } from './about/about.component';
 import { ContactComponent } from './contact/contact.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { ImageOnLoadDirective } from './image-on-load.directive';
 import { LoadAnimateDirective } from './load-animate.directive';
 import { BlogComponent } from './blog/blog.component';
 import { ClickedOutDirective } from './clicked-out.directive';
@@ -58,7 +57,6 @@ const appRoutes: Routes = [
     ProjectsComponent,
     AboutComponent,
     ContactComponent,
-    ImageOnLoadDirective,
     LoadAnimateDirective,
     BlogComponent,
     ClickedOutDirective,

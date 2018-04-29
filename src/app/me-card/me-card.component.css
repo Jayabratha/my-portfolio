@@ -7,8 +7,9 @@
     border: thin solid #FFFFFF;
     border-bottom: none;
     padding: 0;
-    transition: height 0.5s;
+    transition: height 0.5s ease-out;
     margin-bottom: 5em;
+    overflow: hidden;
 }
 .absolute-bottom {
     position: absolute;
@@ -87,7 +88,7 @@
     right: 0;
     height: 19.3em;
     overflow: hidden;
-    transition: height 0.5s ease-out;
+    transition: margin-top 0.5s ease-out;
 }
 
 .menu-background {
@@ -99,16 +100,6 @@
     z-index: 2;
 }
 
-@-webkit-keyframes progress-bar {
-    0% { width: 0; }
- }
- @-moz-keyframes progress-bar {
-    0% { width: 0; }
- }
- keyframes progress-bar {
-    0% { width: 0; }
- }
-
 .me-card {
     position: absolute;
     height: 100%;
@@ -117,10 +108,7 @@
     left: 0;
     right: 0;
     background: linear-gradient(140deg, #ff9800, #f31b48, #940590, #0ab779);
-    transition: transform 0.5s ease-out;
-    -webkit-animation: progress-bar 2s;
-    -moz-animation: progress-bar 2s;
-    animation: progress-bar 2s;
+    transition: transform 0.5s ease-out, width 0.5s ease-out; 
 }
 
 .dp.my-dp {
@@ -132,6 +120,12 @@
 
 .my-card-wrapper {
     height: 19.3em;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    padding: 2em;
+    padding-left: 40%;
+    color: #FFFFFF;
 }
 
 .my-card {
@@ -211,9 +205,7 @@ h1.name {
 }
 .fix-header .hello-card,
 .search-header .hello-card {
-    height: 0;
-    margin: 0;
-    overflow: hidden;
+    display: none;
 }
 
 .fix-header .logo-section {
@@ -237,13 +229,12 @@ h1.name {
 
 .fix-header .me-card-wrapper,
 .search-header .me-card-wrapper {
-    margin-top: 59px;
-    height: 2px;
+    overflow: visible;
 }
 
 .fix-header .me-card,
 .search-header .me-card {
-    position: relative;
+    transform: translateY(-102px);
 }
 
 .fix-header .my-dp,
@@ -257,26 +248,17 @@ h1.name {
     opacity: 0;
 }
 
-.fix-header .my-card,
-.search-header .my-card {
-    position: relative;
-    width: 100%;
-    height: 2px;
-    padding-top: 0;
-    padding-bottom: 0;
-}
-
 .search-header .site-nav {
     display: none;
 }
 .fix-header .site-nav {
-    position: absolute;
+    position: fixed;
+    background: linear-gradient(140deg, #ff9800, #f31b48, #940590, #0ab779);
     top: 58px;
     height: 0;
     margin: 0 auto;
     left: 0;
     right: 0;
-    width: 80%;
     overflow: hidden;
     transition: height 0.5s;
     z-index: 2;
@@ -312,14 +294,9 @@ h1.name {
 .search-header .my-card>* {
     display: none;
 }
-.show-menu .me-card-wrapper,
-.search-header .me-card-wrapper {
-    height: 35em;
-    z-index: 1;
-}
 .show-menu .site-nav,
 .search-header .site-nav {
-    height: 30em;
+    height: 35em;
 }
 .show-menu ul.site-nav-list {
     opacity: 1;
@@ -500,23 +477,21 @@ h1.name {
         margin-top: 3em;
     }
     .main-header {
-        height: 45em;
-        padding: 0.5em 0; 
+        height: 162vw;
+        padding: 0.5em 0;
+        border-bottom: 10px solid #FFFFFF;
+        overflow: hidden;
     }
     .me-card-wrapper {
         margin-top: 0;
-        height: 41.5em;
-    }
-    .me-card {
-        height: 41.5em;
-        background: transparent;
+        height: 100%;
     }
     .my-card-wrapper {
-        position: relative;
-        margin-top: 95%;
-        height: 14.4em;
-        z-index: 10;
-        transition: height 0.5s;
+        position: absolute;
+        bottom: 0;
+        padding: 20px;
+        height: 60vw;
+        font-size: 3vw;
     }
     .my-card {
         position: relative;
@@ -524,7 +499,6 @@ h1.name {
         height: auto;
         font-size: 10px;
         padding-left: 2em;
-        background: linear-gradient(140deg, #f31b48, #940590, #0ab779);
     }
 
     .site-nav {
@@ -579,7 +553,7 @@ h1.name {
 
     /* Initial Header Styles - Start */
     .initial-header .me-card {
-        transform: translateY(41.3em);
+        transform: translateY(153.5vw);
     }
     .initial-header .my-card-wrapper {
         position: relative;
@@ -596,11 +570,9 @@ h1.name {
     .show-menu .my-card-wrapper {
         transition: margin-top 0.5s;
     }
-}
 
-@media (max-width: 650px) {
     .dp.my-dp {
-        height: 71%;
+        height: 94vw;
     }
     .logo-section i {
         color: #454545;
@@ -618,31 +590,5 @@ h1.name {
     .logo-menu.center-stage {
         width: 70%;
         max-width: 370px;
-    }
-}
-
-@media (max-width: 400px) {
-    .main-header {
-        height: 42em;
-    }
-    .me-card-wrapper {
-        height: 39em;
-    }
-    .me-card {
-        height: 38.5em;
-    }
-    .initial-header .me-card {
-        transform: translateY(38.85em);
-    }
-    .dp.my-dp {
-        height: 68%;
-    }
-}
-@media (max-width: 330px) {
-    .me-card {
-        height: 35.5em;
-    }
-    .dp.my-dp {
-        height: 63%;
     }
 }
