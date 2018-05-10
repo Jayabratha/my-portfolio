@@ -87,13 +87,13 @@ export class HomeComponent implements OnInit, OnDestroy {
   @HostListener('window:keydown', ['$event'])
   onArrowUpDown(ev) {
     var keycode = ev.keyCode;
-    if (keycode === 40) {
+    if (keycode === 40 && this.stepCount < 5) {
       ev.preventDefault();
-      this.stepCount = this.stepCount < 6 ? this.stepCount + 1 : 6;
+      this.stepCount++;
       window.scrollTo(0, this.steps[this.stepCount]);
-    } else if (keycode === 38) {
+    } else if (keycode === 38 && this.stepCount > 0) {
       ev.preventDefault();
-      this.stepCount = this.stepCount > 0 ? this.stepCount - 1 : 0;
+      this.stepCount--;
       window.scrollTo(0, this.steps[this.stepCount]);
     }
   }
