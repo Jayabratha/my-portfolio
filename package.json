@@ -8,7 +8,8 @@
     "lint": "tslint \"src/**/*.ts\"",
     "test": "ng test",
     "pree2e": "webdriver-manager update",
-    "e2e": "protractor"
+    "e2e": "protractor",
+    "pwa": "ng build --prod && sw-precache --root=dist --config=precache-config.js"
   },
   "private": true,
   "dependencies": {
@@ -45,6 +46,7 @@
     "karma-jasmine": "^1.0.2",
     "karma-remap-istanbul": "^0.2.1",
     "protractor": "4.0.9",
+    "sw-precache-webpack-plugin": "^0.11.5",
     "ts-node": "1.2.1",
     "tslint": "3.13.0",
     "typescript": "^2.4.2",

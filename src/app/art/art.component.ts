@@ -22,32 +22,40 @@ export class ArtComponent implements OnInit {
 
     imageList: Array<Object> = [];
     isLoading: boolean = false;
+    alert: string = "";
+    alertType: string = "";
 
     constructor(private appState: AppStateService, private renderer: Renderer2, private db: AngularFireDatabase, private router: Router) {
         this.appState.setHeaderState(true);
     }
 
     ngOnInit() {
-        //Get list of images
-        this.db.list('/artImages').valueChanges().subscribe((fileList) => {
-            let promises = [];
-            this.isLoading = true;
-            fileList.forEach((file: any) => {
-                let storageRef = this.storage.ref();
-                promises.push(storageRef.child(file.thumbPath).getDownloadURL().then((url) => {
-                    Object.assign(file, { thumbUrl: url });
-                }));
-                promises.push(storageRef.child(file.filePath).getDownloadURL().then((url) => {
-                    Object.assign(file, { fileUrl: url });
-                }));
+        if (navigator.onLine) {
+            //Get list of images
+            this.db.list('/artImages').valueChanges().subscribe((fileList) => {
+                let promises = [];
+                this.isLoading = true;
+                fileList.forEach((file: any) => {
+                    let storageRef = this.storage.ref();
+                    promises.push(storageRef.child(file.thumbPath).getDownloadURL().then((url) => {
+                        Object.assign(file, { thumbUrl: url });
+                    }));
+                    promises.push(storageRef.child(file.filePath).getDownloadURL().then((url) => {
+                        Object.assign(file, { fileUrl: url });
+                    }));
+                });
+                //Set the images once all download urls have been fetched
+                Promise.all(promises).then(() => {
+                    this.imageList = fileList;
+                    this.appState.setGalleryList(this.imageList);
+                    this.isLoading = false;
+                });
             });
-            //Set the images once all download urls have been fetched
-            Promise.all(promises).then(() => {
-                this.imageList = fileList;
-                this.appState.setGalleryList(this.imageList);
-                this.isLoading = false;
-            });
-        });
+        } else {
+            this.alert="You are offline. Please connect to internet";
+            this.alertType="warn";
+        }
+
     }
 
     ngAfterViewInit() {
