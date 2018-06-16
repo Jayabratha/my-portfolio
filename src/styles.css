@@ -122,10 +122,6 @@ body::-webkit-scrollbar-thumb
 }
 /* Left Right Arrow Styles - End */
 
-@import url("icon-styles.css");
-
-@import url("bootstrap-responsive.css");
-
 
 /* Tab Styles - Start */
 @media (max-width: 950px) {

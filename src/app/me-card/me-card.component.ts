@@ -1,6 +1,6 @@
 import { Component, AfterViewInit, OnInit,  OnDestroy, ElementRef, Renderer2, ViewChild, ViewChildren, QueryList } from '@angular/core';
 import { AppStateService } from '../app-state.service';
-import { Subscription } from 'rxjs/Subscription';
+import { Subscription } from 'rxjs';
 import { Router, NavigationStart, NavigationEnd } from '@angular/router';
 import { ElasticsearchService } from '../elasticsearch.service';
 

@@ -1,6 +1,5 @@
 import { Component, Input, OnInit, OnDestroy, HostListener } from '@angular/core';
-import { Subscription } from 'rxjs/Subscription';
-import { Subject } from 'rxjs/Subject';
+import { Subscription, Subject } from 'rxjs';
 import { AppStateService } from '../app-state.service';
 
 @Component({

@@ -2,8 +2,7 @@ import { Component, ElementRef, ViewChildren, OnInit, QueryList, AfterViewInit, 
 import { AppStateService } from '../app-state.service';
 import { routeAnimation } from '../animations/animations';
 import { AngularFireDatabase } from 'angularfire2/database';
-import { Subject } from 'rxjs/Subject';
-import { Observable } from 'rxjs/Observable';
+import { Subject, Observable } from 'rxjs';
 import { Router } from '@angular/router';
 import * as firebase from 'firebase';
 
