@@ -14,7 +14,7 @@ export class ClickedOutDirective {
   public onClick(event, targetElement) {
       const clickedInside = this.elemRef.nativeElement.contains(targetElement);
       if (!clickedInside) {
-          this.clickedOut.emit(null);
+          this.clickedOut.emit(targetElement);
       }
       event.stopPropagation();
   }

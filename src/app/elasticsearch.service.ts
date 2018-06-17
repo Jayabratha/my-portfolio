@@ -10,4 +10,8 @@ export class ElasticsearchService {
     return this.http.get('https://us-central1-jayabratha-e7e73.cloudfunctions.net/isSearchAvailable');
   }
 
+  search(keyWord) {
+    return this.http.get('https://us-central1-jayabratha-e7e73.cloudfunctions.net/search?keyword=' + keyWord);
+  }
+
 }

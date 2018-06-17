@@ -8,7 +8,7 @@
         <div class="logo-section" routerLink="/home" (click)="showMenu = false;">
             <i class="icon-logo-svg"></i>
         </div>
-        <div class="search-wrapper" (clickedOut)="hideSearch()">
+        <div class="search-wrapper" (clickedOut)="hideSearch($event)">
             <form class="search-form" (ngSubmit)="search(keyword)">
                 <label for="searchTerm">Search</label>
                 <input #searchInput id="searchTerm" name="keyword" type="text" class="search" placeholder="Search" [(ngModel)]="keyword"
@@ -18,8 +18,8 @@
                 </button>
             </form>
         </div>
-
     </div>
+    <div class="main-loader loading-icon animate" [hidden]="!loading"></div>
     <section class="hello-card">
         <div class="overlay"></div>
         <div class="initial-loader loading-icon animate"></div>
@@ -41,11 +41,18 @@
             </div>
         </div>
     </section>
-    <div class="search-result-wrapper" [hidden]="!showSearch" [attr.aria-hidden]="!showSearch">
-        <div class="initial-message">
+    <div class="search-result-wrapper">
+        <div class="initial-message" [hidden]="!showSearch || this.resultsPage">
             <i class="icon-ios-search"></i>
             <div>Type in above to see matched content</div>
         </div>
+        <ul class="search-results">
+            <li *ngFor="let result of searchResults" tabindex="-1" #searchResult>
+                <div class="search-result">
+                    {{result.name}}
+                </div>
+            </li>
+        </ul>
     </div>
     <nav class="site-nav center-stage absolute-bottom" (clickedOut)="hideMenu()">
         <ul class="site-nav-list">

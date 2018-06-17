@@ -118,8 +118,6 @@ exports.updateImagesIndex = functions.database.ref('/artImages/{pushKey}').onWri
   let postData = event.data.val();
   let imageId = event.params.pushKey;
 
-  console.log(postData);
-
   let elasticSearchUrl = elasticSearchConfig.url + '/images/image/' + imageId;
   let elasticSearchMethod = postData ? 'POST' : 'DELETE';
 

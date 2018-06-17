@@ -19,13 +19,13 @@
               "src/assets",
               "src/favicon-16x16.png",
               "src/favicon-32x32.png",
-              "src/manifest.json"
+              "src/manifest.json",
+              "service-worker.js"
             ],
             "styles": [
               "src/styles.css",
               "src/icon-styles.css",
               "src/bootstrap-responsive.css"
-
             ],
             "scripts": []
           },

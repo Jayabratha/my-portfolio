@@ -96,7 +96,7 @@
     top: 59px;
     width: 100%;
     height: 100vh;
-    background: #ffffffd9;
+    background: #ebebebd9;
     z-index: 2;
 }
 
@@ -165,6 +165,13 @@ h1.name {
     top: 0.5em;
     transition: opacity 0.5s ease-in;
 }
+
+.main-loader {
+    position: fixed;
+    top: 213px;
+    font-size: 43px;
+}
+
 /* Initial Header Styles - Start */
 .initial-header .menu-section, .initial-header .logo-menu {
     opacity: 0;
@@ -429,7 +436,7 @@ h1.name {
     margin: 0 auto;
     left: 0;
     right: 0;
-    max-width: 47em;
+    max-width: 55em;
     padding: 20px 0;
     color: #454545;
     height: 35em;
@@ -443,6 +450,16 @@ h1.name {
 
 .search-result-wrapper .initial-message i {
     font-size: 3em;
+    margin-left: 11px;
+}
+
+.search-result {
+    width: 100%;
+    min-height: 100px;
+    padding: 10px 20px;
+    border: thin solid #e6e6e6db;
+    background: #FFFFFF;
+    box-shadow: 0 11px 20px rgba(0,0,0,.1);
 }
 /* Search Style - End */
 

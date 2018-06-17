@@ -3,6 +3,7 @@ import { AppStateService } from '../app-state.service';
 import { Subscription } from 'rxjs';
 import { Router, NavigationStart, NavigationEnd } from '@angular/router';
 import { ElasticsearchService } from '../elasticsearch.service';
+import { SearchResult } from '../models/search-result';
 
 @Component({
   selector: 'me-card',
@@ -11,6 +12,7 @@ import { ElasticsearchService } from '../elasticsearch.service';
 })
 export class MeCardComponent implements OnInit, OnDestroy {
   @ViewChildren('navItem') navItems: QueryList<ElementRef>;
+  @ViewChildren('searchResult') searchResult: QueryList<ElementRef>;
   @ViewChild('searchInput') searchInput: ElementRef;
 
   isInitial: boolean = true;
@@ -25,6 +27,10 @@ export class MeCardComponent implements OnInit, OnDestroy {
   keyword: string = "";
   isMobile: boolean = false;
   requiredPadding: number = 60;
+  isSearchAvailable: boolean = false;
+  searchResults: Array<any> = [];
+  resultsPage: boolean = false;
+  loading: boolean = false;
 
   slideList: Object[] = [{
     id: "slide2",
@@ -84,6 +90,13 @@ export class MeCardComponent implements OnInit, OnDestroy {
       }
     );
 
+    //Check ElasticSearch Server
+    this.elasticsearch.isAvailable().subscribe( response => {
+      if (response.ok) {
+        this.isSearchAvailable = true;
+      }
+    });
+
     this.router.events.subscribe(
       (event) => {
         if (event instanceof NavigationStart) {
@@ -104,10 +117,6 @@ export class MeCardComponent implements OnInit, OnDestroy {
           window.scrollTo(0, 0);
         }
       });
-
-      //Check ElasticSearch Server
-      this.elasticsearch.isAvailable()
-            .subscribe( response => console.log(response) );
 
   }
 
@@ -183,14 +192,36 @@ export class MeCardComponent implements OnInit, OnDestroy {
     this.showMenu = false;
   }
 
-  hideSearch() {
-    this.showSearch = false;
-    setTimeout(() => {
-      this.animateNavItems();
-    }, 500);
+  hideSearch(targetElem) {
+    if(!targetElem.classList.contains('search-result')) {
+      this.showSearch = false;
+      this.searchResults = [];
+      this.keyword = "";
+    }
+    if(this.router.url === '/home') {
+      setTimeout(() => {
+        this.animateNavItems();
+      }, 500);
+    }  
   }
 
   search(keyword) {
-    console.log(keyword);
+    this.resultsPage = true;
+    this.loading = true;
+    if (this.isSearchAvailable) {
+      this.elasticsearch.search(keyword).subscribe((response) => {
+        let resBody = response.json();
+        this.searchResults.length = 0;
+        this.loading = false;
+        if (resBody.hits.total > 0) {
+          console.log(this.searchResult);
+          resBody.hits.hits.forEach(result => {
+            if (result._index === "images") {
+              this.searchResults.push(new SearchResult(result._source.title, result._source.contentType, result._source.thumbPath, result._source.desc, result._source));
+            }
+          });    
+        }
+      });
+    }   
   }
 }
