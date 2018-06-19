@@ -1,14 +1,23 @@
-import { Component, AfterViewInit, OnInit,  OnDestroy, ElementRef, Renderer2, ViewChild, ViewChildren, QueryList } from '@angular/core';
+import { Component, AfterViewInit, OnInit, OnDestroy, ElementRef, Renderer2, ViewChild, ViewChildren, QueryList } from '@angular/core';
 import { AppStateService } from '../app-state.service';
 import { Subscription } from 'rxjs';
 import { Router, NavigationStart, NavigationEnd } from '@angular/router';
+import { trigger, style, animate, transition } from '@angular/animations';
 import { ElasticsearchService } from '../elasticsearch.service';
 import { SearchResult } from '../models/search-result';
 
 @Component({
   selector: 'me-card',
   templateUrl: './me-card.component.html',
-  styleUrls: ['./me-card.component.css', './../common.styles.css']
+  styleUrls: ['./me-card.component.css', './../common.styles.css'],
+  animations: [
+    trigger('fadeIn', [
+      transition(':enter', [
+        style({ opacity: '0', transform: 'translateY(-50px)' }),
+        animate('.5s ease-out', style({ opacity: '1', transform: 'translateY(0)' })),
+      ]),
+    ]),
+  ]
 })
 export class MeCardComponent implements OnInit, OnDestroy {
   @ViewChildren('navItem') navItems: QueryList<ElementRef>;
@@ -62,7 +71,7 @@ export class MeCardComponent implements OnInit, OnDestroy {
     private router: Router,
     private el: ElementRef,
     private renderer: Renderer2,
-    private elasticsearch: ElasticsearchService) {   
+    private elasticsearch: ElasticsearchService) {
   }
 
   ngOnInit() {
@@ -91,7 +100,7 @@ export class MeCardComponent implements OnInit, OnDestroy {
     );
 
     //Check ElasticSearch Server
-    this.elasticsearch.isAvailable().subscribe( response => {
+    this.elasticsearch.isAvailable().subscribe(response => {
       if (response.ok) {
         this.isSearchAvailable = true;
       }
@@ -144,7 +153,7 @@ export class MeCardComponent implements OnInit, OnDestroy {
     if (isReady) {
       this.isInitial = false;
       //Animate the nav bar
-      this.animateNavItems();    
+      this.animateNavItems();
     }
   }
 
@@ -193,16 +202,16 @@ export class MeCardComponent implements OnInit, OnDestroy {
   }
 
   hideSearch(targetElem) {
-    if(!targetElem.classList.contains('search-result')) {
+    if (!targetElem.classList.contains('search-result')) {
       this.showSearch = false;
       this.searchResults = [];
       this.keyword = "";
     }
-    if(this.router.url === '/home') {
+    if (this.router.url === '/home') {
       setTimeout(() => {
         this.animateNavItems();
       }, 500);
-    }  
+    }
   }
 
   search(keyword) {
@@ -219,9 +228,9 @@ export class MeCardComponent implements OnInit, OnDestroy {
             if (result._index === "images") {
               this.searchResults.push(new SearchResult(result._source.title, result._source.contentType, result._source.thumbPath, result._source.desc, result._source));
             }
-          });    
+          });
         }
       });
-    }   
+    }
   }
 }

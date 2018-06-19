@@ -11,8 +11,7 @@
         <div class="search-wrapper" (clickedOut)="hideSearch($event)">
             <form class="search-form" (ngSubmit)="search(keyword)">
                 <label for="searchTerm">Search</label>
-                <input #searchInput id="searchTerm" name="keyword" type="text" class="search" placeholder="Search" [(ngModel)]="keyword"
-                />
+                <input #searchInput id="searchTerm" name="keyword" type="text" class="search" placeholder="Search" [(ngModel)]="keyword" autocomplete="off" />
                 <button type="button" label="Search" aria-label="Search content" (click)="toggleSearch(); $event.stopPropagation();">
                     <i class="search-button icon-ios-search"></i>
                 </button>
@@ -47,7 +46,7 @@
             <div>Type in above to see matched content</div>
         </div>
         <ul class="search-results">
-            <li *ngFor="let result of searchResults" tabindex="-1" #searchResult>
+            <li [@fadeIn]="''" *ngFor="let result of searchResults" tabindex="-1" #searchResult>
                 <div class="search-result">
                     {{result.name}}
                 </div>

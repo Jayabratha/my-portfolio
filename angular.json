@@ -19,8 +19,7 @@
               "src/assets",
               "src/favicon-16x16.png",
               "src/favicon-32x32.png",
-              "src/manifest.json",
-              "service-worker.js"
+              "src/manifest.json"
             ],
             "styles": [
               "src/styles.css",
