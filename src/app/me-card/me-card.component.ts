@@ -226,7 +226,7 @@ export class MeCardComponent implements OnInit, OnDestroy {
           console.log(this.searchResult);
           resBody.hits.hits.forEach(result => {
             if (result._index === "images") {
-              this.searchResults.push(new SearchResult(result._source.title, result._source.contentType, result._source.thumbPath, result._source.desc, result._source));
+              this.searchResults.push(new SearchResult(result._source.title, 'art', result._source.thumbPath, result._source.desc, result._source));
             }
           });
         }

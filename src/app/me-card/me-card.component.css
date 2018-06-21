@@ -460,6 +460,33 @@ h1.name {
     border: thin solid #e6e6e6db;
     background: #FFFFFF;
     box-shadow: 0 11px 20px rgba(0,0,0,.1);
+    cursor: pointer;
+    transition: transform .2s ease-in-out;
+}
+
+.search-result:hover {
+    border: thin solid #ccc;
+    transform: scale(1.025);
+}
+
+.result-thumb {
+    height: 60px;
+    width: 60px;
+    border-radius: 50%;
+    background: #ccc;
+    margin: 10px 20px;
+}
+
+.result-name {
+    font-size: 1.5em;
+}
+
+.result-type {
+    float: right;
+    line-height: 80px;
+    text-transform: uppercase;
+    padding: 0 20px;
+    letter-spacing: 0.25em;
 }
 /* Search Style - End */
 

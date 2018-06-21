@@ -80,6 +80,11 @@ body::-webkit-scrollbar-thumb
     }
 }
 
+.inline-middle {
+    display: inline-block;
+    vertical-align: middle;
+}
+
 /* Left Right Arrow Styles - Start */
 .arrow-btn {
     position: absolute;

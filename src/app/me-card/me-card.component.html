@@ -48,7 +48,12 @@
         <ul class="search-results">
             <li [@fadeIn]="''" *ngFor="let result of searchResults" tabindex="-1" #searchResult>
                 <div class="search-result">
-                    {{result.name}}
+                    <div class="inline-middle result-thumb"></div>
+                    <div class="inline-middle result-info">
+                        <div class="result-name">{{result.name}}</div>
+                        <div class="result-desc">{{result.desc}}</div>
+                    </div>
+                    <div class="result-type">{{result.type}}</div>
                 </div>
             </li>
         </ul>
