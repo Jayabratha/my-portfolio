@@ -2,9 +2,10 @@ import { Component, ElementRef, ViewChildren, OnInit, QueryList, AfterViewInit, 
 import { AppStateService } from '../app-state.service';
 import { routeAnimation } from '../animations/animations';
 import { AngularFireDatabase } from 'angularfire2/database';
-import { Subject, Observable } from 'rxjs';
+import { AngularFireStorage } from 'angularfire2/storage';
+import { Subject, forkJoin, Observable } from 'rxjs';
+import { map } from "rxjs/operators";
 import { Router } from '@angular/router';
-import * as firebase from 'firebase';
 
 @Component({
     selector: 'app-art',
@@ -15,44 +16,49 @@ import * as firebase from 'firebase';
 })
 export class ArtComponent implements OnInit {
 
-    @ViewChildren('imgItem') imageItems: QueryList<ElementRef>;
+    constructor(private appState: AppStateService,
+        private renderer: Renderer2,
+        private db: AngularFireDatabase,
+        private storage: AngularFireStorage,
+        private router: Router) {
+        this.appState.setHeaderState(true);
+    }
 
-    private storage = firebase.storage();
+    @ViewChildren('imgItem') imageItems: QueryList<ElementRef>;
 
     imageList: Array<Object> = [];
     isLoading: boolean = false;
     alert: string = "";
     alertType: string = "";
-
-    constructor(private appState: AppStateService, private renderer: Renderer2, private db: AngularFireDatabase, private router: Router) {
-        this.appState.setHeaderState(true);
-    }
+    urlSubsciptions: Array<Observable<any>> = [];
 
     ngOnInit() {
         if (navigator.onLine) {
             //Get list of images
             this.db.list('/artImages').valueChanges().subscribe((fileList) => {
-                let promises = [];
                 this.isLoading = true;
                 fileList.forEach((file: any) => {
-                    let storageRef = this.storage.ref();
-                    promises.push(storageRef.child(file.thumbPath).getDownloadURL().then((url) => {
-                        Object.assign(file, { thumbUrl: url });
-                    }));
-                    promises.push(storageRef.child(file.filePath).getDownloadURL().then((url) => {
-                        Object.assign(file, { fileUrl: url });
-                    }));
+                    this.urlSubsciptions.push(this.storage.ref(file.thumbPath).getDownloadURL().pipe(
+                        map((url) => {
+                            return Object.assign(file, {thumbUrl: url});
+                        }
+                    )));                    
+                    this.urlSubsciptions.push(this.storage.ref(file.filePath).getDownloadURL().pipe(
+                        map((url) => {
+                            return Object.assign(file, {fileUrl: url});
+                        }
+                    )));
                 });
-                //Set the images once all download urls have been fetched
-                Promise.all(promises).then(() => {
+                forkJoin(this.urlSubsciptions).subscribe((urls) => {
                     this.imageList = fileList;
                     this.appState.setGalleryList(this.imageList);
                     this.isLoading = false;
-                });
+                })
+
             });
         } else {
-            this.alert="You are offline. Please connect to internet";
-            this.alertType="warn";
+            this.alert = "You are offline. Please connect to internet";
+            this.alertType = "warn";
         }
 
     }

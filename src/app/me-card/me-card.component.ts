@@ -3,6 +3,7 @@ import { AppStateService } from '../app-state.service';
 import { Subscription } from 'rxjs';
 import { Router, NavigationStart, NavigationEnd } from '@angular/router';
 import { trigger, style, animate, transition } from '@angular/animations';
+import { AngularFireStorage } from 'angularfire2/storage';
 import { ElasticsearchService } from '../elasticsearch.service';
 import { SearchResult } from '../models/search-result';
 
@@ -20,6 +21,15 @@ import { SearchResult } from '../models/search-result';
   ]
 })
 export class MeCardComponent implements OnInit, OnDestroy {
+
+  constructor(private appState: AppStateService,
+    private router: Router,
+    private el: ElementRef,
+    private renderer: Renderer2,
+    private storage: AngularFireStorage,
+    private elasticsearch: ElasticsearchService) {
+  }
+
   @ViewChildren('navItem') navItems: QueryList<ElementRef>;
   @ViewChildren('searchResult') searchResult: QueryList<ElementRef>;
   @ViewChild('searchInput') searchInput: ElementRef;
@@ -66,13 +76,6 @@ export class MeCardComponent implements OnInit, OnDestroy {
     alt: "My pic 1",
     description: ""
   }];
-
-  constructor(private appState: AppStateService,
-    private router: Router,
-    private el: ElementRef,
-    private renderer: Renderer2,
-    private elasticsearch: ElasticsearchService) {
-  }
 
   ngOnInit() {
 
@@ -226,7 +229,9 @@ export class MeCardComponent implements OnInit, OnDestroy {
           console.log(this.searchResult);
           resBody.hits.hits.forEach(result => {
             if (result._index === "images") {
-              this.searchResults.push(new SearchResult(result._source.title, 'art', result._source.thumbPath, result._source.desc, result._source));
+              this.storage.ref(result._source.thumbPath).getDownloadURL().subscribe((thumbUrl) => {
+                this.searchResults.push(new SearchResult(result._source.title, 'art', thumbUrl, result._source.desc, result._source));
+              });
             }
           });
         }

@@ -439,7 +439,6 @@ h1.name {
     max-width: 55em;
     padding: 20px 0;
     color: #454545;
-    height: 35em;
 }
 
 .search-result-wrapper .initial-message {
@@ -475,7 +474,11 @@ h1.name {
     border-radius: 50%;
     background: #ccc;
     margin: 10px 20px;
+    overflow: hidden;
+    background-repeat: no-repeat;
+    background-size: 100%;
 }
+
 
 .result-name {
     font-size: 1.5em;
