@@ -49,7 +49,7 @@
 }
 
 .home-anchors.active {
-    border: thin solid #2196f3b8;
+    border: thin solid #ccc;
 }
 
 .home-anchors.active .inner-dot {
