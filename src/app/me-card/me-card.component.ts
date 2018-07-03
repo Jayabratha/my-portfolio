@@ -2,7 +2,7 @@ import { Component, AfterViewInit, OnInit, OnDestroy, ElementRef, Renderer2, Vie
 import { AppStateService } from '../app-state.service';
 import { Subscription } from 'rxjs';
 import { Router, NavigationStart, NavigationEnd } from '@angular/router';
-import { trigger, style, animate, transition } from '@angular/animations';
+import { trigger, state, style, animate, transition } from '@angular/animations';
 import { AngularFireStorage } from 'angularfire2/storage';
 import { ElasticsearchService } from '../elasticsearch.service';
 import { SearchResult } from '../models/search-result';
@@ -17,8 +17,7 @@ import { SearchResult } from '../models/search-result';
         style({ opacity: '0', transform: 'translateY(-50px)' }),
         animate('.5s ease-out', style({ opacity: '1', transform: 'translateY(0)' })),
       ]),
-    ]),
-  ]
+    ])]
 })
 export class MeCardComponent implements OnInit, OnDestroy {
 
@@ -191,9 +190,12 @@ export class MeCardComponent implements OnInit, OnDestroy {
     this.showSearch = !this.showSearch;
     if (this.showSearch) {
       this.play = false;
+      this.resultsPage = false;
       this.searchInput.nativeElement.focus();
       this.hideNavItems();
     } else {
+      this.keyword = "";
+      this.searchResults = [];
       setTimeout(() => {
         this.animateNavItems();
       }, 500);
@@ -224,12 +226,11 @@ export class MeCardComponent implements OnInit, OnDestroy {
       this.elasticsearch.search(keyword).subscribe((response) => {
         let resBody = response.json();
         this.searchResults.length = 0;
-        this.loading = false;
         if (resBody.hits.total > 0) {
-          console.log(this.searchResult);
           resBody.hits.hits.forEach(result => {
             if (result._index === "images") {
               this.storage.ref(result._source.thumbPath).getDownloadURL().subscribe((thumbUrl) => {
+                this.loading = false;
                 this.searchResults.push(new SearchResult(result._source.title, 'art', thumbUrl, result._source.desc, result._source));
               });
             }

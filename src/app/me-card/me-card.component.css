@@ -97,6 +97,7 @@
     width: 100%;
     height: 100vh;
     z-index: 2;
+    background: rgba(243, 242, 242, 0.9);
 }
 
 .me-card {
