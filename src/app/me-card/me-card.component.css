@@ -399,40 +399,54 @@ h1.name {
     display: block;
 }
 
-.search-wrapper input {
+.search-input {
     float: right;
-    width: 0;
+    width: 40px;
     padding: 0;
     height: 38px;
-    border: none;
-    background: #f5f4f4;
-    font-size: 1em;
-    font-family: 'Roboto', sans-serif;
-    box-shadow: 0 -10px 25px 0px rgba(0,0,0,0.05) inset;
     -webkit-transition: width 0.5s ease-out;
     -moz-transition: width 0.5s ease-out;
     transition: width 0.5s ease-out;
 }
 
-.search-header .search-wrapper input {
+.search-input input {
+    border: none;
+    height: 100%;
     width: 100%;
-    padding: 0 10px;
+    background: #f5f4f4;
+    box-shadow: 0 -10px 25px 0px rgba(0,0,0,0.05) inset;
+    padding: 0 0 0 40px;
+    opacity: 0;
+    font-size: 1em;
+    font-family: 'Roboto', sans-serif;
+    -webkit-transition: opacity 0.5s ease-out;
+    -moz-transition: opacity 0.5s ease-out;
+    transition: opacity 0.5s ease-out;
+}
+
+.search-header .search-input {
+    width: 100%;
+}
+.search-header .search-input input {
+    opacity: 1;
 }
 
 .search-wrapper button {
     position: absolute;
-    right: 0;
     top: 0;
     border: none;
     height: 38px;
     padding: 0;
     outline: none;
+    z-index: 2;
 }
 
 .search-result-wrapper {
     position: fixed;
     top: 58px;
     z-index: -1;
+    width: 80%;
+    max-width: 55em;
     margin: 0 auto;
     left: 0;
     right: 0;

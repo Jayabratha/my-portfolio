@@ -11,10 +11,13 @@
         <div class="search-wrapper" (clickedOut)="hideSearch($event)">
             <form class="search-form" (ngSubmit)="search(keyword)">
                 <label for="searchTerm">Search</label>
-                <input #searchInput id="searchTerm" name="keyword" type="text" class="search" placeholder="Search" [(ngModel)]="keyword" autocomplete="off" />
-                <button type="button" label="Search" aria-label="Search content" (click)="toggleSearch(); $event.stopPropagation();">
-                    <i class="search-button icon-ios-search"></i>
-                </button>
+                <div class="search-input">
+                    <button type="button" label="Search" aria-label="Search content" (click)="toggleSearch(); $event.stopPropagation();">
+                        <i class="search-button icon-ios-search"></i>
+                    </button>
+                    <input #searchInput id="searchTerm" name="keyword" type="text" class="search" placeholder="Search" [(ngModel)]="keyword"
+                        autocomplete="off" />
+                </div>
             </form>
         </div>
     </div>
@@ -47,7 +50,7 @@
         </div>
         <ul class="search-results">
             <li [@fadeIn]="''" *ngFor="let result of searchResults" tabindex="-1" #searchResult>
-                <div class="search-result">
+                <div class="search-result" (click)="selectResult(result)">
                     <div class="inline-middle result-thumb" [ngStyle]="{ 'background-image': 'url(' + result.thumbLink + ')'}">
                     </div>
                     <div class="inline-middle result-info">

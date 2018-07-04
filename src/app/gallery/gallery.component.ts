@@ -21,7 +21,7 @@ export class GalleryComponent implements OnInit, OnDestroy {
   currentItemTitle: string = "";
   currentItemIndex: number = 0;
   
-  isLoading: boolean = true;
+  loadingGallery: boolean = true;
 
   ngOnInit() {
     this.listSubscription = this.appState.getGalleryList().subscribe((galleryList) => {
@@ -77,7 +77,7 @@ export class GalleryComponent implements OnInit, OnDestroy {
   }
 
   onLoadComplete() {
-    this.isLoading = false;
+    this.loadingGallery = false;
   }
 
   nextImage() {
@@ -101,7 +101,7 @@ export class GalleryComponent implements OnInit, OnDestroy {
   }
 
   changeImage(item) {
-    this.isLoading = true;
+    this.loadingGallery = true;
     this.appState.setGalleryItem(item);
     this.router.navigate(['/art/gallery/' + item.title]);
   }

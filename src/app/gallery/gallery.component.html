@@ -1,8 +1,8 @@
 <div class="gallery" [ngClass]="{'show': show}">
   <div class="current-image">
     <div class="image-container" *ngIf="currentItem">
-      <div class="initial-loader loading-icon animate" [hidden]="!isLoading"></div>
-      <div class="image-wrapper" [hidden]="isLoading">
+      <div class="initial-loader loading-icon animate" [hidden]="!loadingGallery"></div>
+      <div class="image-wrapper" [hidden]="loadingGallery">
         <img [src]="currentItem.fileUrl" alt="{{currentItem.title}}" (load)="onLoadComplete($event)" />
         <div class="image-info-panel">
           <h1>{{currentItem.title}}</h1>

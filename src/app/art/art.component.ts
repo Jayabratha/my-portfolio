@@ -34,9 +34,11 @@ export class ArtComponent implements OnInit {
 
     ngOnInit() {
         if (navigator.onLine) {
+            setTimeout(() => {
+                this.isLoading = true;
+            }, 1500);
             //Get list of images
             this.db.list('/artImages').valueChanges().subscribe((fileList) => {
-                this.isLoading = true;
                 fileList.forEach((file: any) => {
                     this.urlSubsciptions.push(this.storage.ref(file.thumbPath).getDownloadURL().pipe(
                         map((url) => {
@@ -52,7 +54,20 @@ export class ArtComponent implements OnInit {
                 forkJoin(this.urlSubsciptions).subscribe((urls) => {
                     this.imageList = fileList;
                     this.appState.setGalleryList(this.imageList);
-                    this.isLoading = false;
+                    this.trackImageLoad(this.imageList).subscribe((count) => {
+                        console.log(count);
+                        if (count === this.imageList.length) {
+                            this.isLoading = false;
+                            setTimeout(() => {
+                                this.imageItems.forEach((elem, index) => {
+                                    let imageElem = elem.nativeElement;
+                                    setTimeout(() => {
+                                        this.renderer.removeClass(imageElem, 'hide');
+                                    }, index * 150);
+                                });
+                            }, 200);
+                        }
+                    });
                 })
 
             });
@@ -63,15 +78,13 @@ export class ArtComponent implements OnInit {
 
     }
 
-    ngAfterViewInit() {
-        let i = 1;
-        let imagesCount = 0;
-        let loadedImagesCount: Subject<number> = new Subject<number>();
+    trackImageLoad(imageList) {
+        let i = 1, imagesCount = imageList.length,
+         loadedImagesCount: Subject<number> = new Subject<number>();
 
         this.imageItems.changes.subscribe((imageItems) => {
-            imagesCount = this.imageList.length;
             if (imageItems.length === imagesCount) {
-                imageItems.forEach((elem, index) => {
+                imageItems.forEach((elem) => {
                     let imageElem = elem.nativeElement;
                     if (imageElem.complete) {
                         loadedImagesCount.next(i++);
@@ -84,19 +97,7 @@ export class ArtComponent implements OnInit {
             }
         });
 
-        loadedImagesCount.asObservable().subscribe((count) => {
-            if (count === imagesCount) {
-                this.isLoading = false;
-                setTimeout(() => {
-                    this.imageItems.forEach((elem, index) => {
-                        let imageElem = elem.nativeElement;
-                        setTimeout(() => {
-                            this.renderer.removeClass(imageElem, 'hide');
-                        }, index * 150);
-                    });
-                }, 200);
-            }
-        });
+        return loadedImagesCount.asObservable();
     }
 
     showInGallery(item) {

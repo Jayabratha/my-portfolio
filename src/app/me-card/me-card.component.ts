@@ -239,4 +239,16 @@ export class MeCardComponent implements OnInit, OnDestroy {
       });
     }
   }
+
+  selectResult(result) {
+    this.searchResults = [];
+    switch (result.type) {
+      case 'art': {
+        this.router.navigate(['/art']);
+        setTimeout(() => {
+          this.router.navigate(['/art/gallery/' + result.name]);
+        }, 1000);
+      }
+    }
+  }
 }
