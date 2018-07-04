@@ -55,7 +55,6 @@ export class ArtComponent implements OnInit {
                     this.imageList = fileList;
                     this.appState.setGalleryList(this.imageList);
                     this.trackImageLoad(this.imageList).subscribe((count) => {
-                        console.log(count);
                         if (count === this.imageList.length) {
                             this.isLoading = false;
                             setTimeout(() => {
