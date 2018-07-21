@@ -35,21 +35,23 @@ export class ArtComponent implements OnInit {
     ngOnInit() {
         if (navigator.onLine) {
             setTimeout(() => {
-                this.isLoading = true;
+                if (!this.imageItems.length) {
+                    this.isLoading = true;
+                }
             }, 1500);
             //Get list of images
             this.db.list('/artImages').valueChanges().subscribe((fileList) => {
                 fileList.forEach((file: any) => {
                     this.urlSubsciptions.push(this.storage.ref(file.thumbPath).getDownloadURL().pipe(
                         map((url) => {
-                            return Object.assign(file, {thumbUrl: url});
+                            return Object.assign(file, { thumbUrl: url });
                         }
-                    )));                    
+                        )));
                     this.urlSubsciptions.push(this.storage.ref(file.filePath).getDownloadURL().pipe(
                         map((url) => {
-                            return Object.assign(file, {fileUrl: url});
+                            return Object.assign(file, { fileUrl: url });
                         }
-                    )));
+                        )));
                 });
                 forkJoin(this.urlSubsciptions).subscribe((urls) => {
                     this.imageList = fileList;
@@ -79,7 +81,7 @@ export class ArtComponent implements OnInit {
 
     trackImageLoad(imageList) {
         let i = 1, imagesCount = imageList.length,
-         loadedImagesCount: Subject<number> = new Subject<number>();
+            loadedImagesCount: Subject<number> = new Subject<number>();
 
         this.imageItems.changes.subscribe((imageItems) => {
             if (imageItems.length === imagesCount) {
