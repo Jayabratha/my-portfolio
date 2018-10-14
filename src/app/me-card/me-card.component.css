@@ -108,10 +108,10 @@
     left: 0;
     right: 0;
     background: linear-gradient(140deg, #ff9800, #f31b48, #940590, #0ab779);
-    transition: transform 0.5s ease-out, width 0.5s ease-out; 
+    transition: transform 0.5s ease-out, width 0.5s ease-out, opacity 0.5s ease-out; 
 }
 
-.dp.my-dp {
+.my-dp {
     position: absolute;
     top: 0;
     height: 19.3em;
@@ -258,9 +258,9 @@ h1.name {
 .search-header .site-nav {
     display: none;
 }
-.fix-header .site-nav {
+.fix-header .site-nav,
+.show-menu .site-nav {
     position: fixed;
-    background: linear-gradient(140deg, #ff9800, #f31b48, #940590, #0ab779);
     top: 58px;
     height: 0;
     margin: 0 auto;
@@ -270,7 +270,17 @@ h1.name {
     transition: height 0.5s;
     z-index: 2;
 }
-.fix-header ul.site-nav-list {
+
+.show-menu .site-nav {
+    display: block;
+}
+
+.fix-header .site-nav {
+    background: linear-gradient(140deg, #ff9800, #f31b48, #940590, #0ab779);
+}
+
+.fix-header ul.site-nav-list,
+.show-menu ul.site-nav-list {
     position: relative;
     width: 100%;
     min-height: 5em;
@@ -278,7 +288,9 @@ h1.name {
     padding: 3em 0;
     opacity: 0;
 }
-.fix-header ul.site-nav-list li {
+
+.fix-header ul.site-nav-list li,
+.show-menu ul.site-nav-list li {
     font-size: 2.5em;
     float: none;
     text-transform: none;
@@ -310,18 +322,18 @@ h1.name {
 }
 /* Show Menu Styles - End */
 
-.fix-header.show-menu .menu-icon {
+.show-menu .menu-icon {
     opacity: 0;
     left: -20px;
 }
-.fix-header.show-menu .menu-icon-top {
+.show-menu .menu-icon-top {
     top: 19px;
     -webkit-transform: rotate(135deg);
     -moz-transform: rotate(135deg);
     -o-transform: rotate(135deg);
     transform: rotate(135deg);
 }
-.fix-header.show-menu .menu-icon-bottom {
+.show-menu .menu-icon-bottom {
     top: 19px;
     -webkit-transform: rotate(-135deg);
     -moz-transform: rotate(-135deg);
@@ -513,11 +525,11 @@ h1.name {
         padding: 1px 3px;
     }
     .logo-section, .menu-icon, .menu-icon-top, .menu-icon-bottom{
-        background: #FFFFFF;
+        background-color: #FFFFFF;
     }
     .logo-section {
         margin-left: 0;
-        transition: background 0.5s;
+        transition: background-color 0.5s;
     }
     .search-wrapper button {
         display: none;
@@ -612,7 +624,8 @@ h1.name {
 
     /* Initial Header Styles - Start */
     .initial-header .me-card {
-        transform: translateY(153.5vw);
+        transform: translateY(40px);
+        opacity: 0;      
     }
     .initial-header .my-card-wrapper {
         position: relative;
@@ -626,9 +639,15 @@ h1.name {
     }
     /* Initial Header Styles - End */
 
-    .show-menu .my-card-wrapper {
-        transition: margin-top 0.5s;
+    /* Show Menu Styles - Start */
+    .show-menu .my-dp {
+        opacity: 0;
     }
+    .show-menu .my-card-wrapper {
+        opacity: 0;
+        transition: opacity 0.2s ease-out;
+    }
+    /* Show Menu Styles - End */
 
     .dp.my-dp {
         height: 94vw;

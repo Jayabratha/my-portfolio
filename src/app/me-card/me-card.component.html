@@ -1,4 +1,4 @@
-<div class="main-header" [ngClass]="{'fix-header': isHeaderFix || showMenu, 'initial-header': isInitial, 'show-menu': showMenu, 'search-header': showSearch }">
+<div class="main-header" [ngClass]="{'fix-header': isHeaderFix, 'initial-header': isInitial, 'show-menu': showMenu, 'search-header': showSearch }">
     <div class="logo-menu center-stage">
         <div class="menu-section" (click)="toggleMenu(); $event.stopPropagation();">
             <div class="menu-icon-top"></div>
@@ -75,4 +75,4 @@
         <div class="nav-highlighter" [ngClass]="activeNav"></div>
     </div>
 </div>
-<div class="menu-background" [hidden]="!showMenu && !showSearch"></div>
+<div class="menu-background" [hidden]="!(isHeaderFix && showMenu) && !showSearch"></div>

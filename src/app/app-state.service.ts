@@ -5,7 +5,7 @@ import { Subject, BehaviorSubject, Observable } from 'rxjs';
 export class AppStateService {
   private galleryList: BehaviorSubject<Array<any>> = new BehaviorSubject<Array<any>>([]);
   private galleryItem: BehaviorSubject<any> = new BehaviorSubject<any>({});
-  private headerSubject: Subject<boolean> = new Subject<boolean>();
+  private headerSubject: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
 
   setHeaderState(isFix: boolean): void {
     this.headerSubject.next(isFix);

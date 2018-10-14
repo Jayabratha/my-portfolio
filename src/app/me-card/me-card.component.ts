@@ -83,15 +83,15 @@ export class MeCardComponent implements OnInit, OnDestroy {
     if (deviceWidth < 650) {
       this.isMobile = true;
       this.requiredPadding = -320;
-      console.log("Mobile device", deviceWidth);
     }
 
     this.subscription = this.appState.getHeaderState().subscribe(
       (isHeaderFix: boolean) => {
         this.isHeaderFix = isHeaderFix;
+      
         if (isHeaderFix) {
           this.play = false;
-          this.hideNavItems();
+          this.hideNavItems();       
         } else {
           this.play = true;
           if (!this.isInitial) {
@@ -155,7 +155,9 @@ export class MeCardComponent implements OnInit, OnDestroy {
     if (isReady) {
       this.isInitial = false;
       //Animate the nav bar
-      this.animateNavItems();
+      if (!this.isMobile && this.router.url === '/home') {
+        this.animateNavItems();
+      }    
     }
   }
 
@@ -172,7 +174,6 @@ export class MeCardComponent implements OnInit, OnDestroy {
     if (state === 'fix') {
       this.appState.setHeaderState(true);
     } else if (state === 'scroll' && this.isHeaderFix) {
-      console.log("Scrollable");
       this.appState.setHeaderState(false);
     }
   }
@@ -192,13 +193,9 @@ export class MeCardComponent implements OnInit, OnDestroy {
       this.play = false;
       this.resultsPage = false;
       this.searchInput.nativeElement.focus();
-      this.hideNavItems();
     } else {
       this.keyword = "";
       this.searchResults = [];
-      setTimeout(() => {
-        this.animateNavItems();
-      }, 500);
     }
   }
 
@@ -211,11 +208,6 @@ export class MeCardComponent implements OnInit, OnDestroy {
       this.showSearch = false;
       this.searchResults = [];
       this.keyword = "";
-    }
-    if (this.router.url === '/home') {
-      setTimeout(() => {
-        this.animateNavItems();
-      }, 500);
     }
   }
 
