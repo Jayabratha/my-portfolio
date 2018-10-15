@@ -5,7 +5,8 @@ import { Router, NavigationStart, NavigationEnd } from '@angular/router';
 import { trigger, state, style, animate, transition } from '@angular/animations';
 import { AngularFireStorage } from 'angularfire2/storage';
 import { ElasticsearchService } from '../elasticsearch.service';
-import { SearchResult } from '../models/search-result';
+import { SearchResult } from '../models/search-result.model';
+import { NavItem } from '../models/nav-item.model';
 
 @Component({
   selector: 'me-card',
@@ -29,7 +30,7 @@ export class MeCardComponent implements OnInit, OnDestroy {
     private elasticsearch: ElasticsearchService) {
   }
 
-  @ViewChildren('navItem') navItems: QueryList<ElementRef>;
+  //@ViewChildren('navItem') navItems: QueryList<ElementRef>;
   @ViewChildren('searchResult') searchResult: QueryList<ElementRef>;
   @ViewChild('searchInput') searchInput: ElementRef;
 
@@ -49,6 +50,13 @@ export class MeCardComponent implements OnInit, OnDestroy {
   searchResults: Array<any> = [];
   resultsPage: boolean = false;
   loading: boolean = false;
+  navItems: Array<NavItem> = [
+    new NavItem('art', 'Art', '/art', false),
+    new NavItem('projects', 'Projects', '/projects', false),
+    new NavItem('blog', 'Blog', '/blog', false),
+    new NavItem('about', 'About', '/about', false),
+    new NavItem('contact', 'Contact', '/contact', false)
+  ];
 
   slideList: Object[] = [{
     id: "slide2",
@@ -77,7 +85,6 @@ export class MeCardComponent implements OnInit, OnDestroy {
   }];
 
   ngOnInit() {
-
     let deviceWidth = window.screen.width;
 
     if (deviceWidth < 650) {
@@ -133,9 +140,9 @@ export class MeCardComponent implements OnInit, OnDestroy {
 
   animateNavItems() {
     if (this.navItems) {
-      this.navItems.forEach((elem, index) => {
+      this.navItems.forEach((navItem, index) => {
         setTimeout(() => {
-          this.renderer.addClass(elem.nativeElement, 'show');
+          navItem.visible = true;
         }, index * 150);
       });
     }
@@ -143,9 +150,9 @@ export class MeCardComponent implements OnInit, OnDestroy {
 
   hideNavItems() {
     if (this.navItems) {
-      this.navItems.forEach((elem, index) => {
+      this.navItems.forEach((navItem, index) => {
         setTimeout(() => {
-          this.renderer.removeClass(elem.nativeElement, 'show');
+          navItem.visible = false;
         }, index * 150);
       });
     }

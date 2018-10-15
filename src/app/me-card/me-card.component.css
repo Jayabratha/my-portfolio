@@ -261,7 +261,7 @@ h1.name {
 .fix-header .site-nav,
 .show-menu .site-nav {
     position: fixed;
-    top: 58px;
+    top: 59px;
     height: 0;
     margin: 0 auto;
     left: 0;
@@ -520,7 +520,7 @@ h1.name {
 /* Mobile Styles - Start */
 @media (max-width: 650px) {
     .logo-menu {
-        margin: 9px auto;
+        margin: 2.75vw auto;
         z-index: 7;
         padding: 1px 3px;
     }
@@ -549,13 +549,10 @@ h1.name {
     }
     .main-header {
         height: 162vw;
-        padding: 0.5em 0;
-        border-bottom: 10px solid #FFFFFF;
-        overflow: hidden;
     }
     .me-card-wrapper {
-        margin-top: 0;
-        height: 100%;
+        margin: 2vw;
+        height: 157vw;
     }
     .my-card-wrapper {
         position: absolute;

@@ -64,11 +64,7 @@
     </div>
     <nav class="site-nav center-stage absolute-bottom" (clickedOut)="hideMenu()">
         <ul class="site-nav-list">
-            <li #navItem (mouseenter)="activeNav='art'" (mouseleave)="activeNav=''" routerLink="/art" (click)="showMenu = false;">Art</li>
-            <li #navItem (mouseenter)="activeNav='projects'" (mouseleave)="activeNav=''" routerLink="/projects" (click)="showMenu = false;">Projects</li>
-            <li #navItem (mouseenter)="activeNav='blog'" (mouseleave)="activeNav=''" routerLink="/blog" (click)="showMenu = false;">Blog</li>
-            <li #navItem (mouseenter)="activeNav='about'" (mouseleave)="activeNav=''" routerLink="/about" (click)="showMenu = false;">About</li>
-            <li #navItem (mouseenter)="activeNav='contact'" (mouseleave)="activeNav=''" routerLink="/contact" (click)="showMenu = false;">Contact</li>
+            <li *ngFor="let navItem of navItems" [class.show]="navItem.visible" (mouseenter)="activeNav=navItem.id" (mouseleave)="activeNav=''" [routerLink]="navItem.link" (click)="showMenu = false;">{{navItem.label}}</li>
         </ul>
     </nav>
     <div class="nav-highlighter-wrapper center-stage absolute-bottom">
