@@ -1,12 +1,17 @@
-import { Component, AfterViewInit, OnInit, OnDestroy, ElementRef, Renderer2, ViewChild, ViewChildren, QueryList } from '@angular/core';
+import { Component, OnInit, OnDestroy, ElementRef, ViewChild, ViewChildren, QueryList } from '@angular/core';
 import { AppStateService } from '../app-state.service';
 import { Subscription } from 'rxjs';
 import { Router, NavigationStart, NavigationEnd } from '@angular/router';
 import { trigger, state, style, animate, transition } from '@angular/animations';
 import { AngularFireStorage } from 'angularfire2/storage';
+import { Store } from '@ngrx/store';
+import * as HeaderActions from '../actions/header.actions';
+
 import { ElasticsearchService } from '../elasticsearch.service';
 import { SearchResult } from '../models/search-result.model';
 import { NavItem } from '../models/nav-item.model';
+import { AppState } from '../app.state';
+import { HeaderState } from '../models/header-state.enum';
 
 @Component({
   selector: 'me-card',
@@ -24,13 +29,11 @@ export class MeCardComponent implements OnInit, OnDestroy {
 
   constructor(private appState: AppStateService,
     private router: Router,
-    private el: ElementRef,
-    private renderer: Renderer2,
+    private store: Store<AppState>,
     private storage: AngularFireStorage,
     private elasticsearch: ElasticsearchService) {
   }
 
-  //@ViewChildren('navItem') navItems: QueryList<ElementRef>;
   @ViewChildren('searchResult') searchResult: QueryList<ElementRef>;
   @ViewChild('searchInput') searchInput: ElementRef;
 
@@ -180,6 +183,7 @@ export class MeCardComponent implements OnInit, OnDestroy {
   headerStateChange(state: string) {
     if (state === 'fix') {
       this.appState.setHeaderState(true);
+      this.store.dispatch(new HeaderActions.UpdateState(HeaderState.Fixed));
     } else if (state === 'scroll' && this.isHeaderFix) {
       this.appState.setHeaderState(false);
     }

@@ -2,7 +2,11 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { AppStateService } from './app-state.service';
 import { ElasticsearchService } from './elasticsearch.service';
-import { Subscription } from 'rxjs';
+import { Subscription, Observable } from 'rxjs';
+import { Store } from '@ngrx/store';
+import { AppState } from './app.state';
+import { Header } from './models/header.model';
+import { HeaderState } from './models/header-state.enum';
 
 @Component({
   selector: 'app-root',
@@ -10,21 +14,19 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./app.component.css', './common.styles.css'],
   providers: [AppStateService, ElasticsearchService]
 })
-export class AppComponent  implements OnInit, OnDestroy  {
+export class AppComponent implements OnInit {
 
   subscription: Subscription;
   isHeaderFix: boolean = false;
+  headerState: Header;
 
-  constructor(private appState: AppStateService) {}
-
-  ngOnInit() {
-    this.subscription = this.appState.getHeaderState().subscribe(
-      (isHeaderFix: boolean) => {
-        this.isHeaderFix = isHeaderFix;
-      });
+  constructor(private store: Store<AppState>) {
   }
 
-  ngOnDestroy() {
-    this.subscription.unsubscribe();
+  ngOnInit() {
+    this.store.select('header').subscribe((headerState: Header) => {
+      this.headerState = headerState;
+      console.log(this.headerState);
+    })
   }
 }

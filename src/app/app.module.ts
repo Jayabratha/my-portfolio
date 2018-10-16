@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
+import { StoreModule } from '@ngrx/store';
 import { Routes, RouterModule } from '@angular/router';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
@@ -23,11 +24,13 @@ import { BlogComponent } from './blog/blog.component';
 import { ClickedOutDirective } from './clicked-out.directive';
 import { GalleryComponent } from './gallery/gallery.component';
 
+import { headerReducer } from './reducers/header.reducer';
+
 const appRoutes: Routes = [
   { path: 'home', component: HomeComponent },
-  // { path: 'art', loadChildren: './art/art.module#ArtModule'},
-  { path: 'art',
-   component: ArtComponent,
+  {
+    path: 'art',
+    component: ArtComponent,
     children: [
       {
         path: 'gallery/:title',
@@ -67,6 +70,9 @@ const appRoutes: Routes = [
     FormsModule,
     HttpModule,
     BrowserAnimationsModule,
+    StoreModule.forRoot({
+      header: headerReducer
+    }),
     RouterModule.forRoot(appRoutes),
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireDatabaseModule,
