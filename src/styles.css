@@ -1,24 +1,24 @@
 /* You can add global styles to this file, and also import other style files */
-@font-face{
+
+@font-face {
     font-family: "Playfair Display";
-    src: url("assets/fonts/PlayfairDisplay-Regular.eot"),
-         url("assets/fonts/PlayfairDisplay-Regular.ttf") format('truetype');
+    src: url("assets/fonts/PlayfairDisplay-Regular.eot"), url("assets/fonts/PlayfairDisplay-Regular.ttf") format('truetype');
     font-weight: 400;
 }
 
-@font-face{
+@font-face {
     font-family: "Playfair Display";
-    src: url("assets/fonts/PlayfairDisplay-Bold.eot"),
-         url("assets/fonts/PlayfairDisplay-Bold.ttf") format('truetype');
+    src: url("assets/fonts/PlayfairDisplay-Bold.eot"), url("assets/fonts/PlayfairDisplay-Bold.ttf") format('truetype');
     font-weight: 700;
 }
 
-@font-face{
+@font-face {
     font-family: "Roboto";
     src: url("assets/fonts/Roboto-Thin.ttf") format('truetype');
     font-weight: 100;
 }
-@font-face{
+
+@font-face {
     font-family: "Roboto";
     src: url("assets/fonts/Roboto-Light.ttf") format('truetype');
     font-weight: 200;
@@ -33,23 +33,24 @@ body {
     padding: 0;
     font-family: 'Playfair Display', serif;
 }
+
 body::-webkit-scrollbar {
     width: 6px;
-	background-color: transparent;
-}
- 
-body::-webkit-scrollbar-track {
-	background-color: transparent;
+    background-color: transparent;
 }
 
-body::-webkit-scrollbar-thumb
-{
-	background-color: #ccc;
+body::-webkit-scrollbar-track {
+    background-color: transparent;
+}
+
+body::-webkit-scrollbar-thumb {
+    background-color: #ccc;
 }
 
 .main-content section {
     min-height: 400px;
 }
+
 .loading-icon {
     position: absolute;
     font-size: 3em;
@@ -64,19 +65,21 @@ body::-webkit-scrollbar-thumb
     border-radius: 50%;
     opacity: 0;
 }
+
 .loading-icon.animate {
     opacity: 1;
     animation-name: spin;
     animation-duration: 1s;
     animation-iteration-count: infinite;
-    animation-timing-function: cubic-bezier(.47,.37,.3,.93);
+    animation-timing-function: cubic-bezier(.47, .37, .3, .93);
 }
+
 @keyframes spin {
     from {
-        transform:rotate(0deg);
+        transform: rotate(0deg);
     }
     to {
-        transform:rotate(360deg);
+        transform: rotate(360deg);
     }
 }
 
@@ -86,6 +89,7 @@ body::-webkit-scrollbar-thumb
 }
 
 /* Left Right Arrow Styles - Start */
+
 .arrow-btn {
     position: absolute;
     top: 0;
@@ -125,10 +129,11 @@ body::-webkit-scrollbar-thumb
 .arrow-btn.right i {
     right: 0;
 }
+
 /* Left Right Arrow Styles - End */
 
-
 /* Tab Styles - Start */
+
 @media (max-width: 950px) {
     body {
         font-size: 13px;

@@ -1,17 +1,19 @@
-import { Component, OnInit, OnDestroy, ElementRef, ViewChild, ViewChildren, QueryList } from '@angular/core';
+import { Component, Input, OnInit, OnDestroy, ElementRef, ViewChild, ViewChildren, QueryList } from '@angular/core';
 import { AppStateService } from '../app-state.service';
 import { Subscription } from 'rxjs';
 import { Router, NavigationStart, NavigationEnd } from '@angular/router';
 import { trigger, state, style, animate, transition } from '@angular/animations';
 import { AngularFireStorage } from 'angularfire2/storage';
-import { Store } from '@ngrx/store';
-import * as HeaderActions from '../actions/header.actions';
 
 import { ElasticsearchService } from '../elasticsearch.service';
 import { SearchResult } from '../models/search-result.model';
 import { NavItem } from '../models/nav-item.model';
+
+import { Store } from '@ngrx/store';
 import { AppState } from '../app.state';
+import { Header } from '../models/header.model';
 import { HeaderState } from '../models/header-state.enum';
+import * as HeaderActions from '../actions/header.actions';
 
 @Component({
   selector: 'me-card',
@@ -37,10 +39,10 @@ export class MeCardComponent implements OnInit, OnDestroy {
   @ViewChildren('searchResult') searchResult: QueryList<ElementRef>;
   @ViewChild('searchInput') searchInput: ElementRef;
 
-  isInitial: boolean = true;
+  HEADER_STATE = HeaderState;
+  headerState: Header;
   showMenu: boolean = false;
   showSearch: boolean = false;
-  isHeaderFix: boolean;
   activeNav: string = "";
   subscription: Subscription;
   activateScroll: boolean = true;
@@ -53,6 +55,7 @@ export class MeCardComponent implements OnInit, OnDestroy {
   searchResults: Array<any> = [];
   resultsPage: boolean = false;
   loading: boolean = false;
+
   navItems: Array<NavItem> = [
     new NavItem('art', 'Art', '/art', false),
     new NavItem('projects', 'Projects', '/projects', false),
@@ -95,21 +98,26 @@ export class MeCardComponent implements OnInit, OnDestroy {
       this.requiredPadding = -320;
     }
 
-    this.subscription = this.appState.getHeaderState().subscribe(
-      (isHeaderFix: boolean) => {
-        this.isHeaderFix = isHeaderFix;
-      
-        if (isHeaderFix) {
-          this.play = false;
-          this.hideNavItems();       
-        } else {
-          this.play = true;
-          if (!this.isInitial) {
-            this.animateNavItems();
-          }
-        }
+    this.store.select('header').subscribe((headerState: Header) => {
+      this.headerState = headerState;
+      this.showMenu = this.headerState.showMenu;
+      this.showSearch = this.headerState.showSearch;
+
+      if (this.showMenu) {
+        this.animateNavItems();
+      } else {
+        this.hideNavItems();
       }
-    );
+
+      if (this.showSearch) {
+        this.play = false;
+        this.resultsPage = false;
+        this.searchInput.nativeElement.focus();
+      } else {
+        this.keyword = "";
+        this.searchResults = [];
+      }
+    });
 
     //Check ElasticSearch Server
     this.elasticsearch.isAvailable().subscribe(response => {
@@ -125,7 +133,6 @@ export class MeCardComponent implements OnInit, OnDestroy {
             this.activateScroll = true;
           } else {
             this.activateScroll = false;
-            this.isInitial = false;
           }
           // Prevent auto position of scroll on page refresh instead keep on top
           window.addEventListener("beforeunload", (event) => {
@@ -142,32 +149,26 @@ export class MeCardComponent implements OnInit, OnDestroy {
   }
 
   animateNavItems() {
-    if (this.navItems) {
-      this.navItems.forEach((navItem, index) => {
-        setTimeout(() => {
-          navItem.visible = true;
-        }, index * 150);
-      });
-    }
+    this.navItems.forEach((navItem, index) => {
+      setTimeout(() => {
+        navItem.visible = true;
+      }, index * 150);
+    });
   }
 
   hideNavItems() {
-    if (this.navItems) {
-      this.navItems.forEach((navItem, index) => {
-        setTimeout(() => {
-          navItem.visible = false;
-        }, index * 150);
-      });
-    }
+    this.navItems.forEach((navItem, index) => {
+      setTimeout(() => {
+        navItem.visible = false;
+      }, index * 150);
+    });
   }
 
   onCarouselReady(isReady) {
     if (isReady) {
-      this.isInitial = false;
-      //Animate the nav bar
-      if (!this.isMobile && this.router.url === '/home') {
-        this.animateNavItems();
-      }    
+      if (this.router.url === '/home' && this.headerState.state !== HeaderState.Fixed) {
+        this.store.dispatch(new HeaderActions.UpdateState(HeaderState.Home));
+      }
     }
   }
 
@@ -175,50 +176,35 @@ export class MeCardComponent implements OnInit, OnDestroy {
     this.carouselLoadProgress = progress;
   }
 
-  ngOnDestroy() {
-    // prevent memory leak when component destroyed
-    this.subscription.unsubscribe();
-  }
-
   headerStateChange(state: string) {
-    if (state === 'fix') {
-      this.appState.setHeaderState(true);
+    if (state === 'fix' && this.headerState.state === this.HEADER_STATE.Home) {
       this.store.dispatch(new HeaderActions.UpdateState(HeaderState.Fixed));
-    } else if (state === 'scroll' && this.isHeaderFix) {
-      this.appState.setHeaderState(false);
+    } else if (state === 'scroll' && this.headerState.state === this.HEADER_STATE.Fixed) {
+      this.store.dispatch(new HeaderActions.UpdateState(HeaderState.Home));
     }
   }
 
   toggleMenu() {
-    this.showMenu = !this.showMenu;
-    if (this.showMenu) {
-      this.animateNavItems();
-    } else {
-      this.hideNavItems();
-    }
+    this.store.dispatch(new HeaderActions.ToggleMenu(!this.showMenu));
   }
 
   toggleSearch() {
-    this.showSearch = !this.showSearch;
-    if (this.showSearch) {
-      this.play = false;
-      this.resultsPage = false;
-      this.searchInput.nativeElement.focus();
-    } else {
-      this.keyword = "";
-      this.searchResults = [];
-    }
+    if (this.showMenu) {
+      this.hideMenu();
+    }  
+    this.store.dispatch(new HeaderActions.ToggleSearch(!this.showSearch));
   }
 
   hideMenu() {
-    this.showMenu = false;
+    this.store.dispatch(new HeaderActions.ToggleMenu(false));
   }
 
   hideSearch(targetElem) {
-    if (!targetElem.classList.contains('search-result')) {
-      this.showSearch = false;
-      this.searchResults = [];
-      this.keyword = "";
+    if (this.showSearch && this.headerState.state === HeaderState.Home) {
+      this.store.dispatch(new HeaderActions.ToggleMenu(true));
+    }
+    if (!targetElem.classList.contains('search-result') && this.headerState.showSearch) {
+      this.store.dispatch(new HeaderActions.ToggleSearch(false));
     }
   }
 
@@ -253,5 +239,8 @@ export class MeCardComponent implements OnInit, OnDestroy {
         }, 1000);
       }
     }
+  }
+
+  ngOnDestroy() {
   }
 }

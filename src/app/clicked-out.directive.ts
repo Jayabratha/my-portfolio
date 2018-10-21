@@ -1,4 +1,4 @@
-import { Directive, ElementRef, Output, EventEmitter, HostListener} from '@angular/core';
+import { Directive, ElementRef, Output, EventEmitter, HostListener } from '@angular/core';
 
 @Directive({
   selector: '[clickedOut]'
@@ -12,11 +12,11 @@ export class ClickedOutDirective {
 
   @HostListener('document:click', ['$event', '$event.target'])
   public onClick(event, targetElement) {
-      const clickedInside = this.elemRef.nativeElement.contains(targetElement);
-      if (!clickedInside) {
-          this.clickedOut.emit(targetElement);
-      }
-      event.stopPropagation();
+    const clickedInside = this.elemRef.nativeElement.contains(targetElement);
+    if (!clickedInside && !targetElement.classList.contains('home-anchors')) {
+      this.clickedOut.emit(targetElement);
+    }
+    event.stopPropagation();
   }
 
 }

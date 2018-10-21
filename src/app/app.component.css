@@ -2,18 +2,18 @@ section.background {
     position: absolute;
     background: #fafafa;
     width: 100%;
-    min-height: 100%;
+    min-height: 110vh;
     margin: 0;
     overflow: hidden;
 }
 
-.main-content {
+/* .main-content {
     margin-bottom: 15em;
 }
 
 .main-content.fixed-header {
     min-height: 50em;
-}
+} */
 
 .js-logo {
     position: relative;

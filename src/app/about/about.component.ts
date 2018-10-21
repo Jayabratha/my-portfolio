@@ -1,6 +1,12 @@
-import { Component, ViewChildren, QueryList, ElementRef, Renderer2 } from '@angular/core';
+import { Component, ViewChildren, QueryList, ElementRef, Renderer2, OnInit } from '@angular/core';
 import { AppStateService } from '../app-state.service';
 import { routeAnimation } from '../animations/animations';
+
+import { Store } from '@ngrx/store';
+import { AppState } from '../app.state';
+import { Header } from '../models/header.model';
+import { HeaderState } from '../models/header-state.enum';
+import * as HeaderActions from '../actions/header.actions';
 
 @Component({
   selector: 'app-about',
@@ -9,11 +15,17 @@ import { routeAnimation } from '../animations/animations';
   animations: [routeAnimation()],
   host: { '[@routeAnimation]': '' }
 })
-export class AboutComponent {
+export class AboutComponent implements OnInit {
   @ViewChildren('skillItem') skillItems: QueryList<ElementRef>;
 
-  constructor(private appState: AppStateService, private renderer: Renderer2) {
-    this.appState.setHeaderState(true);
+  constructor(
+    private store: Store<AppState>,
+    private renderer: Renderer2) {
+  }
+
+  ngOnInit() {
+    this.store.dispatch(new HeaderActions.UpdateState(HeaderState.Fixed));
+    this.store.dispatch(new HeaderActions.ToggleMenu(false));
   }
 
   animateSkills() {
@@ -23,7 +35,7 @@ export class AboutComponent {
           setTimeout(() => {
             this.renderer.removeClass(elem.nativeElement, 'hide');
           }, index * 150);
-        });      
+        });
       }, 500);
     }
   }

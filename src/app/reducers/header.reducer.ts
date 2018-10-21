@@ -10,7 +10,7 @@ const initialHeader: Header = {
 }
 
 export function headerReducer(headerState: Header = initialHeader, action: HeaderActions.Actions) {
-    console.log("Action Received", headerState, action);
+    console.log(headerState, action);
     switch (action.type) {
         case HeaderActions.UPDATE_STATE:
             return { ...headerState, state: action.payload };

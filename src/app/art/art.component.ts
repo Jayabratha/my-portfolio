@@ -7,6 +7,12 @@ import { Subject, forkJoin, Observable } from 'rxjs';
 import { map } from "rxjs/operators";
 import { Router } from '@angular/router';
 
+import { Store } from '@ngrx/store';
+import { AppState } from '../app.state';
+import { Header } from '../models/header.model';
+import { HeaderState } from '../models/header-state.enum';
+import * as HeaderActions from '../actions/header.actions';
+
 @Component({
     selector: 'app-art',
     templateUrl: './art.component.html',
@@ -16,12 +22,13 @@ import { Router } from '@angular/router';
 })
 export class ArtComponent implements OnInit {
 
-    constructor(private appState: AppStateService,
+    constructor(
+        private store: Store<AppState>,
+        private appState: AppStateService,
         private renderer: Renderer2,
         private db: AngularFireDatabase,
         private storage: AngularFireStorage,
         private router: Router) {
-        this.appState.setHeaderState(true);
     }
 
     @ViewChildren('imgItem') imageItems: QueryList<ElementRef>;
@@ -33,6 +40,8 @@ export class ArtComponent implements OnInit {
     urlSubsciptions: Array<Observable<any>> = [];
 
     ngOnInit() {
+        this.store.dispatch(new HeaderActions.UpdateState(HeaderState.Fixed));
+        this.store.dispatch(new HeaderActions.ToggleMenu(false));
         if (navigator.onLine) {
             setTimeout(() => {
                 if (!this.imageItems.length) {

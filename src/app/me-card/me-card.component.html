@@ -1,4 +1,4 @@
-<div class="main-header" [ngClass]="{'fix-header': isHeaderFix, 'initial-header': isInitial, 'show-menu': showMenu, 'search-header': showSearch }">
+<div class="main-header" [ngClass]="{'fix-header': headerState.state === HEADER_STATE.Fixed, 'initial-header': headerState.state === HEADER_STATE.Initial, 'show-menu': headerState.showMenu, 'search-header': headerState.showSearch, 'mobile': isMobile }">
     <div class="logo-menu center-stage">
         <div class="menu-section" (click)="toggleMenu(); $event.stopPropagation();">
             <div class="menu-icon-top"></div>
@@ -29,8 +29,8 @@
             <span>Hello there!</span>
         </div>
     </section>
-    <section class="me-card-wrapper center-stage" appJsOnscroll [padding]=requiredPadding [activateScroll]="activateScroll" (onStateChange)="headerStateChange($event)">
-        <div class="me-card" [style.width]="carouselLoadProgress + '%'" [attr.aria-hidden]="isHeaderFix || showMenu || showSearch">
+    <section class="me-card-wrapper center-stage" appJsOnscroll [padding]="requiredPadding" [activateScroll]="activateScroll" (onStateChange)="headerStateChange($event)">
+        <div class="me-card" [style.width]="carouselLoadProgress + '%'">
             <div class="dp my-dp">
                 <app-js-carousel [slideItems]=slideList [play]=play (carouselReady)="onCarouselReady($event)" (carouselLoading)="onCarouselLoadProgress($event)"></app-js-carousel>
             </div>
@@ -44,7 +44,7 @@
         </div>
     </section>
     <div class="search-result-wrapper">
-        <div class="initial-message" [hidden]="!showSearch || this.resultsPage">
+        <div class="initial-message" [hidden]="!headerState.showSearch || this.resultsPage">
             <i class="icon-ios-search"></i>
             <div>Type in above to see matched content</div>
         </div>
@@ -62,13 +62,13 @@
             </li>
         </ul>
     </div>
-    <nav class="site-nav center-stage absolute-bottom" (clickedOut)="hideMenu()">
+    <nav class="site-nav center-stage absolute-bottom">
         <ul class="site-nav-list">
-            <li *ngFor="let navItem of navItems" [class.show]="navItem.visible" (mouseenter)="activeNav=navItem.id" (mouseleave)="activeNav=''" [routerLink]="navItem.link" (click)="showMenu = false;">{{navItem.label}}</li>
+            <li *ngFor="let navItem of navItems" [class.show]="navItem.visible" (mouseenter)="activeNav=navItem.id" (mouseleave)="activeNav=''" [routerLink]="navItem.link">{{navItem.label}}</li>
         </ul>
     </nav>
     <div class="nav-highlighter-wrapper center-stage absolute-bottom">
         <div class="nav-highlighter" [ngClass]="activeNav"></div>
     </div>
 </div>
-<div class="menu-background" [hidden]="!(isHeaderFix && showMenu) && !showSearch"></div>
+<div class="menu-background" [hidden]="!((headerState.state === HEADER_STATE.Fixed && headerState.showMenu) || headerState.showSearch)"></div>

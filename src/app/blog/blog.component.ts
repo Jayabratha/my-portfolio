@@ -1,6 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { AppStateService } from '../app-state.service';
 import { routeAnimation } from '../animations/animations';
+
+import { Store } from '@ngrx/store';
+import { AppState } from '../app.state';
+import { Header } from '../models/header.model';
+import { HeaderState } from '../models/header-state.enum';
+import * as HeaderActions from '../actions/header.actions';
 
 @Component({
   selector: 'app-blog',
@@ -11,11 +16,12 @@ import { routeAnimation } from '../animations/animations';
 })
 export class BlogComponent implements OnInit {
 
-  constructor(private appState: AppStateService) {
-    this.appState.setHeaderState(true);
+  constructor(private store: Store<AppState>) {
   }
 
   ngOnInit() {
+    this.store.dispatch(new HeaderActions.UpdateState(HeaderState.Fixed));
+    this.store.dispatch(new HeaderActions.ToggleMenu(false));
   }
 
 }

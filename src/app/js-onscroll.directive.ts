@@ -10,7 +10,6 @@ export class JsOnscrollDirective implements OnInit, OnDestroy {
   @Input() aboveClass: string = 'above-view';
   @Input() viewportCheck: boolean = false;
   @Input() activateScroll: boolean = true;
-  @Input() restoreInitial: Subject<any>;
   @Input() checkAboveView: boolean = true;
   @Output() onStateChange = new EventEmitter<string>();
   @Output() enteredViewport = new EventEmitter<string>();
@@ -34,13 +33,6 @@ export class JsOnscrollDirective implements OnInit, OnDestroy {
 
     this.elemViewportOffset = this.elem.getBoundingClientRect().top;
 
-    if (this.restoreInitial) {
-      this.restoreInitial.subscribe(event => {
-        this.renderer.setElementClass(this.elem, this.belowClass, true);
-        this.hasEntered = false;
-      });
-    }
-
     if (this.viewportCheck) {
       this.renderer.setElementClass(this.elem, this.belowClass, true);
       setTimeout(() => {
@@ -57,34 +49,36 @@ export class JsOnscrollDirective implements OnInit, OnDestroy {
         this.renderer.setElementClass(this.elem, 'view-check', true);
 
         //Check if Below View
-        if ((this.elem.offsetTop + this.padding) <= (window.pageYOffset + window.innerHeight)) {
-          if (!this.hasEntered) {
-            this.renderer.setElementClass(this.elem, this.belowClass, false);
-            this.hasEntered = true;
-            this.enteredViewport.emit('entered');
-          }
-        } else {
-          if (this.hasEntered) {
-            this.renderer.setElementClass(this.elem, this.belowClass, true);
-            this.hasEntered = false;
-          }
-        }
-
-        //Check if Above View
-        if (this.checkAboveView) {
-          if ((this.elem.offsetTop - 50) < window.pageYOffset) {
-            if (!this.hasLeft) {
-              this.renderer.setElementClass(this.elem, this.aboveClass, true);
-              this.hasLeft = true;
-            }
-          } else {
-            if (this.hasLeft) {
-              this.renderer.setElementClass(this.elem, this.aboveClass, false);
-              this.hasLeft = false;
+        setTimeout(() => {
+          if ((this.elem.offsetTop + this.padding) <= (window.pageYOffset + window.innerHeight)) {
+            if (!this.hasEntered) {
+              this.renderer.setElementClass(this.elem, this.belowClass, false);
+              this.hasEntered = true;
               this.enteredViewport.emit('entered');
             }
+          } else {
+            if (this.hasEntered) {
+              this.renderer.setElementClass(this.elem, this.belowClass, true);
+              this.hasEntered = false;
+            }
           }
-        }
+
+          //Check if Above View
+          if (this.checkAboveView) {
+            if ((this.elem.offsetTop - 50) < window.pageYOffset) {
+              if (!this.hasLeft) {
+                this.renderer.setElementClass(this.elem, this.aboveClass, true);
+                this.hasLeft = true;
+              }
+            } else {
+              if (this.hasLeft) {
+                this.renderer.setElementClass(this.elem, this.aboveClass, false);
+                this.hasLeft = false;
+                this.enteredViewport.emit('entered');
+              }
+            }
+          }
+        }, 500);
 
       } if (scrollPosition > this.elemViewportOffset - this.padding) {
         this.onStateChange.emit('fix');
@@ -99,9 +93,6 @@ export class JsOnscrollDirective implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    if (this.restoreInitial) {
-      this.restoreInitial.unsubscribe();
-    }
   }
 
 }

@@ -1,6 +1,11 @@
 import { Component, Input, OnInit, OnDestroy, HostListener } from '@angular/core';
 import { Subscription, Subject } from 'rxjs';
 import { AppStateService } from '../app-state.service';
+import { Store } from '@ngrx/store';
+import { AppState } from '../app.state';
+import { Header } from '../models/header.model';
+import { HeaderState } from '../models/header-state.enum';
+import * as HeaderActions from '../actions/header.actions';
 
 @Component({
   selector: 'app-home',
@@ -10,38 +15,36 @@ import { AppStateService } from '../app-state.service';
 export class HomeComponent implements OnInit, OnDestroy {
 
   subscription: Subscription;
-  isHeaderFix: boolean = false;
+  HEADER_STATE = HeaderState;
+  headerState: Header;
   steps: Array<number> = [0, 140, 940, 1740, 2540, 3340];
   stepCount: number = 0;
   decounce: boolean = false;
   isMobile: boolean = false;
-  restoreInitial: Subject<any> = new Subject();
 
-  constructor(private appState: AppStateService) {
+  constructor(private store: Store<AppState>, private appState: AppStateService) {
   }
 
   ngOnInit() {
     let deviceWidth = window.screen.width;
 
-    console.log("Device Width", deviceWidth);
-
     if (deviceWidth < 650) {
       this.isMobile = true;
-      console.log("Mobile device", deviceWidth);
     }
 
-    //Set Header State to false to expand the header on load
-    this.appState.setHeaderState(false);
-    this.subscription = this.appState.getHeaderState().subscribe(
-      (isHeaderFix: boolean) => {
-        this.isHeaderFix = isHeaderFix;
-        //Restore the state of the overview cards if the header is not fixed
-        if (!isHeaderFix) {
-          setTimeout(() => {
-            this.restoreInitial.next('restore');
-          }, 200);
-        }
-      });
+    this.store.select('header').subscribe((headerState: Header) => {
+      this.headerState = headerState;
+    });
+
+    if (this.headerState.state === HeaderState.Fixed) {
+      this.store.dispatch(new HeaderActions.UpdateState(HeaderState.Home))
+    }
+
+    if (!this.isMobile) {
+      setTimeout(() => {
+        this.store.dispatch(new HeaderActions.ToggleMenu(true));
+      }, 800);
+    }
   }
 
   updateSlideCount(state: string, count: number) {
@@ -49,15 +52,18 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   setStepCount(stepCount) {
+    if (stepCount === 0) {
+      this.store.dispatch(new HeaderActions.ToggleMenu(true));
+    } else if (this.headerState.showMenu) {
+      this.store.dispatch(new HeaderActions.ToggleMenu(false));
+    }
     window.scrollTo(0, this.steps[stepCount]);
-    setTimeout(() => {
-      this.stepCount = stepCount;
-    }, 10);
+    this.stepCount = stepCount;
   }
 
   @HostListener('window:wheel', ['$event'])
   onWheelRotate(ev) {
-    let delta;
+    let delta, stepCount;
     if (!this.isMobile) {
       ev.preventDefault();
       if (!this.decounce) {
@@ -68,11 +74,11 @@ export class HomeComponent implements OnInit, OnDestroy {
         }
 
         if (delta < 0) {
-          this.stepCount = this.stepCount < 5 ? this.stepCount + 1 : 5;
-          window.scrollTo(0, this.steps[this.stepCount]);
+          stepCount = this.stepCount < 5 ? this.stepCount + 1 : 5;
+          this.setStepCount(stepCount);
         } else {
-          this.stepCount = this.stepCount > 0 ? this.stepCount - 1 : 0;
-          window.scrollTo(0, this.steps[this.stepCount]);
+          stepCount = this.stepCount > 0 ? this.stepCount - 1 : 0;
+          this.setStepCount(stepCount);
         }
 
         this.decounce = true;
@@ -85,20 +91,19 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   @HostListener('window:keydown', ['$event'])
   onArrowUpDown(ev) {
-    var keycode = ev.keyCode;
+    let stepCount, keycode = ev.keyCode;
+
     if (keycode === 40 && this.stepCount < 5) {
       ev.preventDefault();
-      this.stepCount++;
-      window.scrollTo(0, this.steps[this.stepCount]);
+      stepCount = this.stepCount + 1;
+      this.setStepCount(stepCount);
     } else if (keycode === 38 && this.stepCount > 0) {
       ev.preventDefault();
-      this.stepCount--;
-      window.scrollTo(0, this.steps[this.stepCount]);
+      stepCount = this.stepCount - 1;
+      this.setStepCount(stepCount);
     }
   }
 
   ngOnDestroy() {
-    // prevent memory leak when component destroyed
-    this.subscription.unsubscribe();
   }
 }
