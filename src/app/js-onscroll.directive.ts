@@ -48,34 +48,20 @@ export class JsOnscrollDirective implements OnInit, OnDestroy {
       if (this.viewportCheck) {
         this.renderer.setElementClass(this.elem, 'view-check', true);
 
-        //Check if Below View
         setTimeout(() => {
+          //Check if Below View
           if ((this.elem.offsetTop + this.padding) <= (window.pageYOffset + window.innerHeight)) {
-            if (!this.hasEntered) {
-              this.renderer.setElementClass(this.elem, this.belowClass, false);
-              this.hasEntered = true;
-              this.enteredViewport.emit('entered');
-            }
+            this.renderer.setElementClass(this.elem, this.belowClass, false);
           } else {
-            if (this.hasEntered) {
-              this.renderer.setElementClass(this.elem, this.belowClass, true);
-              this.hasEntered = false;
-            }
+            this.renderer.setElementClass(this.elem, this.belowClass, true);
           }
 
           //Check if Above View
           if (this.checkAboveView) {
             if ((this.elem.offsetTop - 50) < window.pageYOffset) {
-              if (!this.hasLeft) {
-                this.renderer.setElementClass(this.elem, this.aboveClass, true);
-                this.hasLeft = true;
-              }
+              this.renderer.setElementClass(this.elem, this.aboveClass, true);
             } else {
-              if (this.hasLeft) {
-                this.renderer.setElementClass(this.elem, this.aboveClass, false);
-                this.hasLeft = false;
-                this.enteredViewport.emit('entered');
-              }
+              this.renderer.setElementClass(this.elem, this.aboveClass, false);
             }
           }
         }, 500);

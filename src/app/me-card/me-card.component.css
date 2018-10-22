@@ -329,18 +329,18 @@ h1.name {
 }
 /* Show Menu Styles - End */
 
-.show-menu .menu-icon {
+.fix-header.show-menu .menu-icon {
     opacity: 0;
     left: -20px;
 }
-.show-menu .menu-icon-top {
+.fix-header.show-menu .menu-icon-top {
     top: 19px;
     -webkit-transform: rotate(135deg);
     -moz-transform: rotate(135deg);
     -o-transform: rotate(135deg);
     transform: rotate(135deg);
 }
-.show-menu .menu-icon-bottom {
+.fix-header.show-menu .menu-icon-bottom {
     top: 19px;
     -webkit-transform: rotate(-135deg);
     -moz-transform: rotate(-135deg);
