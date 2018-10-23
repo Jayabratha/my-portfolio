@@ -52,6 +52,7 @@ export class JsOnscrollDirective implements OnInit, OnDestroy {
           //Check if Below View
           if ((this.elem.offsetTop + this.padding) <= (window.pageYOffset + window.innerHeight)) {
             this.renderer.setElementClass(this.elem, this.belowClass, false);
+            this.enteredViewport.emit(true);
           } else {
             this.renderer.setElementClass(this.elem, this.belowClass, true);
           }

@@ -81,7 +81,7 @@ button {
 
 .input-wrapper .border-highlight {
     height: 2px;
-    background: black;
+    background: #454545;
     position: relative;
     top: -2px;
     width: 0;
@@ -101,6 +101,7 @@ button {
     border: 2px solid #ccc;
     font-family: 'Playfair Display', serif;
     width: 100%;
+    outline: none;
 }
 
 .show-error .input-wrapper input.ng-invalid+.border-highlight,

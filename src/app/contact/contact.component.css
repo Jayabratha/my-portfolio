@@ -1,7 +1,3 @@
-.input-wrapper div.border-highlight {
-    background: #0ab779;
-}
-
 .message {
     height: 143px;
 }
@@ -11,12 +7,12 @@
 }
 
 .button-wrapper .background {
-    background: #0ab779;
+    background: #454545;
 }
 
 button.submit-contact {
     width: 100%;
-    border-color: #0ab779;
+    border-color: #454545;
     color: #454545;;
     font-size: 1.1em;
     padding: 10px;
@@ -41,7 +37,11 @@ button.submit-contact {
 }
 
 
-@media (min-width: 992px) {
+@media (min-width: 650px) {
+    .name-wrapper {
+        float: left;
+        width: 50%;
+    }
     .input-wrapper input.last-name {
         border-left: none;
     }

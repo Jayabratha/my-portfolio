@@ -3,47 +3,47 @@
   <div class="content-wrapper view-check clearfix below-view" appJsOnscroll [viewportCheck]=true [checkAboveView]=false>
     <h2 class="main">Send me an email here</h2>
     <div class="feature-content">
-      <form class="contact-form container" [ngClass]="{'show-error': showError}" (ngSubmit)="onSubmit(contactForm)" #contactForm="ngForm">
-        <div class="input-wrapper col-md-6">
+      <form class="contact-form container" [ngClass]="{'show-error': showError}" (ngSubmit)="onSubmit(contactForm)"
+        #contactForm="ngForm">
+        <div class="input-wrapper name-wrapper">
           <label for="firstName">First Name</label>
           <input id="firstName" name="firstName" type="text" class="first-name" placeholder="First Name" [(ngModel)]="messageData.firstName"
             required />
           <div class="border-highlight"></div>
         </div>
-        <div class="input-wrapper col-md-6">
+        <div class="input-wrapper name-wrapper">
           <label for="lastName">Last Name</label>
-          <input id="lastName" name="lastName" type="text" class="last-name" placeholder="Last Name" [(ngModel)]="messageData.lastName"
-          />
+          <input id="lastName" name="lastName" type="text" class="last-name" placeholder="Last Name" [(ngModel)]="messageData.lastName" />
           <div class="border-highlight"></div>
         </div>
-        <div class="input-wrapper col-md-12">
+        <div class="input-wrapper">
           <label for="email">Email</label>
-          <input id="email" name="email" type="email" class="email" placeholder="Email" [(ngModel)]="messageData.email" required />
+          <input id="email" name="email" type="email" class="email" placeholder="Email" [(ngModel)]="messageData.email"
+            required />
           <div class="border-highlight"></div>
         </div>
-        <div class="input-wrapper message-wrapper col-md-12">
+        <div class="input-wrapper message-wrapper">
           <label for="mesage">Your Message</label>
           <textarea id="message" name="message" class="message" placeholder="Type in your message" [(ngModel)]="messageData.message"
             required></textarea>
           <div class="border-highlight"></div>
         </div>
         <div class="button-wrapper">
-          <div class="background"></div>
-          <button type="submit" class="submit-contact" type="submit">
-            <span [hidden]="emailSent">
-              <span>Send Email</span>
-              <span class="act-icon icon-ios-arrow-thin-right"></span>
-            </span>
+          <div class="background">
             <span [hidden]="!emailSent">
               <span class="act-icon icon-ios-checkmark-outline"></span>
               <span>Email Sent Successfully</span>
             </span>
+          </div>
+          <button type="submit" class="submit-contact" type="submit">
+            <span [hidden]="emailSent">Send Email</span>
           </button>
         </div>
       </form>
     </div>
   </div>
-  <section class="my-tiles view-check below-view" appJsOnscroll [viewportCheck]=true [padding]=100 [checkAboveView]=false (enteredViewport)="animateTiles()">
+  <section class="my-tiles view-check below-view" appJsOnscroll [viewportCheck]=true [padding]=100 [checkAboveView]=false
+    (enteredViewport)="animateTiles()">
     <div class="tiles-wrapper">
       <h2>Follow me on</h2>
       <div class="tiles-container">
