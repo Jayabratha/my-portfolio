@@ -327,12 +327,14 @@ h1.name {
 .fix-header.show-menu ul.site-nav-list {
     opacity: 1;
 }
-/* Show Menu Styles - End */
 
+.mobile.show-menu .menu-icon,
 .fix-header.show-menu .menu-icon {
     opacity: 0;
     left: -20px;
 }
+
+.mobile.show-menu .menu-icon-top,
 .fix-header.show-menu .menu-icon-top {
     top: 19px;
     -webkit-transform: rotate(135deg);
@@ -340,6 +342,8 @@ h1.name {
     -o-transform: rotate(135deg);
     transform: rotate(135deg);
 }
+
+.mobile.show-menu .menu-icon-bottom,
 .fix-header.show-menu .menu-icon-bottom {
     top: 19px;
     -webkit-transform: rotate(-135deg);
@@ -347,6 +351,7 @@ h1.name {
     -o-transform: rotate(-135deg);
     transform: rotate(-135deg);
 }
+/* Show Menu Styles - End */
 
 /* Nav Highlighter - Start */
 .nav-highlighter {

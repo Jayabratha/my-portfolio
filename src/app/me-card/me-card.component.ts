@@ -72,21 +72,15 @@ export class MeCardComponent implements OnInit, OnDestroy {
     description: ""
   }, {
     id: "slide4",
-    url: "assets/images/my-pic3.jpg",
+    url: "assets/images/my-pic2.jpg",
     title: "My pic 4",
     alt: "My pic 4",
     description: ""
   }, {
     id: "slide5",
-    url: "assets/images/my-pic4.jpg",
+    url: "assets/images/my-pic3.jpg",
     title: "My pic 5",
     alt: "My pic 5",
-    description: ""
-  }, {
-    id: "slide1",
-    url: "assets/images/my-pic.jpg",
-    title: "My pic 1",
-    alt: "My pic 1",
     description: ""
   }];
 
