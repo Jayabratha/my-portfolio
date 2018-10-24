@@ -31,6 +31,7 @@ export class ContactComponent implements OnInit {
     this.store.dispatch(new HeaderActions.ToggleMenu(false));
   }
 
+  sendingEmail: boolean = false;
   emailSent: boolean = false;
   showError: boolean = false;
 
@@ -45,7 +46,7 @@ export class ContactComponent implements OnInit {
     if (!form.valid) {
       this.showError = true;
     } else {
-      console.log(this.messageData);
+      this.sendingEmail = true;
       const name = this.messageData.lastName ? this.messageData.firstName + " " + this.messageData.lastName : this.messageData.firstName;
       const email = this.messageData.email;
       const message = this.messageData.message;
@@ -61,10 +62,11 @@ export class ContactComponent implements OnInit {
       this.db.list('/messages').push(formRequest).then(() => {
         form.reset();
         this.showError = false;
+        this.sendingEmail = false;
         this.emailSent = true;
         setTimeout(() => {
           this.emailSent = false;
-        }, 5000);
+        }, 2000);
       }, () => {
       });
     }

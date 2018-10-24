@@ -28,16 +28,16 @@
             required></textarea>
           <div class="border-highlight"></div>
         </div>
-        <div class="button-wrapper">
+        <div class="button-wrapper" [ngClass]="{'sending': sendingEmail, 'sent': emailSent}">
           <div class="background">
-            <span [hidden]="!emailSent">
+            <div class="email-sent">
               <span class="act-icon icon-ios-checkmark-outline"></span>
               <span>Email Sent Successfully</span>
-            </span>
+            </div>
+            <div class="loading-icon animate">
+            </div>
           </div>
-          <button type="submit" class="submit-contact" type="submit">
-            <span [hidden]="emailSent">Send Email</span>
-          </button>
+          <button type="submit" class="submit-contact" type="submit">Send Email</button>
         </div>
       </form>
     </div>

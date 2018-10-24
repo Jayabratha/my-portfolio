@@ -141,12 +141,14 @@
 .contact-overview .underline {
     background: #0ab779;
 }
-.overview .button-wrapper button {
+.overview .button-wrapper {
     border-color: #FFFFFF;
-    color: #FFFFFF;
 }
 .overview .button-wrapper .background {
     background: #FFFFFF;
+}
+.overview .button-wrapper button {
+    color: #FFFFFF;
 }
 .overview .button-wrapper:hover button {
     color: #333333;

@@ -7,16 +7,73 @@
 }
 
 .button-wrapper .background {
-    background: #454545;
+    background: #212121;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1em;
+}
+
+.button-wrapper .background .loading-icon {
+    display: none;
+    height: 25px;
+    width: 25px;
+    border-top-color: #FFFFFF;
+}
+
+.email-sent {
+    display: none;
+}
+
+.act-icon:before {
+    position: relative;
+    top: 0.25em;
+    font-size: 1.5em;
+    padding: 0 10px;
+}
+
+.button-wrapper.sending .background {
+    width: 100%;
+}
+
+.button-wrapper.sending button,
+.button-wrapper.sent button {
+    opacity: 0;
+}
+
+.button-wrapper.sending .background .loading-icon {
+    display: block;
+}
+
+.button-wrapper.sent {
+    border-color: green;
+}
+
+.button-wrapper.sent .background {
+    background-color: green;
+    width: 100%;
+    color: #FFFFFF;
+}
+
+.button-wrapper.sent .background .loading-icon {
+    display: none;
+}
+
+.button-wrapper.sent .background .email-sent {
+    display: block;
+    top: -3px;
+    position: relative;
 }
 
 button.submit-contact {
     width: 100%;
-    border-color: #454545;
-    color: #454545;;
+    border-color: #212121;
+    color: #212121;
     font-size: 1.1em;
     padding: 10px;
+    opacity: 1;
     letter-spacing: normal;
+    text-transform: capitalize;
 }
 
 .button-wrapper:hover button {
@@ -26,16 +83,24 @@ button.submit-contact {
 .tile-wrapper.facebook {
     background-color: #3b5998;
 }
+
 .tile-wrapper.instagram {
     background-color: #ffffff;
 }
+
 .tile-wrapper.linkedin {
     background-color: #0077b5;
 }
+
 .tile-wrapper.whatsapp {
     background-color: #25D366;
 }
 
+@media (min-width: 650px) and (max-width: 950px) {
+    .message {
+        height: 95px;
+    }
+}
 
 @media (min-width: 650px) {
     .name-wrapper {

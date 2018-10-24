@@ -33,7 +33,7 @@ section.background {
     padding: 0.2em 0 0.5em;
     font-size: 3em;
     margin: 0;
-    color: #454545;
+    color: #212121;
     font-weight: normal;
     border-bottom: thin dotted #cdcdcd;
 }
@@ -127,7 +127,7 @@ section.background {
 }
 
 .content section h2 {
-    color: #454545;
+    color: #212121;
     font-family: Playfair Display;
     padding-left: 0;
     padding-top: 10px;

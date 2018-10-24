@@ -28,7 +28,7 @@ p {
     font-family: 'Roboto', sans-serif;
     font-weight: 200;
     font-size: 1.1em;
-    color: #454545;
+    color: #212121;
     margin: 0;
 }
 .clearfix:before,
@@ -41,6 +41,8 @@ p {
 .button-wrapper {
     display: inline-block;
     position: relative;
+    border: 2px solid #212121;
+    min-height: 40px;
 }
 .button-wrapper .background {
     height: 100%;
@@ -56,13 +58,15 @@ p {
 button {
     position: relative;
     display: block;
-    border: 2px solid;
     padding: 15px;
     background: transparent;
     margin: auto;
     font-family: 'Playfair Display', serif;
     letter-spacing: 4px;
     cursor: pointer;
+    text-transform: uppercase;
+    border: none;
+    outline: none;
 }
 /* Button Styles - End */
 
@@ -81,7 +85,7 @@ button {
 
 .input-wrapper .border-highlight {
     height: 2px;
-    background: #454545;
+    background: #212121;
     position: relative;
     top: -2px;
     width: 0;
@@ -132,7 +136,7 @@ ul.site-nav-list li {
     text-transform: uppercase;
     text-align: center;
     width: 20%;
-    color: #454545;
+    color: #212121;
     cursor: pointer;
     outline: none;
     opacity: 0;
@@ -150,30 +154,6 @@ ul.site-nav-list li.show {
     transform: translateY(0);
 }
 /* Nav Style - End */
-
-.act-icon {
-    font-size: 2em;
-    height: 30px;
-    width: 48px;
-    overflow: hidden;
-    display: inline-block;
-    margin-top: -3px;
-    margin-bottom: -8px;
-}
-
-.act-icon:before {
-    position: relative;
-    top: -6px;
-    left: 0;
-    transition: left 0.5s;
-    -webkit-transition: left 0.5s;
-    -moz-transition: left 0.5s;
-    transition: left 0.5s;
-}
-
-button:hover .act-icon:before {
-    left: 10px;
-}
 
 /* Tab Styles - Start */
 @media (max-width: 950px) {

@@ -27,7 +27,7 @@
     vertical-align: top;
     width: 50px;
     height: 38px;
-    background: #454545;
+    background: #212121;
     opacity: 1;
     transition: margin 0.5s;
     outline: none;
@@ -39,7 +39,7 @@
 }
 .menu-icon, .menu-icon-top, .menu-icon-bottom {
     position: absolute;
-    background-color: #454545;
+    background-color: #212121;
     top: 19px;
     margin-left: 5px;
     left: 0;
@@ -56,7 +56,7 @@
     float: right;
     font-size: 1.8em;
     margin: 4px 8px;
-    color: #454545;
+    color: #212121;
 }
 .hello-card {
     position: absolute;
@@ -471,7 +471,7 @@ h1.name {
     right: 0;
     max-width: 55em;
     padding: 20px 0;
-    color: #454545;
+    color: #212121;
 }
 
 .search-result-wrapper .initial-message {
@@ -587,7 +587,7 @@ h1.name {
     }
     .fix-header .logo-section, 
     .search-header .logo-section {
-        background: #454545;
+        background: #212121;
     }
     .fix-header .menu-icon, 
     .fix-header .menu-icon-top, 
@@ -595,7 +595,7 @@ h1.name {
     .search-header .menu-icon, 
     .search-header .menu-icon-top, 
     .search-header .menu-icon-bottom {
-        background: #454545;
+        background: #212121;
     }
     .fix-header .me-card-wrapper,
     .seach-header .me-card-wrapper {
@@ -657,7 +657,7 @@ h1.name {
         height: 94vw;
     }
     .logo-section i {
-        color: #454545;
+        color: #212121;
     }
     .fix-header .logo-section i {
         color: #FFFFFF;
