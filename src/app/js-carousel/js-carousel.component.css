@@ -19,12 +19,13 @@
     display: none;
     overflow: hidden;
     transform: translate3d(0, 0, 0);
+    transition: transform .6s ease;
 }
 
 .carousel-item.active,
 .carousel-item.next,
 .carousel-item.prev {
-    display: flex;
+    display: block;
     position: absolute;
     top: 0;
 }
@@ -51,8 +52,8 @@
 }
 
 .carousel-item>img {
+    height: 100%;
     width: 100%;
-    float: right;
 }
 
 .carousel-wrapper .arrow-btn {   

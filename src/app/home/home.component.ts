@@ -47,10 +47,6 @@ export class HomeComponent implements OnInit, OnDestroy {
     }
   }
 
-  updateSlideCount(state: string, count: number) {
-    this.stepCount = count;
-  }
-
   setStepCount(stepCount) {
     if (stepCount === 0) {
       this.store.dispatch(new HeaderActions.ToggleMenu(true));
@@ -91,16 +87,14 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   @HostListener('window:keydown', ['$event'])
   onArrowUpDown(ev) {
-    let stepCount, keycode = ev.keyCode;
+    let keycode = ev.keyCode;
 
     if (keycode === 40 && this.stepCount < 5) {
       ev.preventDefault();
-      stepCount = this.stepCount + 1;
-      this.setStepCount(stepCount);
+      this.setStepCount(this.stepCount + 1);
     } else if (keycode === 38 && this.stepCount > 0) {
       ev.preventDefault();
-      stepCount = this.stepCount - 1;
-      this.setStepCount(stepCount);
+      this.setStepCount(this.stepCount - 1);
     }
   }
 
