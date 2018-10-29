@@ -7,14 +7,6 @@ section.background {
     overflow: hidden;
 }
 
-/* .main-content {
-    margin-bottom: 15em;
-}
-
-.main-content.fixed-header {
-    min-height: 50em;
-} */
-
 .js-logo {
     position: relative;
     display: inline-block;
@@ -24,6 +16,7 @@ section.background {
 }
 
 /* Route Components Base Styles - Start */
+
 .content {
     position: relative;
     padding-top: 5em;
@@ -50,7 +43,8 @@ section.background {
     padding: 25px 0;
 }
 
-.content h2.main {
+.content .main {
+    position: relative;
     font-size: 2em;
     font-family: Playfair Display;
     font-weight: 100;
@@ -64,6 +58,21 @@ section.background {
     min-height: 10em;
 }
 
+.content .main h2 {
+    position: relative;
+    font-family: Playfair Display;
+    font-size: 1.25em;
+    padding: 0;
+}
+
+.content .main i {
+    position: absolute;
+    bottom: -50px;
+    font-size: 10em;
+    opacity: 0.15;
+    left: -50px;
+}
+
 .content .feature-content {
     width: 60%;
     float: left;
@@ -71,23 +80,23 @@ section.background {
     min-height: 20em;
 }
 
-.content.art-content h2.main {
+.content.art-content .main {
     background: linear-gradient(140deg, #f31b48, #c6116b);
 }
 
-.content.projects-content h2.main {
+.content.projects-content .main {
     background: linear-gradient(140deg, #c6116b, #940590);
 }
 
-.content.blog-content h2.main {
+.content.blog-content .main {
     background: linear-gradient(140deg, #940590, #28a6e4);
 }
 
-.content.about-content h2.main {
+.content.about-content .main {
     background: linear-gradient(140deg, #28a6e4, #0ab732);
 }
 
-.content.contact-content h2.main {
+.content.contact-content .main {
     background: linear-gradient(140deg, #0ab779, #0ab70f);
 }
 
@@ -118,6 +127,7 @@ section.background {
     height: 44px;
     background: #797979;
 }
+
 /* Route Components Base Styles - End */
 
 .content section {
@@ -160,6 +170,7 @@ p.sub_desc {
 .tiles-container li {
     padding: 4px;
 }
+
 .tile-wrapper {
     background-size: 200px;
     height: 20vw;
@@ -167,22 +178,25 @@ p.sub_desc {
     position: relative;
     transform: translate3d(0, 0, 0);
     opacity: 1;
-    box-shadow: 0 0 5px 1px rgba(0, 0,0,0.2);
+    box-shadow: 0 0 5px 1px rgba(0, 0, 0, 0.2);
     transition: transform 0.5s ease-out, opacity 0.5s;
 }
+
 .tile-wrapper.hide {
     transform: translate3d(0, 100px, 0);
     opacity: 0;
 }
+
 .tile-wrapper i {
     color: #FFFFFF;
     width: 100%;
     height: 100%;
     display: block;
-    text-align: center;   
+    text-align: center;
     transform: scale3d(1, 1, 1);
     transition: transform 0.5s;
 }
+
 .tile-wrapper:hover i,
 .tile-wrapper:hover img {
     transform: scale3d(1.2, 1.2, 1);
@@ -227,6 +241,7 @@ p.sub_desc {
 }
 
 /* Tab Styles - Start */
+
 @media (max-width: 650px) {
     .main-content {
         /* min-height: 0; */
@@ -236,9 +251,14 @@ p.sub_desc {
     .main-content.fix-header {
         margin-top: 31em;
     }
-    .content h2.main {
+    .content .main {
         width: 100%;
-        min-height: 4em;
+        min-height: 5em;
+    }
+
+    .content .main h2 {
+        top: -15px;
+        font-size: 1em;
     }
 
     .content .feature-content {
@@ -246,14 +266,15 @@ p.sub_desc {
         padding-left: 0;
         padding-top: 1em;
     }
-
     .feature-content p {
         padding-left: 0;
     }
 }
+
 /* Tab Styles - End */
 
 /* Mobile Styles - Start */
+
 @media (max-width: 500px) {
     header.main-header {
         background: transparent;
@@ -264,59 +285,56 @@ p.sub_desc {
         margin-left: 0.5em;
     }
 }
+
 /* Mobile Styles - End */
 
 /* Large Screen - Start */
+
 @media (min-width: 768px) {
     .tile-wrapper.small {
         height: 13vw;
     }
 }
+
 @media (min-width: 1200px) {
     .tile-wrapper.small {
         height: 10vw;
     }
-
     .tile-wrapper i:before {
         font-size: 7em;
         top: 0.05em;
         width: 7vw;
         height: 7vw;
     }
-
     .tile-wrapper img {
         height: 7vw;
     }
-
     .tile-wrapper.small i:before {
         font-size: 5vw;
     }
     .tile-wrapper.small img {
-        height: 5vw; 
+        height: 5vw;
     }
 }
+
 @media (min-width: 1800px) {
     .tile-wrapper.small {
         height: 7vw;
     }
-    
     .tile-wrapper i:before {
         font-size: 6em;
         width: 5vw;
         height: 5vw;
     }
-
     .tile-wrapper img {
         height: 5vw;
     }
-
     .tile-wrapper.small i:before {
         font-size: 4vw;
     }
     .tile-wrapper.small img {
-        height: 4vw; 
+        height: 4vw;
     }
 }
-
 
 /* Large Screen - End */
