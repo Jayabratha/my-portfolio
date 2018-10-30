@@ -547,7 +547,12 @@ h1.name {
     }
 
     .search-wrapper .search-input {
+        opacity: 0;
+    }
+
+    .fix-header .search-wrapper .search-input {
         width: 85px;
+        opacity: 1;
     }
 
     .search-wrapper button {

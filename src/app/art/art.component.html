@@ -17,7 +17,7 @@
       <li id="{{item.id}}" *ngFor="let item of imageList; let first = first" [ngClass]="{'potrait col-xs-6 col-sm-3 col-md-3 col-lg-3': item.isPortrait,
                        'landscape col-xs-12 col-sm-6 col-md-6 col-lg-6': !item.isPortrait}">
         <div class="image-wrapper" (click)="showInGallery(item)">
-          <img class="art-images" #imgItem class="hide" title="{{item.title}}" src="{{item.thumbUrl}}" />
+          <img class="art-images" #imgItem [class.hide]="!item.visible" [title]="item.title" [src]="item.thumbUrl" (load)="updateProgress()" />
           <div class="image-title">{{item.title}}</div>
         </div>
       </li>

@@ -1,11 +1,12 @@
-import { Component, ElementRef, ViewChildren, OnInit, QueryList, AfterViewInit, Renderer2 } from '@angular/core';
+import { Component, ElementRef, OnInit, Renderer2 } from '@angular/core';
 import { AppStateService } from '../app-state.service';
 import { routeAnimation } from '../animations/animations';
 import { AngularFireDatabase } from 'angularfire2/database';
 import { AngularFireStorage } from 'angularfire2/storage';
 import { Subject, forkJoin, Observable } from 'rxjs';
-import { map } from "rxjs/operators";
+import { tap } from "rxjs/operators";
 import { Router } from '@angular/router';
+import { ArtImage } from '../models/art-image.model';
 
 import { Store } from '@ngrx/store';
 import { AppState } from '../app.state';
@@ -31,53 +32,32 @@ export class ArtComponent implements OnInit {
         private router: Router) {
     }
 
-    @ViewChildren('imgItem') imageItems: QueryList<ElementRef>;
-
-    imageList: Array<Object> = [];
-    isLoading: boolean = false;
+    imageList: Array<ArtImage> = [];
+    isLoading: boolean = true;
     alert: string = "";
     alertType: string = "";
+    imageLoadCount: number = 0;
     urlSubsciptions: Array<Observable<any>> = [];
 
     ngOnInit() {
         this.store.dispatch(new HeaderActions.UpdateState(HeaderState.Fixed));
         this.store.dispatch(new HeaderActions.ToggleMenu(false));
+
         if (navigator.onLine) {
-            setTimeout(() => {
-                if (!this.imageItems.length) {
-                    this.isLoading = true;
-                }
-            }, 1500);
             //Get list of images
-            this.db.list('/artImages').valueChanges().subscribe((fileList) => {
-                fileList.forEach((file: any) => {
+            this.db.list('/artImages').valueChanges().subscribe((fileList: ArtImage[]) => {
+
+                fileList.forEach((file: ArtImage) => {
+                    Object.assign(file, { visible: false });
                     this.urlSubsciptions.push(this.storage.ref(file.thumbPath).getDownloadURL().pipe(
-                        map((url) => {
-                            return Object.assign(file, { thumbUrl: url });
-                        }
-                        )));
+                        tap((url) => Object.assign(file, { thumbUrl: url }))));
                     this.urlSubsciptions.push(this.storage.ref(file.filePath).getDownloadURL().pipe(
-                        map((url) => {
-                            return Object.assign(file, { fileUrl: url });
-                        }
-                        )));
+                        tap((url) => Object.assign(file, { fileUrl: url }))));
                 });
-                forkJoin(this.urlSubsciptions).subscribe((urls) => {
+
+                forkJoin(this.urlSubsciptions).subscribe(() => {
                     this.imageList = fileList;
                     this.appState.setGalleryList(this.imageList);
-                    this.trackImageLoad(this.imageList).subscribe((count) => {
-                        if (count === this.imageList.length) {
-                            this.isLoading = false;
-                            setTimeout(() => {
-                                this.imageItems.forEach((elem, index) => {
-                                    let imageElem = elem.nativeElement;
-                                    setTimeout(() => {
-                                        this.renderer.removeClass(imageElem, 'hide');
-                                    }, index * 150);
-                                });
-                            }, 200);
-                        }
-                    });
                 })
 
             });
@@ -88,26 +68,16 @@ export class ArtComponent implements OnInit {
 
     }
 
-    trackImageLoad(imageList) {
-        let i = 1, imagesCount = imageList.length,
-            loadedImagesCount: Subject<number> = new Subject<number>();
-
-        this.imageItems.changes.subscribe((imageItems) => {
-            if (imageItems.length === imagesCount) {
-                imageItems.forEach((elem) => {
-                    let imageElem = elem.nativeElement;
-                    if (imageElem.complete) {
-                        loadedImagesCount.next(i++);
-                    } else {
-                        imageElem.addEventListener('load', () => {
-                            loadedImagesCount.next(i++);
-                        });
-                    }
-                });
-            }
-        });
-
-        return loadedImagesCount.asObservable();
+    updateProgress() {
+        this.imageLoadCount++;
+        if (this.imageLoadCount === this.imageList.length) {
+            this.isLoading = false;
+            this.imageList.forEach((image: ArtImage, index) => {
+                setTimeout(() => {
+                    image.visible = true;
+                }, (index + 1) * 150);
+            });
+        }
     }
 
     showInGallery(item) {

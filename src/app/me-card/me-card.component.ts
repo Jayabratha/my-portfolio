@@ -146,7 +146,7 @@ export class MeCardComponent implements OnInit, OnDestroy {
     this.navItems.forEach((navItem, index) => {
       setTimeout(() => {
         navItem.visible = true;
-      }, index * 150);
+      }, (index + 1) * 150);
     });
   }
 
@@ -154,7 +154,7 @@ export class MeCardComponent implements OnInit, OnDestroy {
     this.navItems.forEach((navItem, index) => {
       setTimeout(() => {
         navItem.visible = false;
-      }, index * 150);
+      }, (index + 1) * 150);
     });
   }
 
