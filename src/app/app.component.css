@@ -56,6 +56,7 @@ section.background {
     padding: 25px;
     line-height: 1.5em;
     min-height: 10em;
+    overflow: hidden;
 }
 
 .content .main h2 {
@@ -259,6 +260,12 @@ p.sub_desc {
     .content .main h2 {
         top: -15px;
         font-size: 1em;
+    }
+
+    .content .main i {
+        font-size: 5em;
+        left: -10px;
+        bottom: -30px;
     }
 
     .content .feature-content {

@@ -15,8 +15,8 @@
                     <button type="button" label="Search" aria-label="Search content" (click)="toggleSearch(); $event.stopPropagation();">
                         <i class="search-button icon-ios-search"></i>
                     </button>
-                    <input #searchInput id="searchTerm" name="keyword" type="text" class="search" placeholder="Search" [(ngModel)]="keyword"
-                        autocomplete="off" />
+                    <input #searchInput id="searchTerm" name="keyword" type="text" class="search" placeholder="Search"
+                        [(ngModel)]="keyword" autocomplete="off" />
                 </div>
             </form>
         </div>
@@ -29,10 +29,12 @@
             <span>Hello there!</span>
         </div>
     </section>
-    <section class="me-card-wrapper center-stage" appJsOnscroll [padding]="requiredPadding" [activateScroll]="activateScroll" (onStateChange)="headerStateChange($event)">
+    <section class="me-card-wrapper center-stage" appJsOnscroll [padding]="requiredPadding" [activateScroll]="activateScroll"
+        (onStateChange)="headerStateChange($event)">
         <div class="me-card" [style.width]="carouselLoadProgress + '%'">
             <div class="dp my-dp">
-                <app-js-carousel [slideItems]=slideList [play]=play (carouselReady)="onCarouselReady($event)" (carouselLoading)="onCarouselLoadProgress($event)"></app-js-carousel>
+                <app-js-carousel [slideItems]=slideList [play]=play (carouselReady)="onCarouselReady($event)"
+                    (carouselLoading)="onCarouselLoadProgress($event)"></app-js-carousel>
             </div>
             <div class="my-card-wrapper">
                 <h1 class="name">Jayabratha Saha</h1>
@@ -43,7 +45,7 @@
             </div>
         </div>
     </section>
-    <div class="search-result-wrapper">
+    <div class="search-result-wrapper center-stage">
         <div class="initial-message" [hidden]="!headerState.showSearch || this.resultsPage">
             <i class="icon-ios-search"></i>
             <div>Type in above to see matched content</div>
@@ -51,11 +53,13 @@
         <ul class="search-results">
             <li [@fadeIn]="''" *ngFor="let result of searchResults" tabindex="-1" #searchResult>
                 <div class="search-result" (click)="selectResult(result)">
-                    <div class="inline-middle result-thumb" [ngStyle]="{ 'background-image': 'url(' + result.thumbLink + ')'}">
-                    </div>
-                    <div class="inline-middle result-info">
-                        <div class="result-name">{{result.name}}</div>
-                        <div class="result-desc">{{result.desc}}</div>
+                    <div>
+                        <div class="inline-middle result-thumb" [ngStyle]="{ 'background-image': 'url(' + result.thumbLink + ')'}">
+                        </div>
+                        <div class="inline-middle result-info">
+                            <div class="result-name">{{result.name}}</div>
+                            <div class="result-desc">{{result.desc}}</div>
+                        </div>
                     </div>
                     <div class="result-type">{{result.type}}</div>
                 </div>
@@ -64,7 +68,8 @@
     </div>
     <nav class="site-nav center-stage absolute-bottom">
         <ul class="site-nav-list">
-            <li *ngFor="let navItem of navItems" [class.show]="navItem.visible" (mouseenter)="activeNav=navItem.id" (mouseleave)="activeNav=''" [routerLink]="navItem.link">{{navItem.label}}</li>
+            <li *ngFor="let navItem of navItems" [class.show]="navItem.visible" (mouseenter)="activeNav=navItem.id"
+                (mouseleave)="activeNav=''" [routerLink]="navItem.link">{{navItem.label}}</li>
         </ul>
     </nav>
     <div class="nav-highlighter-wrapper center-stage absolute-bottom">

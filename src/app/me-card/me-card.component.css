@@ -29,7 +29,7 @@
     height: 38px;
     background: #212121;
     opacity: 1;
-    transition: margin 0.5s;
+    transition: background-color 0.5s, margin 0.5s, opacity 0.5s;
     outline: none;
     cursor: pointer;
     z-index: 1;
@@ -319,8 +319,7 @@ h1.name {
     display: none;
 }
 .mobile.show-menu .site-nav,
-.fix-header.show-menu .site-nav,
-.search-header .site-nav {
+.fix-header.show-menu .site-nav {
     height: 35em;
 }
 .mobile.show-menu ul.site-nav-list,
@@ -458,6 +457,7 @@ h1.name {
 .search-wrapper button {
     position: absolute;
     top: 0;
+    font-size: 1em;
     border: none;
     height: 38px;
     padding: 0;
@@ -469,7 +469,6 @@ h1.name {
     position: fixed;
     top: 58px;
     z-index: -1;
-    width: 80%;
     max-width: 55em;
     margin: 0 auto;
     left: 0;
@@ -491,9 +490,11 @@ h1.name {
 }
 
 .search-result {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     width: 100%;
-    min-height: 100px;
-    padding: 10px 20px;
+    padding: 0.5em 1em;
     border: thin solid #ebebeb;
     background: #FFFFFF;
     box-shadow: 0 11px 20px rgba(0,0,0,.1);
@@ -510,7 +511,7 @@ h1.name {
     width: 60px;
     border-radius: 50%;
     background: #ccc;
-    margin: 10px 20px;
+    margin: 0.25em 1em;
     overflow: hidden;
     background-repeat: no-repeat;
     background-size: 100%;
@@ -521,10 +522,7 @@ h1.name {
 }
 
 .result-type {
-    float: right;
-    line-height: 80px;
     text-transform: uppercase;
-    padding: 0 20px;
     letter-spacing: 0.25em;
 }
 /* Search Style - End */
@@ -539,13 +537,32 @@ h1.name {
     .logo-section, .menu-icon, .menu-icon-top, .menu-icon-bottom{
         background-color: #FFFFFF;
     }
+
     .logo-section {
         margin-left: 0;
-        transition: background-color 0.5s;
     }
+
+    .search-wrapper {
+        padding-left: 0;
+    }
+
+    .search-wrapper .search-input {
+        width: 85px;
+    }
+
     .search-wrapper button {
-        display: none;
+        font-size: 1.2em;
     }
+
+    .search-header  .search-wrapper .search-input {
+        width: 100%;
+    }
+
+    .search-header .logo-section,
+    .search-header .menu-section {
+        opacity: 0;
+    }
+
     .menu-icon-top {
         top: 11px;
     }
