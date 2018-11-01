@@ -48,25 +48,33 @@ p {
     height: 100%;
     position: absolute;
     width: 0;
+    background-color: #212121; 
     -webkit-transition: width 0.2s ease-in;
     -moz-transition: width 0.2s ease-in;
     transition: width 0.2s ease-in;
 }
-.button-wrapper:hover .background {
-    width: 100%;
-}
+
 button {
     position: relative;
     display: block;
-    padding: 15px;
+    padding: 15px 20px;
     background: transparent;
     margin: auto;
     font-family: 'Playfair Display', serif;
-    letter-spacing: 4px;
+    letter-spacing: 1px;
     cursor: pointer;
     text-transform: uppercase;
     border: none;
     outline: none;
+    font-weight: 700;
+}
+
+.button-wrapper:hover .background {
+    width: 100%;
+}
+
+.button-wrapper:hover button {
+    color: #FFFFFF;
 }
 /* Button Styles - End */
 

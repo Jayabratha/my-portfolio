@@ -1,5 +1,5 @@
 .message {
-    height: 143px;
+    height: 139px;
 }
 
 .button-wrapper {
@@ -11,7 +11,6 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 1.1em;
 }
 
 .button-wrapper .background .loading-icon {
@@ -69,11 +68,7 @@ button.submit-contact {
     width: 100%;
     border-color: #212121;
     color: #212121;
-    font-size: 1.1em;
-    padding: 10px;
     opacity: 1;
-    letter-spacing: normal;
-    text-transform: capitalize;
 }
 
 .button-wrapper:hover button {
@@ -98,7 +93,7 @@ button.submit-contact {
 
 @media (min-width: 650px) and (max-width: 950px) {
     .message {
-        height: 95px;
+        height: 89px;
     }
 }
 

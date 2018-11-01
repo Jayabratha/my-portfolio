@@ -33,6 +33,7 @@ section.background {
 
 .content-wrapper {
     padding: 15px 0;
+    min-height: 25em;
 }
 
 .content h2 {
@@ -241,6 +242,12 @@ p.sub_desc {
     height: 8vw;
 }
 
+.alert {
+    text-align: center;
+    font-family: Roboto;
+    font-size: 1.5em;
+}
+
 /* Tab Styles - Start */
 
 @media (max-width: 650px) {
@@ -256,18 +263,15 @@ p.sub_desc {
         width: 100%;
         min-height: 5em;
     }
-
     .content .main h2 {
         top: -15px;
         font-size: 1em;
     }
-
     .content .main i {
         font-size: 5em;
         left: -10px;
         bottom: -30px;
     }
-
     .content .feature-content {
         width: 100%;
         padding-left: 0;

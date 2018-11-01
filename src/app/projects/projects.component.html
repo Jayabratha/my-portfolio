@@ -1,9 +1,102 @@
 <div class="content projects-content center-stage">
   <h1>Projects</h1>
-  <div class="content-wrapper view-check below-view" appJsOnscroll [viewportCheck]=true [checkAboveView]=false>
+  <div class="content-wrapper clearfix view-check below-view" appJsOnscroll [viewportCheck]=true [checkAboveView]=false>
     <div class="main">
-      <h2>My tech projects will come up here</h2>
+      <h2>My hobby projects</h2>
       <i class="icon-social-github"></i>
     </div>
+    <div class="project featured-project">
+      <div class="title">
+        <span>My Portfolio</span>
+        <a class="github-link" href="https://github.com/Jayabratha/my-portfolio"><i class="icon-social-github"></i></a>
+      </div>
+      <div class="desc">This project is my personal portfolio showcaseing my art works, projects and blog</div>
+      <div class="tags">
+        <ul class="tag-list">
+          <li>
+            <div class="tag-color firebase"></div>firebase
+          </li>
+          <li>
+            <div class="tag-color angular"></div>angular
+          </li>
+        </ul>
+      </div>
+      <div class="footer">
+        <a href="https://github.com/Jayabratha/my-portfolio">
+          <div class="button-wrapper">
+            <div class="background"></div>
+            <button routerLink="/projects">VIEW PROJECT</button>
+          </div>
+        </a>
+      </div>
+    </div>
   </div>
+  <section class="all-projects-container view-check below-view" appJsOnscroll [viewportCheck]=true [padding]=100
+    [checkAboveView]=false>
+    <h2>All projects</h2>
+    <ul class="project-list">
+      <li class="project project-card view-check below-view" appJsOnscroll [viewportCheck]=true [padding]=100
+        [checkAboveView]=false>
+        <div class="color-band red"></div>
+        <div class="title">
+          <span>MEAN Demo App</span>
+          <a class="github-link" href="https://github.com/Jayabratha/mean-demo-app"><i class="icon-social-github"></i></a>
+        </div>
+        <div class="desc">This project is my first full-stack app using MEAN (MongoDB, ExpressJS, AngularJS, NodeJS)
+          technologies. </div>
+        <div class="tags">
+          <ul class="tag-list">
+            <li>
+              <div class="tag-color angular-js"></div>angular-js
+            </li>
+            <li>
+              <div class="tag-color node"></div>node
+            </li>
+            <li>
+              <div class="tag-color express"></div>express
+            </li>
+            <li>
+              <div class="tag-color mongo"></div>mongo
+            </li>
+          </ul>
+        </div>
+        <div class="footer">
+          <a href="https://github.com/Jayabratha/mean-demo-app">
+            <div class="button-wrapper">
+              <div class="background"></div>
+              <button routerLink="/projects">VIEW PROJECT</button>
+            </div>
+          </a>
+        </div>
+      </li>
+      <li class="project project-card view-check below-view" appJsOnscroll [viewportCheck]=true [padding]=100
+        [checkAboveView]=false>
+        <div class="color-band magenta"></div>
+        <div class="title">
+          <span>Material Demo App</span>
+          <a class="github-link" href="https://github.com/Jayabratha/mean-mat-demo"><i class="icon-social-github"></i></a>
+        </div>
+        <div class="desc">This project is developed using Angular Material where design is the main focus using custom
+          theme.</div>
+        <div class="tags">
+          <ul class="tag-list">
+            <li>
+              <div class="tag-color material"></div>material
+            </li>
+            <li>
+              <div class="tag-color angular"></div>angular
+            </li>
+          </ul>
+        </div>
+        <div class="footer">
+          <a href="https://github.com/Jayabratha/mean-mat-demo">
+            <div class="button-wrapper">
+              <div class="background"></div>
+              <button routerLink="/projects">VIEW PROJECT</button>
+            </div>
+          </a>
+        </div>
+      </li>
+    </ul>
+  </section>
 </div>

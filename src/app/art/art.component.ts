@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit, Renderer2 } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AppStateService } from '../app-state.service';
 import { routeAnimation } from '../animations/animations';
 import { AngularFireDatabase } from 'angularfire2/database';
@@ -26,7 +26,6 @@ export class ArtComponent implements OnInit {
     constructor(
         private store: Store<AppState>,
         private appState: AppStateService,
-        private renderer: Renderer2,
         private db: AngularFireDatabase,
         private storage: AngularFireStorage,
         private router: Router) {
@@ -62,7 +61,8 @@ export class ArtComponent implements OnInit {
 
             });
         } else {
-            this.alert = "You are offline. Please connect to internet";
+            this.isLoading = false;
+            this.alert = "Ops! You are offline. Please connect to internet";
             this.alertType = "warn";
         }
 
