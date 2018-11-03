@@ -1,5 +1,5 @@
-import { Component, Input, OnInit, OnDestroy, HostListener } from '@angular/core';
-import { Subscription, Subject } from 'rxjs';
+import { Component, OnInit, OnDestroy, HostListener } from '@angular/core';
+import { Subscription } from 'rxjs';
 import { AppStateService } from '../app-state.service';
 import { Store } from '@ngrx/store';
 import { AppState } from '../app.state';
@@ -17,7 +17,42 @@ export class HomeComponent implements OnInit, OnDestroy {
   subscription: Subscription;
   HEADER_STATE = HeaderState;
   headerState: Header;
-  steps: Array<number> = [0, 140, 940, 1740, 2540, 3340];
+  steps: Array<{
+    tileName: string,
+    scrollPosition: number,
+    isAboveView: boolean,
+    isBelowView: boolean
+  }> = [{
+    tileName: '',
+    scrollPosition: 0,
+    isAboveView: false,
+    isBelowView: false
+  }, {
+    tileName: 'art-overview',
+    scrollPosition: 140,
+    isAboveView: false,
+    isBelowView: false
+  }, {
+    tileName: 'projects-overview',
+    scrollPosition: 940,
+    isAboveView: false,
+    isBelowView: false
+  }, {
+    tileName: 'blog-overview',
+    scrollPosition: 1740,
+    isAboveView: false,
+    isBelowView: false
+  }, {
+    tileName: 'about-overview',
+    scrollPosition: 2540,
+    isAboveView: false,
+    isBelowView: false
+  }, {
+    tileName: 'contact-overview',
+    scrollPosition: 3340,
+    isAboveView: false,
+    isBelowView: false
+  }];
   stepCount: number = 0;
   decounce: boolean = false;
   isMobile: boolean = false;
@@ -48,12 +83,30 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   setStepCount(stepCount) {
+    let prevStepCount = this.stepCount;
     if (stepCount === 0) {
       this.store.dispatch(new HeaderActions.ToggleMenu(true));
     } else if (this.headerState.showMenu) {
       this.store.dispatch(new HeaderActions.ToggleMenu(false));
     }
-    window.scrollTo(0, this.steps[stepCount]);
+
+    if (this.stepCount !== 0 && this.stepCount < stepCount) {
+      this.steps[prevStepCount].isAboveView = true
+      setTimeout(() => {
+        window.scrollTo(0, this.steps[stepCount].scrollPosition);
+        this.steps[prevStepCount].isAboveView = false;
+       }, 500);
+    } else if (this.stepCount !== 1 && this.stepCount > stepCount) {
+      this.steps[prevStepCount].isBelowView = true
+      setTimeout(() => {
+        window.scrollTo(0, this.steps[stepCount].scrollPosition);
+        this.steps[prevStepCount].isBelowView = false;
+       }, 500);
+      setTimeout(() => { window.scrollTo(0, this.steps[stepCount].scrollPosition) }, 500);
+    } else {
+      window.scrollTo(0, this.steps[stepCount].scrollPosition);
+    }
+
     this.stepCount = stepCount;
   }
 

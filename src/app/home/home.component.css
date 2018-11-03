@@ -132,7 +132,7 @@
 .projects-overview .underline {
     background: #c6116b;
 }
-.skills-overview .underline {
+.blog-overview .underline {
     background: #940590;
 }
 .about-overview .underline {
@@ -155,6 +155,12 @@
     font-weight: bold;
 }
 /* Overview Styles - End */
+
+.fixed {
+    position: fixed;
+    top: 0;
+    z-index: 10;
+}
 
 @media (max-width: 650px) {
     .home-content {

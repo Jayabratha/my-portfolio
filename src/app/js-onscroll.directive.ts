@@ -35,9 +35,7 @@ export class JsOnscrollDirective implements OnInit, OnDestroy {
 
     if (this.viewportCheck) {
       this.renderer.setElementClass(this.elem, this.belowClass, true);
-      setTimeout(() => {
-        this.checkAndUpdateClass();
-      }, 850);
+      this.checkAndUpdateClass();
     }
   }
 
