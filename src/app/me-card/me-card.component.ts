@@ -55,6 +55,8 @@ export class MeCardComponent implements OnInit, OnDestroy {
   searchResults: Array<any> = [];
   resultsPage: boolean = false;
   loading: boolean = false;
+  noResults: boolean = false;
+  searchSubscription: Subscription;
 
   navItems: Array<NavItem> = [
     new NavItem('art', 'Art', '/art', false),
@@ -194,6 +196,9 @@ export class MeCardComponent implements OnInit, OnDestroy {
   }
 
   hideSearch(targetElem) {
+    this.loading = false;
+    this.noResults = false;
+    this.searchSubscription.unsubscribe();
     if (this.showSearch && this.headerState.state === HeaderState.Home) {
       this.store.dispatch(new HeaderActions.ToggleMenu(true));
     }
@@ -206,10 +211,11 @@ export class MeCardComponent implements OnInit, OnDestroy {
     this.resultsPage = true;
     this.loading = true;
     if (this.isSearchAvailable) {
-      this.elasticsearch.search(keyword).subscribe((response) => {
+      this.searchSubscription = this.elasticsearch.search(keyword).subscribe((response) => {
         let resBody = response.json();
         this.searchResults.length = 0;
         if (resBody.hits.total > 0) {
+          this.noResults = false;
           resBody.hits.hits.forEach(result => {
             if (result._index === "images") {
               this.storage.ref(result._source.thumbPath).getDownloadURL().subscribe((thumbUrl) => {
@@ -218,6 +224,9 @@ export class MeCardComponent implements OnInit, OnDestroy {
               });
             }
           });
+        } else {
+          this.loading = false;
+          this.noResults = true;
         }
       });
     }

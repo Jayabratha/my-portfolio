@@ -45,10 +45,14 @@
             </div>
         </div>
     </section>
-    <div class="search-result-wrapper center-stage">
-        <div class="initial-message" [hidden]="!headerState.showSearch || this.resultsPage">
+    <div class="search-result-wrapper center-stage" [hidden]="!headerState.showSearch">
+        <div class="initial-message" [hidden]="resultsPage">
             <i class="icon-ios-search"></i>
             <div>Type in above to see matched content</div>
+        </div>
+        <div class="initial-message" [hidden]="!noResults">
+            <i class="icon-ios-information-outline"></i>
+            <div>No results found! Try some other keywords</div>
         </div>
         <ul class="search-results">
             <li [@fadeIn]="''" *ngFor="let result of searchResults" tabindex="-1" #searchResult>
