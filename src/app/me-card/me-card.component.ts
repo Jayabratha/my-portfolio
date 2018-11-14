@@ -198,7 +198,9 @@ export class MeCardComponent implements OnInit, OnDestroy {
   hideSearch(targetElem) {
     this.loading = false;
     this.noResults = false;
-    this.searchSubscription.unsubscribe();
+    if (this.searchSubscription) {
+      this.searchSubscription.unsubscribe();
+    }   
     if (this.showSearch && this.headerState.state === HeaderState.Home) {
       this.store.dispatch(new HeaderActions.ToggleMenu(true));
     }

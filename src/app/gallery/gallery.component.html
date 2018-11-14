@@ -1,31 +1,34 @@
 <div class="gallery" [ngClass]="{'show': show}">
-  <div class="current-image">
-    <div class="image-container" *ngIf="currentItem">
-      <div class="initial-loader loading-icon animate" [hidden]="!loadingGallery"></div>
-      <div class="image-wrapper" [hidden]="loadingGallery">
-        <img [src]="currentItem.fileUrl" alt="{{currentItem.title}}" (load)="onLoadComplete($event)" />
-        <div class="image-info-panel">
-          <h1>{{currentItem.title}}</h1>
-          <div class="desc">{{currentItem.desc}}</div>
-        </div>
+
+  <div class="image-container" *ngIf="currentItem">
+    <div class="initial-loader loading-icon animate" [hidden]="!loadingGallery"></div>
+    <div class="image-info-panel" [class.show]="showInfo">
+      <h1>{{currentItem.title}}</h1>
+      <div class="desc">{{currentItem.desc}}</div>
+    </div>
+    <div class="image-wrapper" [hidden]="loadingGallery" [class.with-info]="showInfo">
+      <img [src]="currentItem.fileUrl" alt="{{currentItem.title}}" (load)="onLoadComplete($event)" />
+      <div class="icon-wrapper arrow-btn left" (click)="prevImage()">
+        <i class="icon-ios-arrow-thin-left"></i>
+      </div>
+      <div class="icon-wrapper arrow-btn right" (click)="nextImage()">
+        <i class="icon-ios-arrow-thin-right"></i>
       </div>
     </div>
-    <div class="arrow-btn left" (click)="prevImage()">
-      <i class="icon-ios-arrow-thin-left"></i>
-    </div>
-    <div class="arrow-btn right" (click)="nextImage()">
-      <i class="icon-ios-arrow-thin-right"></i>
-    </div>
   </div>
+
   <div class="image-list-wrapper" [ngClass]="{'show': showList}">
     <ul class="art-list clearfix">
       <li id="{{item.id}}" *ngFor="let item of galleryList; let first = first">
-        <img class="art-images" [ngClass]="{'active': checkIfCurrentItem(item)}" class="hide" title="{{item.title}}" [src]="item.thumbUrl"
-          (click)="changeImage(item)" />
+        <img class="art-images" [ngClass]="{'active': checkIfCurrentItem(item)}" class="hide" title="{{item.title}}"
+          [src]="item.thumbUrl" (click)="changeImage(item)" />
       </li>
     </ul>
   </div>
-  <div class="top-icons close-button" routerLink="/art">
+  <div class="icon-wrapper info-button" (click)="toggleShowInfo()">
+    <span class="icon-ios-information-outline"></span>
+  </div>
+  <div class="icon-wrapper close-button" routerLink="/art">
     <span class="icon-ios-close-empty"></span>
   </div>
 </div>

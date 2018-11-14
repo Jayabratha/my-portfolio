@@ -20,6 +20,7 @@ export class GalleryComponent implements OnInit, OnDestroy {
   currentItem: any;
   currentItemTitle: string = "";
   currentItemIndex: number = 0;
+  showInfo: boolean = false;
   
   loadingGallery: boolean = true;
 
@@ -72,10 +73,6 @@ export class GalleryComponent implements OnInit, OnDestroy {
     }
   }
 
-  ngOnDestroy() {
-    this.listSubscription.unsubscribe();
-  }
-
   onLoadComplete() {
     this.loadingGallery = false;
   }
@@ -104,5 +101,13 @@ export class GalleryComponent implements OnInit, OnDestroy {
     this.loadingGallery = true;
     this.appState.setGalleryItem(item);
     this.router.navigate(['/art/gallery/' + item.title]);
+  }
+
+  toggleShowInfo() {
+    this.showInfo = !this.showInfo;
+  }
+
+  ngOnDestroy() {
+    this.listSubscription.unsubscribe();
   }
 }
