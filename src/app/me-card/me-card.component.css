@@ -497,13 +497,13 @@ h1.name {
     padding: 0.5em 1em;
     border: thin solid #ebebeb;
     background: #FFFFFF;
-    box-shadow: 0 11px 20px rgba(0,0,0,.1);
+    box-shadow: 0 5px 20px rgba(0,0,0,.1);
     cursor: pointer;
     transition: transform .2s ease-in-out;
 }
 
 .search-result:hover {
-    transform: scale(1.025);
+    transform: scale(1.01);
 }
 
 .result-thumb {

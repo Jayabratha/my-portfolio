@@ -41,7 +41,7 @@ section.background {
     font-family: Roboto;
     font-weight: 100;
     margin: 0;
-    padding: 25px 0;
+    padding: 0.5em 0;
 }
 
 .content .main {
@@ -62,7 +62,6 @@ section.background {
 
 .content .main h2 {
     position: relative;
-    font-family: Playfair Display;
     font-size: 1.25em;
     padding: 0;
 }
@@ -142,7 +141,8 @@ section.background {
     font-family: Playfair Display;
     padding-left: 0;
     padding-top: 10px;
-    border-bottom: thin dotted;
+    border-bottom: thin dotted #cdcdcd;
+    margin-bottom: 1em;
 }
 
 .content section p {
@@ -276,9 +276,6 @@ p.sub_desc {
         width: 100%;
         padding-left: 0;
         padding-top: 1em;
-    }
-    .feature-content p {
-        padding-left: 0;
     }
 }
 

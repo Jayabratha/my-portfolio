@@ -10,6 +10,7 @@
   </div>
   <router-outlet></router-outlet>
   <section class="list-wrapper" appJsOnscroll [viewportCheck]=true [checkAboveView]=false>
+    <h2>Gallery</h2>
     <div class="loading-icon animate" [hidden]="!isLoading">
     </div>
     <div class="alert" [ngClass]="alertType" [hidden]="!alert">{{alert}}</div>

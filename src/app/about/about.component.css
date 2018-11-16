@@ -65,6 +65,12 @@
         height: 8em;
     }
 
+    .exp-wrapper,
+    .skills-wrapper,
+    .feature-content>p {
+        padding: 0.5em 1em;
+    }
+
     .exp-header {
         height: 6em;
     }

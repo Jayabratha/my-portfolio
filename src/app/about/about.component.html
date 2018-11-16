@@ -25,8 +25,8 @@
   </div>
   <section class="my-tiles view-check below-view" appJsOnscroll [viewportCheck]=true [padding]=100 [checkAboveView]=false
     (enteredViewport)="animateSkills()">
-    <div class="tiles-wrapper">
-      <h2>Tech Skills</h2>
+    <h2>Tech Skills</h2>
+    <div class="skills-wrapper">
       <div class="tiles-container">
         <ul class="clearfix skill-list">
           <li class="col-xs-3 col-sm-2 col-md-2 col-lg-2">
@@ -63,60 +63,56 @@
       </div>
       <p class="sub-desc below-view" appJsOnscroll [viewportCheck]=true [padding]=500 [checkAboveView]=false>
         I am currently working on MEAN stack technologies specializing on front-end including TypeScript, Angular along
-        with base
-        web technologies. I have also experience in working with Ionic and Firebase.
+        with base web technologies. I have also experience in working with Ionic and Firebase.
       </p>
     </div>
   </section>
   <section class="my-work-experience">
-    <div class="experience-container">
-      <h2>Work Experience</h2>
-      <div class="exp-container">
-        <ul>
-          <li appJsOnscroll [viewportCheck]=true [padding]=100 [checkAboveView]=false>
-            <div #expItem class="exp-wrapper clearfix">
-              <div class="logo-wrapper">
-                <img src="assets/sgm-logo.png" />
-              </div>
-              <div class="exp-summary">
-                <div class="exp-header">
-                  <h3>Sapient Global Markets</h3>
-                  <div class="time">Oct, 2016 - present</div>
-                </div>
-                <p>
-                  I worked as Senior Interactive Developer for Wells Fargo Bank. I used this opportunity to design and
-                  develop apps that qualify
-                  the web accessibilty specifications and fulfill the user experience guidelines. Here I worked on
-                  custom
-                  web widgets based on YUI and Angular SPAs.
-                </p>
-              </div>
+    <h2>Work Experience</h2>
+    <div class="exp-container">
+      <ul>
+        <li appJsOnscroll [viewportCheck]=true [padding]=100 [checkAboveView]=false>
+          <div #expItem class="exp-wrapper clearfix">
+            <div class="logo-wrapper">
+              <img src="assets/sgm-logo.png" />
             </div>
-          </li>
-          <li appJsOnscroll [viewportCheck]=true [padding]=100 [checkAboveView]=false>
-            <div #expItem class="exp-wrapper clearfix">
-              <div class="logo-wrapper">
-                <img src="assets/tcs-logo.png" />
+            <div class="exp-summary">
+              <div class="exp-header">
+                <h3>Sapient Global Markets</h3>
+                <div class="time">Oct, 2016 - present</div>
               </div>
-              <div class="exp-summary">
-                <div class="exp-header">
-                  <h3>Tata Consultancy Services</h3>
-                  <div class="time">March, 2012 - Sep, 2016</div>
-                </div>
-                <p>
-                  I started my carreer with TCS as a Systems Engineer. During my first 2 years I worked as Java
-                  Developer but worked on multiple
-                  technologies inclusing PHP, shell scripting, frontend stuff and lot more ebing on a support and
-                  enhancement
-                  project with DexMedia. Due to interest in design and frontend stuff I choose to move to a more of a
-                  frontend
-                  role and worked as a IT Analyst for Pearson where I worked on mutiple Angular and OOJS projects.
-                </p>
-              </div>
+              <p>
+                I worked as Senior Interactive Developer for Wells Fargo Bank. I used this opportunity to design and
+                develop apps that qualify
+                the web accessibilty specifications and fulfill the user experience guidelines. Here I worked on
+                custom web widgets based on YUI and Angular SPAs.
+              </p>
             </div>
-          </li>
-        </ul>
-      </div>
+          </div>
+        </li>
+        <li appJsOnscroll [viewportCheck]=true [padding]=100 [checkAboveView]=false>
+          <div #expItem class="exp-wrapper clearfix">
+            <div class="logo-wrapper">
+              <img src="assets/tcs-logo.png" />
+            </div>
+            <div class="exp-summary">
+              <div class="exp-header">
+                <h3>Tata Consultancy Services</h3>
+                <div class="time">March, 2012 - Sep, 2016</div>
+              </div>
+              <p>
+                I started my carreer with TCS as a Systems Engineer. During my first 2 years I worked as Java
+                Developer but worked on multiple
+                technologies inclusing PHP, shell scripting, frontend stuff and lot more ebing on a support and
+                enhancement
+                project with DexMedia. Due to interest in design and frontend stuff I choose to move to a more of a
+                frontend
+                role and worked as a IT Analyst for Pearson where I worked on mutiple Angular and OOJS projects.
+              </p>
+            </div>
+          </div>
+        </li>
+      </ul>
     </div>
   </section>
   <!-- <section class="my-timeline">
