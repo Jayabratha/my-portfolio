@@ -82,11 +82,11 @@ section.background {
 }
 
 .content.art-content .main {
-    background: linear-gradient(140deg, #f31b48, #c6116b);
+    background: linear-gradient(140deg, #fd7819, #f31b48);
 }
 
 .content.projects-content .main {
-    background: linear-gradient(140deg, #c6116b, #940590);
+    background: linear-gradient(140deg, #f31b48, #940590);
 }
 
 .content.blog-content .main {
