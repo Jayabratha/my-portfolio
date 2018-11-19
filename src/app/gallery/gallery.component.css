@@ -126,7 +126,7 @@
     left: 0;
     height: 100%;
     width: 300px;
-    background: #333333;
+    background-color: rgba(67, 67, 67, 0.78);
     vertical-align: top;
     padding: 70px 20px;
     color: #FFFFFF;

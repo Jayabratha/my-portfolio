@@ -43,6 +43,11 @@
     align-items: center;
 }
 
+.title h3 {
+    margin: 0;
+    font-weight: normal;
+}
+
 .github-link {
     text-decoration: none;
     color: inherit;

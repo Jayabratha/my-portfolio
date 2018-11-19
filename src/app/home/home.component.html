@@ -101,7 +101,7 @@
     </div>
   </div>
 </div>
-<div class="scroll-indicator" [hidden]="this.isMobile">
+<div class="scroll-indicator" [hidden]="isMobile || headerState.state === HEADER_STATE.Initial">
   <div class="me home-anchors" [ngClass]="{'active': stepCount === 0}" (click)="setStepCount(0)">
     <div class="inner-dot"></div>
   </div>
