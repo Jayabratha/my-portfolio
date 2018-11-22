@@ -1,7 +1,7 @@
 const functions = require('firebase-functions');
 const admin = require('firebase-admin');
 const request = require('request-promise');
-const gcs = require('@google-cloud/storage')();
+const {Storage} = require('@google-cloud/storage');
 const sharp = require('sharp');
 const path = require('path');
 const os = require('os');
@@ -16,6 +16,8 @@ const esClient = new elasticsearch.Client({
   httpAuth: 'user:WVSfStr1h5Gm',
   log: 'trace'
 });
+
+const gcs = new Storage();
 
 const nodemailer = require('nodemailer');
 const firebaseConfig = functions.config();
@@ -48,8 +50,9 @@ exports.sendContactMessage = functions.database.ref('/messages/{pushKey}').onWri
 });
 
 //Process Image upload to create thumbnail, DB entry
-exports.processImageUpload = functions.storage.object().onChange(event => {
-  const object = event.data;
+exports.processImgUploads = functions.storage.object().onFinalize((object) => {
+
+  console.log(gcs);
 
   const fileBucket = object.bucket;
   const filePath = object.name;
