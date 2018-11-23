@@ -30,14 +30,14 @@ const elasticSearchConfig = firebaseConfig.elasticsearch;
 const db = admin.database();
 
 //Send Contact Email
-exports.sendContactMessage = functions.database.ref('/messages/{pushKey}').onWrite(event => {
-  const snapshot = event.data;
+exports.sendContactMessage = functions.database.ref('/messages/{pushKey}').onWrite((snapshot) => {
+
   // Only send email for new messages.
-  if (snapshot.previous.val() || !snapshot.val().name) {
+  if (snapshot.before.val()) {
     return;
   }
 
-  const val = snapshot.val();
+  const val = snapshot.after.val();
 
   const mailOptions = {
     to: 'enjoy.jayabratha@gmail.com',
@@ -110,10 +110,9 @@ exports.processImgUploads = functions.storage.object().onFinalize((object) => {
 });
 
 //Update the Elasticsearch Index when image is uploaded
-exports.updateImagesIndex = functions.database.ref('/artImages/{pushKey}').onWrite(event => {
-  let postData = event.data.val();
-  let imageId = event.params.pushKey;
-
+exports.updateImagesIndex = functions.database.ref('/artImages/{pushKey}').onWrite((snapshot, context) => {
+  let postData = snapshot.after.val();
+  let imageId = context.params.pushKey;
   let elasticSearchUrl = elasticSearchConfig.url + '/images/image/' + imageId;
   let elasticSearchMethod = postData ? 'POST' : 'DELETE';
 

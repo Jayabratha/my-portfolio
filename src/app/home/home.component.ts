@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy, HostListener } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { AppStateService } from '../app-state.service';
+import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { AppState } from '../app.state';
 import { Header } from '../models/header.model';
@@ -57,7 +57,9 @@ export class HomeComponent implements OnInit, OnDestroy {
   decounce: boolean = false;
   isMobile: boolean = false;
 
-  constructor(private store: Store<AppState>, private appState: AppStateService) {
+  constructor(
+    private store: Store<AppState>,
+    private router: Router) {
   }
 
   ngOnInit() {

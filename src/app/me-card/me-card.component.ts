@@ -144,6 +144,15 @@ export class MeCardComponent implements OnInit, OnDestroy {
 
   }
 
+  goToHome() {
+    if (this.router.url !== '/home') {
+      this.router.navigate(['/home']);
+    } else {
+      window.scrollTo(0, 0);
+      this.store.dispatch(new HeaderActions.ToggleMenu(true));
+    }
+  }
+
   animateNavItems() {
     this.navItems.forEach((navItem, index) => {
       setTimeout(() => {
