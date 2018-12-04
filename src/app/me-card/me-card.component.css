@@ -233,11 +233,7 @@ h1.name {
 .fix-header .me-card-wrapper,
 .search-header .me-card-wrapper {
     overflow: visible;
-}
-
-.fix-header .me-card,
-.search-header .me-card {
-    transform: translateY(-101px);
+    margin-top: 59px;
 }
 
 .fix-header .my-dp,
@@ -624,13 +620,9 @@ h1.name {
     .search-header .menu-icon-bottom {
         background: #212121;
     }
-    .fix-header .me-card-wrapper,
-    .seach-header .me-card-wrapper {
-        margin-top: 51px;
-    }
     .fix-header .me-card,
     .search-header .me-card {
-        height: 2px;
+        height: 0;
     }
     .fix-header .my-card-wrapper,
     .search-header .my-card-wrapper {

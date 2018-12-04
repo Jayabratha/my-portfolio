@@ -36,3 +36,9 @@
     margin: 0;
     font-weight: normal;
 }
+
+@media (max-width: 650px) {
+    .blog-card {
+        width: 100%;
+    }
+}
