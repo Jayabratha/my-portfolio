@@ -604,6 +604,9 @@ h1.name {
     }
 
     /* Fixed & Search Header Styles - Start */
+    .main-header.fix-header {
+        overflow: visible;
+    }
     .fix-header .logo-menu,
     .search-header .logo-menu {
         z-index: 20;
@@ -638,6 +641,7 @@ h1.name {
     }
     .fix-header .site-nav {
         display: block;
+        position: absolute;
     }
     .fix-header.show-menu .my-card,
     .search-header.show-menu .my-card {
