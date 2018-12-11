@@ -5,7 +5,6 @@
     height: 38em;
     box-shadow: 0 2px 20px rgba(0,0,0,.1);
     transition: height 0.5s ease-out;
-    overflow: hidden;
 }
 .absolute-bottom {
     position: absolute;
@@ -14,7 +13,7 @@
     right: 0;
 }
 .logo-menu {
-    position: fixed;
+    position: absolute;
     top: 0;
     margin: 11px auto;
     left: 0;
@@ -79,16 +78,17 @@
 
 .me-card-wrapper {
     position: relative;
-    margin-top: 160px;
+    padding-top: 160px;
+    box-sizing: content-box;
     left: 0;
     right: 0;
     height: 19.3em;
     overflow: hidden;
-    transition: margin-top 0.5s ease-out;
+    transition: padding-top 0.5s ease-out, height 0.5s;
 }
 
 .menu-background {
-    position: fixed;
+    position: absolute;
     top: 59px;
     width: 100%;
     height: 100vh;
@@ -97,7 +97,7 @@
 }
 
 .me-card {
-    position: absolute;
+    position: relative;
     height: 100%;
     margin: 0 auto 0;
     transform: translateY(0);
@@ -205,6 +205,7 @@ h1.name {
     width: 100%;
     height: 61px;
     z-index: 10;
+    top: 0;
 }
 .fix-header .hello-card,
 .search-header .hello-card {
@@ -232,8 +233,8 @@ h1.name {
 
 .fix-header .me-card-wrapper,
 .search-header .me-card-wrapper {
-    overflow: visible;
-    margin-top: 59px;
+    padding-top: 59px;
+    height: 2px;
 }
 
 .fix-header .my-dp,
@@ -253,15 +254,14 @@ h1.name {
 
 .fix-header .site-nav,
 .mobile .site-nav {
-    position: fixed;
     top: 59px;
     height: 0;
     margin: 0 auto;
     left: 0;
     right: 0;
-    overflow: hidden;
     transition: height 0.5s;
     z-index: 2;
+    overflow: hidden;
 }
 
 .mobile .site-nav {
@@ -581,7 +581,7 @@ h1.name {
         height: 162vw;
     }
     .me-card-wrapper {
-        margin: 2vw;
+        padding: 2vw;
         height: 157vw;
     }
     .my-card-wrapper {

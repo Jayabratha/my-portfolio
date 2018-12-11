@@ -1,4 +1,4 @@
-<div class="main-header" [ngClass]="{'fix-header': headerState.state === HEADER_STATE.Fixed, 'initial-header': headerState.state === HEADER_STATE.Initial, 'show-menu': headerState.showMenu, 'search-header': headerState.showSearch, 'mobile': isMobile }">
+<header class="main-header" [ngClass]="{'fix-header': headerState.state === HEADER_STATE.Fixed, 'initial-header': headerState.state === HEADER_STATE.Initial, 'show-menu': headerState.showMenu, 'search-header': headerState.showSearch, 'mobile': isMobile }">
     <div class="logo-menu center-stage">
         <div class="menu-section" (click)="toggleMenu(); $event.stopPropagation();">
             <div class="menu-icon-top"></div>
@@ -29,7 +29,7 @@
             <span>Hello there!</span>
         </div>
     </section>
-    <section class="me-card-wrapper center-stage" appJsOnscroll [padding]="requiredPadding" [activateScroll]="activateScroll"
+    <section class="me-card-wrapper center-stage" appJsOnscroll [activateScroll]="activateScroll"
         (onStateChange)="headerStateChange($event)">
         <div class="me-card" [style.width]="carouselLoadProgress + '%'">
             <div class="dp my-dp">
@@ -79,5 +79,5 @@
     <div class="nav-highlighter-wrapper center-stage absolute-bottom">
         <div class="nav-highlighter" [ngClass]="activeNav"></div>
     </div>
-</div>
+</header>
 <div class="menu-background" [hidden]="!((headerState.state === HEADER_STATE.Fixed && headerState.showMenu) || headerState.showSearch)"></div>

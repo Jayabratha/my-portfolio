@@ -1,8 +1,8 @@
-import { Component, Input, OnInit, OnDestroy, ElementRef, ViewChild, ViewChildren, QueryList } from '@angular/core';
+import { Component, OnInit, OnDestroy, ElementRef, ViewChild, ViewChildren, QueryList } from '@angular/core';
 import { AppStateService } from '../app-state.service';
 import { Subscription } from 'rxjs';
 import { Router, NavigationStart, NavigationEnd } from '@angular/router';
-import { trigger, state, style, animate, transition } from '@angular/animations';
+import { trigger, style, animate, transition } from '@angular/animations';
 import { AngularFireStorage } from 'angularfire2/storage';
 
 import { ElasticsearchService } from '../elasticsearch.service';
@@ -50,7 +50,6 @@ export class MeCardComponent implements OnInit, OnDestroy {
   carouselLoadProgress: number = 0;
   keyword: string = "";
   isMobile: boolean = false;
-  requiredPadding: number = 60;
   isSearchAvailable: boolean = false;
   searchResults: Array<any> = [];
   resultsPage: boolean = false;
@@ -91,7 +90,6 @@ export class MeCardComponent implements OnInit, OnDestroy {
 
     if (deviceWidth < 650) {
       this.isMobile = true;
-      this.requiredPadding = -320;
     }
 
     this.store.select('header').subscribe((headerState: Header) => {
@@ -182,6 +180,7 @@ export class MeCardComponent implements OnInit, OnDestroy {
   }
 
   headerStateChange(state: string) {
+    console.log(state);
     if (state === 'fix' && this.headerState.state === this.HEADER_STATE.Home) {
       this.store.dispatch(new HeaderActions.UpdateState(HeaderState.Fixed));
     } else if (state === 'scroll' && this.headerState.state === this.HEADER_STATE.Fixed) {
