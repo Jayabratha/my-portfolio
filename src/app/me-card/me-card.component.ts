@@ -85,6 +85,13 @@ export class MeCardComponent implements OnInit, OnDestroy {
     description: ""
   }];
 
+  carouselConfig = {
+    slideInterval: 5000,  
+    leftArrowClassName: 'icon-ios-arrow-thin-left',
+    rightArrowClassName: 'icon-ios-arrow-thin-right',
+    showText: false
+  }
+
   ngOnInit() {
     let deviceWidth = window.screen.width;
 
@@ -169,9 +176,11 @@ export class MeCardComponent implements OnInit, OnDestroy {
 
   onCarouselReady(isReady) {
     if (isReady) {
-      if (this.router.url === '/home' && this.headerState.state !== HeaderState.Fixed) {
-        this.store.dispatch(new HeaderActions.UpdateState(HeaderState.Home));
-      }
+      setTimeout(() => {
+        if (this.router.url === '/home' && this.headerState.state !== HeaderState.Fixed) {
+          this.store.dispatch(new HeaderActions.UpdateState(HeaderState.Home));
+        }
+      }, 1000);
     }
   }
 

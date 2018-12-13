@@ -8,12 +8,12 @@ import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireStorageModule } from 'angularfire2/storage';
 import { environment } from '../environments/environment';
+import { JsNgCarouselModule } from 'js-ng-carousel';
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { MeCardComponent } from './me-card/me-card.component';
 import { JsOnscrollDirective } from './js-onscroll.directive';
-import { JsCarouselComponent } from './js-carousel/js-carousel.component';
 import { ArtComponent } from './art/art.component';
 import { ProjectsComponent } from './projects/projects.component';
 import { AboutComponent } from './about/about.component';
@@ -54,7 +54,6 @@ const appRoutes: Routes = [
     AppComponent,
     MeCardComponent,
     JsOnscrollDirective,
-    JsCarouselComponent,
     HomeComponent,
     ArtComponent,
     ProjectsComponent,
@@ -70,6 +69,7 @@ const appRoutes: Routes = [
     FormsModule,
     HttpModule,
     BrowserAnimationsModule,
+    JsNgCarouselModule,
     StoreModule.forRoot({
       header: headerReducer
     }),

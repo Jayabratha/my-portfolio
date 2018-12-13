@@ -33,8 +33,8 @@
         (onStateChange)="headerStateChange($event)">
         <div class="me-card" [style.width]="carouselLoadProgress + '%'">
             <div class="dp my-dp">
-                <app-js-carousel [slideItems]=slideList [play]=play (carouselReady)="onCarouselReady($event)"
-                    (carouselLoading)="onCarouselLoadProgress($event)"></app-js-carousel>
+                <js-ng-carousel [slideItems]=slideList [play]=play [config]="carouselConfig" [style.width.%]="100" [style.height.%]="100" (carouselReady)="onCarouselReady($event)"
+                    (carouselLoading)="onCarouselLoadProgress($event)"></js-ng-carousel>
             </div>
             <div class="my-card-wrapper">
                 <h1 class="name">Jayabratha Saha</h1>
@@ -70,7 +70,7 @@
             </li>
         </ul>
     </div>
-    <nav class="site-nav center-stage absolute-bottom">
+    <nav class="site-nav center-stage">
         <ul class="site-nav-list">
             <li *ngFor="let navItem of navItems" [class.show]="navItem.visible" (mouseenter)="activeNav=navItem.id"
                 (mouseleave)="activeNav=''" [routerLink]="navItem.link">{{navItem.label}}</li>
