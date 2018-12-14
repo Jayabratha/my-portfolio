@@ -34,23 +34,41 @@
 }
 
 .title {
-    font-family: Playfair Display;
-    font-weight: normal;
-    font-size: 1.7em;
     margin: 0 0 1em;
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    align-items: start;
 }
 
 .title h3 {
+    font-family: Playfair Display;
+    font-weight: normal;
+    font-size: 1.6em;
     margin: 0;
     font-weight: normal;
+    margin-top: -0.2em;
 }
 
 .github-link {
     text-decoration: none;
     color: inherit;
+    display: flex;
+    align-items: center;
+    padding: 0 5px 0 10px;
+    border-radius: 20px;
+    font-size: 0.8em;
+    border: thin solid #ccc;
+}
+.github-link:hover {
+    border-color: #28a6e4;
+    background: #ebebeb;
+}
+.github-link span {
+    white-space: nowrap;
+}
+.github-link i {
+    font-size: 1.5em;
+    padding: 5px 0 0 5px;
 }
 
 .footer {
@@ -71,6 +89,7 @@
 .color-band.red {
     background-color: #f44336;
 }
+
 .color-band.magenta {
     background-color: #c6116b;
 }
@@ -101,26 +120,31 @@
 .tag-color.firebase {
     background-color: #ffca28;
 }
+
 .tag-color.angular,
 .tag-color.angular-js {
     background-color: #dd0031;
 }
+
 .tag-color.node {
     background-color: #026e00;
 }
+
 .tag-color.express {
     background-color: #555;
 }
+
 .tag-color.mongo {
     background-color: #13aa52;
 }
+
 .tag-color.material {
     background-color: #3f51b5;
 }
 
 @media (max-width: 650px) {
     .project {
-        width:100%
+        width: 100%
     }
     .project-card {
         font-size: 1.25em;

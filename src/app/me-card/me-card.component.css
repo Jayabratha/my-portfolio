@@ -4,7 +4,7 @@
     background: #fff;
     min-height: 38em;
     box-shadow: 0 2px 20px rgba(0,0,0,.1);
-    transition: height 0.5s ease-out;
+    transition: min-height 0.5s ease-out;
 }
 .absolute-bottom {
     position: absolute;
@@ -203,6 +203,7 @@ h1.name {
 .main-header.search-header {
     position: fixed;
     width: 100%;
+    min-height: 61px;
     height: 61px;
     z-index: 10;
     top: 0;
@@ -254,6 +255,7 @@ h1.name {
 
 .fix-header .site-nav,
 .mobile .site-nav {
+    position: absolute;
     top: 59px;
     height: 0;
     margin: 0 auto;
