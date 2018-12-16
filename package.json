@@ -28,20 +28,21 @@
     "firebase": "^5.0.3",
     "firebase-functions": "^2.1.0",
     "hammerjs": "^2.0.8",
-    "js-ng-carousel": "^1.1.1",
+    "js-ng-carousel": "^1.1.2",
     "rxjs": "^6.2.1",
     "ts-helpers": "^1.1.1",
+    "tslib": "^1.9.0",
     "web-animations-js": "^2.3.1",
     "zone.js": "^0.8.26"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "^0.10.6",
-    "@angular/cli": "7.0.6",
+    "@angular-devkit/build-angular": "^0.11.3",
+    "@angular/cli": "7.1.3",
     "@angular/compiler": "6.0.5",
     "@angular/compiler-cli": "6.0.5",
     "@types/jasmine": "^2.2.30",
     "@types/node": "^6.0.42",
-    "codelyzer": "1.0.0-beta.1",
+    "codelyzer": "^4.5.0",
     "jasmine-core": "2.4.1",
     "jasmine-spec-reporter": "2.5.0",
     "karma": "1.2.0",
@@ -53,7 +54,7 @@
     "sw-precache-webpack-plugin": "^0.11.5",
     "ts-node": "1.2.1",
     "tslint": "3.13.0",
-    "typescript": "2.7.2",
+    "typescript": "^2.7.2",
     "webdriver-manager": "10.2.5"
   }
 }
