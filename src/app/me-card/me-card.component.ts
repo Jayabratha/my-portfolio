@@ -89,7 +89,8 @@ export class MeCardComponent implements OnInit, OnDestroy {
     slideInterval: 5000,  
     leftArrowClassName: 'icon-ios-arrow-thin-left',
     rightArrowClassName: 'icon-ios-arrow-thin-right',
-    showText: false
+    showText: false,
+    applyBoxShadow: true
   }
 
   ngOnInit() {
