@@ -8,9 +8,13 @@
 
 /* Route Components Base Styles - Start */
 
+.main-content {
+    margin-top: 61px;
+}
+
 .content {
     position: relative;
-    padding-top: 5em;
+    padding-top: 2em;
 }
 
 .content h1 {

@@ -18,7 +18,6 @@
     margin: 11px auto;
     left: 0;
     right: 0;
-    z-index: 30;
 }
 .menu-section, .logo-section {
     position: relative;
@@ -31,7 +30,7 @@
     transition: background-color 0.5s, margin 0.5s, opacity 0.5s;
     outline: none;
     cursor: pointer;
-    z-index: 1;
+    z-index: 3;
 }
 .menu-section {
     background: transparent;
@@ -84,6 +83,7 @@
     right: 0;
     height: 19.3em;
     overflow: hidden;
+    z-index: 2;
     transition: padding-top 0.5s ease-out, height 0.5s;
 }
 
@@ -253,6 +253,10 @@ h1.name {
     display: none;
 }
 
+.search-header .search-wrapper {
+    width: 100%;
+}
+
 .fix-header .site-nav,
 .mobile .site-nav {
     position: absolute;
@@ -276,6 +280,10 @@ h1.name {
 
 .fix-header .site-nav {
     background: linear-gradient(140deg, #ff9800, #f31b48, #940590, #0ab779);
+}
+
+.fix-header.mobile .site-nav {
+    background: transparent;
 }
 
 .fix-header ul.site-nav-list,
@@ -306,6 +314,22 @@ h1.name {
 /* Fixed Header Styles - End */
 
 /* Show Menu Styles - Start */
+.mobile.show-menu .logo-section {
+    z-index: 1;
+    opacity: 0;
+}
+
+.mobile.show-menu.fix-header .me-card-wrapper,
+.mobile.show-menu.search-header .me-card-wrapper {
+    padding: 2vw;
+    height: 157vw;
+}
+
+.mobile.show-menu.fix-header .me-card,
+.mobile.show-menu.search-header .me-card {
+    height: 100%;
+}
+
 .mobile.show-menu .me-card,
 .fix-header.show-menu .me-card,
 .search-header .me-card {
@@ -347,6 +371,11 @@ h1.name {
     -moz-transform: rotate(-135deg);
     -o-transform: rotate(-135deg);
     transform: rotate(-135deg);
+}
+
+.mobile.show-menu .menu-icon-top,
+.mobile.show-menu .menu-icon-bottom {
+    background: #FFFFFF;
 }
 /* Show Menu Styles - End */
 
@@ -408,9 +437,9 @@ h1.name {
 .search-wrapper {
     position: absolute;
     display: inline-block;
-    width: 100%;
-    left: 0;
-    padding-left: 55px;
+    width: 85%;
+    right: 0;
+    z-index: 3;
 }
 
 .search-wrapper label {
@@ -450,6 +479,9 @@ h1.name {
 }
 .search-header .search-input input {
     opacity: 1;
+}
+.search-header .menu-section {
+    opacity: 0;
 }
 
 .search-wrapper button {
@@ -529,11 +561,13 @@ h1.name {
 @media (max-width: 650px) {
     .logo-menu {
         margin: 2.75vw auto;
-        z-index: 7;
         padding: 1px 3px;
     }
     .logo-section, .menu-icon, .menu-icon-top, .menu-icon-bottom{
         background-color: #FFFFFF;
+    }
+    .menu-section {
+        z-index: 5;
     }
 
     .logo-section {
@@ -541,16 +575,23 @@ h1.name {
     }
 
     .search-wrapper {
-        padding-left: 0;
-    }
-
-    .search-wrapper .search-input {
         opacity: 0;
+        width: 100%;
+        z-index: 1;
     }
 
-    .fix-header .search-wrapper .search-input {
-        width: 85px;
+    .search-input {
+        width: 100%;
+    }
+
+    .search-header .search-wrapper,
+    .show-menu .search-wrapper {    
         opacity: 1;
+        z-index: 3;
+    }
+
+    .mobile.show-menu .search-button {
+        color: #FFFFFF;
     }
 
     .search-wrapper button {
@@ -609,10 +650,6 @@ h1.name {
     .main-header.fix-header {
         overflow: visible;
     }
-    .fix-header .logo-menu,
-    .search-header .logo-menu {
-        z-index: 20;
-    }
     .fix-header .logo-section, 
     .search-header .logo-section {
         background: #212121;
@@ -624,10 +661,6 @@ h1.name {
     .search-header .menu-icon-top, 
     .search-header .menu-icon-bottom {
         background: #212121;
-    }
-    .fix-header .me-card,
-    .search-header .me-card {
-        height: 0;
     }
     .fix-header .my-card-wrapper,
     .search-header .my-card-wrapper {
@@ -675,6 +708,9 @@ h1.name {
     .show-menu .my-card-wrapper {
         opacity: 0;
         transition: opacity 0.2s ease-out;
+    }
+    .mobile.show-menu.fix-header .search-input {
+        color: #FFFFFF;
     }
     /* Show Menu Styles - End */
 
