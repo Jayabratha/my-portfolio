@@ -6,7 +6,7 @@
     background: #FFFFFF;
     font-size: 1.25em;
     font-family: Roboto;
-    border: thin solid #e4e2e2;
+    border: thin solid #efefef;
     padding: 1em;
 }
 
@@ -26,9 +26,9 @@
     width: 48%;
     min-height: 300px;
     background: #FFFFFF;
-    padding: 1em;
-    border: thin solid #e4e2e2;
-    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+    padding: 1.5em;
+    border: thin solid #efefef;
+    box-shadow: 0 3px 10px rgba(56, 55, 55, 0.06);
     font-family: Roboto;
     margin-bottom: 2em;
 }

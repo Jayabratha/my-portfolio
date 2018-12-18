@@ -114,7 +114,7 @@
     transition: opacity 0.3s ease-in;
 }
 
-.my-card-wrapper {
+.info-wrapper {
     height: 19.3em;
     position: relative;
     width: 100%;
@@ -122,16 +122,8 @@
     padding: 2em;
     padding-left: 40%;
     color: #FFFFFF;
-}
-
-.my-card {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    padding: 2em;
-    padding-left: 40%;
-    color: #FFFFFF;
-    transition: all 0.6s; 
+    opacity: 1;
+    transition: opacity 0.5s;
 }
 
 h1.name {
@@ -140,7 +132,6 @@ h1.name {
     font-family: 'Playfair Display', serif;
     font-size: 5em;
     line-height: 0.95em;
-    transition: opacity 0.5s;
     margin: 0;
     font-weight: normal;
 }
@@ -151,7 +142,6 @@ h1.name {
     font-family: 'Playfair Display', serif;
     text-transform: uppercase;
     letter-spacing: 0.5em;
-    transition: opacity 0.5s;
 }
 
 .github-link {
@@ -159,7 +149,8 @@ h1.name {
     right: 0.5em;
     font-size: 2.5em;
     top: 0.5em;
-    transition: opacity 0.5s ease-in;
+    text-decoration: none;
+    color: #FFFFFF;
 }
 
 .main-loader {
@@ -184,14 +175,11 @@ h1.name {
 }
 
 .initial-header .my-dp,
-.initial-header .name,
-.initial-header .title,
-.initial-header .github-link  {
+.initial-header .info-wrapper,
+.initial-header .site-nav-list>li  {
     opacity: 0;
 }
-.initial-header .site-nav-list>li {
-    opacity: 0;
-}
+
 .initial-header .my-card {
     padding-top: 0;
     padding-bottom: 0;
@@ -239,13 +227,9 @@ h1.name {
 }
 
 .fix-header .my-dp,
-.fix-header .name,
-.fix-header .title,
-.fix-header .github-link,
+.fix-header .info-wrapper,
 .search-header .my-dp,
-.search-header .name,
-.search-header .title,
-.search-header .github-link  {
+.search-header .info-wrapper {
     opacity: 0;
 }
 
@@ -627,7 +611,7 @@ h1.name {
         padding: 2vw;
         height: 157vw;
     }
-    .my-card-wrapper {
+    .info-wrapper {
         position: absolute;
         bottom: 0;
         padding: 20px;
@@ -662,8 +646,8 @@ h1.name {
     .search-header .menu-icon-bottom {
         background: #212121;
     }
-    .fix-header .my-card-wrapper,
-    .search-header .my-card-wrapper {
+    .fix-header .info-wrapper,
+    .search-header .info-wrapper {
         margin-top: 0;
     }
     .fix-header .my-dp,
@@ -689,7 +673,7 @@ h1.name {
         transform: translateY(40px);
         opacity: 0;      
     }
-    .initial-header .my-card-wrapper {
+    .initial-header .info-wrapper {
         position: relative;
         margin-top: 0;
     }
@@ -705,7 +689,7 @@ h1.name {
     .show-menu .my-dp {
         opacity: 0;
     }
-    .show-menu .my-card-wrapper {
+    .show-menu .info-wrapper {
         opacity: 0;
         transition: opacity 0.2s ease-out;
     }
@@ -714,7 +698,7 @@ h1.name {
     }
     /* Show Menu Styles - End */
 
-    .dp.my-dp {
+    .my-dp {
         height: 94vw;
     }
     .logo-section i {
