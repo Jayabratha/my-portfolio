@@ -190,7 +190,6 @@ export class MeCardComponent implements OnInit, OnDestroy {
   }
 
   headerStateChange(state: string) {
-    console.log(state);
     if (state === 'fix' && this.headerState.state === this.HEADER_STATE.Home) {
       this.store.dispatch(new HeaderActions.UpdateState(HeaderState.Fixed));
     } else if (state === 'scroll' && this.headerState.state === this.HEADER_STATE.Fixed) {
