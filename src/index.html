@@ -2,8 +2,16 @@
 <html lang="en">
 
 <head>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-131214369-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', 'UA-131214369-1');
+  </script>
   <meta charset="utf-8">
-  <title>Jayabratha | MyPortfolio</title>
+  <title>Jayabratha | My Portfolio | See my artworks, projects and blog</title>
   <base href="/">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="mobile-web-app-capable" content="yes">
@@ -21,16 +29,16 @@
       <i class="icon-load-c"></i>
     </div>
   </app-root>
-  
+
   <script>
     if ('serviceWorker' in navigator) {
       navigator.serviceWorker.register('/service-worker.js')
-      .then((registration) => {
-        console.log('SW registered');
-      })
-      .catch((err) => {
-        console.log('SW error', err);
-      });
+        .then((registration) => {
+          console.log('SW registered');
+        })
+        .catch((err) => {
+          console.log('SW error', err);
+        });
     }
   </script>
 </body>
