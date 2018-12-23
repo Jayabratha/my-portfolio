@@ -46,11 +46,11 @@
         </div>
     </section>
     <div class="search-result-wrapper center-stage" [hidden]="!headerState.showSearch">
-        <div class="initial-message" [hidden]="!(isSearchAvailable && resultsPage)">
+        <div class="initial-message" [hidden]="!(isSearchAvailable && !resultsPage)">
             <i class="icon-ios-search"></i>
             <div>Type in above to see matched content</div>
         </div>
-        <div class="initial-message" [hidden]="!isSearchAvailable && !noResults">
+        <div class="initial-message" [hidden]="!(isSearchAvailable && noResults)">
             <i class="icon-ios-information-outline"></i>
             <div>No results found! Try some other keywords</div>
         </div>
