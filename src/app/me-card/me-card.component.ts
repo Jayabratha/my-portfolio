@@ -86,7 +86,7 @@ export class MeCardComponent implements OnInit, OnDestroy {
   }];
 
   carouselConfig = {
-    slideInterval: 5000,  
+    slideInterval: 5000,
     leftArrowClassName: 'icon-ios-arrow-thin-left',
     rightArrowClassName: 'icon-ios-arrow-thin-right',
     showText: false,
@@ -122,8 +122,8 @@ export class MeCardComponent implements OnInit, OnDestroy {
     });
 
     //Check ElasticSearch Server
-    this.elasticsearch.isAvailable().subscribe(response => {
-      if (response.ok) {
+    this.elasticsearch.isAvailable().subscribe((response: any) => {
+      if (response.ok && response._body !== 'elasticsearch cluster is down!') {
         this.isSearchAvailable = true;
       }
     });
@@ -204,7 +204,7 @@ export class MeCardComponent implements OnInit, OnDestroy {
   toggleSearch() {
     if (this.showMenu) {
       this.hideMenu();
-    }  
+    }
     this.store.dispatch(new HeaderActions.ToggleSearch(!this.showSearch));
   }
 
@@ -217,7 +217,7 @@ export class MeCardComponent implements OnInit, OnDestroy {
     this.noResults = false;
     if (this.searchSubscription) {
       this.searchSubscription.unsubscribe();
-    }   
+    }
     if (this.showSearch && this.headerState.state === HeaderState.Home) {
       this.store.dispatch(new HeaderActions.ToggleMenu(true));
     }
@@ -227,9 +227,9 @@ export class MeCardComponent implements OnInit, OnDestroy {
   }
 
   search(keyword) {
-    this.resultsPage = true;
-    this.loading = true;
     if (this.isSearchAvailable) {
+      this.resultsPage = true;
+      this.loading = true;
       this.searchSubscription = this.elasticsearch.search(keyword).subscribe((response) => {
         let resBody = response.json();
         this.searchResults.length = 0;
