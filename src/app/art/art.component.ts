@@ -10,7 +10,6 @@ import { ArtImage } from '../models/art-image.model';
 
 import { Store } from '@ngrx/store';
 import { AppState } from '../app.state';
-import { Header } from '../models/header.model';
 import { HeaderState } from '../models/header-state.enum';
 import * as HeaderActions from '../actions/header.actions';
 
@@ -47,7 +46,7 @@ export class ArtComponent implements OnInit {
             this.db.list('/artImages').valueChanges().subscribe((fileList: ArtImage[]) => {
 
                 fileList.forEach((file: ArtImage) => {
-                    Object.assign(file, { visible: false });
+                    Object.assign(file, { visible: false});
                     this.urlSubsciptions.push(this.storage.ref(file.thumbPath).getDownloadURL().pipe(
                         tap((url) => Object.assign(file, { thumbUrl: url }))));
                     this.urlSubsciptions.push(this.storage.ref(file.filePath).getDownloadURL().pipe(
@@ -80,8 +79,9 @@ export class ArtComponent implements OnInit {
         }
     }
 
-    showInGallery(item) {
+    showInGallery(item, elem) {
         this.appState.setGalleryItem(item);
+        this.appState.setItemDimenion(elem);
         this.router.navigate(['/art/gallery/' + item.title]);
     }
 

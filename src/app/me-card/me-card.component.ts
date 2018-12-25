@@ -121,32 +121,22 @@ export class MeCardComponent implements OnInit, OnDestroy {
       }
     });
 
+    this.router.events.subscribe((event) => {
+      if (event instanceof NavigationStart) {
+        if (event.url === "/" || event.url === "/home") {
+          this.activateScroll = true;
+        } else {
+          this.activateScroll = false;
+        }
+      }
+    });
+
     //Check ElasticSearch Server
     this.elasticsearch.isAvailable().subscribe((response: any) => {
       if (response.ok && response._body !== 'elasticsearch cluster is down!') {
         this.isSearchAvailable = true;
       }
     });
-
-    this.router.events.subscribe(
-      (event) => {
-        if (event instanceof NavigationStart) {
-          if (event.url === "/" || event.url === "/home") {
-            this.activateScroll = true;
-          } else {
-            this.activateScroll = false;
-          }
-          // Prevent auto position of scroll on page refresh instead keep on top
-          window.addEventListener("beforeunload", (event) => {
-            window.scrollTo(0, 0);
-          });
-        }
-
-        if (event instanceof NavigationEnd) {
-          //Scroll to top when route load
-          window.scrollTo(0, 0);
-        }
-      });
 
   }
 

@@ -15,11 +15,12 @@
     </div>
     <div class="alert" [ngClass]="alertType" [hidden]="!alert">{{alert}}</div>
     <ul class="art-list clearfix" [hidden]="isLoading">
-      <li id="{{item.id}}" *ngFor="let item of imageList; let first = first" [ngClass]="{'potrait col-xs-6 col-sm-3 col-md-3 col-lg-3': item.isPortrait,
+      <li id="{{item.id}}" class="image-item" *ngFor="let item of imageList" [ngClass]="{'potrait col-xs-6 col-sm-3 col-md-3 col-lg-3': item.isPortrait,
                        'landscape col-xs-12 col-sm-6 col-md-6 col-lg-6': !item.isPortrait}">
-        <div class="image-wrapper" (click)="showInGallery(item)">
-          <img class="art-images" #imgItem [class.hide]="!item.visible" [title]="item.title" [src]="item.thumbUrl" (load)="updateProgress()" />
+        <div class="image-wrapper" #elem (click)="showInGallery(item, elem)" [class.hide]="!item.visible">
+          <img class="art-images" [title]="item.title" [src]="item.thumbUrl" (load)="updateProgress()" />
           <div class="image-title">{{item.title}}</div>
+          <div class="shadow"></div>
         </div>
       </li>
     </ul>

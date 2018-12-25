@@ -20,8 +20,32 @@
     height: 100%;
 }
 
-.image-container img {
-    height: 100%;
+.image-container .thumb {
+    position: absolute;
+    transition: all 0.1s ease-out;
+    margin: auto;
+}
+
+.image-container .thumb.center {
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+.image-container .file-item {
+    position: absolute;
+    max-height: 100%;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    opacity: 1;
+    margin: auto;
+}
+
+.image-container .file-item.hide {
+    opacity: 0;
 }
 
 .icon-wrapper {

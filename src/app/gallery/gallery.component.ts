@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, ViewChildren, QueryList, ElementRef } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { AppStateService } from '../app-state.service';
 import { Subscription } from 'rxjs';
@@ -21,14 +21,16 @@ export class GalleryComponent implements OnInit, OnDestroy {
   currentItemTitle: string = "";
   currentItemIndex: number = 0;
   showInfo: boolean = false;
-  
+  dimension: any;
+  initialDimension: any;
   loadingGallery: boolean = true;
+  centerImage: boolean = false;
+  imageReady: boolean = false;
 
   ngOnInit() {
     this.listSubscription = this.appState.getGalleryList().subscribe((galleryList) => {
       if (galleryList.length) {
         this.galleryList = galleryList;
-        this.show = true;
         this.showList = true;
         this.hideList();
         if (this.currentItemTitle) {
@@ -36,6 +38,21 @@ export class GalleryComponent implements OnInit, OnDestroy {
         }
       }
     });
+
+    this.initialDimension = this.appState.getItemDimension();
+
+    if (this.initialDimension) {
+      this.dimension = Object.assign({}, {
+        top: this.initialDimension.top,
+        bottom: this.initialDimension.bottom,
+        left: this.initialDimension.left,
+        right: this.initialDimension.right,
+        height: this.initialDimension.height,
+        width: this.initialDimension.width
+      });
+    } else {
+      this.centerImage = true;
+    }
 
     this.route.params.subscribe(params => {
       this.currentItemTitle = params.title;
@@ -55,6 +72,22 @@ export class GalleryComponent implements OnInit, OnDestroy {
         if (itemList[i].title === itemTitle) {
           this.currentItem = itemList[i];
           this.currentItemIndex = i;
+          this.show = true;
+          setTimeout(() => {
+            let viewportHeight = document.documentElement.clientHeight;
+            let viewportWidth = document.documentElement.clientWidth;
+            let imageHeight = this.currentItem.height;
+
+            this.dimension.height = (imageHeight < viewportHeight) ? imageHeight : viewportHeight;
+            let imageWidth = (this.currentItem.width / imageHeight) * this.dimension.height;
+            
+            this.dimension.top = (imageHeight < viewportHeight) ? (viewportHeight - imageHeight)/2 : 0;
+            this.dimension.left = (viewportWidth - imageWidth)/2;
+          }, 50);
+          setTimeout(() => {
+            this.imageReady = true;
+          }, 200);
+          break;
         }
       }
   }

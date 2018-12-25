@@ -1,13 +1,16 @@
 <div class="gallery" [ngClass]="{'show': show}">
-
   <div class="image-container" *ngIf="currentItem">
     <div class="initial-loader loading-icon animate" [hidden]="!loadingGallery"></div>
     <div class="image-info-panel" [class.show]="showInfo">
       <h1>{{currentItem.title}}</h1>
       <div class="desc">{{currentItem.desc}}</div>
     </div>
-    <div class="image-wrapper" [hidden]="loadingGallery" [class.with-info]="showInfo">
-      <img [src]="currentItem.fileUrl" alt="{{currentItem.title}}" (load)="onLoadComplete($event)" />
+    <div class="image-wrapper" [class.with-info]="showInfo">
+      <img class="thumb" [class.center]="centerImage" [style.top.px]="dimension?.top" 
+           [style.height.px] = "dimension?.height" 
+           [style.left.px] = "dimension?.left" 
+           [src]="currentItem.thumbUrl" />
+      <img class="file-item" #item [hidden]="!(imageReady && !loadingGallery)" [src]="currentItem.fileUrl" alt="{{currentItem.title}}" (load)="onLoadComplete($event)" />
       <div class="icon-wrapper arrow-btn left" (click)="prevImage()">
         <i class="icon-ios-arrow-thin-left"></i>
       </div>
