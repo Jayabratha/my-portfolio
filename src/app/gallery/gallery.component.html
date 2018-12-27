@@ -6,7 +6,7 @@
       <div class="desc">{{currentItem.desc}}</div>
     </div>
     <div class="image-wrapper" [class.with-info]="showInfo">
-      <img class="thumb" [class.center]="centerImage" [style.top.px]="dimension?.top" 
+      <img class="thumb" [hidden]="(imageReady && !loadingGallery)" [class.center]="centerImage" [style.top.px]="dimension?.top" 
            [style.height.px] = "dimension?.height" 
            [style.left.px] = "dimension?.left" 
            [src]="currentItem.thumbUrl" />
