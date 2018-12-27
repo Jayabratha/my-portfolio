@@ -23,14 +23,14 @@
 .image-container .thumb {
     position: absolute;
     transition: all 0.1s ease-out;
-    margin: auto;
 }
 
 .image-container .thumb.center {
     top: 0;
     bottom: 0;
     left: 0;
-    right: 0;
+    right: 0;    
+    margin: auto;
 }
 
 .image-container .file-item {
@@ -183,7 +183,7 @@
 }
 
 @media (max-width: 650px) {
-    .image-container img {
+    .image-container .file-item {
         width: 100%;
         height: auto;
         position: absolute;

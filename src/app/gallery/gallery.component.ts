@@ -68,28 +68,37 @@ export class GalleryComponent implements OnInit, OnDestroy {
 
   checkForCurrentItem(itemList, itemTitle) {
     let i, galleryListLength = itemList.length;
-      for (i = 0; i < galleryListLength; i++) {
-        if (itemList[i].title === itemTitle) {
-          this.currentItem = itemList[i];
-          this.currentItemIndex = i;
-          this.show = true;
+    for (i = 0; i < galleryListLength; i++) {
+      if (itemList[i].title === itemTitle) {
+        this.currentItem = itemList[i];
+        this.currentItemIndex = i;
+        this.show = true;
+        if (this.initialDimension) {
           setTimeout(() => {
             let viewportHeight = document.documentElement.clientHeight;
             let viewportWidth = document.documentElement.clientWidth;
             let imageHeight = this.currentItem.height;
+            let imageWidth = this.currentItem.width;
 
-            this.dimension.height = (imageHeight < viewportHeight) ? imageHeight : viewportHeight;
-            let imageWidth = (this.currentItem.width / imageHeight) * this.dimension.height;
-            
-            this.dimension.top = (imageHeight < viewportHeight) ? (viewportHeight - imageHeight)/2 : 0;
-            this.dimension.left = (viewportWidth - imageWidth)/2;
+            if (viewportWidth <= 650) {
+              imageWidth = viewportWidth;
+              imageHeight = (this.currentItem.height / this.currentItem.width) * imageWidth;
+            } else {
+              imageHeight = (imageHeight < viewportHeight) ? imageHeight : viewportHeight;
+              imageWidth = (this.currentItem.width / this.currentItem.height) * imageHeight;
+            }
+
+            this.dimension.height = imageHeight;
+            this.dimension.top = (imageHeight <= viewportHeight) ? (viewportHeight - imageHeight) / 2 : 0;
+            this.dimension.left = (imageWidth <= viewportWidth) ? (viewportWidth - imageWidth) / 2 : 0;
           }, 50);
-          setTimeout(() => {
-            this.imageReady = true;
-          }, 200);
-          break;
         }
+        setTimeout(() => {
+          this.imageReady = true;
+        }, 250);
+        break;
       }
+    }
   }
 
   hideList() {
