@@ -24,7 +24,6 @@ export class GalleryComponent implements OnInit, OnDestroy {
   dimension: any;
   initialDimension: any;
   loadingGallery: boolean = true;
-  centerImage: boolean = false;
   imageReady: boolean = false;
 
   ngOnInit() {
@@ -39,23 +38,27 @@ export class GalleryComponent implements OnInit, OnDestroy {
       }
     });
 
-    this.initialDimension = this.appState.getItemDimension();
-
-    if (this.initialDimension) {
-      this.dimension = Object.assign({}, {
-        top: this.initialDimension.top,
-        bottom: this.initialDimension.bottom,
-        left: this.initialDimension.left,
-        right: this.initialDimension.right,
-        height: this.initialDimension.height,
-        width: this.initialDimension.width
-      });
-    } else {
-      this.centerImage = true;
-    }
-
     this.route.params.subscribe(params => {
       this.currentItemTitle = params.title;
+      this.initialDimension = this.appState.getItemDimension();
+
+      if (this.initialDimension) {
+        this.dimension = Object.assign({}, {
+          top: this.initialDimension.top,
+          bottom: this.initialDimension.bottom,
+          left: this.initialDimension.left,
+          right: this.initialDimension.right,
+          height: this.initialDimension.height
+        });
+      } else {
+        this.dimension = {
+          top: 0,
+          bottom: 0,
+          left: 0,
+          right: 0
+        }
+      }
+
       if (this.galleryList.length) {
         this.checkForCurrentItem(this.galleryList, this.currentItemTitle);
       }
@@ -73,25 +76,32 @@ export class GalleryComponent implements OnInit, OnDestroy {
         this.currentItem = itemList[i];
         this.currentItemIndex = i;
         this.show = true;
+
+        let viewportHeight = document.documentElement.clientHeight;
+        let viewportWidth = document.documentElement.clientWidth;
+        let imageHeight = this.currentItem.height;
+        let imageWidth = this.currentItem.width;
+
+        if (viewportWidth <= 650) {
+          imageWidth = viewportWidth;
+          imageHeight = (this.currentItem.height / this.currentItem.width) * imageWidth;
+        } else {
+          imageHeight = (imageHeight < viewportHeight) ? imageHeight : viewportHeight;
+          imageWidth = (this.currentItem.width / this.currentItem.height) * imageHeight;
+        }
+
         if (this.initialDimension) {
           setTimeout(() => {
-            let viewportHeight = document.documentElement.clientHeight;
-            let viewportWidth = document.documentElement.clientWidth;
-            let imageHeight = this.currentItem.height;
-            let imageWidth = this.currentItem.width;
-
-            if (viewportWidth <= 650) {
-              imageWidth = viewportWidth;
-              imageHeight = (this.currentItem.height / this.currentItem.width) * imageWidth;
-            } else {
-              imageHeight = (imageHeight < viewportHeight) ? imageHeight : viewportHeight;
-              imageWidth = (this.currentItem.width / this.currentItem.height) * imageHeight;
-            }
-
             this.dimension.height = imageHeight;
+            this.dimension.width = imageWidth;
             this.dimension.top = (imageHeight <= viewportHeight) ? (viewportHeight - imageHeight) / 2 : 0;
             this.dimension.left = (imageWidth <= viewportWidth) ? (viewportWidth - imageWidth) / 2 : 0;
           }, 50);
+        } else {
+          this.dimension.height = imageHeight;
+          this.dimension.width = imageWidth;
+          this.dimension.top = (imageHeight <= viewportHeight) ? (viewportHeight - imageHeight) / 2 : 0;
+          this.dimension.left = (imageWidth <= viewportWidth) ? (viewportWidth - imageWidth) / 2 : 0;
         }
         setTimeout(() => {
           this.imageReady = true;
@@ -141,7 +151,7 @@ export class GalleryComponent implements OnInit, OnDestroy {
 
   changeImage(item) {
     this.loadingGallery = true;
-    this.appState.setGalleryItem(item);
+    this.appState.setGalleryItem(item, true);
     this.router.navigate(['/art/gallery/' + item.title]);
   }
 

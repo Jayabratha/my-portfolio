@@ -36,9 +36,8 @@
     font-size: 2em;
     padding: 25px;
     opacity: 0;
-    transform: translate3d(0, 6em, 0);
-    -webkit-transition: transform 0.2s ease-in, opacity 0.5s;
-    transition: transform 0.2s ease-in, opacity 0.5s;
+    -webkit-transition: opacity 0.3s ease-in;
+    transition: opacity 0.3s ease-in;
 }
 
 .image-wrapper .shadow {
@@ -51,7 +50,6 @@
 
 .image-wrapper:hover .image-title {
     opacity: 1;
-    transform: translate3d(0, 0, 0);
 }
 
 .image-wrapper:hover img {

@@ -6,11 +6,11 @@
       <div class="desc">{{currentItem.desc}}</div>
     </div>
     <div class="image-wrapper" [class.with-info]="showInfo">
-      <img class="thumb" [hidden]="(imageReady && !loadingGallery)" [class.center]="centerImage" [style.top.px]="dimension?.top" 
-           [style.height.px] = "dimension?.height" 
-           [style.left.px] = "dimension?.left" 
-           [src]="currentItem.thumbUrl" />
-      <img class="file-item" #item [hidden]="!(imageReady && !loadingGallery)" [src]="currentItem.fileUrl" alt="{{currentItem.title}}" (load)="onLoadComplete($event)" />
+      <div class="image" [style.width.px]="dimension?.width">
+        <img class="thumb" [hidden]="(imageReady && !loadingGallery)" [style.top.px]="dimension?.top"
+          [style.height.px]="dimension?.height" [style.left.px]="dimension?.left" [src]="currentItem.thumbUrl" />
+        <img class="file-item" [hidden]="!(imageReady && !loadingGallery)" [src]="currentItem.fileUrl" alt="{{currentItem.title}}" (load)="onLoadComplete($event)" />
+      </div>
       <div class="icon-wrapper arrow-btn left" (click)="prevImage()">
         <i class="icon-ios-arrow-thin-left"></i>
       </div>

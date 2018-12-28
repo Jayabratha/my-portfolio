@@ -15,7 +15,10 @@ export class AppStateService {
     return this.galleryList.asObservable();
   }
 
-  setGalleryItem(currentItem): void {
+  setGalleryItem(currentItem, change?): void {
+    if (change) {
+      this.setItemDimenion(null);
+    }
     this.galleryItem.next(currentItem);
   }
 
@@ -24,8 +27,12 @@ export class AppStateService {
   }
 
   setItemDimenion(itemElem): void {
-    let elemDimension = itemElem.getBoundingClientRect();
-    this.currentItemDimension = elemDimension;
+    if (itemElem) {
+      let elemDimension = itemElem.getBoundingClientRect();
+      this.currentItemDimension = elemDimension;
+    } else {
+      this.currentItemDimension = null;
+    }  
   }
 
   getItemDimension(): any {
