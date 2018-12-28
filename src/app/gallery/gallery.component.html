@@ -1,11 +1,12 @@
-<div class="gallery" [ngClass]="{'show': show}">
+<div class="gallery">
+  <div class="background" [ngClass]="{'show': show}"></div>
   <div class="image-container" *ngIf="currentItem">
-    <div class="initial-loader loading-icon animate" [hidden]="!loadingGallery"></div>
+    <div class="initial-loader loading-icon animate" [hidden]="!(imageReady && loadingGallery)"></div>
     <div class="image-info-panel" [class.show]="showInfo">
       <h1>{{currentItem.title}}</h1>
       <div class="desc">{{currentItem.desc}}</div>
     </div>
-    <div class="image-wrapper" [class.with-info]="showInfo">
+    <div class="image-wrapper" [class.with-info]="showInfo" (swipeleft)="nextImage()" (swiperight)="prevImage()">
       <div class="image" [style.width.px]="dimension?.width">
         <img class="thumb" [hidden]="(imageReady && !loadingGallery)" [style.top.px]="dimension?.top"
           [style.height.px]="dimension?.height" [style.left.px]="dimension?.left" [src]="currentItem.thumbUrl" />
@@ -19,8 +20,7 @@
       </div>
     </div>
   </div>
-
-  <div class="image-list-wrapper" [ngClass]="{'show': showList}">
+  <div class="image-list-wrapper">
     <ul class="art-list clearfix">
       <li id="{{item.id}}" *ngFor="let item of galleryList; let first = first">
         <img class="art-images" [ngClass]="{'active': checkIfCurrentItem(item)}" class="hide" title="{{item.title}}"
@@ -31,7 +31,7 @@
   <div class="icon-wrapper info-button" (click)="toggleShowInfo()">
     <span class="icon-ios-information-outline"></span>
   </div>
-  <div class="icon-wrapper close-button" routerLink="/art">
+  <div class="icon-wrapper close-button" (click)="closeGallery()">
     <span class="icon-ios-close-empty"></span>
   </div>
 </div>

@@ -13,7 +13,6 @@ export class GalleryComponent implements OnInit, OnDestroy {
   constructor(private appState: AppStateService, private route: ActivatedRoute, private router: Router) { }
 
   show: boolean = false;
-  showList: boolean = false;
   listSubscription: Subscription;
   currentItemSubscribtion: Subscription;
   galleryList: Array<any> = [];
@@ -30,8 +29,6 @@ export class GalleryComponent implements OnInit, OnDestroy {
     this.listSubscription = this.appState.getGalleryList().subscribe((galleryList) => {
       if (galleryList.length) {
         this.galleryList = galleryList;
-        this.showList = true;
-        this.hideList();
         if (this.currentItemTitle) {
           this.checkForCurrentItem(this.galleryList, this.currentItemTitle);
         }
@@ -111,12 +108,6 @@ export class GalleryComponent implements OnInit, OnDestroy {
     }
   }
 
-  hideList() {
-    setTimeout(() => {
-      this.showList = false;
-    }, 1500);
-  }
-
   checkIfCurrentItem(item) {
     if (item && this.currentItem && item.title === this.currentItem.title) {
       return true;
@@ -157,6 +148,27 @@ export class GalleryComponent implements OnInit, OnDestroy {
 
   toggleShowInfo() {
     this.showInfo = !this.showInfo;
+  }
+
+  closeGallery() {
+    this.imageReady = false;
+    this.show = false;
+    if (this.initialDimension) {     
+      setTimeout(()=> {
+        this.dimension = Object.assign({}, {
+          top: this.initialDimension.top,
+          bottom: this.initialDimension.bottom,
+          left: this.initialDimension.left,
+          right: this.initialDimension.right,
+          height: this.initialDimension.height
+        });
+      }, 10);
+      setTimeout(()=> {
+        this.router.navigate(['/art']);
+      }, 200);     
+    } else {
+      this.router.navigate(['/art']);
+    }
   }
 
   ngOnDestroy() {
