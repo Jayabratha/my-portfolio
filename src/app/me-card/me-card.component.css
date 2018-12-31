@@ -28,7 +28,7 @@
     display: inline-block;
     vertical-align: top;
     width: 3em;
-    height: 2.35em;
+    height: 2.4em;
     background: #212121;
     opacity: 1;
     transition: background-color 0.5s, margin 0.5s, opacity 0.5s;
@@ -47,8 +47,9 @@
     position: absolute;
     background-color: #212121;
     top: 1.2em;
-    margin-left: 0.3em;
     left: 0;
+    right: 0;
+    margin: auto;
     width: 1.8em;
     height: 0.125em;
     content: '';
@@ -475,7 +476,7 @@ h1.name {
 
 .search-input {
     float: right;
-    width: 2em;
+    width: 2.5em;
     padding: 0;
     height: 2.5em;
     -webkit-transition: width 0.5s ease-out;
@@ -588,7 +589,7 @@ h1.name {
 
 @media (max-width: 650px) {
     .logo-menu {
-        padding: 1px 3px;
+        padding: 3px;
     }
     .logo-section,
     .menu-icon,
@@ -629,14 +630,13 @@ h1.name {
         opacity: 0;
     }
     .menu-icon-top {
-        top: 11px;
+        top: 0.7em;
     }
     .menu-icon-bottom {
-        top: 27px;
+        top: 1.7em;
     }
     .menu-section {
         float: right;
-        width: 40px;
     }
     .hello-card {
         margin-top: 3em;
@@ -645,7 +645,7 @@ h1.name {
         height: 162vw;
     }
     .me-card-wrapper {
-        padding: 2vw;
+        padding: 0.65em;
         height: 157vw;
     }
     .info-wrapper {
