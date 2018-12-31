@@ -145,3 +145,10 @@ input {
         font-size: 13px;
     }
 }
+
+/* For 4k display */
+@media (min-width: 2560px) {
+    body {
+        font-size: 1.8em;
+    }
+}
