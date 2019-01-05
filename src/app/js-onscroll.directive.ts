@@ -10,7 +10,7 @@ export class JsOnscrollDirective implements OnInit, OnDestroy {
   @Input() aboveClass: string = 'above-view';
   @Input() viewportCheck: boolean = false;
   @Input() activateScroll: boolean = true;
-  @Input() checkAboveView: boolean = true;
+  @Input() checkAboveView: boolean = false;
   @Output() onStateChange = new EventEmitter<string>();
   @Output() enteredViewport = new EventEmitter<string>();
 

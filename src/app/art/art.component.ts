@@ -56,8 +56,7 @@ export class ArtComponent implements OnInit {
                 forkJoin(this.urlSubsciptions).subscribe(() => {
                     this.imageList = fileList;
                     this.appState.setGalleryList(this.imageList);
-                })
-
+                });
             });
         } else {
             this.isLoading = false;
@@ -68,15 +67,16 @@ export class ArtComponent implements OnInit {
     }
 
     updateProgress() {
+        this.isLoading = false;
         this.imageLoadCount++;
-        if (this.imageLoadCount === this.imageList.length) {
-            this.isLoading = false;
-            this.imageList.forEach((image: ArtImage, index) => {
-                setTimeout(() => {
-                    image.visible = true;
-                }, (index + 1) * 150);
-            });
-        }
+        // if (this.imageLoadCount === this.imageList.length) {
+        //     this.isLoading = false;
+        //     this.imageList.forEach((image: ArtImage, index) => {
+        //         setTimeout(() => {
+        //             image.visible = true;
+        //         }, (index + 1) * 150);
+        //     });
+        // }
     }
 
     showInGallery(item, elem) {

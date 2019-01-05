@@ -94,7 +94,7 @@ export class MeCardComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    let deviceWidth = window.screen.width;
+    let carouselProgressInterval, deviceWidth = window.screen.width;
 
     if (deviceWidth < 650) {
       this.isMobile = true;
@@ -109,15 +109,6 @@ export class MeCardComponent implements OnInit, OnDestroy {
         this.animateNavItems();
       } else {
         this.hideNavItems();
-      }
-
-      if (this.showSearch) {
-        this.play = false;
-        this.resultsPage = false;
-        this.searchInput.nativeElement.focus();
-      } else {
-        this.keyword = "";
-        this.searchResults = [];
       }
     });
 
@@ -137,6 +128,14 @@ export class MeCardComponent implements OnInit, OnDestroy {
         this.isSearchAvailable = true;
       }
     });
+
+    carouselProgressInterval = setInterval(() => {
+      if (this.carouselLoadProgress < 100) {
+        this.carouselLoadProgress = this.carouselLoadProgress + 10;
+      } else {
+        clearInterval(carouselProgressInterval);
+      }
+    }, 50);
 
   }
 
@@ -176,7 +175,9 @@ export class MeCardComponent implements OnInit, OnDestroy {
   }
 
   onCarouselLoadProgress(progress) {
-    this.carouselLoadProgress = progress;
+    if (progress < 100) {
+      this.carouselLoadProgress = progress;
+    }  
   }
 
   headerStateChange(state: string) {
