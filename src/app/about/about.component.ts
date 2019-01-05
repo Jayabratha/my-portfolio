@@ -1,6 +1,4 @@
 import { Component, ViewChildren, QueryList, ElementRef, Renderer2, OnInit } from '@angular/core';
-import { AppStateService } from '../app-state.service';
-import { routeAnimation } from '../animations/animations';
 
 import { Store } from '@ngrx/store';
 import { AppState } from '../app.state';
@@ -11,9 +9,7 @@ import * as HeaderActions from '../actions/header.actions';
 @Component({
   selector: 'app-about',
   templateUrl: './about.component.html',
-  styleUrls: ['./about.component.css', './../app.component.css', './../common.styles.css'],
-  animations: [routeAnimation()],
-  host: { '[@routeAnimation]': '' }
+  styleUrls: ['./about.component.css', './../app.component.css', './../common.styles.css']
 })
 export class AboutComponent implements OnInit {
   @ViewChildren('skillItem') skillItems: QueryList<ElementRef>;

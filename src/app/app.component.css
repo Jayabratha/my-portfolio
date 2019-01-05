@@ -12,6 +12,12 @@
     margin-top: 3.8em;
 }
 
+.feature-wrapper {
+    position: relative;
+    overflow: hidden;
+    margin: 1.2em 0;
+}
+
 .content {
     position: relative;
     padding-top: 2em;
@@ -27,7 +33,6 @@
 }
 
 .content-wrapper {
-    padding: 1.2em 0;
     min-height: 2em;
 }
 

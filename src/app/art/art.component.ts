@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { AppStateService } from '../app-state.service';
-import { routeAnimation } from '../animations/animations';
 import { AngularFireDatabase } from 'angularfire2/database';
 import { AngularFireStorage } from 'angularfire2/storage';
 import { Subject, forkJoin, Observable } from 'rxjs';
@@ -16,9 +15,7 @@ import * as HeaderActions from '../actions/header.actions';
 @Component({
     selector: 'app-art',
     templateUrl: './art.component.html',
-    styleUrls: ['./art.component.css', './../app.component.css', './../common.styles.css'],
-    animations: [routeAnimation()],
-    host: { '[@routeAnimation]': '' }
+    styleUrls: ['./art.component.css', './../app.component.css', './../common.styles.css']
 })
 export class ArtComponent implements OnInit {
 
@@ -67,16 +64,15 @@ export class ArtComponent implements OnInit {
     }
 
     updateProgress() {
-        this.isLoading = false;
         this.imageLoadCount++;
-        // if (this.imageLoadCount === this.imageList.length) {
-        //     this.isLoading = false;
-        //     this.imageList.forEach((image: ArtImage, index) => {
-        //         setTimeout(() => {
-        //             image.visible = true;
-        //         }, (index + 1) * 150);
-        //     });
-        // }
+        if (this.imageLoadCount === this.imageList.length) {
+            this.isLoading = false;
+            this.imageList.forEach((image: ArtImage, index) => {
+                setTimeout(() => {
+                    image.visible = true;
+                }, (index + 1) * 150);
+            });
+        }
     }
 
     showInGallery(item, elem) {

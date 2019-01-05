@@ -1,52 +1,53 @@
 <div class="content contact-content center-stage">
   <h1>Contact</h1>
-  <div class="content-wrapper view-check clearfix below-view" appJsOnscroll [viewportCheck]=true  >
-    <div class="main">
-      <h2>Send me an email here</h2>
-      <i class="icon-paper-airplane"></i>
-    </div>
-    <div class="feature-content">
-      <form class="contact-form container" [ngClass]="{'show-error': showError}" (ngSubmit)="onSubmit(contactForm)"
-        #contactForm="ngForm">
-        <div class="input-wrapper name-wrapper">
-          <label for="firstName">First Name</label>
-          <input id="firstName" name="firstName" type="text" class="first-name" placeholder="First Name" [(ngModel)]="messageData.firstName"
-            required />
-          <div class="border-highlight"></div>
-        </div>
-        <div class="input-wrapper name-wrapper">
-          <label for="lastName">Last Name</label>
-          <input id="lastName" name="lastName" type="text" class="last-name" placeholder="Last Name" [(ngModel)]="messageData.lastName" />
-          <div class="border-highlight"></div>
-        </div>
-        <div class="input-wrapper">
-          <label for="email">Email</label>
-          <input id="email" name="email" type="email" class="email" placeholder="Email" [(ngModel)]="messageData.email"
-            required />
-          <div class="border-highlight"></div>
-        </div>
-        <div class="input-wrapper message-wrapper">
-          <label for="mesage">Your Message</label>
-          <textarea id="message" name="message" class="message" placeholder="Type in your message" [(ngModel)]="messageData.message"
-            required></textarea>
-          <div class="border-highlight"></div>
-        </div>
-        <div class="button-wrapper" [ngClass]="{'sending': sendingEmail, 'sent': emailSent}">
-          <div class="background">
-            <div class="email-sent">
-              <span class="act-icon icon-ios-checkmark-outline"></span>
-              <span>Email Sent Successfully</span>
-            </div>
-            <div class="loading-icon animate">
-            </div>
+  <div class="feature-wrapper">
+    <div class="content-wrapper view-check clearfix below-view" appJsOnscroll [viewportCheck]=true>
+      <div class="main">
+        <h2>Send me an email here</h2>
+        <i class="icon-paper-airplane"></i>
+      </div>
+      <div class="feature-content">
+        <form class="contact-form container" [ngClass]="{'show-error': showError}" (ngSubmit)="onSubmit(contactForm)"
+          #contactForm="ngForm">
+          <div class="input-wrapper name-wrapper">
+            <label for="firstName">First Name</label>
+            <input id="firstName" name="firstName" type="text" class="first-name" placeholder="First Name" [(ngModel)]="messageData.firstName"
+              required />
+            <div class="border-highlight"></div>
           </div>
-          <button type="submit" class="submit-contact" type="submit">Send Email</button>
-        </div>
-      </form>
+          <div class="input-wrapper name-wrapper">
+            <label for="lastName">Last Name</label>
+            <input id="lastName" name="lastName" type="text" class="last-name" placeholder="Last Name" [(ngModel)]="messageData.lastName" />
+            <div class="border-highlight"></div>
+          </div>
+          <div class="input-wrapper">
+            <label for="email">Email</label>
+            <input id="email" name="email" type="email" class="email" placeholder="Email" [(ngModel)]="messageData.email"
+              required />
+            <div class="border-highlight"></div>
+          </div>
+          <div class="input-wrapper message-wrapper">
+            <label for="mesage">Your Message</label>
+            <textarea id="message" name="message" class="message" placeholder="Type in your message" [(ngModel)]="messageData.message"
+              required></textarea>
+            <div class="border-highlight"></div>
+          </div>
+          <div class="button-wrapper" [ngClass]="{'sending': sendingEmail, 'sent': emailSent}">
+            <div class="background">
+              <div class="email-sent">
+                <span class="act-icon icon-ios-checkmark-outline"></span>
+                <span>Email Sent Successfully</span>
+              </div>
+              <div class="loading-icon animate">
+              </div>
+            </div>
+            <button type="submit" class="submit-contact" type="submit">Send Email</button>
+          </div>
+        </form>
+      </div>
     </div>
   </div>
-  <section class="my-tiles view-check below-view" appJsOnscroll [viewportCheck]=true [padding]=100  
-    (enteredViewport)="animateTiles()">
+  <section class="my-tiles view-check below-view" appJsOnscroll [viewportCheck]=true [padding]=100 (enteredViewport)="animateTiles()">
     <div class="tiles-wrapper">
       <h2>Follow me on</h2>
       <div class="tiles-container">

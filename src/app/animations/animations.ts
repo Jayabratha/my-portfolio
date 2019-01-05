@@ -1,17 +1,14 @@
-// import the required animation functions from the angular animations module
-import { trigger, state, animate, transition, style } from '@angular/animations';
+import { sequence, trigger, stagger, animate, style, group, query as q, transition, keyframes, animateChild } from '@angular/animations';
+const query = (s, a, o = { optional: true }) => q(s, a, o);
 
-export function routeAnimation() {
-    return trigger('routeAnimation', [
-        state('*', style({position: 'absolute', width: '100%'})),
-        transition(':enter', [
-            style({  transform: 'translateY(300px)' }),
-            animate('0.8s ease-out', style({ transform: 'translateY(0px)' }))
-        ]),
-        transition(':leave', [
-            style({ position: 'absolute', width: '100%', opacity: 1}),
-            animate('0.3s ease-out', style({ opacity: 0 }))
-        ])
-    ]);
-}
-
+export const routerTransition = trigger('routerTransition', [
+  transition('* => *', [
+    query(':enter', style({ position: 'fixed', width: '100%' })),
+      query(':enter', [
+        style({ transform: 'translateY(300px)' }),
+        animate('800ms ease-out',
+          style({ transform: 'translateY(0px)' })
+        )
+      ])
+  ])
+]);

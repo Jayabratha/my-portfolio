@@ -27,7 +27,7 @@ import { GalleryComponent } from './gallery/gallery.component';
 import { headerReducer } from './reducers/header.reducer';
 
 const appRoutes: Routes = [
-  { path: 'home', component: HomeComponent },
+  { path: 'home', component: HomeComponent, data: { state: 'home' } },
   {
     path: 'art',
     component: ArtComponent,
@@ -36,12 +36,12 @@ const appRoutes: Routes = [
         path: 'gallery/:title',
         component: GalleryComponent
       }
-    ]
+    ], data: { state: 'art' }
   },
-  { path: 'projects', component: ProjectsComponent },
-  { path: 'blog', component: BlogComponent },
-  { path: 'about', component: AboutComponent },
-  { path: 'contact', component: ContactComponent },
+  { path: 'projects', component: ProjectsComponent, data: { state: 'projects' } },
+  { path: 'blog', component: BlogComponent, data: { state: 'blog' } },
+  { path: 'about', component: AboutComponent, data: { state: 'about' } },
+  { path: 'contact', component: ContactComponent, data: { state: 'contact' } },
   {
     path: '',
     redirectTo: '/home',

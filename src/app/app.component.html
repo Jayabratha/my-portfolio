@@ -1,6 +1,6 @@
 <me-card></me-card>
-<div class="main-content">
-  <router-outlet></router-outlet>
+<div class="main-content" [@routerTransition]="o.activatedRouteData.state">
+  <router-outlet #o="outlet"></router-outlet>
   <footer class="main-footer">
   </footer>
 </div>
