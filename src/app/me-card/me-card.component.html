@@ -30,7 +30,7 @@
         </div>
     </section>
     <section class="me-card-wrapper center-stage" appJsOnscroll [activateScroll]="activateScroll"
-        (onStateChange)="headerStateChange($event)">
+        (onStateChange)="headerStateChange($event)" [scrollLimit]=60>
         <div class="me-card" [style.width]="carouselLoadProgress + '%'">
             <div class="dp my-dp">
                 <js-ng-carousel [slideItems]=slideList [play]=play [config]="carouselConfig" [style.width.%]="100" [style.height.%]="100" (carouselReady)="onCarouselReady($event)"

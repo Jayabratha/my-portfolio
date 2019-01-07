@@ -2,9 +2,9 @@
     position: relative;
     width: 100%;
     background: #fff;
-    min-height: 38em;
+    height: 95vh;
     box-shadow: 0 0.125em 20px rgba(0, 0, 0, .1);
-    transition: min-height 0.5s ease-out;
+    transition: height 0.5s ease-out;
 }
 
 .absolute-bottom {
@@ -15,11 +15,12 @@
 }
 
 .logo-menu {
-    position: absolute;
+    position: fixed;
     top: 0;
     margin: 0.65em auto;
     left: 0;
     right: 0;
+    z-index: 5;
 }
 
 .menu-section,
@@ -89,14 +90,12 @@
 
 .me-card-wrapper {
     position: relative;
-    padding-top: 10em;
     box-sizing: content-box;
-    left: 0;
-    right: 0;
+    padding-top: 25vh;
     height: 19.3em;
     overflow: hidden;
-    z-index: 2;
-    transition: padding-top 0.5s ease-out, height 0.5s;
+    z-index: 4;
+    transition: height 0.5s;
 }
 
 .menu-background {
@@ -207,10 +206,13 @@ h1.name {
 .main-header.search-header {
     position: fixed;
     width: 100%;
-    min-height: 3.8em;
     height: 3.8em;
     z-index: 10;
     top: 0;
+}
+
+.fix-header .logo-menu {
+    position: absolute;
 }
 
 .fix-header .hello-card,
@@ -266,6 +268,52 @@ h1.name {
 .search-header .search-wrapper {
     width: 100%;
 }
+
+/* Nav Style - Start*/
+.site-nav {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    height: 5em;
+}
+
+.site-nav-list {
+    list-style: none;
+    width: 100%;
+    margin: 0 auto;
+    -webkit-transition: all 0.5s ease-in;
+    -moz-transition: all 0.5s ease-in;
+    transition: all 0.5s ease-in;
+}
+
+.site-nav-list li {
+    font-size: 1.1em;
+    float: left;
+    padding: 1em;
+    text-transform: uppercase;
+    text-align: center;
+    width: 20%;
+    color: #212121;
+    cursor: pointer;
+    outline: none;
+    opacity: 0;
+    -webkit-transform: translateY(20px);
+    -moz-transform: translateY(20px);
+    -ms-transform: translateY(20px);
+    transform: translateY(20px);
+    -webkit-transition: opacity 0.5s, transform 0.6s;
+    -moz-transition: opacity 0.5s, transform 0.6s;
+    transition: opacity 0.5s, transform 0.6s;
+}
+
+.site-nav-list li.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+/* Nav Style - End */
+
 
 .fix-header .site-nav,
 .mobile .site-nav {
@@ -351,6 +399,10 @@ h1.name {
 .search-header .my-card>* {
     display: none;
 }
+
+/* .mobile.show-menu .site-nav {
+    z-index: 6;
+} */
 
 .mobile.show-menu .site-nav,
 .fix-header.show-menu .site-nav {
@@ -591,17 +643,20 @@ h1.name {
     .logo-menu {
         padding: 3px;
     }
-    .logo-section,
+
     .menu-icon,
     .menu-icon-top,
     .menu-icon-bottom {
         background-color: #FFFFFF;
+        height: 2px;
+        top: 16px;
     }
     .menu-section {
         z-index: 5;
     }
     .logo-section {
         margin-left: 0;
+        background-color: #FFFFFF;
     }
     .search-wrapper {
         opacity: 0;
@@ -630,10 +685,10 @@ h1.name {
         opacity: 0;
     }
     .menu-icon-top {
-        top: 0.7em;
+        top: 9px;
     }
     .menu-icon-bottom {
-        top: 1.7em;
+        top: 23px;
     }
     .menu-section {
         float: right;

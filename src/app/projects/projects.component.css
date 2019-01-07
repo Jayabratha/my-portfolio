@@ -149,4 +149,7 @@
     .project-card {
         font-size: 1.25em;
     }
+    .project-card.featured-project {
+        width: 100%;
+    }
 }

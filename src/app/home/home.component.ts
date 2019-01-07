@@ -86,11 +86,6 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   setStepCount(stepCount) {
     let prevStepCount = this.stepCount;
-    if (stepCount === 0) {
-      setTimeout(() => {this.store.dispatch(new HeaderActions.ToggleMenu(true))}, 1000);
-    } else if (this.headerState.showMenu) {
-      this.store.dispatch(new HeaderActions.ToggleMenu(false));
-    }
 
     if (this.stepCount !== 0 && this.stepCount < stepCount) {
       this.steps[prevStepCount].isAboveView = true

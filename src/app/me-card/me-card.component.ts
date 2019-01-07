@@ -56,6 +56,7 @@ export class MeCardComponent implements OnInit, OnDestroy {
   loading: boolean = false;
   noResults: boolean = false;
   searchSubscription: Subscription;
+  carouselProgressInterval: any;
 
   navItems: Array<NavItem> = [
     new NavItem('art', 'Art', '/art', false),
@@ -94,7 +95,7 @@ export class MeCardComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    let carouselProgressInterval, deviceWidth = window.screen.width;
+    let deviceWidth = window.screen.width;
 
     if (deviceWidth < 650) {
       this.isMobile = true;
@@ -129,11 +130,11 @@ export class MeCardComponent implements OnInit, OnDestroy {
       }
     });
 
-    carouselProgressInterval = setInterval(() => {
+    this.carouselProgressInterval = setInterval(() => {
       if (this.carouselLoadProgress < 100) {
         this.carouselLoadProgress = this.carouselLoadProgress + 10;
       } else {
-        clearInterval(carouselProgressInterval);
+        clearInterval(this.carouselProgressInterval);
       }
     }, 50);
 
@@ -175,15 +176,18 @@ export class MeCardComponent implements OnInit, OnDestroy {
   }
 
   onCarouselLoadProgress(progress) {
-    if (progress < 100) {
-      this.carouselLoadProgress = progress;
-    }  
+    if (progress === 100) {
+      clearInterval(this.carouselProgressInterval);
+    }
+    this.carouselLoadProgress = progress;
   }
 
   headerStateChange(state: string) {
     if (state === 'fix' && this.headerState.state === this.HEADER_STATE.Home) {
+      this.store.dispatch(new HeaderActions.ToggleMenu(false));
       this.store.dispatch(new HeaderActions.UpdateState(HeaderState.Fixed));
     } else if (state === 'scroll' && this.headerState.state === this.HEADER_STATE.Fixed) {
+      this.store.dispatch(new HeaderActions.ToggleMenu(true));
       this.store.dispatch(new HeaderActions.UpdateState(HeaderState.Home));
     }
   }
