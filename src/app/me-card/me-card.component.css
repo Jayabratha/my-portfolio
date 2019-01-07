@@ -400,13 +400,10 @@ h1.name {
     display: none;
 }
 
-/* .mobile.show-menu .site-nav {
-    z-index: 6;
-} */
-
 .mobile.show-menu .site-nav,
 .fix-header.show-menu .site-nav {
     height: 35em;
+    z-index: 6;
 }
 
 .mobile.show-menu ul.site-nav-list,
