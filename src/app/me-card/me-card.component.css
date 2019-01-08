@@ -111,7 +111,7 @@
     position: relative;
     height: 100%;
     margin: 0 auto 0;
-    transform: translateY(0);
+    transform: translate3d(0, 0, 0);
     left: 0;
     right: 0;
     background: linear-gradient(140deg, #ff9800, #f31b48, #940590, #0ab779);
@@ -183,7 +183,7 @@ h1.name {
 }
 
 .initial-header .me-card {
-    transform: translateY(19.2em);
+    transform: translate3d(0, 19.2em, 0);
     transition: none;
 }
 
@@ -299,10 +299,10 @@ h1.name {
     cursor: pointer;
     outline: none;
     opacity: 0;
-    -webkit-transform: translateY(20px);
-    -moz-transform: translateY(20px);
-    -ms-transform: translateY(20px);
-    transform: translateY(20px);
+    -webkit-transform: translate3d(0, 20px, 0);
+    -moz-transform: translate3d(0, 20px, 0);
+    -ms-transform: translate3d(0, 20px, 0);
+    transform: translate3d(0, 20px, 0);
     -webkit-transition: opacity 0.5s, transform 0.6s;
     -moz-transition: opacity 0.5s, transform 0.6s;
     transition: opacity 0.5s, transform 0.6s;
@@ -310,7 +310,13 @@ h1.name {
 
 .site-nav-list li.show {
     opacity: 1;
-    transform: translateY(0);
+    transform: translate3d(0, 0, 0);
+}
+.site-nav-list li.show:hover {
+    -webkit-transform: translate3d(0, -5px, 0);
+    -moz-transform: translate3d(0, -5px, 0);
+    -ms-transform: translate3d(0, -5px, 0);
+    transform: translate3d(0, -5px, 0);
 }
 /* Nav Style - End */
 
@@ -763,7 +769,7 @@ h1.name {
     /* Fixed Header Styles - End */
     /* Initial Header Styles - Start */
     .initial-header .me-card {
-        transform: translateY(40px);
+        transform: translate3d(0, 40px, 0);
         opacity: 0;
     }
     .initial-header .info-wrapper {
