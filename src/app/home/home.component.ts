@@ -10,7 +10,7 @@ import * as HeaderActions from '../actions/header.actions';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css', './../common.styles.css']
+  styleUrls: ['./home.component.css', './../app.component.css']
 })
 export class HomeComponent implements OnInit, OnDestroy {
 
@@ -93,13 +93,12 @@ export class HomeComponent implements OnInit, OnDestroy {
         window.scrollTo(0, this.steps[stepCount].scrollPosition);
         this.steps[prevStepCount].isAboveView = false;
        }, 500);
-    } else if (this.stepCount !== 1 && this.stepCount > stepCount) {
+    } else if (this.stepCount > stepCount) {
       this.steps[prevStepCount].isBelowView = true
       setTimeout(() => {
         window.scrollTo(0, this.steps[stepCount].scrollPosition);
         this.steps[prevStepCount].isBelowView = false;
        }, 500);
-      setTimeout(() => { window.scrollTo(0, this.steps[stepCount].scrollPosition) }, 500);
     } else {
       window.scrollTo(0, this.steps[stepCount].scrollPosition);
     }

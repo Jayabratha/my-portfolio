@@ -1,14 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, NavigationStart, NavigationEnd } from '@angular/router';
-import { AppStateService } from './app-state.service';
-import { ElasticsearchService } from './elasticsearch.service';
+import { AppStateService } from './shared/app-state.service';
+import { ElasticsearchService } from './shared/elasticsearch.service';
 import { Title } from '@angular/platform-browser';
 import { routerTransition } from './animations/animations';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css', './common.styles.css'],
+  styleUrls: ['./app.component.css'],
   providers: [AppStateService, ElasticsearchService],
   animations: [ routerTransition ]
 })
@@ -62,8 +62,4 @@ export class AppComponent implements OnInit {
       }
     })
   }
-
-  // getState(outlet) {
-  //   return outlet.activatedRouteData.state;
-  // }
 }

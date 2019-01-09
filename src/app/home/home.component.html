@@ -1,7 +1,7 @@
 <div class="home-content center-stage" [ngClass]="{'hide': !(headerState.state === HEADER_STATE.Fixed)}">
   <div class="overview-wrapper">
     <div class="overview art-overview" [class.above-view]="steps[1].isAboveView" [class.below-view]="steps[1].isBelowView"
-      appJsOnscroll [viewportCheck]=true [padding]=200 [checkAboveView]=true >
+      viewportCheck [padding]=200 [checkAboveView]=true >
       <div class="dp overview-dp">
         <h2>Art</h2>
         <div class="alpha-initial-bg">A</div>
@@ -21,7 +21,7 @@
   </div>
   <div class="overview-wrapper">
     <div class="overview projects-overview" [class.above-view]="steps[2].isAboveView" [class.below-view]="steps[2].isBelowView"
-      appJsOnscroll [viewportCheck]=true [padding]=200 [checkAboveView]=true >
+      viewportCheck  [padding]=200 [checkAboveView]=true >
       <div class="dp overview-dp">
         <h2>Projects</h2>
         <div class="alpha-initial-bg">P</div>
@@ -41,7 +41,7 @@
   </div>
   <div class="overview-wrapper">
     <div class="overview blog-overview" [class.above-view]="steps[3].isAboveView" [class.below-view]="steps[3].isBelowView"
-      appJsOnscroll [viewportCheck]=true [padding]=200 [checkAboveView]=true >
+      viewportCheck  [padding]=200 [checkAboveView]=true >
       <div class="dp overview-dp">
         <h2>Blog</h2>
         <div class="alpha-initial-bg">B</div>
@@ -61,7 +61,7 @@
   </div>
   <div class="overview-wrapper">
     <div class="overview about-overview" [class.above-view]="steps[4].isAboveView" [class.below-view]="steps[4].isBelowView"
-      appJsOnscroll [viewportCheck]=true [padding]=200 [checkAboveView]=true >
+      viewportCheck  [padding]=200 [checkAboveView]=true >
       <div class="dp overview-dp">
         <h2>About</h2>
         <div class="alpha-initial-bg">A</div>
@@ -82,7 +82,7 @@
   </div>
   <div class="overview-wrapper">
     <div class="overview contact-overview" [class.above-view]="steps[5].isAboveView" [class.below-view]="steps[5].isBelowView"
-      appJsOnscroll [viewportCheck]=true [padding]=200 [checkAboveView]=true >
+      viewportCheck  [padding]=200 [checkAboveView]=true >
       <div class="dp overview-dp">
         <h2>Contact</h2>
         <div class="alpha-initial-bg">C</div>

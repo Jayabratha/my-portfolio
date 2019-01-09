@@ -9,7 +9,7 @@ import * as HeaderActions from '../actions/header.actions';
 @Component({
   selector: 'app-about',
   templateUrl: './about.component.html',
-  styleUrls: ['./about.component.css', './../app.component.css', './../common.styles.css']
+  styleUrls: ['./about.component.css', './../app.component.css']
 })
 export class AboutComponent implements OnInit {
   @ViewChildren('skillItem') skillItems: QueryList<ElementRef>;

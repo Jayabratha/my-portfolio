@@ -1,11 +1,11 @@
-import { Component, OnInit, OnDestroy, ElementRef, ViewChild, ViewChildren, QueryList } from '@angular/core';
-import { AppStateService } from '../app-state.service';
+import { Component, OnInit, OnDestroy, HostListener, ElementRef, ViewChild, ViewChildren, QueryList } from '@angular/core';
+import { AppStateService } from '../shared/app-state.service';
 import { Subscription } from 'rxjs';
 import { Router, NavigationStart, NavigationEnd } from '@angular/router';
 import { trigger, style, animate, transition } from '@angular/animations';
 import { AngularFireStorage } from 'angularfire2/storage';
 
-import { ElasticsearchService } from '../elasticsearch.service';
+import { ElasticsearchService } from '../shared/elasticsearch.service';
 import { SearchResult } from '../models/search-result.model';
 import { NavItem } from '../models/nav-item.model';
 
@@ -18,7 +18,7 @@ import * as HeaderActions from '../actions/header.actions';
 @Component({
   selector: 'me-card',
   templateUrl: './me-card.component.html',
-  styleUrls: ['./me-card.component.css', './../common.styles.css'],
+  styleUrls: ['./me-card.component.css','./../app.component.css'],
   animations: [
     trigger('fadeIn', [
       transition(':enter', [
@@ -138,6 +138,15 @@ export class MeCardComponent implements OnInit, OnDestroy {
       }
     }, 50);
 
+  }
+
+  @HostListener('window:scroll') onScroll() {
+    let scrollTop = (document.documentElement && document.documentElement.scrollTop) || document.body.scrollTop;
+    if (this.activateScroll && scrollTop < 60) {
+      this.headerStateChange('scroll');      
+    } else {
+      this.headerStateChange('fix');
+    }
   }
 
   goToHome() {

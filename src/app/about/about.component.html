@@ -1,7 +1,7 @@
 <div class="content about-content center-stage">
   <h1>About</h1>
   <div class="feature-wrapper">
-    <div class="content-wrapper view-check clearfix below-view" appJsOnscroll [viewportCheck]=true>
+    <div class="content-wrapper view-check clearfix below-view" viewportCheck >
       <div class="main">
         <h2>Hi! I am Jayabratha Saha, friends call me Jay.</h2>
         <i class="icon-android-compass"></i>
@@ -27,9 +27,9 @@
       </div>
     </div>
   </div>
-  <section class="my-tiles view-check below-view" appJsOnscroll [viewportCheck]=true [padding]=100 (enteredViewport)="animateSkills()">
+  <section class="my-tiles">
     <h2>Tech Skills</h2>
-    <div class="skills-wrapper">
+    <div class="skills-wrapper" viewportCheck [padding]=100 (enteredViewport)="animateSkills()">
       <div class="tiles-container">
         <ul class="clearfix skill-list">
           <li class="col-xs-3 col-sm-2 col-md-2 col-lg-2">
@@ -64,7 +64,7 @@
           </li>
         </ul>
       </div>
-      <p class="sub-desc below-view" appJsOnscroll [viewportCheck]=true [padding]=500>
+      <p class="sub-desc">
         I am currently working on MEAN stack technologies specializing on front-end including TypeScript, Angular along
         with base web technologies. I have also experience in working with Ionic and Firebase.
       </p>
@@ -74,7 +74,7 @@
     <h2>Work Experience</h2>
     <div class="exp-container">
       <ul>
-        <li appJsOnscroll [viewportCheck]=true [padding]=100>
+        <li viewportCheck  [padding]=100>
           <div #expItem class="exp-wrapper clearfix">
             <div class="logo-wrapper">
               <img src="assets/sgm-logo.png" />
@@ -93,7 +93,7 @@
             </div>
           </div>
         </li>
-        <li appJsOnscroll [viewportCheck]=true [padding]=100>
+        <li viewportCheck  [padding]=100>
           <div #expItem class="exp-wrapper clearfix">
             <div class="logo-wrapper">
               <img src="assets/tcs-logo.png" />
@@ -119,7 +119,7 @@
     </div>
   </section>
   <!-- <section class="my-timeline">
-    <div class="timeline-container" appJsOnscroll [viewportCheck]=true [padding]=100>
+    <div class="timeline-container" viewportCheck  [padding]=100>
       <h2>Education</h2>
     </div>
   </section> -->

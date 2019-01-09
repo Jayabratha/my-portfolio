@@ -110,24 +110,6 @@
     padding-top: 1em;
 }
 
-.logo-section {
-    position: relative;
-    display: inline-block;
-    width: 50px;
-    height: 38px;
-    background: #797979;
-    opacity: 1;
-    margin: auto;
-}
-
-.icon-logo-svg:before {
-    content: "a";
-    display: block;
-    font-size: 51px;
-    height: 44px;
-    background: #797979;
-}
-
 /* Route Components Base Styles - End */
 
 .content section {
@@ -247,9 +229,191 @@ p.sub_desc {
     font-size: 1.5em;
 }
 
+.center-stage {
+    width: 65%;
+    min-width: 55em;
+    margin-left: auto;
+    margin-right: auto;
+}
+.dp {
+    position: relative;
+    float: left;
+    width: 35%;
+    height: 19.3em;
+    overflow: hidden;
+    z-index: 5;
+}
+.dp>img {
+    height: 100%;
+    float: right;
+}
+ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+p {
+    line-height: 1.7em;
+    padding: 0 0 2em;
+    text-align: justify;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 200;
+    font-size: 1.1em;
+    color: #212121;
+    margin: 0;
+}
+.clearfix:before,
+.clearfix:after {
+    content: '';
+    display: table;
+    clear: both;
+}
+/* Button Styles - Start */
+.button-wrapper {
+    display: inline-block;
+    position: relative;
+    border: 2px solid #212121;
+    min-height: 40px;
+}
+.button-wrapper .background {
+    height: 100%;
+    position: absolute;
+    width: 0;
+    background-color: #212121; 
+    -webkit-transition: width 0.2s ease-in;
+    -moz-transition: width 0.2s ease-in;
+    transition: width 0.2s ease-in;
+}
+
+button {
+    position: relative;
+    display: block;
+    padding: 15px 20px;
+    background: transparent;
+    margin: auto;
+    font-family: 'Playfair Display', serif;
+    letter-spacing: 1px;
+    cursor: pointer;
+    text-transform: uppercase;
+    border: none;
+    outline: none;
+    font-weight: 700;
+}
+
+.button-wrapper:hover .background {
+    width: 100%;
+}
+
+.button-wrapper:hover button {
+    color: #FFFFFF;
+}
+/* Button Styles - End */
+
+
+/* Input Styles - start */
+.input-wrapper {
+    margin: 0 0 10px;
+}
+
+.input-wrapper label {
+    display: block;
+    height: 0;
+    width: 0;
+    overflow: hidden;
+}
+
+.input-wrapper .border-highlight {
+    height: 2px;
+    background: #212121;
+    position: relative;
+    top: -2px;
+    width: 0;
+    -webkit-transition: width 0.2s ease-in;
+    -moz-transition: width 0.2s ease-in;
+    transition: width 0.2s ease-in;
+}
+
+.input-wrapper:hover .border-highlight {
+    width: 100%;
+}
+
+.input-wrapper input, .input-wrapper textarea {
+    display: block;
+    padding: 10px;
+    font-size: 1.1em;
+    border: 2px solid #ccc;
+    font-family: 'Playfair Display', serif;
+    width: 100%;
+    outline: none;
+}
+
+.show-error .input-wrapper input.ng-invalid+.border-highlight,
+.show-error .input-wrapper textarea.ng-invalid+.border-highlight,
+.input-wrapper input.ng-invalid.ng-touched+.border-highlight,
+.input-wrapper textarea.ng-invalid.ng-touched+.border-highlight {
+    width: 100%;
+    background: #F44336;
+}
+/* Input Styles - end */
+
+/* Scroll Directive Styles - Start */
+.view-check {
+    -webkit-transform: translateY(0);
+    -moz-transform: translateY(0);
+    -ms-transform: translateY(0);
+    transform: translateY(0);
+    transition: transform 0.7s ease-out, opacity 0.7s;
+    opacity: 1;
+}
+.below-view {
+    -webkit-transform: translateY(100px);
+    -moz-transform: translateY(100px);
+    -ms-transform: translateY(100px);
+   transform: translateY(100px);
+   opacity: 0;
+}
+.above-view {
+    -webkit-transform: translateY(-100px);
+    -moz-transform: translateY(-100px);
+    -ms-transform: translateY(-100px);
+   transform: translateY(-100px);
+   opacity: 0;
+}
+.overview.below-view {
+    -webkit-transform: translateY(200px);
+    -moz-transform: translateY(200px);
+    -ms-transform: translateY(200px);
+   transform: translateY(200px);
+   opacity: 0;
+}
+.overview.above-view {
+    -webkit-transform: translateY(200px);
+    -moz-transform: translateY(200px);
+    -ms-transform: translateY(200px);
+   transform: translateY(-200px);
+   opacity: 0;
+}
+/* Scroll Directive Styles - End */
+
+
 /* Tab Styles - Start */
+@media (max-width: 950px) {
+    .center-stage {
+        width: 96%;
+        min-width: 0;
+    }
+}
 
 @media (max-width: 650px) {
+    .dp {
+        width: 100%;
+    }
+
+    .dp>img {
+        width: 100%;
+        height: auto;
+    }
+
     .main-content {
         /* min-height: 0; */
         padding-top: 1em;

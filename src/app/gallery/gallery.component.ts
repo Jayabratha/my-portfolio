@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { AppStateService } from '../app-state.service';
+import { AppStateService } from '../shared/app-state.service';
 import { Subscription } from 'rxjs';
 
 @Component({

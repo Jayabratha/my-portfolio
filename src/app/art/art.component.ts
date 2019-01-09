@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AppStateService } from '../app-state.service';
+import { AppStateService } from '../shared/app-state.service';
 import { AngularFireDatabase } from 'angularfire2/database';
 import { AngularFireStorage } from 'angularfire2/storage';
 import { Subject, forkJoin, Observable } from 'rxjs';
@@ -15,7 +15,7 @@ import * as HeaderActions from '../actions/header.actions';
 @Component({
     selector: 'app-art',
     templateUrl: './art.component.html',
-    styleUrls: ['./art.component.css', './../app.component.css', './../common.styles.css']
+    styleUrls: ['./art.component.css', './../app.component.css']
 })
 export class ArtComponent implements OnInit {
 

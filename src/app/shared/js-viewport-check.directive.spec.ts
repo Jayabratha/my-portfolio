@@ -1,7 +1,7 @@
 /* tslint:disable:no-unused-variable */
 import { Renderer, ElementRef } from '@angular/core';
 import { TestBed, async } from '@angular/core/testing';
-import { JsOnscrollDirective } from './js-onscroll.directive';
+import { ViewportCheck } from './js-viewport-check.directive';
 
 // describe('Directive: JsOnscroll', () => {
 //   it('should create an instance', () => {

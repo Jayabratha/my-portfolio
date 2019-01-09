@@ -13,15 +13,14 @@ import { JsNgCarouselModule } from 'js-ng-carousel';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { MeCardComponent } from './me-card/me-card.component';
-import { JsOnscrollDirective } from './js-onscroll.directive';
+import { ViewportCheck } from './shared/js-viewport-check.directive';
 import { ArtComponent } from './art/art.component';
 import { ProjectsComponent } from './projects/projects.component';
 import { AboutComponent } from './about/about.component';
 import { ContactComponent } from './contact/contact.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { LoadAnimateDirective } from './load-animate.directive';
 import { BlogComponent } from './blog/blog.component';
-import { ClickedOutDirective } from './clicked-out.directive';
+import { ClickedOutDirective } from './shared/clicked-out.directive';
 import { GalleryComponent } from './gallery/gallery.component';
 
 import { headerReducer } from './reducers/header.reducer';
@@ -53,13 +52,12 @@ const appRoutes: Routes = [
   declarations: [
     AppComponent,
     MeCardComponent,
-    JsOnscrollDirective,
+    ViewportCheck,
     HomeComponent,
     ArtComponent,
     ProjectsComponent,
     AboutComponent,
     ContactComponent,
-    LoadAnimateDirective,
     BlogComponent,
     ClickedOutDirective,
     GalleryComponent

@@ -9,7 +9,7 @@ import * as HeaderActions from '../actions/header.actions';
 @Component({
   selector: 'app-contact',
   templateUrl: './contact.component.html',
-  styleUrls: ['./contact.component.css', './../app.component.css', './../common.styles.css']
+  styleUrls: ['./contact.component.css', './../app.component.css']
 })
 export class ContactComponent implements OnInit {
 

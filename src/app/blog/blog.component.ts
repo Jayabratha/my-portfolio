@@ -8,7 +8,7 @@ import * as HeaderActions from '../actions/header.actions';
 @Component({
   selector: 'app-blog',
   templateUrl: './blog.component.html',
-  styleUrls: ['./blog.component.css', './../app.component.css', './../common.styles.css']
+  styleUrls: ['./blog.component.css', './../app.component.css']
 })
 export class BlogComponent implements OnInit {
 

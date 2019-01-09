@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AppStateService } from '../app-state.service';
+import { AppStateService } from '../shared/app-state.service';
 
 import { Store } from '@ngrx/store';
 import { AppState } from '../app.state';
@@ -9,7 +9,7 @@ import * as HeaderActions from '../actions/header.actions';
 @Component({
   selector: 'app-projects',
   templateUrl: './projects.component.html',
-  styleUrls: ['./projects.component.css', './../app.component.css', './../common.styles.css']
+  styleUrls: ['./projects.component.css', './../app.component.css']
 })
 export class ProjectsComponent implements OnInit {
 
