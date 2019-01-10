@@ -1,5 +1,4 @@
 import { Component, OnInit, OnDestroy, HostListener, ElementRef, ViewChild, ViewChildren, QueryList } from '@angular/core';
-import { AppStateService } from '../shared/app-state.service';
 import { Subscription } from 'rxjs';
 import { Router, NavigationStart, NavigationEnd } from '@angular/router';
 import { trigger, style, animate, transition } from '@angular/animations';
@@ -18,7 +17,7 @@ import * as HeaderActions from '../actions/header.actions';
 @Component({
   selector: 'me-card',
   templateUrl: './me-card.component.html',
-  styleUrls: ['./me-card.component.css','./../app.component.css'],
+  styleUrls: ['./me-card.component.css', './../app.component.css'],
   animations: [
     trigger('fadeIn', [
       transition(':enter', [
@@ -29,7 +28,7 @@ import * as HeaderActions from '../actions/header.actions';
 })
 export class MeCardComponent implements OnInit, OnDestroy {
 
-  constructor(private appState: AppStateService,
+  constructor(
     private router: Router,
     private store: Store<AppState>,
     private storage: AngularFireStorage,
@@ -106,6 +105,8 @@ export class MeCardComponent implements OnInit, OnDestroy {
       this.showMenu = this.headerState.showMenu;
       this.showSearch = this.headerState.showSearch;
 
+      console.log(this.showMenu);
+
       if (this.showMenu) {
         this.animateNavItems();
       } else {
@@ -142,8 +143,15 @@ export class MeCardComponent implements OnInit, OnDestroy {
 
   @HostListener('window:scroll') onScroll() {
     let scrollTop = (document.documentElement && document.documentElement.scrollTop) || document.body.scrollTop;
-    if (this.activateScroll && scrollTop < 60) {
-      this.headerStateChange('scroll');      
+    let scrollLimit = 60;
+    let viewPortWidth = document.documentElement.clientWidth;
+
+    if (this.isMobile) {
+      scrollLimit = (viewPortWidth / 100) * 94 - 60;
+    }
+
+    if (this.activateScroll && scrollTop < scrollLimit) {
+      this.headerStateChange('scroll');
     } else {
       this.headerStateChange('fix');
     }
@@ -193,15 +201,20 @@ export class MeCardComponent implements OnInit, OnDestroy {
 
   headerStateChange(state: string) {
     if (state === 'fix' && this.headerState.state === this.HEADER_STATE.Home) {
-      this.store.dispatch(new HeaderActions.ToggleMenu(false));
+      if (!this.isMobile) {
+        this.store.dispatch(new HeaderActions.ToggleMenu(false));
+      }
       this.store.dispatch(new HeaderActions.UpdateState(HeaderState.Fixed));
     } else if (state === 'scroll' && this.headerState.state === this.HEADER_STATE.Fixed) {
-      this.store.dispatch(new HeaderActions.ToggleMenu(true));
+      if (!this.isMobile) {
+        this.store.dispatch(new HeaderActions.ToggleMenu(true));
+      }
       this.store.dispatch(new HeaderActions.UpdateState(HeaderState.Home));
     }
   }
 
   toggleMenu() {
+    console.log()
     this.store.dispatch(new HeaderActions.ToggleMenu(!this.showMenu));
   }
 

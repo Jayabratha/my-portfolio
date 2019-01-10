@@ -1,11 +1,6 @@
 /* Overview Styles - Start */
 .home-content {
     margin-top: 15em;
-    opacity: 1;
-}
-.home-content.hide {
-    opacity: 0;
-    /* transform: translateY(45em); */
 }
 
 .scroll-indicator {
@@ -75,7 +70,7 @@
 
 .dp.overview-dp {
     background: #333333;
-    height: 25em;
+    height: 100%;
     text-align: center;
 }
 .overview-wrapper:nth-child(odd) .overview-dp {
@@ -127,11 +122,11 @@
 }
 .overview-content-wrapper {
     position: relative;
-    height: 100.5%;
     width: 65%;
+    height: 100%;
 }
 .overview-content-background {
-    position: relative;
+    position: absolute;
     width: 100%;
     height: 100%;
     opacity: 0.1;
@@ -215,9 +210,26 @@
 
 @media (max-width: 650px) {
     .home-content {
-        display: none;
+        margin-top: 25em;
+        overflow: hidden;
     }
-    .overview button {
-        margin-top: -30px;
+    .overview-wrapper {
+        min-height: 550px;
+    }
+    .overview .alpha-initial-bg {
+        top: -80px;
+        left: 0;
+        right: 0;
+    }
+    .overview-content-wrapper {
+        width: 100%;
+        height: auto;
+    }
+    .overview-content-wrapper:nth-child(even) .overview-content,
+    .overview-content-wrapper:nth-child(odd) .overview-content {
+        position: relative;
+        width: 100%;
+        text-align: center;
+        padding: 1em;
     }
 }
