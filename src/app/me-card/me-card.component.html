@@ -1,5 +1,9 @@
-<header class="main-header" [ngClass]="{'fix-header': headerState.state === HEADER_STATE.Fixed, 'initial-header': headerState.state === HEADER_STATE.Initial, 'show-menu': headerState.showMenu, 'search-header': headerState.showSearch, 'mobile': isMobile }">
-    <div class="logo-menu center-stage">
+<header class="main-header" [ngClass]="{
+                'fix-header': headerState.state === HEADER_STATE.Fixed, 
+                'initial-header': headerState.state === HEADER_STATE.Initial, 
+                'search-header': headerState.showSearch, 
+                'show-menu': headerState.showMenu }">
+    <div class="logo-header center-stage">
         <div class="menu-section" (click)="toggleMenu(); $event.stopPropagation();">
             <div class="menu-icon-top"></div>
             <div class="menu-icon"></div>
@@ -32,8 +36,8 @@
     <section class="me-card-wrapper center-stage">
         <div class="me-card" [style.width]="carouselLoadProgress + '%'">
             <div class="dp my-dp">
-                <js-ng-carousel [slideItems]=slideList [play]=play [config]="carouselConfig" [style.width.%]="100" [style.height.%]="100" (carouselReady)="onCarouselReady($event)"
-                    (carouselLoading)="onCarouselLoadProgress($event)"></js-ng-carousel>
+                <js-ng-carousel [slideItems]=slideList [play]=play [config]="carouselConfig" [style.width.%]="100"
+                    [style.height.%]="100" (carouselReady)="onCarouselReady($event)" (carouselLoading)="onCarouselLoadProgress($event)"></js-ng-carousel>
             </div>
             <div class="info-wrapper">
                 <h1 class="name">Jayabratha Saha</h1>
@@ -79,6 +83,7 @@
                 (mouseleave)="activeNav=''" [routerLink]="navItem.link">{{navItem.label}}</li>
         </ul>
     </nav>
+    <div class="scroll-up-indicator"></div>
     <div class="nav-highlighter-wrapper center-stage absolute-bottom">
         <div class="nav-highlighter" [ngClass]="activeNav"></div>
     </div>

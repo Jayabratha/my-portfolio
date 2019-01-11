@@ -6,7 +6,7 @@ import { Directive, ElementRef, OnInit, OnDestroy, HostListener, Renderer, Event
 export class ViewportCheck implements OnInit, OnDestroy {
   @Input() padding: number = 0;
   @Input() scrollLimit: number = 0;
-  @Input() checkDelay: number = 0;
+  @Input() checkDelay: number = 200;
   @Input() belowClass: string = 'below-view';
   @Input() aboveClass: string = 'above-view';
   @Input() checkAboveView: boolean = false;
@@ -39,7 +39,6 @@ export class ViewportCheck implements OnInit, OnDestroy {
 
       //Check if Below View
       if (this.elemViewportOffset > 0) {
-        console.log(this.elemViewportOffset, this.padding, window.innerHeight);
         if ((this.elemViewportOffset + this.padding) <= window.innerHeight) {
           this.renderer.setElementClass(this.elem, this.belowClass, false);
           this.enteredViewport.emit(true);

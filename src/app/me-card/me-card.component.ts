@@ -56,6 +56,7 @@ export class MeCardComponent implements OnInit, OnDestroy {
   noResults: boolean = false;
   searchSubscription: Subscription;
   carouselProgressInterval: any;
+  headerHeight: number = 0;
 
   navItems: Array<NavItem> = [
     new NavItem('art', 'Art', '/art', false),
@@ -94,7 +95,7 @@ export class MeCardComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    let deviceWidth = window.screen.width;
+    let deviceWidth = document.documentElement.clientWidth;
 
     if (deviceWidth < 650) {
       this.isMobile = true;
@@ -104,8 +105,6 @@ export class MeCardComponent implements OnInit, OnDestroy {
       this.headerState = headerState;
       this.showMenu = this.headerState.showMenu;
       this.showSearch = this.headerState.showSearch;
-
-      console.log(this.showMenu);
 
       if (this.showMenu) {
         this.animateNavItems();
@@ -162,7 +161,9 @@ export class MeCardComponent implements OnInit, OnDestroy {
       this.router.navigate(['/home']);
     } else {
       window.scrollTo(0, 0);
-      this.store.dispatch(new HeaderActions.ToggleMenu(true));
+      if (!this.isMobile) {
+        this.store.dispatch(new HeaderActions.ToggleMenu(true));
+      }      
     }
   }
 
