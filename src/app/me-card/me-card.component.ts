@@ -9,10 +9,10 @@ import { SearchResult } from '../models/search-result.model';
 import { NavItem } from '../models/nav-item.model';
 
 import { Store } from '@ngrx/store';
-import { AppState } from '../app.state';
+import { AppState } from '../app-store/app.state';
 import { Header } from '../models/header.model';
 import { HeaderState } from '../models/header-state.enum';
-import * as HeaderActions from '../actions/header.actions';
+import * as HeaderActions from '../app-store/actions/header.actions';
 
 @Component({
   selector: 'me-card',

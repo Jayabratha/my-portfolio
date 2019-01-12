@@ -1,16 +1,16 @@
 import { Component, OnInit } from '@angular/core';
-import { AppStateService } from '../shared/app-state.service';
 import { AngularFireDatabase } from 'angularfire2/database';
 import { AngularFireStorage } from 'angularfire2/storage';
-import { Subject, forkJoin, Observable } from 'rxjs';
+import { forkJoin, Observable } from 'rxjs';
 import { tap } from "rxjs/operators";
 import { Router } from '@angular/router';
 import { ArtImage } from '../models/art-image.model';
 
 import { Store } from '@ngrx/store';
-import { AppState } from '../app.state';
+import { AppState } from '../app-store/app.state';
 import { HeaderState } from '../models/header-state.enum';
-import * as HeaderActions from '../actions/header.actions';
+import * as HeaderActions from '../app-store/actions/header.actions';
+import { UpdateGalleryList, UpdateCurrentItem, UpdateCurrentItemDimension } from '../app-store/actions/gallery.actions';
 
 @Component({
     selector: 'app-art',
@@ -21,7 +21,6 @@ export class ArtComponent implements OnInit {
 
     constructor(
         private store: Store<AppState>,
-        private appState: AppStateService,
         private db: AngularFireDatabase,
         private storage: AngularFireStorage,
         private router: Router) {
@@ -52,7 +51,8 @@ export class ArtComponent implements OnInit {
 
                 forkJoin(this.urlSubsciptions).subscribe(() => {
                     this.imageList = fileList;
-                    this.appState.setGalleryList(this.imageList);
+                    //this.appState.setGalleryList(this.imageList);
+                    this.store.dispatch(new UpdateGalleryList(this.imageList))
                 });
             });
         } else {
@@ -76,8 +76,10 @@ export class ArtComponent implements OnInit {
     }
 
     showInGallery(item, elem) {
-        this.appState.setGalleryItem(item);
-        this.appState.setItemDimenion(elem);
+        // this.appState.setGalleryItem(item);
+        // this.appState.setItemDimenion(elem);
+        this.store.dispatch(new UpdateCurrentItem(item));
+        this.store.dispatch(new UpdateCurrentItemDimension(elem.getBoundingClientRect()));
         this.router.navigate(['/art/gallery/' + item.title]);
     }
 

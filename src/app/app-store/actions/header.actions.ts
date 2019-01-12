@@ -1,5 +1,5 @@
 import { Action } from '@ngrx/store';
-import { HeaderState } from '../models/header-state.enum';
+import { HeaderState } from '../../models/header-state.enum';
 
 export const UPDATE_STATE = '[HEADER] Update State';
 export const TOGGLE_MENU = '[HEADER] Toggle Menu';

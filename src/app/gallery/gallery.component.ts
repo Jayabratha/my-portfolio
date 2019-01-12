@@ -1,7 +1,9 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { AppStateService } from '../shared/app-state.service';
 import { Subscription } from 'rxjs';
+import { Store } from '@ngrx/store';
+import { AppState } from '../app-store/app.state';
+import { UpdateCurrentItem, UpdateCurrentItemDimension } from '../app-store/actions/gallery.actions';
 
 @Component({
   selector: 'app-gallery',
@@ -10,7 +12,10 @@ import { Subscription } from 'rxjs';
 })
 export class GalleryComponent implements OnInit, OnDestroy {
 
-  constructor(private appState: AppStateService, private route: ActivatedRoute, private router: Router) { }
+  constructor(
+    private store: Store<AppState>,
+    private route: ActivatedRoute,
+    private router: Router) { }
 
   show: boolean = false;
   listSubscription: Subscription;
@@ -26,18 +31,20 @@ export class GalleryComponent implements OnInit, OnDestroy {
   imageReady: boolean = false;
 
   ngOnInit() {
-    this.listSubscription = this.appState.getGalleryList().subscribe((galleryList) => {
-      if (galleryList.length) {
-        this.galleryList = galleryList;
-        if (this.currentItemTitle) {
-          this.checkForCurrentItem(this.galleryList, this.currentItemTitle);
+    this.store.select('gallery').subscribe(
+      (gallery) => {
+        if (gallery.galleryList.length) {
+          this.galleryList = gallery.galleryList;
+          this.initialDimension = gallery.currentItemDimension;
+          if (this.currentItemTitle) {
+            this.checkForCurrentItem(this.galleryList, this.currentItemTitle);
+          }
         }
       }
-    });
+    )
 
     this.route.params.subscribe(params => {
       this.currentItemTitle = params.title;
-      this.initialDimension = this.appState.getItemDimension();
 
       if (this.initialDimension) {
         this.dimension = Object.assign({}, {
@@ -142,7 +149,8 @@ export class GalleryComponent implements OnInit, OnDestroy {
 
   changeImage(item) {
     this.loadingGallery = true;
-    this.appState.setGalleryItem(item, true);
+    this.store.dispatch(new UpdateCurrentItemDimension(null));
+    this.store.dispatch(new UpdateCurrentItem(item));  
     this.router.navigate(['/art/gallery/' + item.title]);
   }
 
@@ -153,8 +161,8 @@ export class GalleryComponent implements OnInit, OnDestroy {
   closeGallery() {
     this.imageReady = false;
     this.show = false;
-    if (this.initialDimension) {     
-      setTimeout(()=> {
+    if (this.initialDimension) {
+      setTimeout(() => {
         this.dimension = Object.assign({}, {
           top: this.initialDimension.top,
           bottom: this.initialDimension.bottom,
@@ -163,15 +171,15 @@ export class GalleryComponent implements OnInit, OnDestroy {
           height: this.initialDimension.height
         });
       }, 10);
-      setTimeout(()=> {
+      setTimeout(() => {
         this.router.navigate(['/art']);
-      }, 200);     
+      }, 200);
     } else {
       this.router.navigate(['/art']);
     }
   }
 
   ngOnDestroy() {
-    this.listSubscription.unsubscribe();
+    //this.listSubscription.unsubscribe();
   }
 }

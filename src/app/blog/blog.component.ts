@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 
 import { Store } from '@ngrx/store';
-import { AppState } from '../app.state';
+import { AppState } from '../app-store/app.state';
 import { HeaderState } from '../models/header-state.enum';
-import * as HeaderActions from '../actions/header.actions';
+import * as HeaderActions from '../app-store/actions/header.actions';
 
 @Component({
   selector: 'app-blog',

@@ -1,6 +1,5 @@
-import { Action } from '@ngrx/store';
-import { Header } from '../models/header.model';
-import { HeaderState } from '../models/header-state.enum';
+import { Header } from '../../models/header.model';
+import { HeaderState } from '../../models/header-state.enum';
 import * as HeaderActions from '../actions/header.actions';
 
 const initialHeader: Header = {

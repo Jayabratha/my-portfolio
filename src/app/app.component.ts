@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, NavigationStart, NavigationEnd } from '@angular/router';
-import { AppStateService } from './shared/app-state.service';
 import { ElasticsearchService } from './shared/elasticsearch.service';
 import { Title } from '@angular/platform-browser';
 import { routerTransition } from './animations/animations';
@@ -9,7 +8,7 @@ import { routerTransition } from './animations/animations';
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
-  providers: [AppStateService, ElasticsearchService],
+  providers: [ElasticsearchService],
   animations: [ routerTransition ]
 })
 export class AppComponent implements OnInit {

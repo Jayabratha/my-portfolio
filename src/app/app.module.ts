@@ -23,7 +23,8 @@ import { BlogComponent } from './blog/blog.component';
 import { ClickedOutDirective } from './shared/clicked-out.directive';
 import { GalleryComponent } from './gallery/gallery.component';
 
-import { headerReducer } from './reducers/header.reducer';
+import { headerReducer } from './app-store/reducers/header.reducer';
+import { galleryReducer } from './app-store/reducers/gallery.reducer';
 
 const appRoutes: Routes = [
   { path: 'home', component: HomeComponent, data: { state: 'home' } },
@@ -69,7 +70,8 @@ const appRoutes: Routes = [
     BrowserAnimationsModule,
     JsNgCarouselModule,
     StoreModule.forRoot({
-      header: headerReducer
+      header: headerReducer,
+      gallery: galleryReducer
     }),
     RouterModule.forRoot(appRoutes),
     AngularFireModule.initializeApp(environment.firebase),
