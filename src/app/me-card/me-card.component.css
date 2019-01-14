@@ -817,14 +817,3 @@ h1.name {
         color: #FFFFFF;
     }
 }
-
-@media (max-width: 650px) and (min-width: 450px) {
-    .me-card {
-        width: 80%;
-        max-width: 370px;
-    }
-    .logo-header.center-stage {
-        width: 70%;
-        max-width: 370px;
-    }
-}

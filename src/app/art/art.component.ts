@@ -37,23 +37,26 @@ export class ArtComponent implements OnInit {
         this.store.dispatch(new HeaderActions.UpdateState(HeaderState.Fixed));
         this.store.dispatch(new HeaderActions.ToggleMenu(false));
 
+        this.store.select('gallery').subscribe((gallery) => {
+            this.imageList = gallery.galleryList;
+        })
+
         if (navigator.onLine) {
             //Get list of images
             this.db.list('/artImages').valueChanges().subscribe((fileList: ArtImage[]) => {
+                if (this.imageList.length !== fileList.length) {
+                    fileList.forEach((file: ArtImage) => {
+                        Object.assign(file, { visible: false });
+                        this.urlSubsciptions.push(this.storage.ref(file.thumbPath).getDownloadURL().pipe(
+                            tap((url) => Object.assign(file, { thumbUrl: url }))));
+                        this.urlSubsciptions.push(this.storage.ref(file.filePath).getDownloadURL().pipe(
+                            tap((url) => Object.assign(file, { fileUrl: url }))));
+                    });
 
-                fileList.forEach((file: ArtImage) => {
-                    Object.assign(file, { visible: false});
-                    this.urlSubsciptions.push(this.storage.ref(file.thumbPath).getDownloadURL().pipe(
-                        tap((url) => Object.assign(file, { thumbUrl: url }))));
-                    this.urlSubsciptions.push(this.storage.ref(file.filePath).getDownloadURL().pipe(
-                        tap((url) => Object.assign(file, { fileUrl: url }))));
-                });
-
-                forkJoin(this.urlSubsciptions).subscribe(() => {
-                    this.imageList = fileList;
-                    //this.appState.setGalleryList(this.imageList);
-                    this.store.dispatch(new UpdateGalleryList(this.imageList))
-                });
+                    forkJoin(this.urlSubsciptions).subscribe(() => {
+                        this.store.dispatch(new UpdateGalleryList(fileList));
+                    });
+                }
             });
         } else {
             this.isLoading = false;
@@ -76,8 +79,6 @@ export class ArtComponent implements OnInit {
     }
 
     showInGallery(item, elem) {
-        // this.appState.setGalleryItem(item);
-        // this.appState.setItemDimenion(elem);
         this.store.dispatch(new UpdateCurrentItem(item));
         this.store.dispatch(new UpdateCurrentItemDimension(elem.getBoundingClientRect()));
         this.router.navigate(['/art/gallery/' + item.title]);
