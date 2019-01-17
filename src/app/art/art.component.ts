@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { AngularFireDatabase } from 'angularfire2/database';
 import { AngularFireStorage } from 'angularfire2/storage';
 import { forkJoin, Observable } from 'rxjs';
@@ -30,52 +30,124 @@ export class ArtComponent implements OnInit {
     isLoading: boolean = true;
     alert: string = "";
     alertType: string = "";
-    imageLoadCount: number = 0;
     urlSubsciptions: Array<Observable<any>> = [];
+    galleryLayout: Array<Array<ArtImage>> = [];
+    rowLoadMap: Array<{visible: boolean, loaded: boolean}> = [];
+
+    @ViewChild('container') galleryContainer: ElementRef;
 
     ngOnInit() {
         this.store.dispatch(new HeaderActions.UpdateState(HeaderState.Fixed));
         this.store.dispatch(new HeaderActions.ToggleMenu(false));
 
-        this.store.select('gallery').subscribe((gallery) => {
-            this.imageList = gallery.galleryList;
-        })
 
         if (navigator.onLine) {
             //Get list of images
-            this.db.list('/artImages').valueChanges().subscribe((fileList: ArtImage[]) => {
-                if (this.imageList.length !== fileList.length) {
-                    fileList.forEach((file: ArtImage) => {
-                        Object.assign(file, { visible: false });
-                        this.urlSubsciptions.push(this.storage.ref(file.thumbPath).getDownloadURL().pipe(
-                            tap((url) => Object.assign(file, { thumbUrl: url }))));
-                        this.urlSubsciptions.push(this.storage.ref(file.filePath).getDownloadURL().pipe(
-                            tap((url) => Object.assign(file, { fileUrl: url }))));
-                    });
-
-                    forkJoin(this.urlSubsciptions).subscribe(() => {
-                        this.store.dispatch(new UpdateGalleryList(fileList));
-                    });
-                }
-            });
+            this.db.list('/artImages').valueChanges()
+                .subscribe((fileList: ArtImage[]) => {
+                    this.imageList = fileList;
+                    fileList.forEach((file) => Object.assign(file, {
+                        loaded: false,
+                        visible: false
+                    }));
+                    this.generateGridLayout(fileList);
+                    this.isLoading = false;
+                    this.downloadImages(this.galleryLayout[0], 0);
+                });
         } else {
             this.isLoading = false;
             this.alert = "Ops! You are offline. Please connect to internet";
             this.alertType = "warn";
         }
-
     }
 
-    updateProgress() {
-        this.imageLoadCount++;
-        if (this.imageLoadCount === this.imageList.length) {
-            this.isLoading = false;
-            this.imageList.forEach((image: ArtImage, index) => {
+    downloadImages(imageList, rowIndex) {
+        imageList.forEach((file: ArtImage) => {
+            this.urlSubsciptions.push(this.storage.ref(file.thumbPath).getDownloadURL().pipe(
+                tap((url) => Object.assign(file, { thumbUrl: url }))));
+            this.urlSubsciptions.push(this.storage.ref(file.filePath).getDownloadURL().pipe(
+                tap((url) => Object.assign(file, { fileUrl: url }))));
+        });
+
+        forkJoin(this.urlSubsciptions).subscribe(() => {
+            this.rowLoadMap[rowIndex].loaded = true;
+            this.store.dispatch(new UpdateGalleryList(this.imageList));
+        });
+    }
+
+    getMinAspectRatio(lastWindowWidth) {
+        if (lastWindowWidth <= 640)
+            return 2;
+        else if (lastWindowWidth <= 1280)
+            return 2.5;
+        else if (lastWindowWidth <= 1920)
+            return 4;
+        return 5;
+    }
+
+    generateGridLayout(imageList) {
+        let imageCount = imageList.length;
+        let totalWidth = this.galleryContainer.nativeElement.clientWidth;
+        let rowAspectRatio = 0;
+        let minAspectRatio = this.getMinAspectRatio(totalWidth);
+        let row = [];
+
+        this.galleryLayout = [];
+        imageList.forEach((image, index) => {
+            rowAspectRatio += (image.width / image.height);
+            row.push(image);
+            if (rowAspectRatio >= minAspectRatio || index + 1 === imageCount) {
+                rowAspectRatio = Math.max(rowAspectRatio, minAspectRatio);
+                let rowHeight = totalWidth / rowAspectRatio;
+
+                row.forEach((image) => {
+                    let imageWidth = rowHeight * (image.width / image.height);
+                    Object.assign(image, {
+                        thumbWidth: Math.floor(imageWidth),
+                        thumbHeight: Math.floor(rowHeight)
+                    });
+                });
+                this.galleryLayout.push(row);
+                this.rowLoadMap.push({visible: false, loaded: false});
+                row = [];
+                rowAspectRatio = 0;
+            }
+        });
+    }
+
+    updateProgress(image, row, rowIndex) {
+        image.loaded = true;
+        if (this.rowLoadMap[rowIndex].visible) {
+            this.animateRowItems(row, rowIndex);
+        }        
+    }
+
+    animateRowItems(row, rowIndex) {
+        let imageLoadCount = 0;
+        this.rowLoadMap[rowIndex].visible = true;
+        row.forEach((image) => {
+            if (image.loaded) {
+                imageLoadCount++;
+            }
+        });
+        if (imageLoadCount === row.length) {
+            row.forEach((image: ArtImage, index) => {
                 setTimeout(() => {
                     image.visible = true;
                 }, (index + 1) * 150);
             });
         }
+        //Download the next row images
+        if (rowIndex !== this.rowLoadMap.length - 1 && !this.rowLoadMap[rowIndex + 1].loaded) {
+            this.downloadImages(this.galleryLayout[rowIndex + 1], rowIndex + 1);
+        }        
+    }
+
+    hideRowItems(row, rowIndex) {
+        row.forEach((image) => {
+            image.visible = false;
+        });
+        this.rowLoadMap[rowIndex].visible = false;
     }
 
     showInGallery(item, elem) {

@@ -36,7 +36,6 @@ export class MeCardComponent implements OnInit, OnDestroy {
   }
 
   @ViewChildren('searchResult') searchResult: QueryList<ElementRef>;
-  @ViewChild('searchInput') searchInput: ElementRef;
 
   HEADER_STATE = HeaderState;
   headerState: Header;

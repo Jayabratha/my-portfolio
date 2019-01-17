@@ -1,7 +1,7 @@
 <div class="content art-content center-stage">
   <h1>Art</h1>
   <div class="feature-wrapper">
-    <div class="content-wrapper clearfix below-view" viewportCheck >
+    <div class="content-wrapper clearfix below-view" viewportCheck>
       <div class="main">
         <h2>A collection of my sketches and paintings</h2>
         <i class="icon-android-color-palette"></i>
@@ -11,20 +11,25 @@
     </div>
   </div>
   <router-outlet></router-outlet>
-  <section class="list-wrapper">
+  <section #container class="list-wrapper">
     <h2>Gallery</h2>
     <div class="loading-icon animate" [hidden]="!isLoading">
     </div>
     <div class="alert" [ngClass]="alertType" [hidden]="!alert">{{alert}}</div>
-    <ul class="art-list clearfix" [hidden]="isLoading">
-      <li id="{{item.id}}" class="image-item" *ngFor="let item of imageList" [ngClass]="{'potrait col-xs-6 col-sm-3 col-md-3 col-lg-3': item.isPortrait,
-                       'landscape col-xs-12 col-sm-6 col-md-6 col-lg-6': !item.isPortrait}">
-        <div class="image-wrapper" #elem (click)="showInGallery(item, elem)" [class.hide]="!item.visible" >
-          <img class="art-images" [title]="item.title" [src]="item.thumbUrl" (load)="updateProgress()" />
-          <div class="image-title">{{item.title}}</div>
-          <div class="shadow"></div>
+    <div class="art-list" (window:resize)="generateGridLayout(imageList)">
+      <div class="image-row clearfix view-check below-view" *ngFor="let row of galleryLayout; let i = index" viewportCheck 
+          (enteredViewport)="animateRowItems(row, i)" 
+          (leftViewport)="hideRowItems(row, i)">
+        <div class="image-item" *ngFor="let image of row" [style.width.px]="image.thumbWidth" [style.height.px]="image.thumbHeight">
+          <div class="image-placeholder">
+            <div class="image-wrapper" #elem (click)="showInGallery(image, elem)" *ngIf="rowLoadMap[i].loaded" [class.hide]="!image.visible">
+              <img class="art-images" [title]="image.title" [src]="image.thumbUrl" (load)="updateProgress(image, row, i)" />
+              <div class="image-title">{{image.title}}</div>
+              <div class="shadow"></div>
+            </div>
+          </div>
         </div>
-      </li>
-    </ul>
+      </div>
+    </div>
   </section>
 </div>

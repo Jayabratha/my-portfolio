@@ -9,5 +9,8 @@ export interface ArtImage {
     isPortrait: boolean,
     thumbPath: string,
     thumbUrl: string,
-    visible: boolean
+    loaded: boolean,
+    visible: boolean,
+    thumbWidth: number,
+    thumbHeight: number
 }

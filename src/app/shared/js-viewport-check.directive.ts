@@ -11,6 +11,7 @@ export class ViewportCheck implements OnInit, OnDestroy {
   @Input() aboveClass: string = 'above-view';
   @Input() checkAboveView: boolean = false;
   @Output() enteredViewport = new EventEmitter<string>();
+  @Output() leftViewport = new EventEmitter<string>();
 
   elem: HTMLElement;
   elemViewportOffset: number;
@@ -41,9 +42,16 @@ export class ViewportCheck implements OnInit, OnDestroy {
       if (this.elemViewportOffset > 0) {
         if ((this.elemViewportOffset + this.padding) <= window.innerHeight) {
           this.renderer.setElementClass(this.elem, this.belowClass, false);
-          this.enteredViewport.emit(true);
+          if (!this.hasEntered) {
+            this.hasEntered = true;
+            this.enteredViewport.emit(true);
+          }         
         } else {
           this.renderer.setElementClass(this.elem, this.belowClass, true);
+          if (this.hasEntered) {
+            this.hasEntered = false;
+            this.leftViewport.emit(true);
+          }          
         }
       }
 

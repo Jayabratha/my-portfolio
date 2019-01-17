@@ -36,7 +36,13 @@
     margin: 0 0 1em;
     display: flex;
     justify-content: space-between;
-    align-items: start;
+    align-items: flex-start;
+}
+
+.project-card:not(.featured-project) .title {
+    margin: -1.5em -1.5em 0.5em;
+    padding: 1.5em;
+    min-height: 7em;
 }
 
 .title h3 {
@@ -55,6 +61,8 @@
     border-radius: 20px;
     font-size: 0.8em;
     border: thin solid #ccc;
+    background: #FFFFFF;
+    color: #212121;
 }
 .github-link:hover {
     border-color: #28a6e4;
