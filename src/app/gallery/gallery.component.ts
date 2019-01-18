@@ -173,6 +173,7 @@ export class GalleryComponent implements OnInit, OnDestroy {
       }, 10);
       setTimeout(() => {
         this.router.navigate(['/art']);
+        this.store.dispatch(new UpdateCurrentItem(null));
       }, 200);
     } else {
       this.router.navigate(['/art']);

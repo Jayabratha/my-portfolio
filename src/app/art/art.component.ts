@@ -33,6 +33,7 @@ export class ArtComponent implements OnInit {
     urlSubsciptions: Array<Observable<any>> = [];
     galleryLayout: Array<Array<ArtImage>> = [];
     rowLoadMap: Array<{visible: boolean, loaded: boolean}> = [];
+    currentImage: ArtImage = null;
 
     @ViewChild('container') galleryContainer: ElementRef;
 
@@ -40,6 +41,9 @@ export class ArtComponent implements OnInit {
         this.store.dispatch(new HeaderActions.UpdateState(HeaderState.Fixed));
         this.store.dispatch(new HeaderActions.ToggleMenu(false));
 
+        this.store.select('gallery').subscribe((gallery) => {
+            this.currentImage = gallery.currentItem;
+        })
 
         if (navigator.onLine) {
             //Get list of images

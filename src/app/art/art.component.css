@@ -18,8 +18,8 @@
     opacity: 1;
     overflow: hidden;
     transform: translate3d(0, 0, 0);
-    -webkit-transition: all 0.5s linear;
-    transition: all 0.5s linear;
+    -webkit-transition: transform 0.5s linear;
+    transition: transform 0.5s linear;
 }
 
 .image-wrapper img {
@@ -65,8 +65,11 @@
 }
 
 .image-wrapper.hide {
-    opacity: 0;
     transform: translate3d(0, 200px, 0);
+}
+
+.image-wrapper.active {
+    opacity: 0;
 }
 
 .feature-content {

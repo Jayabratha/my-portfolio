@@ -95,6 +95,7 @@ export class MeCardComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     let deviceWidth = document.documentElement.clientWidth;
+    let carouselLoadStep = (100 / this.slideList.length);
 
     if (deviceWidth < 650) {
       this.isMobile = true;
@@ -130,7 +131,7 @@ export class MeCardComponent implements OnInit, OnDestroy {
     });
 
     this.carouselProgressInterval = setInterval(() => {
-      if (this.carouselLoadProgress < 100) {
+      if (this.carouselLoadProgress < this.carouselLoadProgress + carouselLoadStep) {
         this.carouselLoadProgress = this.carouselLoadProgress + 10;
       } else {
         clearInterval(this.carouselProgressInterval);
