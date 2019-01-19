@@ -28,6 +28,7 @@ export class ArtComponent implements OnInit {
 
     imageList: Array<ArtImage> = [];
     isLoading: boolean = true;
+    isDownloading: boolean = false;
     alert: string = "";
     alertType: string = "";
     urlSubsciptions: Array<Observable<any>> = [];
@@ -66,6 +67,7 @@ export class ArtComponent implements OnInit {
     }
 
     downloadImages(imageList, rowIndex) {
+        this.isDownloading = true;
         imageList.forEach((file: ArtImage) => {
             this.urlSubsciptions.push(this.storage.ref(file.thumbPath).getDownloadURL().pipe(
                 tap((url) => Object.assign(file, { thumbUrl: url }))));
@@ -76,6 +78,7 @@ export class ArtComponent implements OnInit {
         forkJoin(this.urlSubsciptions).subscribe(() => {
             this.rowLoadMap[rowIndex].loaded = true;
             this.store.dispatch(new UpdateGalleryList(this.imageList));
+            this.isDownloading = false;
         });
     }
 
@@ -143,7 +146,7 @@ export class ArtComponent implements OnInit {
         }
         //Download the next row images
         if (rowIndex !== this.rowLoadMap.length - 1 && !this.rowLoadMap[rowIndex + 1].loaded) {
-            this.downloadImages(this.galleryLayout[rowIndex + 1], rowIndex + 1);
+           this.downloadImages(this.galleryLayout[rowIndex + 1], rowIndex + 1);
         }        
     }
 

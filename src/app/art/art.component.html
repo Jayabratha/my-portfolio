@@ -17,7 +17,7 @@
     </div>
     <div class="alert" [ngClass]="alertType" [hidden]="!alert">{{alert}}</div>
     <div class="art-list" (window:resize)="generateGridLayout(imageList)">
-      <div class="image-row clearfix view-check below-view" *ngFor="let row of galleryLayout; let i = index" viewportCheck 
+      <div class="image-row clearfix view-check below-view" [class.animated-background]="isDownloading" *ngFor="let row of galleryLayout; let i = index" viewportCheck 
           (enteredViewport)="animateRowItems(row, i)" 
           (leftViewport)="hideRowItems(row, i)">
         <div class="image-item" *ngFor="let image of row" [style.width.px]="image.thumbWidth" [style.height.px]="image.thumbHeight">
