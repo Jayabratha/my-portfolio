@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, HostListener } from '@angular/core';
 import { AngularFireDatabase } from 'angularfire2/database';
 import { AngularFireStorage } from 'angularfire2/storage';
 import { forkJoin, Observable } from 'rxjs';
@@ -35,8 +35,17 @@ export class ArtComponent implements OnInit {
     galleryLayout: Array<Array<ArtImage>> = [];
     rowLoadMap: Array<{visible: boolean, loaded: boolean}> = [];
     currentImage: ArtImage = null;
+    lastWidth: number = document.documentElement.clientWidth;
 
     @ViewChild('container') galleryContainer: ElementRef;
+
+    @HostListener('window:resize') checkAndUpdateLayout() {
+        let newWidth = document.documentElement.clientWidth;
+        if (newWidth !== this.lastWidth) {
+            this.generateGridLayout(this.imageList);
+        }
+        this.lastWidth = newWidth;
+    }
 
     ngOnInit() {
         this.store.dispatch(new HeaderActions.UpdateState(HeaderState.Fixed));
@@ -82,12 +91,12 @@ export class ArtComponent implements OnInit {
         });
     }
 
-    getMinAspectRatio(lastWindowWidth) {
-        if (lastWindowWidth <= 640)
+    getMinAspectRatio(windowWidth) {
+        if (windowWidth <= 640)
             return 2;
-        else if (lastWindowWidth <= 1280)
+        else if (windowWidth <= 1280)
             return 2.5;
-        else if (lastWindowWidth <= 1920)
+        else if (windowWidth <= 1920)
             return 4;
         return 5;
     }

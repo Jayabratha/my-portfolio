@@ -16,7 +16,7 @@
     <div class="loading-icon animate" [hidden]="!isLoading">
     </div>
     <div class="alert" [ngClass]="alertType" [hidden]="!alert">{{alert}}</div>
-    <div class="art-list" (window:resize)="generateGridLayout(imageList)">
+    <div class="art-list">
       <div class="image-row clearfix view-check below-view" [class.animated-background]="isDownloading" *ngFor="let row of galleryLayout; let i = index" viewportCheck 
           (enteredViewport)="animateRowItems(row, i)" 
           (leftViewport)="hideRowItems(row, i)">

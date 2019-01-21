@@ -46,6 +46,8 @@ export class MeCardComponent implements OnInit, OnDestroy {
   activateScroll: boolean = true;
   play: boolean = true;
   carouselLoadProgress: number = 0;
+  carouselLoadStep: number = 0;
+  nextLoad: number = 0;
   keyword: string = "";
   isMobile: boolean = false;
   isSearchAvailable: boolean = false;
@@ -95,7 +97,9 @@ export class MeCardComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     let deviceWidth = document.documentElement.clientWidth;
-    let carouselLoadStep = (100 / this.slideList.length);
+
+    this.carouselLoadStep = (100 / this.slideList.length);
+    this.nextLoad = this.carouselLoadProgress + this.carouselLoadStep;
 
     if (deviceWidth < 650) {
       this.isMobile = true;
@@ -131,12 +135,16 @@ export class MeCardComponent implements OnInit, OnDestroy {
     });
 
     this.carouselProgressInterval = setInterval(() => {
-      if (this.carouselLoadProgress < this.carouselLoadProgress + carouselLoadStep) {
-        this.carouselLoadProgress = this.carouselLoadProgress + 10;
-      } else {
-        clearInterval(this.carouselProgressInterval);
+      if (this.carouselLoadProgress < this.nextLoad) {
+        this.carouselLoadProgress = this.carouselLoadProgress + 1;
       }
-    }, 50);
+      if (this.carouselLoadProgress >= 100) {
+        clearInterval(this.carouselProgressInterval);
+        if (this.router.url === '/home' && this.headerState.state !== HeaderState.Fixed) {
+          this.store.dispatch(new HeaderActions.UpdateState(this.HEADER_STATE.Home));
+        }
+      }
+    }, 10);
 
   }
 
@@ -163,7 +171,7 @@ export class MeCardComponent implements OnInit, OnDestroy {
       window.scrollTo(0, 0);
       if (!this.isMobile) {
         this.store.dispatch(new HeaderActions.ToggleMenu(true));
-      }      
+      }
     }
   }
 
@@ -183,21 +191,13 @@ export class MeCardComponent implements OnInit, OnDestroy {
     });
   }
 
-  onCarouselReady(isReady) {
-    if (isReady) {
-      setTimeout(() => {
-        if (this.router.url === '/home' && this.headerState.state !== HeaderState.Fixed) {
-          this.store.dispatch(new HeaderActions.UpdateState(HeaderState.Home));
-        }
-      }, 1000);
+  onCarouselLoadProgress(progress) {   
+    if (progress < 100) {
+      this.nextLoad = this.carouselLoadProgress + this.carouselLoadStep;
+    } else {
+      this.nextLoad = 100;
     }
-  }
-
-  onCarouselLoadProgress(progress) {
-    if (progress === 100) {
-      clearInterval(this.carouselProgressInterval);
-    }
-    this.carouselLoadProgress = progress;
+    
   }
 
   headerStateChange(state: string) {
