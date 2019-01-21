@@ -4,20 +4,20 @@ import { AngularFireStorage } from 'angularfire2/storage';
 import { forkJoin, Observable } from 'rxjs';
 import { tap } from "rxjs/operators";
 import { Router } from '@angular/router';
-import { ArtImage } from '../models/art-image.model';
+import { ArtImage } from '../../models/art-image.model';
 
 import { Store } from '@ngrx/store';
-import { AppState } from '../app-store/app.state';
-import { HeaderState } from '../models/header-state.enum';
-import * as HeaderActions from '../app-store/actions/header.actions';
-import { UpdateGalleryList, UpdateCurrentItem, UpdateCurrentItemDimension } from '../app-store/actions/gallery.actions';
+import { AppState } from '../../app-store/app.state';
+import { HeaderState } from '../../models/header-state.enum';
+import * as HeaderActions from '../../app-store/actions/header.actions';
+import { UpdateGalleryList, UpdateCurrentItem, UpdateCurrentItemDimension } from '../../app-store/actions/gallery.actions';
 
 @Component({
-    selector: 'app-art',
-    templateUrl: './art.component.html',
-    styleUrls: ['./art.component.css', './../app.component.css']
+    selector: 'art-list',
+    templateUrl: './art-list.component.html',
+    styleUrls: ['./art-list.component.css', './../../app.component.css']
 })
-export class ArtComponent implements OnInit {
+export class ArtListComponent implements OnInit {
 
     constructor(
         private store: Store<AppState>,

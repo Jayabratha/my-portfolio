@@ -2,15 +2,15 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { Store } from '@ngrx/store';
-import { AppState } from '../app-store/app.state';
-import { UpdateCurrentItem, UpdateCurrentItemDimension } from '../app-store/actions/gallery.actions';
+import { AppState } from '../../app-store/app.state';
+import { UpdateCurrentItem, UpdateCurrentItemDimension } from '../../app-store/actions/gallery.actions';
 
 @Component({
-  selector: 'app-gallery',
-  templateUrl: './gallery.component.html',
-  styleUrls: ['./gallery.component.css']
+  selector: 'art-gallery',
+  templateUrl: './art-gallery.component.html',
+  styleUrls: ['./art-gallery.component.css']
 })
-export class GalleryComponent implements OnInit, OnDestroy {
+export class ArtGalleryComponent implements OnInit, OnDestroy {
 
   constructor(
     private store: Store<AppState>,

@@ -1,18 +1,22 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { Routes, RouterModule } from '@angular/router';
+import { CommonModule } from "@angular/common"
 
-import { ArtComponent } from './art.component';
+import { ArtListComponent } from './art-list/art-list.component';
+import { ArtGalleryComponent } from './art-gallery/art-gallery.component';
 
-const artRoutes: Routes = [
-    { path: '', component: ArtComponent }
-]
+import { ArtRoutingModule } from './art-routing.module';
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
-    // declarations: [ArtComponent],
+    declarations: [
+        ArtListComponent,
+        ArtGalleryComponent
+    ],
     imports: [
         CommonModule,
-        RouterModule.forChild(artRoutes)]
+        SharedModule,
+        ArtRoutingModule
+    ]
 })
 export class ArtModule {
 }

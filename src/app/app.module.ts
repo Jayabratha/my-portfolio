@@ -3,7 +3,6 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { StoreModule } from '@ngrx/store';
-import { Routes, RouterModule } from '@angular/router';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireStorageModule } from 'angularfire2/storage';
@@ -13,55 +12,26 @@ import { JsNgCarouselModule } from 'js-ng-carousel';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { MeCardComponent } from './me-card/me-card.component';
-import { ViewportCheck } from './shared/js-viewport-check.directive';
-import { ArtComponent } from './art/art.component';
 import { ProjectsComponent } from './projects/projects.component';
 import { AboutComponent } from './about/about.component';
 import { ContactComponent } from './contact/contact.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BlogComponent } from './blog/blog.component';
-import { ClickedOutDirective } from './shared/clicked-out.directive';
-import { GalleryComponent } from './gallery/gallery.component';
 
 import { headerReducer } from './app-store/reducers/header.reducer';
 import { galleryReducer } from './app-store/reducers/gallery.reducer';
-
-const appRoutes: Routes = [
-  { path: 'home', component: HomeComponent, data: { state: 'home' } },
-  {
-    path: 'art',
-    component: ArtComponent,
-    children: [
-      {
-        path: 'gallery/:title',
-        component: GalleryComponent
-      }
-    ], data: { state: 'art' }
-  },
-  { path: 'projects', component: ProjectsComponent, data: { state: 'projects' } },
-  { path: 'blog', component: BlogComponent, data: { state: 'blog' } },
-  { path: 'about', component: AboutComponent, data: { state: 'about' } },
-  { path: 'contact', component: ContactComponent, data: { state: 'contact' } },
-  {
-    path: '',
-    redirectTo: '/home',
-    pathMatch: 'full'
-  }
-];
+import { AppRoutingModule } from './app-routing.module';
+import { SharedModule } from './shared/shared.module';
 
 @NgModule({
   declarations: [
     AppComponent,
     MeCardComponent,
-    ViewportCheck,
     HomeComponent,
-    ArtComponent,
     ProjectsComponent,
     AboutComponent,
     ContactComponent,
-    BlogComponent,
-    ClickedOutDirective,
-    GalleryComponent
+    BlogComponent
   ],
   imports: [
     BrowserModule,
@@ -73,10 +43,11 @@ const appRoutes: Routes = [
       header: headerReducer,
       gallery: galleryReducer
     }),
-    RouterModule.forRoot(appRoutes),
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireDatabaseModule,
-    AngularFireStorageModule
+    AngularFireStorageModule,
+    SharedModule,
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]
