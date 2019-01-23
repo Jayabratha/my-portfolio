@@ -1,6 +1,6 @@
 <div class="home-content center-stage" [ngClass]="{'hide': !(headerState.state === HEADER_STATE.Fixed)}">
   <div class="overview-wrapper">
-    <div class="overview art-overview" [class.above-view]="steps[1].isAboveView" [class.below-view]="steps[1].isBelowView"
+    <div class="overview clearfix art-overview" [class.above-view]="steps[1].isAboveView" [class.below-view]="steps[1].isBelowView"
       viewportCheck [padding]=padding [checkAboveView]=true >
       <div class="dp overview-dp">
         <h2>Art</h2>
@@ -20,7 +20,7 @@
     </div>
   </div>
   <div class="overview-wrapper">
-    <div class="overview projects-overview" [class.above-view]="steps[2].isAboveView" [class.below-view]="steps[2].isBelowView"
+    <div class="overview clearfix projects-overview" [class.above-view]="steps[2].isAboveView" [class.below-view]="steps[2].isBelowView"
       viewportCheck  [padding]=padding [checkAboveView]=true >
       <div class="dp overview-dp">
         <h2>Projects</h2>
@@ -40,7 +40,7 @@
     </div>
   </div>
   <div class="overview-wrapper">
-    <div class="overview blog-overview" [class.above-view]="steps[3].isAboveView" [class.below-view]="steps[3].isBelowView"
+    <div class="overview clearfix blog-overview" [class.above-view]="steps[3].isAboveView" [class.below-view]="steps[3].isBelowView"
       viewportCheck  [padding]=padding [checkAboveView]=true >
       <div class="dp overview-dp">
         <h2>Blog</h2>
@@ -60,7 +60,7 @@
     </div>
   </div>
   <div class="overview-wrapper">
-    <div class="overview about-overview" [class.above-view]="steps[4].isAboveView" [class.below-view]="steps[4].isBelowView"
+    <div class="overview clearfix about-overview" [class.above-view]="steps[4].isAboveView" [class.below-view]="steps[4].isBelowView"
       viewportCheck  [padding]=padding [checkAboveView]=true >
       <div class="dp overview-dp">
         <h2>About</h2>
@@ -81,7 +81,7 @@
     </div>
   </div>
   <div class="overview-wrapper">
-    <div class="overview contact-overview" [class.above-view]="steps[5].isAboveView" [class.below-view]="steps[5].isBelowView"
+    <div class="overview clearfix contact-overview" [class.above-view]="steps[5].isAboveView" [class.below-view]="steps[5].isBelowView"
       viewportCheck  [padding]=padding [checkAboveView]=true >
       <div class="dp overview-dp">
         <h2>Contact</h2>

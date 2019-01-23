@@ -1,9 +1,9 @@
-<header class="main-header" [ngClass]="{
+<div class="main-header" [ngClass]="{
                 'fix-header': headerState.state === HEADER_STATE.Fixed, 
                 'initial-header': headerState.state === HEADER_STATE.Initial, 
                 'search-header': headerState.showSearch, 
                 'show-menu': headerState.showMenu }">
-    <div class="logo-header center-stage">
+    <header class="logo-header center-stage">
         <div class="menu-section" (click)="toggleMenu(); $event.stopPropagation();">
             <div class="menu-icon-top"></div>
             <div class="menu-icon"></div>
@@ -24,7 +24,7 @@
                 </div>
             </form>
         </div>
-    </div>
+    </header>
     <div class="main-loader loading-icon animate" [hidden]="!loading"></div>
     <section class="hello-card">
         <div class="overlay"></div>
@@ -87,5 +87,5 @@
     <div class="nav-highlighter-wrapper center-stage absolute-bottom">
         <div class="nav-highlighter" [ngClass]="activeNav"></div>
     </div>
-</header>
+</div>
 <div class="menu-background" [hidden]="!((headerState.state === HEADER_STATE.Fixed && headerState.showMenu) || headerState.showSearch)"></div>

@@ -142,10 +142,12 @@ export class MeCardComponent implements OnInit, OnDestroy {
         clearInterval(this.carouselProgressInterval);
         if (this.router.url === '/home' && this.headerState.state !== HeaderState.Fixed) {
           this.store.dispatch(new HeaderActions.UpdateState(this.HEADER_STATE.Home));
+          if (!this.isMobile) {
+            this.store.dispatch(new HeaderActions.ToggleMenu(true));
+          }
         }
       }
     }, 10);
-
   }
 
   @HostListener('window:scroll') onScroll() {
@@ -191,13 +193,13 @@ export class MeCardComponent implements OnInit, OnDestroy {
     });
   }
 
-  onCarouselLoadProgress(progress) {   
+  onCarouselLoadProgress(progress) {
     if (progress < 100) {
       this.nextLoad = this.carouselLoadProgress + this.carouselLoadStep;
     } else {
       this.nextLoad = 100;
     }
-    
+
   }
 
   headerStateChange(state: string) {
@@ -215,7 +217,6 @@ export class MeCardComponent implements OnInit, OnDestroy {
   }
 
   toggleMenu() {
-    console.log()
     this.store.dispatch(new HeaderActions.ToggleMenu(!this.showMenu));
   }
 

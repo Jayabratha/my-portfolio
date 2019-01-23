@@ -24,6 +24,7 @@
     vertical-align: top;
     width: 3em;
     height: 2.4em;
+    padding: 0;
     background: #212121;
     opacity: 1;
     transition: background-color 0.5s, margin 0.5s, opacity 0.3s;
@@ -126,7 +127,7 @@
     padding-left: 40%;
     color: #FFFFFF;
     opacity: 1;
-    background: linear-gradient(140deg, #ff9800, #f31b48, #940590, #0ab779);
+    background: linear-gradient(transparent, rgba(33, 33, 33, 0.2), rgba(33, 33, 33, 0.55));
     transition: opacity 0.5s;
 }
 
@@ -297,6 +298,7 @@ h1.name {
 
 .fix-header .my-dp,
 .search-header .my-dp,
+.fix-header .info-wrapper,
 .search-header .info-wrapper {
     opacity: 0;
 }
@@ -336,11 +338,11 @@ h1.name {
     background: linear-gradient(140deg, #ff9800, #f31b48, #940590, #0ab779);
 }
 
-.fix-header .info-wrapper>*,
+/* .fix-header .info-wrapper>*,
 .search-header .info-wrapper>* {
     opacity: 1;
     transition: opacity 0.5s;
-}
+} */
 
 .fix-header .scroll-up-indicator {
     display: none;
@@ -736,10 +738,10 @@ h1.name {
     .search-header .info-wrapper {
         margin-top: 0;
     }
-    .fix-header .info-wrapper>*,
+    /* .fix-header .info-wrapper>*,
     .search-header .info-wrapper>* {
         opacity: 0;
-    }
+    } */
     .fix-header .my-dp,
     .search-header .my-dp {
         display: none;

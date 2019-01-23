@@ -67,7 +67,6 @@
     display: inline-block;
     background: #FFFFFF;
     width: 100%;
-    height: 25em;
     margin: 3em 0;
     box-shadow: 0 1px 4px rgba(0,0,0,.05);
     border: 1px solid rgba(0,0,0,.09);
@@ -75,7 +74,7 @@
 
 .dp.overview-dp {
     background: #333333;
-    height: 100%;
+    height: 25em;
     text-align: center;
 }
 .overview-wrapper:nth-child(odd) .overview-dp {
@@ -128,7 +127,7 @@
 .overview-content-wrapper {
     position: relative;
     width: 65%;
-    height: 100%;
+    height: 25em;
 }
 .overview-content-background {
     position: absolute;
@@ -234,6 +233,6 @@
         position: relative;
         width: 100%;
         text-align: center;
-        padding: 1em;
+        padding: 2em 1em;
     }
 }
