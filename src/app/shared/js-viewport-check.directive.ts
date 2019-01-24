@@ -9,6 +9,7 @@ export class ViewportCheck implements OnInit, OnDestroy {
   @Input() checkDelay: number = 200;
   @Input() belowClass: string = 'below-view';
   @Input() aboveClass: string = 'above-view';
+  @Input() noDecorate: boolean = false;
   @Input() checkAboveView: boolean = false;
   @Output() enteredViewport = new EventEmitter<string>();
   @Output() leftViewport = new EventEmitter<string>();
@@ -41,22 +42,26 @@ export class ViewportCheck implements OnInit, OnDestroy {
       //Check if Below View
       if (this.elemViewportOffset > 0) {
         if ((this.elemViewportOffset + this.padding) <= window.innerHeight) {
-          this.renderer.setElementClass(this.elem, this.belowClass, false);
+          if (!this.noDecorate) {
+            this.renderer.setElementClass(this.elem, this.belowClass, false);
+          }
           if (!this.hasEntered) {
             this.hasEntered = true;
             this.enteredViewport.emit(true);
-          }         
+          }
         } else {
-          this.renderer.setElementClass(this.elem, this.belowClass, true);
+          if (!this.noDecorate) {
+            this.renderer.setElementClass(this.elem, this.belowClass, true);
+          }
           if (this.hasEntered) {
             this.hasEntered = false;
             this.leftViewport.emit(true);
-          }          
+          }
         }
       }
 
       //Check if Above View
-      if (this.checkAboveView) {
+      if (this.checkAboveView && !this.noDecorate) {
         if (this.elemViewportOffset + this.padding < 0) {
           this.renderer.setElementClass(this.elem, this.aboveClass, true);
         } else {

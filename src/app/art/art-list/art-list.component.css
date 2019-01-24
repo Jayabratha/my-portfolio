@@ -1,6 +1,6 @@
-.image-row {
+/* .image-row {
     background: #eeeeee;
-}
+} */
 
 .image-item {
     overflow: hidden;
@@ -9,8 +9,13 @@
 
 .image-placeholder {
     border: 1px solid #fafafa;
+    background: #eeeeee;
     width: 100%;
     height: 100%;
+}
+
+.animated-background .image-placeholder {
+    background: transparent;
 }
 
 .image-wrapper {
@@ -21,8 +26,8 @@
     opacity: 1;
     overflow: hidden;
     transform: translate3d(0, 0, 0);
-    -webkit-transition: transform 0.5s linear;
-    transition: transform 0.5s linear;
+    -webkit-transition: transform 0.5s ease-out, opacity 0.5s ease-out;
+    transition: transform 0.5s ease-out, opacity 0.5s ease-out;
 }
 
 .image-wrapper img {
@@ -31,8 +36,8 @@
     opacity: 1;
     -webkit-transform: scale3d(1, 1, 1);
     transform: scale3d(1, 1, 1);
-    -webkit-transition: transform 0.5s linear;
-    transition: transform 0.5s linear;
+    -webkit-transition: transform 0.5s ease-out;
+    transition: transform 0.5s ease-out;
 }
 
 .image-wrapper .image-title {
@@ -69,7 +74,7 @@
 
 .image-wrapper.hide {
     opacity: 0;
-    transform: translate3d(0, 200px, 0);
+    transform: translate3d(0, 100px, 0);
 }
 
 .image-wrapper.active {

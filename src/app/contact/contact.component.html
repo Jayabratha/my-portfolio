@@ -1,7 +1,7 @@
 <div class="content contact-content center-stage">
   <h1>Contact</h1>
   <div class="feature-wrapper">
-    <div class="content-wrapper clearfix below-view" viewportCheck >
+    <div class="content-wrapper clearfix below-view" viewportCheck>
       <div class="main">
         <h2>Send me an email here</h2>
         <i class="icon-paper-airplane"></i>
@@ -51,34 +51,26 @@
     <div class="tiles-wrapper">
       <h2>Follow me on</h2>
       <div class="tiles-container" viewportCheck [padding]=100 (enteredViewport)="animateTiles()">
-        <ul class="clearfix skill-list">
-          <li class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
-            <div #tileItem class="tile-wrapper facebook hide">
-              <a href="https://www.facebook.com/jayabratha.saha">
-                <i class="icon-social-facebook"></i>
-              </a>
-            </div>
+        <ul class="flex-wrapper">
+          <li #tileItem class="tile-wrapper facebook hide">
+            <a href="https://www.facebook.com/jayabratha.saha">
+              <i class="icon-social-facebook"></i>
+            </a>
           </li>
-          <li class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
-            <div #tileItem class="tile-wrapper instagram hide">
-              <a href="https://www.instagram.com/i.m.j.a.y/">
-                <img src="../../assets/instagram.png" alt="Instagram Link" />
-              </a>
-            </div>
+          <li #tileItem class="tile-wrapper instagram hide">
+            <a href="https://www.instagram.com/i.m.j.a.y/">
+              <img src="../../assets/instagram.png" alt="Instagram Link" />
+            </a>
           </li>
-          <li class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
-            <div #tileItem class="tile-wrapper linkedin hide">
-              <a href="https://www.linkedin.com/in/jayabratha-saha-6b56a86a/">
-                <i class="icon-linkedin-square"></i>
-              </a>
-            </div>
+          <li #tileItem class="tile-wrapper linkedin hide">
+            <a href="https://www.linkedin.com/in/jayabratha-saha-6b56a86a/">
+              <i class="icon-linkedin-square"></i>
+            </a>
           </li>
-          <li class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
-            <div #tileItem class="tile-wrapper whatsapp hide">
-              <a href="tel:+918442862983">
-                <i class="icon-social-whatsapp-outline"></i>
-              </a>
-            </div>
+          <li #tileItem class="tile-wrapper whatsapp hide">
+            <a href="tel:+918442862983">
+              <i class="icon-social-whatsapp-outline"></i>
+            </a>
           </li>
         </ul>
       </div>

@@ -23,8 +23,7 @@
             ],
             "styles": [
               "src/styles.css",
-              "src/icon-styles.css",
-              "src/bootstrap-responsive.css"
+              "src/icon-styles.css"
             ],
             "scripts": []
           },

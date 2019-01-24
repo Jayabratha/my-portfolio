@@ -6,6 +6,9 @@
     width: 33.3%;
 }
 
+.flex-wrapper.skill-list {
+    justify-content: flex-start;
+}
 .tile-wrapper.angular {
     background-color: #c22b28;
 }
@@ -69,6 +72,14 @@
     .skills-wrapper,
     .feature-content>p {
         padding: 0.5em 1em;
+    }
+
+    .flex-wrapper.skill-list {
+        flex-wrap: wrap;
+    }
+    .flex-wrapper.skill-list .tile-wrapper {
+        flex-grow: unset;
+        margin: 0.5vw;
     }
 
     .exp-header {

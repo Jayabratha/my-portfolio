@@ -146,23 +146,30 @@ p.sub_desc {
     padding: 10px 0;
 }
 
-.skill-list {
+.flex-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     overflow: hidden;
-}
-
-.tiles-container li {
-    padding: 4px;
 }
 
 .tile-wrapper {
     background-size: 200px;
     height: 20vw;
+    width: 25%;
     max-height: 13em;
     position: relative;
     transform: translate3d(0, 0, 0);
+    flex-grow: 1;
     opacity: 1;
+    margin: 0 0.5vw;
     box-shadow: 0 0 5px 1px rgba(0, 0, 0, 0.2);
     transition: transform 0.5s ease-out, opacity 0.5s;
+}
+
+.tile-wrapper.small {
+    width: 7em;
+    height: 8em;
 }
 
 .tile-wrapper.hide {
@@ -171,13 +178,20 @@ p.sub_desc {
 }
 
 .tile-wrapper i {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     color: #FFFFFF;
     width: 100%;
     height: 100%;
-    display: block;
-    text-align: center;
+    padding-top: 10px;
+    font-size: 7em;
     transform: scale3d(1, 1, 1);
     transition: transform 0.5s;
+}
+
+.tile-wrapper.small i {
+    font-size: 5em;
 }
 
 .tile-wrapper:hover i,
@@ -185,29 +199,12 @@ p.sub_desc {
     transform: scale3d(1.2, 1.2, 1);
 }
 
-.tile-wrapper i:before {
-    position: absolute;
-    font-size: 11vw;
-    left: 0;
-    right: 0;
-    top: 0.1em;
-    bottom: 0;
-    width: 11vw;
-    height: 11vw;
-    margin: auto;
-}
-
-.tile-wrapper.small i:before {
-    font-size: 8vw;
-    top: 0.5em;
-}
-
 .tile-wrapper a {
     text-decoration: none;
 }
 
 .tile-wrapper img {
-    height: 11vw;
+    height: 7em;
     max-width: 100%;
     position: absolute;
     top: 0;
@@ -220,7 +217,7 @@ p.sub_desc {
 }
 
 .tile-wrapper.small img {
-    height: 8vw;
+    height: 5em;
 }
 
 .alert {
@@ -474,6 +471,14 @@ button {
        transform: translateY(0);
        opacity: 1;
     }
+
+    .tile-wrapper i {
+        font-size: 4em;
+    }
+
+    .tile-wrapper img {
+        height: 4em;
+    }
 }
 
 /* Tab Styles - End */
@@ -488,54 +493,3 @@ button {
 }
 
 /* Mobile Styles - End */
-
-/* Large Screen - Start */
-
-@media (min-width: 768px) {
-    .tile-wrapper.small {
-        height: 13vw;
-    }
-}
-
-@media (min-width: 1200px) {
-    .tile-wrapper.small {
-        height: 10vw;
-    }
-    .tile-wrapper i:before {
-        font-size: 7em;
-        top: 0.05em;
-        width: 7vw;
-        height: 7vw;
-    }
-    .tile-wrapper img {
-        height: 7vw;
-    }
-    .tile-wrapper.small i:before {
-        font-size: 5vw;
-    }
-    .tile-wrapper.small img {
-        height: 5vw;
-    }
-}
-
-@media (min-width: 1800px) {
-    .tile-wrapper.small {
-        height: 7vw;
-    }
-    .tile-wrapper i:before {
-        font-size: 6em;
-        width: 5vw;
-        height: 5vw;
-    }
-    .tile-wrapper img {
-        height: 5vw;
-    }
-    .tile-wrapper.small i:before {
-        font-size: 4vw;
-    }
-    .tile-wrapper.small img {
-        height: 4vw;
-    }
-}
-
-/* Large Screen - End */

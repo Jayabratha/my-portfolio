@@ -17,9 +17,8 @@
     </div>
     <div class="alert" [ngClass]="alertType" [hidden]="!alert">{{alert}}</div>
     <div class="art-list">
-      <div class="image-row clearfix view-check below-view" [class.animated-background]="isDownloading" *ngFor="let row of galleryLayout; let i = index" viewportCheck 
-          (enteredViewport)="animateRowItems(row, i)" 
-          (leftViewport)="hideRowItems(row, i)">
+      <div class="image-row clearfix view-check" [class.animated-background]="isDownloading" *ngFor="let row of galleryLayout; let i = index" viewportCheck noDecorate=true 
+          (enteredViewport)="animateRowItems(row, i)">
         <div class="image-item" *ngFor="let image of row" [style.width.px]="image.thumbWidth" [style.height.px]="image.thumbHeight">
           <div class="image-placeholder">
             <div class="image-wrapper" #elem (click)="showInGallery(image, elem)" *ngIf="rowLoadMap[i].loaded" [class.active]="currentImage && currentImage.title === image.title" [class.hide]="!image.visible">
