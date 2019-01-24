@@ -56,7 +56,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   stepCount: number = 0;
   decounce: boolean = false;
   isMobile: boolean = false;
-  padding: number = 200;
+  padding: number = 100;
 
   constructor(
     private store: Store<AppState>,

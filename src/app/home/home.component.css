@@ -1,12 +1,6 @@
 /* Overview Styles - Start */
 .home-content {
-    opacity: 1;
-    transition: opacity 0.3s ease-out;
     margin-top: 15em;
-}
-.home-content.hide {
-    opacity: 0.2;
-    margin-top: 100vh;
 }
 .scroll-indicator {
     position: fixed;
@@ -214,8 +208,15 @@
 }
 
 @media (max-width: 650px) {
-    .home-content {       
-        margin-top: 100vw;
+    .home-content {
+        margin-top: 0;
+    }
+    .home-content {
+        transform: translate3d(0, 60vh, 0);
+        transition: transform 0.5s ease-out;
+    }
+    .home-content.hide {
+        transform: translate3d(0, 100vh, 0);
     }
     .overview-wrapper {
         min-height: 550px;

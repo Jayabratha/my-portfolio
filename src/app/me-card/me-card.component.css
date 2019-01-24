@@ -4,7 +4,7 @@
     background: #fff;
     height: 95vh;
     box-shadow: 0 0.125em 20px rgba(0, 0, 0, .1);
-    transition: height 0.5s ease-out;
+    transition: height 0.6s ease-out;
     z-index: 1;
 }
 
@@ -110,14 +110,14 @@
     left: 0;
     right: 0;
     background: linear-gradient(140deg, #ff9800, #f31b48, #940590, #0ab779);
-    transition: transform 0.5s ease-out, opacity 0.5s ease-out;
+    transition: transform 0.6s ease-out;
 }
 
 .my-dp {
     position: absolute;
     top: 0;
     height: 19.3em;
-    transition: opacity 0.3s ease-in;
+    transition: opacity 0.6s ease-out;
 }
 
 .info-wrapper {
@@ -128,7 +128,7 @@
     color: #FFFFFF;
     opacity: 1;
     background: linear-gradient(transparent, rgba(33, 33, 33, 0.2), rgba(33, 33, 33, 0.55));
-    transition: opacity 0.5s;
+    transition: opacity 0.6s ease-out;
 }
 
 h1.name {
@@ -337,12 +337,6 @@ h1.name {
     overflow: hidden;
     background: linear-gradient(140deg, #ff9800, #f31b48, #940590, #0ab779);
 }
-
-/* .fix-header .info-wrapper>*,
-.search-header .info-wrapper>* {
-    opacity: 1;
-    transition: opacity 0.5s;
-} */
 
 .fix-header .scroll-up-indicator {
     display: none;
@@ -607,7 +601,11 @@ h1.name {
 
 @media (max-width: 650px) {
     .main-header {
+        overflow: hidden;
         position: absolute;
+        min-height: 19.3em;
+        height: auto;
+        transition: min-height 0.5s ease-out;
         top: 0;
     }
     .logo-header {
@@ -672,9 +670,6 @@ h1.name {
     .hello-card {
         margin-top: 3em;
     }
-    .main-header {
-        height: auto;
-    }
     .me-card-wrapper {
         padding: 0.65em;
         height: 157vw;
@@ -738,10 +733,6 @@ h1.name {
     .search-header .info-wrapper {
         margin-top: 0;
     }
-    /* .fix-header .info-wrapper>*,
-    .search-header .info-wrapper>* {
-        opacity: 0;
-    } */
     .fix-header .my-dp,
     .search-header .my-dp {
         display: none;
