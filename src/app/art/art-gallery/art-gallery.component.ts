@@ -1,6 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { Subscription } from 'rxjs';
+import { Subscription, Subject, combineLatest } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 import { Store } from '@ngrx/store';
 import { AppState } from '../../app-store/app.state';
 import { UpdateCurrentItem, UpdateCurrentItemDimension } from '../../app-store/actions/gallery.actions';
@@ -17,6 +18,8 @@ export class ArtGalleryComponent implements OnInit, OnDestroy {
     private route: ActivatedRoute,
     private router: Router) { }
 
+  private onDestroy$ = new Subject();
+
   show: boolean = false;
   listSubscription: Subscription;
   currentItemSubscribtion: Subscription;
@@ -30,47 +33,42 @@ export class ArtGalleryComponent implements OnInit, OnDestroy {
   loadingGallery: boolean = true;
   imageReady: boolean = false;
 
+
   ngOnInit() {
-    this.store.select('gallery').subscribe(
-      (gallery) => {
+    let galleryList$ = this.store.select('gallery');
+
+    let params$ = this.route.params;
+
+    combineLatest(galleryList$, params$)
+      .pipe(takeUntil(this.onDestroy$))
+      .subscribe(([gallery, params]) => {
         if (gallery.galleryList.length) {
           this.galleryList = gallery.galleryList;
           this.initialDimension = gallery.currentItemDimension;
+
+          this.currentItemTitle = params.title;
+
+          if (this.initialDimension) {
+            this.dimension = Object.assign({}, {
+              top: this.initialDimension.top,
+              bottom: this.initialDimension.bottom,
+              left: this.initialDimension.left,
+              right: this.initialDimension.right,
+              height: this.initialDimension.height
+            });
+          } else {
+            this.dimension = {
+              top: 0,
+              bottom: 0,
+              left: 0,
+              right: 0
+            }
+          }
           if (this.currentItemTitle) {
             this.checkForCurrentItem(this.galleryList, this.currentItemTitle);
           }
         }
-      }
-    )
-
-    this.route.params.subscribe(params => {
-      this.currentItemTitle = params.title;
-
-      if (this.initialDimension) {
-        this.dimension = Object.assign({}, {
-          top: this.initialDimension.top,
-          bottom: this.initialDimension.bottom,
-          left: this.initialDimension.left,
-          right: this.initialDimension.right,
-          height: this.initialDimension.height
-        });
-      } else {
-        this.dimension = {
-          top: 0,
-          bottom: 0,
-          left: 0,
-          right: 0
-        }
-      }
-
-      if (this.galleryList.length) {
-        this.checkForCurrentItem(this.galleryList, this.currentItemTitle);
-      }
-    });
-
-    if (!this.currentItem) {
-      this.currentItem = this.galleryList[0];
-    }
+      });
   }
 
   checkForCurrentItem(itemList, itemTitle) {
@@ -150,7 +148,7 @@ export class ArtGalleryComponent implements OnInit, OnDestroy {
   changeImage(item) {
     this.loadingGallery = true;
     this.store.dispatch(new UpdateCurrentItemDimension(null));
-    this.store.dispatch(new UpdateCurrentItem(item));  
+    this.store.dispatch(new UpdateCurrentItem(item));
     this.router.navigate(['/art/gallery/' + item.title]);
   }
 
@@ -181,6 +179,6 @@ export class ArtGalleryComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    //this.listSubscription.unsubscribe();
+    this.onDestroy$.complete();
   }
 }

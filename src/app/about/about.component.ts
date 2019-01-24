@@ -1,10 +1,5 @@
 import { Component, ViewChildren, QueryList, ElementRef, Renderer2, OnInit } from '@angular/core';
 
-import { Store } from '@ngrx/store';
-import { AppState } from '../app-store/app.state';
-import { HeaderState } from '../models/header-state.enum';
-import * as HeaderActions from '../app-store/actions/header.actions';
-
 @Component({
   selector: 'app-about',
   templateUrl: './about.component.html',
@@ -14,13 +9,10 @@ export class AboutComponent implements OnInit {
   @ViewChildren('skillItem') skillItems: QueryList<ElementRef>;
 
   constructor(
-    private store: Store<AppState>,
     private renderer: Renderer2) {
   }
 
   ngOnInit() {
-    this.store.dispatch(new HeaderActions.UpdateState(HeaderState.Fixed));
-    this.store.dispatch(new HeaderActions.ToggleMenu(false));
   }
 
   animateSkills() {

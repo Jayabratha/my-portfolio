@@ -78,11 +78,11 @@ export class HomeComponent implements OnInit, OnDestroy {
       this.store.dispatch(new HeaderActions.UpdateState(HeaderState.Home))
     }
 
-    // if (!this.isMobile) {
-    //   setTimeout(() => {
-    //     this.store.dispatch(new HeaderActions.ToggleMenu(true));
-    //   }, 800);
-    // }
+    if (!this.isMobile) {
+      setTimeout(() => {
+        this.store.dispatch(new HeaderActions.ToggleMenu(true));
+      }, 500);
+    }
   }
 
   setStepCount(stepCount) {

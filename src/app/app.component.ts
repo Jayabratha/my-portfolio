@@ -3,31 +3,37 @@ import { Router, NavigationStart, NavigationEnd } from '@angular/router';
 import { ElasticsearchService } from './shared/elasticsearch.service';
 import { Title } from '@angular/platform-browser';
 import { routerTransition } from './animations/animations';
+import { Store } from '@ngrx/store';
+import { AppState } from './app-store/app.state';
+import { HeaderState } from './models/header-state.enum';
+import * as HeaderActions from './app-store/actions/header.actions';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
   providers: [ElasticsearchService],
-  animations: [ routerTransition ]
+  animations: [routerTransition]
 })
 export class AppComponent implements OnInit {
 
-  constructor(private router: Router, private title: Title) {
+  constructor(
+    private router: Router,
+    private title: Title,
+    private store: Store<AppState>) {
   }
 
   previousRoute: string;
 
   ngOnInit() {
     this.router.events.subscribe((event) => {
-      if (event instanceof NavigationStart) {
-        // Prevent auto position of scroll on page refresh instead keep on top
-        window.addEventListener("beforeunload", (event) => {
-          window.scrollTo(0, 0);
-        });
-      }
-
       if (event instanceof NavigationEnd) {
+
+        if (this.router.url !== '/home') {
+          this.store.dispatch(new HeaderActions.UpdateState(HeaderState.Fixed));
+          this.store.dispatch(new HeaderActions.ToggleMenu(false));
+        }
+
         //Update Page path for Google Analytics
         (<any>window).gtag('config', 'UA-131214369-1', { 'page_path': event.urlAfterRedirects });
 
@@ -53,12 +59,12 @@ export class AppComponent implements OnInit {
         }
 
         //Scroll to top when route load
-        if (this.previousRoute && this.previousRoute.split('/')[2] !== 'gallery' && event.urlAfterRedirects.split('/')[2] !== 'gallery' ) {
+        if (this.previousRoute && this.previousRoute.split('/')[2] !== 'gallery' && event.urlAfterRedirects.split('/')[2] !== 'gallery') {
           window.scrollTo(0, 0);
         }
-        
+
         this.previousRoute = event.urlAfterRedirects;
       }
-    })
+    });
   }
 }

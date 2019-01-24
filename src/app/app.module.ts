@@ -16,7 +16,6 @@ import { ProjectsComponent } from './projects/projects.component';
 import { AboutComponent } from './about/about.component';
 import { ContactComponent } from './contact/contact.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { BlogComponent } from './blog/blog.component';
 
 import { headerReducer } from './app-store/reducers/header.reducer';
 import { galleryReducer } from './app-store/reducers/gallery.reducer';
@@ -30,8 +29,7 @@ import { SharedModule } from './shared/shared.module';
     HomeComponent,
     ProjectsComponent,
     AboutComponent,
-    ContactComponent,
-    BlogComponent
+    ContactComponent
   ],
   imports: [
     BrowserModule,

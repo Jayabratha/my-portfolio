@@ -1,15 +1,13 @@
-import { Component, OnInit, ViewChild, ElementRef, HostListener } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, HostListener, OnDestroy } from '@angular/core';
 import { AngularFireDatabase } from 'angularfire2/database';
 import { AngularFireStorage } from 'angularfire2/storage';
-import { forkJoin, Observable } from 'rxjs';
-import { tap } from "rxjs/operators";
+import { forkJoin, Observable, Subject } from 'rxjs';
+import { tap, takeUntil } from "rxjs/operators";
 import { Router } from '@angular/router';
 import { ArtImage } from '../../models/art-image.model';
 
 import { Store } from '@ngrx/store';
 import { AppState } from '../../app-store/app.state';
-import { HeaderState } from '../../models/header-state.enum';
-import * as HeaderActions from '../../app-store/actions/header.actions';
 import { UpdateGalleryList, UpdateCurrentItem, UpdateCurrentItemDimension } from '../../app-store/actions/gallery.actions';
 
 @Component({
@@ -17,7 +15,7 @@ import { UpdateGalleryList, UpdateCurrentItem, UpdateCurrentItemDimension } from
     templateUrl: './art-list.component.html',
     styleUrls: ['./art-list.component.css', './../../app.component.css']
 })
-export class ArtListComponent implements OnInit {
+export class ArtListComponent implements OnInit, OnDestroy {
 
     constructor(
         private store: Store<AppState>,
@@ -26,6 +24,8 @@ export class ArtListComponent implements OnInit {
         private router: Router) {
     }
 
+    private onDestroy$ = new Subject();
+
     imageList: Array<ArtImage> = [];
     isLoading: boolean = true;
     isDownloading: boolean = false;
@@ -33,7 +33,7 @@ export class ArtListComponent implements OnInit {
     alertType: string = "";
     urlSubsciptions: Array<Observable<any>> = [];
     galleryLayout: Array<Array<ArtImage>> = [];
-    rowLoadMap: Array<{visible: boolean, loaded: boolean}> = [];
+    rowLoadMap: Array<{ visible: boolean, loaded: boolean }> = [];
     currentImage: ArtImage = null;
     lastWidth: number = document.documentElement.clientWidth;
 
@@ -48,16 +48,16 @@ export class ArtListComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.store.dispatch(new HeaderActions.UpdateState(HeaderState.Fixed));
-        this.store.dispatch(new HeaderActions.ToggleMenu(false));
-
-        this.store.select('gallery').subscribe((gallery) => {
-            this.currentImage = gallery.currentItem;
-        })
+        this.store.select('gallery')
+            .pipe(takeUntil(this.onDestroy$))
+            .subscribe((gallery) => {
+                this.currentImage = gallery.currentItem;
+            });
 
         if (navigator.onLine) {
             //Get list of images
             this.db.list('/artImages').valueChanges()
+                .pipe(takeUntil(this.onDestroy$))
                 .subscribe((fileList: ArtImage[]) => {
                     this.imageList = fileList;
                     fileList.forEach((file) => Object.assign(file, {
@@ -84,11 +84,13 @@ export class ArtListComponent implements OnInit {
                 tap((url) => Object.assign(file, { fileUrl: url }))));
         });
 
-        forkJoin(this.urlSubsciptions).subscribe(() => {
-            this.rowLoadMap[rowIndex].loaded = true;
-            this.store.dispatch(new UpdateGalleryList(this.imageList));
-            this.isDownloading = false;
-        });
+        forkJoin(this.urlSubsciptions)
+            .pipe(takeUntil(this.onDestroy$))
+            .subscribe(() => {
+                this.rowLoadMap[rowIndex].loaded = true;
+                this.store.dispatch(new UpdateGalleryList(this.imageList));
+                this.isDownloading = false;
+            });
     }
 
     getMinAspectRatio(windowWidth) {
@@ -124,7 +126,7 @@ export class ArtListComponent implements OnInit {
                     });
                 });
                 this.galleryLayout.push(row);
-                this.rowLoadMap.push({visible: false, loaded: false});
+                this.rowLoadMap.push({ visible: false, loaded: false });
                 row = [];
                 rowAspectRatio = 0;
             }
@@ -135,7 +137,7 @@ export class ArtListComponent implements OnInit {
         image.loaded = true;
         if (this.rowLoadMap[rowIndex].visible) {
             this.animateRowItems(row, rowIndex);
-        }        
+        }
     }
 
     animateRowItems(row, rowIndex) {
@@ -155,8 +157,8 @@ export class ArtListComponent implements OnInit {
         }
         //Download the next row images
         if (rowIndex !== this.rowLoadMap.length - 1 && !this.rowLoadMap[rowIndex + 1].loaded) {
-           this.downloadImages(this.galleryLayout[rowIndex + 1], rowIndex + 1);
-        }        
+            this.downloadImages(this.galleryLayout[rowIndex + 1], rowIndex + 1);
+        }
     }
 
     hideRowItems(row, rowIndex) {
@@ -170,6 +172,10 @@ export class ArtListComponent implements OnInit {
         this.store.dispatch(new UpdateCurrentItem(item));
         this.store.dispatch(new UpdateCurrentItemDimension(elem.getBoundingClientRect()));
         this.router.navigate(['/art/gallery/' + item.title]);
+    }
+
+    ngOnDestroy() {
+        this.onDestroy$.complete();
     }
 
 }

@@ -142,9 +142,6 @@ export class MeCardComponent implements OnInit, OnDestroy {
         clearInterval(this.carouselProgressInterval);
         if (this.router.url === '/home' && this.headerState.state !== HeaderState.Fixed) {
           this.store.dispatch(new HeaderActions.UpdateState(this.HEADER_STATE.Home));
-          if (!this.isMobile) {
-            this.store.dispatch(new HeaderActions.ToggleMenu(true));
-          }
         }
       }
     }, 5);

@@ -1,11 +1,6 @@
 import { Component, OnInit, ViewChildren, QueryList, ElementRef, Renderer2 } from '@angular/core';
 import { AngularFireDatabase } from 'angularfire2/database';
 
-import { Store } from '@ngrx/store';
-import { AppState } from '../app-store/app.state';
-import { HeaderState } from '../models/header-state.enum';
-import * as HeaderActions from '../app-store/actions/header.actions';
-
 @Component({
   selector: 'app-contact',
   templateUrl: './contact.component.html',
@@ -16,14 +11,11 @@ export class ContactComponent implements OnInit {
   @ViewChildren('tileItem') skillItems: QueryList<ElementRef>;
 
   constructor(
-    private store: Store<AppState>,
     private db: AngularFireDatabase,
     private renderer: Renderer2) {
   }
 
   ngOnInit() {
-    this.store.dispatch(new HeaderActions.UpdateState(HeaderState.Fixed));
-    this.store.dispatch(new HeaderActions.ToggleMenu(false));
   }
 
   sendingEmail: boolean = false;
