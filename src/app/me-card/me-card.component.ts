@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy, HostListener, ElementRef, ViewChild, ViewChildren, QueryList } from '@angular/core';
-import { Subscription } from 'rxjs';
+import { Subscription, Subject } from 'rxjs';
 import { Router, NavigationStart, NavigationEnd } from '@angular/router';
 import { trigger, style, animate, transition } from '@angular/animations';
 import { AngularFireStorage } from 'angularfire2/storage';
@@ -13,6 +13,7 @@ import { AppState } from '../app-store/app.state';
 import { Header } from '../models/header.model';
 import { HeaderState } from '../models/header-state.enum';
 import * as HeaderActions from '../app-store/actions/header.actions';
+import { takeUntil } from 'rxjs/operators';
 
 @Component({
   selector: 'me-card',
@@ -36,6 +37,8 @@ export class MeCardComponent implements OnInit, OnDestroy {
   }
 
   @ViewChildren('searchResult') searchResult: QueryList<ElementRef>;
+
+  private onDestory$ = new Subject();
 
   HEADER_STATE = HeaderState;
   headerState: Header;
@@ -105,34 +108,40 @@ export class MeCardComponent implements OnInit, OnDestroy {
       this.isMobile = true;
     }
 
-    this.store.select('header').subscribe((headerState: Header) => {
-      this.headerState = headerState;
-      this.showMenu = this.headerState.showMenu;
-      this.showSearch = this.headerState.showSearch;
+    this.store.select('header')
+      .pipe(takeUntil(this.onDestory$))
+      .subscribe((headerState: Header) => {
+        this.headerState = headerState;
+        this.showMenu = this.headerState.showMenu;
+        this.showSearch = this.headerState.showSearch;
 
-      if (this.showMenu) {
-        this.animateNavItems();
-      } else {
-        this.hideNavItems();
-      }
-    });
-
-    this.router.events.subscribe((event) => {
-      if (event instanceof NavigationStart) {
-        if (event.url === "/" || event.url === "/home") {
-          this.activateScroll = true;
+        if (this.showMenu) {
+          this.animateNavItems();
         } else {
-          this.activateScroll = false;
+          this.hideNavItems();
         }
-      }
-    });
+      });
+
+    this.router.events
+      .pipe(takeUntil(this.onDestory$))
+      .subscribe((event) => {
+        if (event instanceof NavigationStart) {
+          if (event.url === "/" || event.url === "/home") {
+            this.activateScroll = true;
+          } else {
+            this.activateScroll = false;
+          }
+        }
+      });
 
     //Check ElasticSearch Server
-    this.elasticsearch.isAvailable().subscribe((response: any) => {
-      if (response.ok && response._body !== 'elasticsearch cluster is down!') {
-        this.isSearchAvailable = true;
-      }
-    });
+    this.elasticsearch.isAvailable()
+      .pipe(takeUntil(this.onDestory$))
+      .subscribe((response: any) => {
+        if (response.ok && response._body !== 'elasticsearch cluster is down!') {
+          this.isSearchAvailable = true;
+        }
+      });
 
     this.carouselProgressInterval = setInterval(() => {
       if (this.carouselLoadProgress < this.nextLoad) {
@@ -280,5 +289,6 @@ export class MeCardComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
+    this.onDestory$.complete();
   }
 }

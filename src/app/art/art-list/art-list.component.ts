@@ -175,6 +175,7 @@ export class ArtListComponent implements OnInit, OnDestroy {
     }
 
     ngOnDestroy() {
+        this.onDestroy$.next();
         this.onDestroy$.complete();
     }
 

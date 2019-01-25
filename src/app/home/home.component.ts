@@ -1,11 +1,12 @@
 import { Component, OnInit, OnDestroy, HostListener } from '@angular/core';
-import { Subscription } from 'rxjs';
+import { Subscription, Subject } from 'rxjs';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { AppState } from '../app-store/app.state';
 import { Header } from '../models/header.model';
 import { HeaderState } from '../models/header-state.enum';
 import * as HeaderActions from '../app-store/actions/header.actions';
+import { takeUntil } from 'rxjs/operators';
 
 @Component({
   selector: 'app-home',
@@ -14,7 +15,6 @@ import * as HeaderActions from '../app-store/actions/header.actions';
 })
 export class HomeComponent implements OnInit, OnDestroy {
 
-  subscription: Subscription;
   HEADER_STATE = HeaderState;
   headerState: Header;
   steps: Array<{
@@ -57,11 +57,11 @@ export class HomeComponent implements OnInit, OnDestroy {
   decounce: boolean = false;
   isMobile: boolean = false;
   padding: number = 100;
+  subs: Subscription;
 
-  constructor(
-    private store: Store<AppState>,
-    private router: Router) {
-  }
+  constructor(private store: Store<AppState>) { }
+
+  private onDestroy$ = new Subject();
 
   ngOnInit() {
     let deviceWidth = window.screen.width;
@@ -70,9 +70,11 @@ export class HomeComponent implements OnInit, OnDestroy {
       this.isMobile = true;
     }
 
-    this.store.select('header').subscribe((headerState: Header) => {
-      this.headerState = headerState;
-    });
+    this.subs = this.store.select('header')
+      .pipe(takeUntil(this.onDestroy$))
+      .subscribe((headerState: Header) => {
+        this.headerState = headerState;
+      });
 
     if (this.headerState.state === HeaderState.Fixed) {
       this.store.dispatch(new HeaderActions.UpdateState(HeaderState.Home))
@@ -93,13 +95,13 @@ export class HomeComponent implements OnInit, OnDestroy {
       setTimeout(() => {
         window.scrollTo(0, this.steps[stepCount].scrollPosition);
         this.steps[prevStepCount].isAboveView = false;
-       }, 500);
+      }, 500);
     } else if (this.stepCount > stepCount) {
       this.steps[prevStepCount].isBelowView = true
       setTimeout(() => {
         window.scrollTo(0, this.steps[stepCount].scrollPosition);
         this.steps[prevStepCount].isBelowView = false;
-       }, 500);
+      }, 500);
     } else {
       window.scrollTo(0, this.steps[stepCount].scrollPosition);
     }
@@ -149,5 +151,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
+    this.onDestroy$.next();
+    this.onDestroy$.complete();
   }
 }
