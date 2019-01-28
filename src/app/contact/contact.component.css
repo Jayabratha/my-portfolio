@@ -91,6 +91,12 @@ button.submit-contact {
     background-color: #25D366;
 }
 
+#map {
+    position: relative;
+    width: 100%;
+    height: 500px;
+}
+
 @media (min-width: 650px) and (max-width: 950px) {
     .message {
         height: 89px;

@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChildren, QueryList, ElementRef, Renderer2 } from '@angular/core';
 import { AngularFireDatabase } from 'angularfire2/database';
+declare var google: any;
 
 @Component({
   selector: 'app-contact',
@@ -16,6 +17,12 @@ export class ContactComponent implements OnInit {
   }
 
   ngOnInit() {
+    // let uluru = new google.maps.LatLng(12.957044, 77.701223);
+    // // The map, centered at Uluru
+    // let map = new google.maps.Map(
+    //   document.getElementById('map'), { zoom: 4, center: uluru });
+    // // The marker, positioned at Uluru
+    // let marker = new google.maps.Marker({ position: uluru, map: map });
   }
 
   sendingEmail: boolean = false;
