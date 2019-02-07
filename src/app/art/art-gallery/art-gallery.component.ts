@@ -80,7 +80,7 @@ export class ArtGalleryComponent implements OnInit, OnDestroy {
         this.show = true;
 
         let viewportHeight = window.innerHeight;
-        let viewportWidth = window.innerWidth - 6;
+        let viewportWidth = document.documentElement.clientWidth;
         let imageHeight = this.currentItem.height;
         let imageWidth = this.currentItem.width;
 
