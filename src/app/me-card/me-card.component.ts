@@ -37,6 +37,7 @@ export class MeCardComponent implements OnInit, OnDestroy {
   }
 
   @ViewChildren('searchResult') searchResult: QueryList<ElementRef>;
+  @ViewChild('mecard') meCard: ElementRef;
 
   private onDestory$ = new Subject();
 
@@ -47,6 +48,7 @@ export class MeCardComponent implements OnInit, OnDestroy {
   activeNav: string = "";
   subscription: Subscription;
   activateScroll: boolean = true;
+  fixHeader: boolean = false;
   play: boolean = true;
   carouselLoadProgress: number = 0;
   carouselLoadStep: number = 0;
@@ -61,6 +63,7 @@ export class MeCardComponent implements OnInit, OnDestroy {
   searchSubscription: Subscription;
   carouselProgressInterval: any;
   headerHeight: number = 0;
+  meCarddHeight: number = 0;
 
   navItems: Array<NavItem> = [
     new NavItem('art', 'Art', '/art', false),
@@ -128,8 +131,10 @@ export class MeCardComponent implements OnInit, OnDestroy {
         if (event instanceof NavigationStart) {
           if (event.url === "/" || event.url === "/home") {
             this.activateScroll = true;
+            this.fixHeader = false;
           } else {
             this.activateScroll = false;
+            this.fixHeader = true;
           }
         }
       });
@@ -158,11 +163,10 @@ export class MeCardComponent implements OnInit, OnDestroy {
 
   @HostListener('window:scroll') onScroll() {
     let scrollTop = (document.documentElement && document.documentElement.scrollTop) || document.body.scrollTop;
-    let scrollLimit = 60;
-    let viewPortWidth = document.documentElement.clientWidth;
+    let scrollLimit = this.meCard.nativeElement.offsetHeight - 60;
 
     if (this.isMobile) {
-      scrollLimit = (viewPortWidth / 100) * 94 - 60;
+      scrollLimit = (94 * window.innerWidth) / 100 - 60;
     }
 
     if (this.activateScroll && scrollTop < scrollLimit) {

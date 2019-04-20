@@ -34,6 +34,10 @@
     box-sizing: border-box;
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
 body {
     background: #fafafa;
     margin: 0;

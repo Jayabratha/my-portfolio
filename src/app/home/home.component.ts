@@ -17,39 +17,33 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   HEADER_STATE = HeaderState;
   headerState: Header;
+  screenWidth: number = window.innerHeight;
   steps: Array<{
     tileName: string,
-    scrollPosition: number,
     isAboveView: boolean,
     isBelowView: boolean
   }> = [{
     tileName: '',
-    scrollPosition: 0,
     isAboveView: false,
     isBelowView: false
   }, {
     tileName: 'art-overview',
-    scrollPosition: 140,
     isAboveView: false,
     isBelowView: false
   }, {
     tileName: 'projects-overview',
-    scrollPosition: 940,
     isAboveView: false,
     isBelowView: false
   }, {
     tileName: 'blog-overview',
-    scrollPosition: 1740,
     isAboveView: false,
     isBelowView: false
   }, {
     tileName: 'about-overview',
-    scrollPosition: 2540,
     isAboveView: false,
     isBelowView: false
   }, {
     tileName: 'contact-overview',
-    scrollPosition: 3340,
     isAboveView: false,
     isBelowView: false
   }];
@@ -90,21 +84,32 @@ export class HomeComponent implements OnInit, OnDestroy {
   setStepCount(stepCount) {
     let prevStepCount = this.stepCount;
 
-    if (this.stepCount !== 0 && this.stepCount < stepCount) {
-      this.steps[prevStepCount].isAboveView = true
-      setTimeout(() => {
-        window.scrollTo(0, this.steps[stepCount].scrollPosition);
-        this.steps[prevStepCount].isAboveView = false;
-      }, 500);
-    } else if (this.stepCount > stepCount) {
-      this.steps[prevStepCount].isBelowView = true
-      setTimeout(() => {
-        window.scrollTo(0, this.steps[stepCount].scrollPosition);
-        this.steps[prevStepCount].isBelowView = false;
-      }, 500);
+    const nextScrollPosition = stepCount * (95 * this.screenWidth) / 100;
+
+    if (stepCount) {
+      //this.store.dispatch(new HeaderActions.ToggleMenu(false));
+      // if (this.stepCount !== 0 && this.stepCount < stepCount) {
+      //   this.steps[prevStepCount].isAboveView = true
+      //   setTimeout(() => {
+      //     window.scrollTo(0, nextScrollPosition);
+      //     this.steps[prevStepCount].isAboveView = false;
+      //   }, 500);
+      // } else if (this.stepCount > stepCount) {
+      //   this.steps[prevStepCount].isBelowView = true
+      //   setTimeout(() => {
+      //     window.scrollTo(0, nextScrollPosition);
+      //     this.steps[prevStepCount].isBelowView = false;
+      //   }, 500);
+      // } else {
+      //   window.scrollTo(0, nextScrollPosition);
+      // }
     } else {
-      window.scrollTo(0, this.steps[stepCount].scrollPosition);
+      
+      this.store.dispatch(new HeaderActions.ToggleMenu(true));
+      this.store.dispatch(new HeaderActions.UpdateState(HeaderState.Home));
     }
+
+    window.scrollTo(0, nextScrollPosition);
 
     this.stepCount = stepCount;
   }
@@ -113,7 +118,6 @@ export class HomeComponent implements OnInit, OnDestroy {
   onWheelRotate(ev) {
     let delta, stepCount;
     if (!this.isMobile) {
-      ev.preventDefault();
       if (!this.decounce) {
         if (ev.wheelDelta) {
           delta = ev.wheelDelta;

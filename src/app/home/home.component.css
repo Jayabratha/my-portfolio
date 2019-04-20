@@ -1,14 +1,23 @@
 /* Overview Styles - Start */
 .home-content {
-    margin-top: 15em;
+    margin-top: 10em;
 }
+
+.home-content.fix {
+    margin-top: 115vh;
+}
+
 .scroll-indicator {
     position: fixed;
     right: 2em;
-    top: 10em;
+    top: 25vh;
     width: 1px;
-    height: 19.3em;
+    min-height: 19.3em;
+    height: 22vw;
     z-index: 10;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 .home-anchors {
@@ -18,7 +27,6 @@
     border-radius: 50%;
     position: relative;
     border: thin solid transparent;
-    margin-bottom: 2.7em;
     cursor: pointer;
 }
 
@@ -54,7 +62,7 @@
 }
 
 .overview-wrapper {
-    min-height: 800px;
+    height: 95vh;
 }
 
 .overview {
@@ -62,6 +70,8 @@
     display: inline-block;
     background: #FFFFFF;
     width: 100%;
+    min-height: 24em;
+    height: 22vw;
     margin: 3em 0;
     box-shadow: 0 1px 4px rgba(0,0,0,.05);
     border: 1px solid rgba(0,0,0,.09);
@@ -69,7 +79,7 @@
 
 .dp.overview-dp {
     background: #333333;
-    height: 25em;
+    height: 100%;
     text-align: center;
 }
 .overview-wrapper:nth-child(odd) .overview-dp {
@@ -122,7 +132,7 @@
 .overview-content-wrapper {
     position: relative;
     width: 65%;
-    height: 25em;
+    height: 100%;
 }
 .overview-content-background {
     position: absolute;

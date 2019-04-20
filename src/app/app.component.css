@@ -14,7 +14,7 @@
 
 .feature-wrapper {
     position: relative;
-    overflow: hidden;
+    overflow: visible;
     margin: 1.2em 0;
 }
 
@@ -33,7 +33,8 @@
 }
 
 .content-wrapper {
-    min-height: 2em;
+    min-height: 19.3em;
+    height: 22vw;
 }
 
 .content h2 {
@@ -56,7 +57,7 @@
     color: #FFFFFF;
     padding: 25px;
     line-height: 1.5em;
-    min-height: 10em;
+    height: 100%;
     overflow: hidden;
 }
 
@@ -78,7 +79,7 @@
     width: 60%;
     float: left;
     padding-left: 1em;
-    min-height: 20em;
+    height: 100%;
 }
 
 .content.art-content .main {
@@ -236,7 +237,7 @@ p.sub_desc {
     position: relative;
     float: left;
     width: 35%;
-    height: 19.3em;
+    height: 100%;
     overflow: hidden;
     z-index: 5;
 }
@@ -448,7 +449,6 @@ button {
         font-size: 1em;
     }
     .content .main i {
-        font-size: 5em;
         left: -10px;
         bottom: -30px;
     }

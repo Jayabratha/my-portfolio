@@ -1,28 +1,32 @@
 <div class="main-header" [ngClass]="{
-                'fix-header': headerState.state === HEADER_STATE.Fixed, 
+                'fix': headerState.state === HEADER_STATE.Fixed, 
+                'fix-header': fixHeader, 
                 'initial-header': headerState.state === HEADER_STATE.Initial, 
                 'search-header': headerState.showSearch, 
-                'show-menu': headerState.showMenu }">
-    <header class="logo-header center-stage">
-        <div class="menu-section" (click)="toggleMenu(); $event.stopPropagation();">
-            <div class="menu-icon-top"></div>
-            <div class="menu-icon"></div>
-            <div class="menu-icon-bottom"></div>
-        </div>
-        <div class="logo-section" (click)="goToHome()">
-            <i class="icon-logo-svg"></i>
-        </div>
-        <div class="search-wrapper" (clickedOut)="hideSearch($event)">
-            <form class="search-form" (ngSubmit)="search(keyword)">
-                <label for="searchTerm">Search</label>
-                <div class="search-input">
-                    <button type="button" label="Search" aria-label="Search content" (click)="toggleSearch(); $event.stopPropagation();">
-                        <i class="search-button icon-ios-search"></i>
-                    </button>
-                    <input #searchInput id="searchTerm" name="keyword" type="text" class="search" placeholder="Search"
-                        [(ngModel)]="keyword" autocomplete="off" />
-                </div>
-            </form>
+                'show-menu': headerState.showMenu }" #mecard >
+    <header class="logo-header">
+        <div class="header-content-wrapper center-stage">
+            <div class="menu-section" (click)="toggleMenu(); $event.stopPropagation();">
+                <div class="menu-icon-top"></div>
+                <div class="menu-icon"></div>
+                <div class="menu-icon-bottom"></div>
+            </div>
+            <div class="logo-section" (click)="goToHome()">
+                <i class="icon-logo-svg"></i>
+            </div>
+            <div class="search-wrapper" (clickedOut)="hideSearch($event)">
+                <form class="search-form" (ngSubmit)="search(keyword)">
+                    <label for="searchTerm">Search</label>
+                    <div class="search-input">
+                        <button type="button" label="Search" aria-label="Search content"
+                            (click)="toggleSearch(); $event.stopPropagation();">
+                            <i class="search-button icon-ios-search"></i>
+                        </button>
+                        <input #searchInput id="searchTerm" name="keyword" type="text" class="search"
+                            placeholder="Search" [(ngModel)]="keyword" autocomplete="off" />
+                    </div>
+                </form>
+            </div>
         </div>
     </header>
     <div class="main-loader loading-icon animate" [hidden]="!loading"></div>
@@ -33,7 +37,7 @@
             <span>Hello there!</span>
         </div>
     </section>
-    <section class="me-card-wrapper center-stage">
+    <section class="me-card-wrapper center-stage" >
         <div class="me-card" [style.width]="carouselLoadProgress + '%'">
             <div class="dp my-dp">
                 <js-ng-carousel [slideItems]=slideList [play]=play [config]="carouselConfig" [style.width.%]="100"
@@ -65,7 +69,8 @@
             <li [@fadeIn]="''" *ngFor="let result of searchResults" tabindex="-1" #searchResult>
                 <div class="search-result" (click)="selectResult(result)">
                     <div>
-                        <div class="inline-middle result-thumb" [ngStyle]="{ 'background-image': 'url(' + result.thumbLink + ')'}">
+                        <div class="inline-middle result-thumb"
+                            [ngStyle]="{ 'background-image': 'url(' + result.thumbLink + ')'}">
                         </div>
                         <div class="inline-middle result-info">
                             <div class="result-name">{{result.name}}</div>
@@ -88,4 +93,5 @@
         <div class="nav-highlighter" [ngClass]="activeNav"></div>
     </div>
 </div>
-<div class="menu-background" [hidden]="!((headerState.state === HEADER_STATE.Fixed && headerState.showMenu) || headerState.showSearch)"></div>
+<div class="menu-background"
+    [hidden]="!((headerState.state === HEADER_STATE.Fixed && headerState.showMenu) || headerState.showSearch)"></div>

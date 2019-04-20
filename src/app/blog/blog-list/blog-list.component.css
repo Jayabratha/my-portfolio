@@ -13,14 +13,13 @@
 .featured-blog {
     position: relative;
     float: left;
-    width: 60%;
-    min-height: 16em;
     background: #FFFFFF;
     font-size: 1.25em;
     font-family: Roboto;
     border: thin solid #e4e2e2;
     padding: 1em;
     margin: 0;
+    min-height: 0;
 }
 
 .title {

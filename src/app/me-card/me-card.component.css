@@ -3,18 +3,24 @@
     width: 100%;
     background: #fff;
     height: 95vh;
-    box-shadow: 0 0.125em 20px rgba(0, 0, 0, .1);
+    box-shadow: 0 0.125em 10px rgba(0, 0, 0, .05);
     transition: height 0.5s ease-out;
-    z-index: 1;
+    z-index: 3;
+    overflow: hidden;
 }
 
 .logo-header {
     position: fixed;
     top: 0;
-    margin: 0.65em auto;
+    padding: 0.65em 0;
     left: 0;
     right: 0;
-    z-index: 7;
+    z-index: 8;
+    background: #FFFFFF;
+}
+
+.header-content-wrapper {
+    position: relative;
 }
 
 .menu-section,
@@ -30,7 +36,7 @@
     transition: background-color 0.5s, margin 0.5s, opacity 0.3s;
     outline: none;
     cursor: pointer;
-    z-index: 3;
+    z-index: 4;
 }
 
 .menu-section {
@@ -87,7 +93,8 @@
     position: relative;
     box-sizing: content-box;
     padding-top: 25vh;
-    height: 19.3em;
+    min-height: 19.3em;
+    height: 22vw;
     overflow: hidden;
     z-index: 4;
     transition: height 0.5s;
@@ -105,7 +112,7 @@
 .me-card {
     position: relative;
     margin: 0 auto 0;
-    height: auto;
+    height: 100%;
     transform: translate3d(0, 0, 0);
     left: 0;
     right: 0;
@@ -116,13 +123,12 @@
 .my-dp {
     position: absolute;
     top: 0;
-    height: 19.3em;
     transition: opacity 0.5s ease-out;
 }
 
 .info-wrapper {
     position: relative;
-    height: 19.3em;
+    height: 100%;
     padding: 2em;
     padding-left: 40%;
     color: #FFFFFF;
@@ -177,7 +183,7 @@ h1.name {
 }
 
 .initial-header .me-card {
-    transform: translate3d(0, 19.2em, 0);
+    transform: translate3d(0, 21.9vw, 0);
     transition: none;
 }
 
@@ -244,7 +250,7 @@ h1.name {
 /* Nav Style - End */
 
 /* Fixed n Search Header Styles - Start */
-.main-header.fix-header,
+
 .main-header.search-header {
     position: fixed;
     width: 100%;
@@ -253,24 +259,33 @@ h1.name {
     top: 0;
 }
 
-.fix-header .logo-header {
-    position: absolute;
+.fix-header.main-header {
+    height: 30px;
 }
 
-.fix-header .hello-card,
+.fix .me-card-wrapper {
+    display: none;
+}
+
+.fix .logo-header {
+    background: #ffffff;
+    box-shadow: 0 0.125em 10px rgba(0, 0, 0, .05);
+}
+
+.fix .hello-card,
 .search-header .hello-card {
     display: none;
 }
 
-.fix-header .logo-section {
+.fix .logo-section {
     margin-left: 0;
 }
 
-.fix-header .menu-icon-top {
+.fix .menu-icon-top {
     top: 0.7em;
 }
 
-.fix-header .menu-icon-bottom {
+.fix .menu-icon-bottom {
     top: 1.7em;
 }
 
@@ -288,12 +303,6 @@ h1.name {
 
 .search-header .logo-section {
     opacity: 0;
-}
-
-.fix-header .me-card-wrapper,
-.search-header .me-card-wrapper {
-    padding-top: 3.7em;
-    height: 0.125em;
 }
 
 .fix-header .my-dp,
@@ -325,33 +334,31 @@ h1.name {
     border-radius: 5px;
 }
 
-.fix-header .site-nav {
-    position: absolute;
+.fix .site-nav {
+    position: fixed;
     top: 3.7em;
-    height: 0.0125em;
+    height: 0;
     margin: 0 auto;
     left: 0;
     right: 0;
-    transition: height 0.5s;
     z-index: 2;
-    overflow: hidden;
-    background: linear-gradient(140deg, #ff9800, #f31b48, #940590, #0ab779);
 }
 
-.fix-header .scroll-up-indicator {
+.fix .scroll-up-indicator {
     display: none;
 }
 
-.fix-header .site-nav-list {
+.fix .site-nav-list {
     position: relative;
     width: 100%;
-    min-height: 5em;
-    height: auto;
-    padding: 2em;
-    opacity: 0;
+    height: 0;
+    padding: 0;
+    overflow: hidden;
+    transition: padding 0.5s, height 0.5s;
+    background: linear-gradient(140deg, #ff9800, #f31b48, #940590, #0ab779);
 }
 
-.fix-header .site-nav-list li {
+.fix .site-nav-list li {
     font-size: 2.5em;
     float: none;
     text-transform: none;
@@ -360,7 +367,7 @@ h1.name {
     width: 70%;
     margin: 0 auto;
     color: #FFFFFF;
-    padding-top: 0.6em;
+    padding-top: 5vh;
 }
 
 /* Fixed Header Styles - End */
@@ -372,8 +379,13 @@ h1.name {
     position: relative;
 }
 
-.fix-header.show-menu .site-nav {
-    height: 90vh;
+.fix.show-menu .site-nav {
+    height: auto;
+}
+
+.fix.show-menu .site-nav-list {
+    height: 85vh;
+    padding: 10vh 0;
 }
 
 .show-menu .site-nav-list {
@@ -412,7 +424,7 @@ h1.name {
 
 .nav-highlighter {
     position: relative;
-    height: 0.15rem;
+    height: 2px;
     left: 0;
     width: 0;
     background: #FFFFFF;
@@ -474,7 +486,7 @@ h1.name {
 .search-wrapper {
     position: absolute;
     display: inline-block;
-    width: 85%;
+    width: 100%;
     right: 0;
     z-index: 3;
 }
@@ -602,14 +614,14 @@ h1.name {
 @media (max-width: 650px) {
     .main-header {
         overflow: hidden;
-        position: absolute;
         min-height: 19.3em;
         height: auto;
         transition: min-height 0.5s ease-out;
         top: 0;
     }
     .logo-header {
-        padding: 3px;
+        padding: 3vw 1.2vw;
+        background: transparent;
     }
     .menu-icon,
     .menu-icon-top,
@@ -689,7 +701,7 @@ h1.name {
         height: auto;
         transition: height 0.5s, margin-top 0.5s;
     }
-    ul.site-nav-list {
+    .site-nav-list {
         position: relative;
         width: 100%;
         min-height: 5em;
@@ -697,7 +709,7 @@ h1.name {
         padding: 3em 0;
         opacity: 0;
     }
-    ul.site-nav-list li {
+    .site-nav-list li {
         font-size: 2.5em;
         float: none;
         text-transform: none;
@@ -706,24 +718,37 @@ h1.name {
         width: 70%;
         margin: 0 auto;
         color: #FFFFFF;
-        padding-top: 0.6em;
+        padding-top: 5vh;
     }
     .scroll-up-indicator {
         display: block;
     }
     /* Fixed & Search Header Styles - Start */
-    .main-header.fix-header {
+    .main-header.fix {
+        position: fixed;
         overflow: visible;
         height: 4.2em;
         min-height: 4.2em;
     }
-    .fix-header .logo-section,
+
+    .fix .logo-header {
+        background: transparent;
+        box-shadow: none;
+        z-index: 8;
+    }
+
+    .fix .logo-section,
     .search-header .logo-section {
         background: #212121;
     }
-    .fix-header .menu-icon,
-    .fix-header .menu-icon-top,
-    .fix-header .menu-icon-bottom,
+
+    .fix .logo-section i {
+        color: #FFFFFF;
+    }
+    
+    .fix .menu-icon,
+    .fix .menu-icon-top,
+    .fix .menu-icon-bottom,
     .search-header .menu-icon,
     .search-header .menu-icon-top,
     .search-header .menu-icon-bottom {
@@ -746,7 +771,7 @@ h1.name {
         transition: height 0.5s, margin-top 0.5s;
     }
     .fix-header .site-nav-list {
-        padding: 4em 0;
+        padding: 3em 0;
     }
     .fix-header .me-card-wrapper,
     .search-header .me-card-wrapper {
@@ -781,7 +806,10 @@ h1.name {
     }
     .show-menu .site-nav {
         margin-top: 0.65em;
-        z-index: 6;
+        z-index: 7;
+    }
+    .show-menu .site-nav-list {
+        padding: 3em 0;
     }
     .show-menu .logo-section {
         opacity: 0;
@@ -801,8 +829,5 @@ h1.name {
     }
     .logo-section i {
         color: #212121;
-    }
-    .fix-header .logo-section i {
-        color: #FFFFFF;
     }
 }
