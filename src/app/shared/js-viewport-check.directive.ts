@@ -6,7 +6,7 @@ import { Directive, ElementRef, OnInit, OnDestroy, HostListener, Renderer, Event
 export class ViewportCheck implements OnInit, OnDestroy {
   @Input() padding: number = 0;
   @Input() scrollLimit: number = 0;
-  @Input() checkDelay: number = 200;
+  @Input() checkDelay: number = 500;
   @Input() belowClass: string = 'below-view';
   @Input() aboveClass: string = 'above-view';
   @Input() noDecorate: boolean = false;
@@ -40,6 +40,7 @@ export class ViewportCheck implements OnInit, OnDestroy {
       this.elemViewportOffset = this.elem.getBoundingClientRect().top;
 
       //Check if Below View
+      console.log(this.elemViewportOffset, window.innerHeight);
       if (this.elemViewportOffset > 0) {
         if ((this.elemViewportOffset + this.padding) <= window.innerHeight) {
           if (!this.noDecorate) {

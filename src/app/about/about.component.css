@@ -9,8 +9,12 @@
 .flex-wrapper.skill-list {
     justify-content: flex-start;
 }
+
 .tile-wrapper.angular {
     background-color: #c22b28;
+}
+.tile-wrapper.react {
+    background-color: #20232a;
 }
 .tile-wrapper.js {
     background-color: #fdc72c;
@@ -25,6 +29,21 @@
     background-color: #0074c1
 }
 .tile-wrapper.firebase {
+    background-color: #ffffff;
+}
+.tile-wrapper.jasmine {
+    background-color: #ffffff;
+}
+.tile-wrapper.sass {
+    background-color: #ffffff;
+}
+.tile-wrapper.nodejs {
+    background-color: #78b743;
+}
+.tile-wrapper.pwa {
+    background-color: #3d3d3d;
+}
+.tile-wrapper.mongodb {
     background-color: #ffffff;
 }
 
