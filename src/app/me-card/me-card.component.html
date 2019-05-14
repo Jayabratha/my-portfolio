@@ -3,7 +3,7 @@
                 'fix-header': fixHeader, 
                 'initial-header': headerState.state === HEADER_STATE.Initial, 
                 'search-header': headerState.showSearch, 
-                'show-menu': headerState.showMenu }" #mecard >
+                'show-menu': headerState.showMenu }" #mecard>
     <header class="logo-header">
         <div class="header-content-wrapper center-stage">
             <div class="menu-section" (click)="toggleMenu(); $event.stopPropagation();">
@@ -37,14 +37,17 @@
             <span>Hello there!</span>
         </div>
     </section>
-    <section class="me-card-wrapper center-stage" >
+    <section class="me-card-wrapper center-stage">
         <div class="me-card" [style.width]="carouselLoadProgress + '%'">
             <div class="dp my-dp">
                 <js-ng-carousel [slideItems]=slideList [play]=play [config]="carouselConfig" [style.width.%]="100"
                     [style.height.%]="100" (carouselLoading)="onCarouselLoadProgress($event)"></js-ng-carousel>
             </div>
             <div class="info-wrapper">
-                <h1 class="name">Jayabratha Saha</h1>
+                <h1 class="intro">
+                    <span class="im">I'm</span>
+                    <span class="name">Jayabratha Saha</span>
+                </h1>
                 <div class="title">Artist & Developer</div>
                 <a class="github-link" href="https://github.com/Jayabratha">
                     <i class="icon-social-github"></i>

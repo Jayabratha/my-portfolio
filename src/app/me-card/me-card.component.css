@@ -127,20 +127,35 @@
 }
 
 .info-wrapper {
+    display: flex;
     position: relative;
     height: 100%;
-    padding: 2em;
-    padding-left: 40%;
+    padding: 3em 2em;
     color: #FFFFFF;
     opacity: 1;
     transition: opacity 0.5s ease-out;
+    flex-direction: column;
+    justify-content: space-around;
 }
 
-h1.name {
+.intro {
+    display: flex;
+    flex-direction: column;
+    font-size: 2.8em;
+    margin: 0;
+}
+
+.im {
+    line-height: 1em;
+    padding-left: 2px;
+    margin-bottom: -7px;
+}
+
+.name {
     position: relative;
     width: 5em;
     font-family: 'Playfair Display', serif;
-    font-size: 5em;
+    font-size: 1.5em;
     line-height: 0.95em;
     margin: 0;
     font-weight: normal;
