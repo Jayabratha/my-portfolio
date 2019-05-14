@@ -116,7 +116,7 @@
     transform: translate3d(0, 0, 0);
     left: 0;
     right: 0;
-    background: linear-gradient(140deg, #ff9800, #f31b48, #940590, #0ab779);
+    background: linear-gradient(140deg, #f9a831, #e44b6a, #940c8f, #2451b7);
     transition: transform 0.5s ease-out;
 }
 
@@ -133,7 +133,6 @@
     padding-left: 40%;
     color: #FFFFFF;
     opacity: 1;
-    background: linear-gradient(transparent, rgba(33, 33, 33, 0.2), rgba(33, 33, 33, 0.55));
     transition: opacity 0.5s ease-out;
 }
 
@@ -355,7 +354,7 @@ h1.name {
     padding: 0;
     overflow: hidden;
     transition: padding 0.5s, height 0.5s;
-    background: linear-gradient(140deg, #ff9800, #f31b48, #940590, #0ab779);
+    background: linear-gradient(140deg, #f9a831, #e44b6a, #940c8f, #2451b7);
 }
 
 .fix .site-nav-list li {
