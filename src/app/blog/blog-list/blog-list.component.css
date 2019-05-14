@@ -1,13 +1,14 @@
 .blog-card {
     position: relative;
     width: 48%;
-    min-height: 300px;
+    min-height: 200px;
     background: #FFFFFF;
-    padding: 1em;
-    border: thin solid #e4e2e2;
-    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+    padding: 1.5em;
+    border: thin solid #efefef;
+    box-shadow: 0 3px 10px rgba(56, 55, 55, 0.06);
     font-family: Roboto;
-    margin-bottom: 2em;
+    font-weight: 200;
+    margin-bottom: 1em;
 }
 
 .featured-blog {
@@ -22,19 +23,57 @@
     min-height: 0;
 }
 
+.cover-art {
+    height: 250px;
+    background: linear-gradient(140deg, #e80a1c, #f36034);
+    margin: -1.5em -1.5em 2em;
+}
+
 .title {
-    font-family: Playfair Display;
-    font-weight: normal;
-    font-size: 1.7em;
     margin: 0 0 1em;
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    align-items: flex-start;
 }
 
 .title h3 {
+    font-size: 1.6em;
     margin: 0;
-    font-weight: normal;
+    font-weight: 200;
+    margin-top: -0.2em;
+}
+
+.desc {
+    padding: 0.5em 0 1.5em;
+    color: #6f6f6f;
+}
+
+.date {
+    padding-bottom: 10px;
+}
+
+.footer {
+    position: absolute;
+    bottom: 1em;
+}
+
+.tag-list li {
+    display: inline-block;
+    padding: 5px 10px 5px 5px;
+    font-size: 0.75em;
+    background: #f0f0f0;
+    margin-right: 5px;
+    border-radius: 15px;
+}
+
+.tag-color {
+    height: 1em;
+    width: 1em;
+    display: inline-block;
+    background-color: #ccc;
+    border-radius: 50%;
+    margin-right: 5px;
+    vertical-align: middle;
 }
 
 @media (max-width: 650px) {

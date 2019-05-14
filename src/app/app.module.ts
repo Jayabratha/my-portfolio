@@ -5,6 +5,7 @@ import { HttpModule } from '@angular/http';
 import { StoreModule } from '@ngrx/store';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
+import { AngularFirestoreModule } from 'angularfire2/firestore';
 import { AngularFireStorageModule } from 'angularfire2/storage';
 import { environment } from '../environments/environment';
 import { JsNgCarouselModule } from 'js-ng-carousel';
@@ -43,6 +44,7 @@ import { SharedModule } from './shared/shared.module';
     }),
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireDatabaseModule,
+    AngularFirestoreModule,
     AngularFireStorageModule,
     SharedModule,
     AppRoutingModule

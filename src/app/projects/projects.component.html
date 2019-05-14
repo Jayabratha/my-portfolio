@@ -1,7 +1,7 @@
 <div class="content projects-content center-stage">
   <h1>Projects</h1>
   <div class="feature-wrapper">
-    <div class="content-wrapper clearfix below-view" viewportCheck >
+    <div class="content-wrapper clearfix below-view" viewportCheck>
       <div class="main">
         <h2>My hobby projects</h2>
         <i class="icon-social-github"></i>
@@ -38,90 +38,25 @@
   <section class="all-projects-container">
     <h2>All projects</h2>
     <ul class="project-list">
-      <li class="project project-card view-check below-view" viewportCheck >
+      <li class="project project-card view-check below-view" viewportCheck *ngFor="let project of projects | async">
         <div class="title">
-          <h3>MEAN Mess Manager</h3>
-          <a class="github-link" href="https://github.com/Jayabratha/mean-demo-app">
-            <span>mean-demo-app</span>
+          <h3>{{project.title}}</h3>
+          <a class="github-link" [href]="project.githubUrl">
+            <span>{{project.appName}}</span>
             <i class="icon-social-github"></i>
           </a>
         </div>
-        <div class="desc">This project is my first full-stack app using MEAN (MongoDB, ExpressJS, AngularJS, NodeJS)
-          technologies. </div>
+        <div class="desc">{{project.description}}</div>
         <div class="footer">
           <div class="tags">
             <ul class="tag-list">
-              <li>
-                <div class="tag-color angular-js"></div>angular-js
-              </li>
-              <li>
-                <div class="tag-color node"></div>node
-              </li>
-              <li>
-                <div class="tag-color express"></div>express
-              </li>
-              <li>
-                <div class="tag-color mongo"></div>mongo
+              <li *ngFor="let tag of project.tags.split(',')">
+                <div class="tag-color {{tag}}"></div>
+                {{tag}}
               </li>
             </ul>
           </div>
-          <a href="https://github.com/Jayabratha/mean-demo-app">
-            <div class="button-wrapper">
-              <div class="background"></div>
-              <button>VIEW PROJECT</button>
-            </div>
-          </a>
-        </div>
-      </li>
-      <li class="project project-card view-check below-view" viewportCheck checkDelay=500 >
-        <div class="title">
-          <h3>Material Demo App</h3>
-          <a class="github-link" href="https://github.com/Jayabratha/mean-mat-demo">
-            <span>mean-microservices-app</span>
-            <i class="icon-social-github"></i>
-          </a>
-        </div>
-        <div class="desc">This project is developed using Angular Material where design is the main focus using custom
-          theme. Development of the backend using microservices architecture is in progress.</div>
-        <div class="footer">
-          <div class="tags">
-            <ul class="tag-list">
-              <li>
-                <div class="tag-color material"></div>material
-              </li>
-              <li>
-                <div class="tag-color angular"></div>angular
-              </li>
-            </ul>
-          </div>
-          <a href="https://github.com/Jayabratha/mean-microservices-demo">
-            <div class="button-wrapper">
-              <div class="background"></div>
-              <button>VIEW PROJECT</button>
-            </div>
-          </a>
-        </div>
-      </li>
-      <li class="project project-card view-check below-view" viewportCheck >
-        <div class="title">
-          <h3>Angular Carousel</h3>
-          <a class="github-link" href="https://github.com/Jayabratha/js-angular-carousel">
-            <span>js-angular-carousel</span>
-            <i class="icon-social-github"></i>
-          </a>
-        </div>
-        <div class="desc">
-          This is highly customizable resuable carousel component built for Angular and supports touch gestures.
-        </div>
-        <div class="footer">
-          <div class="tags">
-            <ul class="tag-list">
-              <li>
-                <div class="tag-color angular"></div>angular
-              </li>
-            </ul>
-          </div>
-          <a href="https://github.com/Jayabratha/js-angular-carousel">
+          <a [href]="project.appUrl">
             <div class="button-wrapper">
               <div class="background"></div>
               <button>VIEW PROJECT</button>

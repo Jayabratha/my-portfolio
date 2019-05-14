@@ -40,7 +40,6 @@ export class ViewportCheck implements OnInit, OnDestroy {
       this.elemViewportOffset = this.elem.getBoundingClientRect().top;
 
       //Check if Below View
-      console.log(this.elemViewportOffset, window.innerHeight);
       if (this.elemViewportOffset > 0) {
         if ((this.elemViewportOffset + this.padding) <= window.innerHeight) {
           if (!this.noDecorate) {

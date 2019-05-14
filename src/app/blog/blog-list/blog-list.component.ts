@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { FlamelinkService } from '../../shared/flamelink.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'blog',
@@ -6,8 +8,10 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./blog-list.component.css', './../../app.component.css']
 })
 export class BlogListComponent implements OnInit {
+  posts: Observable<any[]>;
 
-  constructor() {
+  constructor(private flService: FlamelinkService) {
+    this.posts = this.flService.getContent("blogs");
   }
 
   ngOnInit() {
