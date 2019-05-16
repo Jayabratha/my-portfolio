@@ -630,7 +630,6 @@
         overflow: hidden;
         min-height: 19.3em;
         height: auto;
-        transition: min-height 0.5s ease-out;
         top: 0;
     }
     .logo-header {

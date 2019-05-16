@@ -221,15 +221,12 @@
     .home-content {
         margin-top: 0;
     }
-    .home-content {
-        transform: translate3d(0, 60vh, 0);
-        transition: transform 0.5s ease-out;
-    }
-    .home-content.hide {
-        transform: translate3d(0, 100vh, 0);
+    .home-content.adjust-fix {
+        margin-top: 157vw;
     }
     .overview-wrapper {
         min-height: 550px;
+        height: 80vh;
     }
     .overview .alpha-initial-bg {
         top: -80px;

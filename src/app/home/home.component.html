@@ -1,4 +1,4 @@
-<div class="home-content center-stage">
+<div class="home-content center-stage" [class.adjust-fix]="headerState.state === HEADER_STATE.Fixed">
   <div class="overview-wrapper">
     <div class="overview clearfix art-overview" [class.above-view]="steps[1].isAboveView" [class.below-view]="steps[1].isBelowView"
       viewportCheck [padding]=padding [checkAboveView]=true >
