@@ -7,6 +7,7 @@ import { Header } from '../models/header.model';
 import { HeaderState } from '../models/header-state.enum';
 import * as HeaderActions from '../app-store/actions/header.actions';
 import { takeUntil } from 'rxjs/operators';
+import { HomeService } from './home.service';
 
 @Component({
   selector: 'app-home',
@@ -53,7 +54,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   padding: number = 100;
   subs: Subscription;
 
-  constructor(private store: Store<AppState>) { }
+  constructor(private store: Store<AppState>, private homeService: HomeService) { }
 
   private onDestroy$ = new Subject();
 
@@ -79,34 +80,19 @@ export class HomeComponent implements OnInit, OnDestroy {
         this.store.dispatch(new HeaderActions.ToggleMenu(true));
       }, 500);
     }
+
+    this.homeService.getSlideCount().subscribe((slideCount) => {
+      this.setStepCount(slideCount);
+    })
   }
 
   setStepCount(stepCount) {
-    let prevStepCount = this.stepCount;
-
     const nextScrollPosition = stepCount * (95 * this.screenWidth) / 100;
 
-    if (stepCount) {
-      //this.store.dispatch(new HeaderActions.ToggleMenu(false));
-      // if (this.stepCount !== 0 && this.stepCount < stepCount) {
-      //   this.steps[prevStepCount].isAboveView = true
-      //   setTimeout(() => {
-      //     window.scrollTo(0, nextScrollPosition);
-      //     this.steps[prevStepCount].isAboveView = false;
-      //   }, 500);
-      // } else if (this.stepCount > stepCount) {
-      //   this.steps[prevStepCount].isBelowView = true
-      //   setTimeout(() => {
-      //     window.scrollTo(0, nextScrollPosition);
-      //     this.steps[prevStepCount].isBelowView = false;
-      //   }, 500);
-      // } else {
-      //   window.scrollTo(0, nextScrollPosition);
-      // }
-    } else {
-      
+    if (stepCount === 0 && !this.isMobile) {   
+      console.log("Testing");
       this.store.dispatch(new HeaderActions.ToggleMenu(true));
-      this.store.dispatch(new HeaderActions.UpdateState(HeaderState.Home));
+      //this.store.dispatch(new HeaderActions.UpdateState(HeaderState.Home));
     }
 
     window.scrollTo(0, nextScrollPosition);

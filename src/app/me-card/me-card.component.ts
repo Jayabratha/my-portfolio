@@ -14,6 +14,7 @@ import { Header } from '../models/header.model';
 import { HeaderState } from '../models/header-state.enum';
 import * as HeaderActions from '../app-store/actions/header.actions';
 import { takeUntil } from 'rxjs/operators';
+import { HomeService } from '../home/home.service';
 
 @Component({
   selector: 'me-card',
@@ -33,6 +34,7 @@ export class MeCardComponent implements OnInit, OnDestroy {
     private router: Router,
     private store: Store<AppState>,
     private storage: AngularFireStorage,
+    private homeService: HomeService,
     private elasticsearch: ElasticsearchService) {
   }
 
@@ -172,7 +174,7 @@ export class MeCardComponent implements OnInit, OnDestroy {
     let scrollLimit = this.meCard.nativeElement.offsetHeight - 60;
 
     if (this.isMobile) {
-      scrollLimit = (157 * window.innerWidth) / 100 - 60;
+      scrollLimit = (165 * window.innerWidth) / 100 - 60;
     }
 
     if (this.activateScroll && scrollTop < scrollLimit) {
@@ -186,7 +188,7 @@ export class MeCardComponent implements OnInit, OnDestroy {
     if (this.router.url !== '/home') {
       this.router.navigate(['/home']);
     } else {
-      window.scrollTo(0, 0);
+      this.homeService.setSlideCount(0);
     }
     if (!this.isMobile) {
       this.store.dispatch(new HeaderActions.ToggleMenu(true));

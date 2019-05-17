@@ -77,7 +77,8 @@
 }
 
 @media (max-width: 650px) {
-    .blog-card {
+    .content .feature-content.blog-card {
         width: 100%;
+        padding-left: 1em;
     }
 }

@@ -157,7 +157,8 @@
     .project-card {
         font-size: 1.25em;
     }
-    .project-card.featured-project {
+    .content .feature-content.project-card {
         width: 100%;
+        padding-left: 1em;
     }
 }

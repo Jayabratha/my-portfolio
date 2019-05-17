@@ -467,10 +467,14 @@ button {
         left: -10px;
         bottom: -30px;
     }
+    .content-wrapper {
+        min-height: 12em;
+    }
     .content .feature-content {
         width: 100%;
         padding-top: 1em;
-        min-height: 100%;
+        padding-left: 0;
+        min-height: 18em;
         height: auto;
         margin-bottom: 3em;
     }
