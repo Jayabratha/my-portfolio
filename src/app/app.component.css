@@ -55,7 +55,7 @@
     width: 40%;
     float: left;
     color: #FFFFFF;
-    padding: 25px;
+    padding: 0.65em;;
     line-height: 1.5em;
     height: 100%;
     overflow: hidden;
@@ -458,10 +458,6 @@ button {
     .content .main {
         width: 100%;
         min-height: 5em;
-    }
-    .content .main h2 {
-        top: -15px;
-        font-size: 1em;
     }
     .content .main i {
         left: -10px;
