@@ -181,26 +181,26 @@
 }
 
 .art-overview .overview-content-wrapper {
-    background: linear-gradient(140deg, #fd7819, #f31b48);
+    background: linear-gradient(140deg, #fd7b1f, #f33159);
 }
 .projects-overview .overview-content-wrapper {
-    background: linear-gradient(140deg, #f31b48, #940590);
+    background: linear-gradient(140deg, #f33159, #a02dbd);
 }
 .blog-overview .overview-content-wrapper {
-    background: linear-gradient(140deg, #940590, #28a6e4);
+    background: linear-gradient(140deg, #a02dbd, #4280f1);
 }
 .about-overview .overview-content-wrapper {
-    background: linear-gradient(140deg, #28a6e4, #0ab732);
+    background: linear-gradient(140deg, #4280f1, #0ab779);
 }
 .contact-overview .overview-content-wrapper {
-    background: linear-gradient(140deg, #0ab779, #0ab70f);
+    background: linear-gradient(140deg, #0ab779, #9edc65);
 }
 
 .overview .button-wrapper {
-    border-color: #FFFFFF;
+    border-color: rgba(255, 255, 255, 0.7);
 }
 .overview .button-wrapper .background {
-    background: #FFFFFF;
+    background: rgba(255, 255, 255, 0.7);
 }
 .overview .button-wrapper button {
     color: #FFFFFF;
@@ -222,7 +222,7 @@
         margin-top: 0;
     }
     .home-content.adjust-fix {
-        margin-top: 157vw;
+        margin-top: 165vw;
     }
     .overview-wrapper {
         min-height: 550px;

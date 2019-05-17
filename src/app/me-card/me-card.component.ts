@@ -161,6 +161,12 @@ export class MeCardComponent implements OnInit, OnDestroy {
     }, 5);
   }
 
+  scrollDown() {
+    window.dispatchEvent(new KeyboardEvent('keydown', {
+      code: 'ArrowDown'
+    }));
+  }
+
   @HostListener('window:scroll') onScroll() {
     let scrollTop = (document.documentElement && document.documentElement.scrollTop) || document.body.scrollTop;
     let scrollLimit = this.meCard.nativeElement.offsetHeight - 60;

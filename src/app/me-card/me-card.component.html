@@ -44,11 +44,17 @@
                     [style.height.%]="100" (carouselLoading)="onCarouselLoadProgress($event)"></js-ng-carousel>
             </div>
             <div class="info-wrapper">
-                <h1 class="intro">
-                    <span class="im">I'm</span>
-                    <span class="name">Jayabratha Saha</span>
-                </h1>
-                <div class="title">Artist & Developer</div>
+                <div>
+                    <h1 class="intro">
+                        <span class="im">I'm</span>
+                        <span class="name">Jayabratha Saha</span>
+                    </h1>
+                    <div class="title">Artist & Developer</div>
+                </div>
+                <div class="button-wrapper" (click)="scrollDown()">
+                    <div class="background"></div>
+                    <button>EXPLORE</button>
+                </div>
                 <a class="github-link" href="https://github.com/Jayabratha">
                     <i class="icon-social-github"></i>
                 </a>

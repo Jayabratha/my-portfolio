@@ -120,6 +120,19 @@
     transition: transform 0.5s ease-out;
 }
 
+.me-card .button-wrapper {
+    display: none;
+    border-color: rgba(255, 255, 255, 0.7);
+    width: 12em;
+    margin-top: 1em;
+}
+.me-card .button-wrapper .background {
+    background: rgba(255, 255, 255, 0.7);
+}
+.me-card .button-wrapper button {
+    color: #FFFFFF;
+}
+
 .my-dp {
     position: absolute;
     top: 0;
@@ -697,14 +710,12 @@
     }
     .me-card-wrapper {
         padding: 0.65em;
-        height: 157vw;
-    }
-    .me-card {
-        height: auto;
+        height: 165vw;
     }
     .info-wrapper {
         font-size: 3vw;
         padding: 2em;
+        height: 70vw;
     }
     .site-nav {
         display: block;
@@ -820,6 +831,7 @@
     .show-menu .site-nav {
         margin-top: 0.65em;
         z-index: 7;
+        top: 0;
     }
     .show-menu .site-nav-list {
         padding: 3em 0;
@@ -842,5 +854,9 @@
     }
     .logo-section i {
         color: #212121;
+    }
+
+    .me-card .button-wrapper {
+        display: block;
     }
 }
