@@ -59,7 +59,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   private onDestroy$ = new Subject();
 
   ngOnInit() {
-    let deviceWidth = window.screen.width;
+    let deviceWidth = window.innerWidth;
 
     if (deviceWidth < 650) {
       this.isMobile = true;
@@ -87,16 +87,16 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   setStepCount(stepCount) {
-    let nextScrollPosition = stepCount * (95 * this.screenWidth) / 100;
+    let nextScrollPosition = stepCount * (95 * window.innerHeight) / 100;
 
     if (stepCount === 0 && !this.isMobile) {   
-      this.store.dispatch(new HeaderActions.ToggleMenu(true));
-      //this.store.dispatch(new HeaderActions.UpdateState(HeaderState.Home));
+      setTimeout(() => {this.store.dispatch(new HeaderActions.ToggleMenu(true))}, 1000);
     }
 
     if (stepCount === 1 && this.isMobile) {
       nextScrollPosition = (165 * this.screenWidth) / 100;
     }
+
 
     window.scrollTo(0, nextScrollPosition);
 

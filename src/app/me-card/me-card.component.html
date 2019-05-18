@@ -96,11 +96,10 @@
             <li *ngFor="let navItem of navItems" [class.show]="navItem.visible" (mouseenter)="activeNav=navItem.id"
                 (mouseleave)="activeNav=''" [routerLink]="navItem.link">{{navItem.label}}</li>
         </ul>
+        <div class="nav-highlighter-wrapper">
+            <div class="nav-highlighter" [ngClass]="activeNav"></div>
+        </div>
     </nav>
-    <div class="scroll-up-indicator"></div>
-    <div class="nav-highlighter-wrapper center-stage absolute-bottom">
-        <div class="nav-highlighter" [ngClass]="activeNav"></div>
-    </div>
 </div>
 <div class="menu-background"
     [hidden]="!((headerState.state === HEADER_STATE.Fixed && headerState.showMenu) || headerState.showSearch)"></div>

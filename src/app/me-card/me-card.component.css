@@ -1,5 +1,4 @@
 .main-header {
-    position: relative;
     width: 100%;
     background: #fff;
     height: 95vh;
@@ -7,6 +6,10 @@
     transition: height 0.5s ease-out;
     z-index: 3;
     overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
 }
 
 .logo-header {
@@ -223,25 +226,12 @@
 /* Initial Header Styles - End */
 
 /* Nav Style - Start*/
-
-.site-nav {
-    position: absolute;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    margin: auto;
-    height: 5em;
-}
-
 .site-nav-list {
+    height: 5em;
     list-style: none;
     width: 100%;
     margin: 0 auto;
-    -webkit-transition: all 0.5s ease-in;
-    -moz-transition: all 0.5s ease-in;
-    transition: all 0.5s ease-in;
 }
-
 .site-nav-list li {
     font-size: 1.1em;
     float: left;
@@ -286,8 +276,9 @@
     top: 0;
 }
 
-.fix-header.main-header {
-    height: 30px;
+.main-header.fix-header {
+    height: 3.7em;
+    box-shadow: none;
 }
 
 .fix .me-card-wrapper {
@@ -368,7 +359,10 @@
     margin: 0 auto;
     left: 0;
     right: 0;
-    z-index: 2;
+    z-index: 3;
+    background: linear-gradient(140deg, #f9a831, #e44b6a, #940c8f, #2451b7);
+    transition: height 0.5s ease-in;
+    overflow: hidden;
 }
 
 .fix .scroll-up-indicator {
@@ -378,11 +372,7 @@
 .fix .site-nav-list {
     position: relative;
     width: 100%;
-    height: 0;
-    padding: 0;
-    overflow: hidden;
-    transition: padding 0.5s, height 0.5s;
-    background: linear-gradient(140deg, #f9a831, #e44b6a, #940c8f, #2451b7);
+    padding: 10vh 0;
 }
 
 .fix .site-nav-list li {
@@ -407,16 +397,7 @@
 }
 
 .fix.show-menu .site-nav {
-    height: auto;
-}
-
-.fix.show-menu .site-nav-list {
     height: 85vh;
-    padding: 10vh 0;
-}
-
-.show-menu .site-nav-list {
-    opacity: 1;
 }
 
 .show-menu .menu-icon {
@@ -442,13 +423,6 @@
 /* Show Menu Styles - End */
 
 /* Nav Highlighter - Start */
-.nav-highlighter-wrapper {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-}
-
 .nav-highlighter {
     position: relative;
     height: 2px;
@@ -725,13 +699,16 @@
         height: auto;
         transition: height 0.5s, margin-top 0.5s;
     }
+    .fix .site-nav {
+        margin-top: 0.65em;
+        top: 0;
+    }
     .site-nav-list {
         position: relative;
         width: 100%;
         min-height: 5em;
         height: auto;
         padding: 3em 0;
-        opacity: 0;
     }
     .site-nav-list li {
         font-size: 2.5em;
@@ -794,9 +771,6 @@
         z-index: 6;
         transition: height 0.5s, margin-top 0.5s;
     }
-    .fix-header .site-nav-list {
-        padding: 3em 0;
-    }
     .fix-header .me-card-wrapper,
     .search-header .me-card-wrapper {
         padding-top: 4.1em;
@@ -833,9 +807,6 @@
         z-index: 7;
         top: 0;
     }
-    .show-menu .site-nav-list {
-        padding: 3em 0;
-    }
     .show-menu .logo-section {
         opacity: 0;
     }
@@ -862,6 +833,9 @@
 }
 
 @media (min-width: 1400px) {
+    .me-card-wrapper {
+        min-height: 22vw;
+    }
     .initial-header .me-card {
         transform: translate3d(0, 21.8vw, 0);
         transition: none;

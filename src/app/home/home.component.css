@@ -7,6 +7,10 @@
     margin-top: 115vh;
 }
 
+/* .home-content.adjust-fix {
+    margin-top: 195vw;
+} */
+
 .scroll-indicator {
     position: fixed;
     right: 2em;
@@ -63,6 +67,7 @@
 
 .overview-wrapper {
     height: 95vh;
+    padding-top: 3em;
 }
 
 .overview {
@@ -73,7 +78,6 @@
     width: 100%;
     min-height: 24em;
     height: 22vw;
-    margin: 3em 0;
     box-shadow: 0 1px 4px rgba(0,0,0,.05);
     border: 1px solid rgba(0,0,0,.09);
 }
@@ -215,7 +219,7 @@
     .home-content {
         margin-top: 0;
     }
-    .home-content.adjust-fix {
+    .home-content {
         margin-top: 165vw;
     }
     .overview-wrapper {

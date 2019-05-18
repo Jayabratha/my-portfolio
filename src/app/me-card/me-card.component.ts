@@ -104,7 +104,7 @@ export class MeCardComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    let deviceWidth = document.documentElement.clientWidth;
+    let deviceWidth = window.innerWidth;
 
     this.carouselLoadStep = (100 / this.slideList.length);
     this.nextLoad = this.carouselLoadProgress + this.carouselLoadStep;
@@ -223,6 +223,7 @@ export class MeCardComponent implements OnInit, OnDestroy {
   headerStateChange(state: string) {
     if (state === 'fix' && this.headerState.state === this.HEADER_STATE.Home) {
       if (!this.isMobile) {
+        console.log("Test");
         this.store.dispatch(new HeaderActions.ToggleMenu(false));
       }
       this.store.dispatch(new HeaderActions.UpdateState(HeaderState.Fixed));
