@@ -18,7 +18,7 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   HEADER_STATE = HeaderState;
   headerState: Header;
-  screenWidth: number = window.innerHeight;
+  screenWidth: number = window.innerWidth;
   steps: Array<{
     tileName: string,
     isAboveView: boolean,
@@ -87,12 +87,15 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   setStepCount(stepCount) {
-    const nextScrollPosition = stepCount * (95 * this.screenWidth) / 100;
+    let nextScrollPosition = stepCount * (95 * this.screenWidth) / 100;
 
     if (stepCount === 0 && !this.isMobile) {   
-      console.log("Testing");
       this.store.dispatch(new HeaderActions.ToggleMenu(true));
       //this.store.dispatch(new HeaderActions.UpdateState(HeaderState.Home));
+    }
+
+    if (stepCount === 1 && this.isMobile) {
+      nextScrollPosition = (165 * this.screenWidth) / 100;
     }
 
     window.scrollTo(0, nextScrollPosition);

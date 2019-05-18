@@ -210,7 +210,7 @@
 }
 
 .initial-header .me-card {
-    transform: translate3d(0, 21.9vw, 0);
+    transform: translate3d(0, 19.2em, 0);
     transition: none;
 }
 
@@ -858,5 +858,12 @@
 
     .me-card .button-wrapper {
         display: block;
+    }
+}
+
+@media (min-width: 1400px) {
+    .initial-header .me-card {
+        transform: translate3d(0, 21.8vw, 0);
+        transition: none;
     }
 }

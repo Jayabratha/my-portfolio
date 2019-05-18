@@ -435,12 +435,16 @@ button {
 
 @media (max-width: 950px) {
     .center-stage {
-        width: 96%;
+        width: 80%;
         min-width: 0;
     }
 }
 
 @media (max-width: 650px) {
+    .center-stage {
+        width: 96%;
+        min-width: 0;
+    }
     .dp {
         width: 100%;
     }
