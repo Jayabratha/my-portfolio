@@ -90,13 +90,12 @@ export class HomeComponent implements OnInit, OnDestroy {
     let nextScrollPosition = stepCount * (95 * window.innerHeight) / 100;
 
     if (stepCount === 0 && !this.isMobile) {   
-      setTimeout(() => {this.store.dispatch(new HeaderActions.ToggleMenu(true))}, 1000);
+      setTimeout(() => {this.store.dispatch(new HeaderActions.ToggleMenu(true))}, 2000);
     }
 
     if (stepCount === 1 && this.isMobile) {
       nextScrollPosition = (165 * this.screenWidth) / 100;
     }
-
 
     window.scrollTo(0, nextScrollPosition);
 
