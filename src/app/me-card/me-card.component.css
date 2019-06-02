@@ -430,25 +430,25 @@
 }
 
 .nav-highlighter.art {
-    background: #f31b48;
+    background: #fd7b1f;
     left: 0;
     width: 20%;
 }
 
 .nav-highlighter.projects {
-    background: #c6116b;
+    background: #f33159;
     left: 20%;
     width: 20%;
 }
 
 .nav-highlighter.blog {
-    background: #940590;
+    background: #a02dbd;
     left: 40%;
     width: 20%;
 }
 
 .nav-highlighter.about {
-    background: #28a6e4;
+    background: #4280f1;
     left: 60%;
     width: 20%;
 }

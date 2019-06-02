@@ -159,26 +159,19 @@ p.sub_desc {
 }
 
 .tile-wrapper {
-    background-size: 200px;
-    height: 22vw;
-    width: 22vw;
-    max-width: 200px;
-    max-height: 200px;
+    width: 24.4%;
+    padding-bottom: 24.4%;
     position: relative;
     transform: translate3d(0, 0, 0);
     opacity: 1;
-    margin: 0 0.5vw 0.5vw 0;
+    margin: 0 0.6% 0.6% 0;
     box-shadow: 0 0 5px 1px rgba(0, 0, 0, 0.2);
     transition: transform 0.5s ease-out, opacity 0.5s;
 }
 
 .tile-wrapper.small {
-    width: 10vw;
-    height: 10vw;
-    min-width: 100px;
-    min-height: 100px;
-    max-width: 150px;
-    max-height: 150px;
+    width: 16%;
+    padding-bottom: 16%;
 }
 
 .tile-wrapper.hide {
@@ -188,6 +181,7 @@ p.sub_desc {
 
 .tile-wrapper i {
     display: flex;
+    position: absolute;
     align-items: center;
     justify-content: center;
     color: #FFFFFF;
@@ -491,6 +485,10 @@ button {
         -ms-transform: translateY(0);
         transform: translateY(0);
         opacity: 1;
+    }
+    .tile-wrapper.small {
+        width: 24.4%;
+        padding-bottom: 24.4%;
     }
     .tile-wrapper i {
         font-size: 4em;

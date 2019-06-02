@@ -96,10 +96,6 @@
     .flex-wrapper.skill-list {
         flex-wrap: wrap;
     }
-    .flex-wrapper.skill-list .tile-wrapper {
-        flex-grow: unset;
-        margin: 0.5vw;
-    }
 
     .exp-header {
         height: 6em;
