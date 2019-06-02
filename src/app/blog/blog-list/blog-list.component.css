@@ -81,4 +81,7 @@
         width: 100%;
         padding-left: 1em;
     }
+    .blog-card {
+        width: 100%;
+    }
 }
