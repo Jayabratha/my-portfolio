@@ -298,7 +298,7 @@ export class MeCardComponent implements OnInit, OnDestroy {
       case 'art': {
         this.router.navigate(['/art']);
         setTimeout(() => {
-          this.router.navigate(['/art/gallery/' + result.name]);
+          this.router.navigate(['/art/gallery/' + result.title]);
         }, 1000);
       }
     }
