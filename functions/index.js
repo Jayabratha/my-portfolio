@@ -11,12 +11,6 @@ const corsFn = cors();
 
 admin.initializeApp(functions.config().firebase);
 
-const esClient = new elasticsearch.Client({
-  host: 'http://104.197.103.148//elasticsearch/',
-  httpAuth: 'user:WVSfStr1h5Gm',
-  log: 'trace'
-});
-
 const gcs = new Storage();
 
 const nodemailer = require('nodemailer');
@@ -25,7 +19,13 @@ const gmailEmail = encodeURIComponent(firebaseConfig.gmail.email);
 const gmailPassword = encodeURIComponent(firebaseConfig.gmail.password);
 const mailTransport = nodemailer.createTransport(`smtps://${gmailEmail}:${gmailPassword}@smtp.gmail.com`);
 
-const elasticSearchConfig = firebaseConfig.elasticsearch;
+const elasticSearchConfig = firebaseConfig.elastic;
+
+const esClient = new elasticsearch.Client({
+  host: elasticSearchConfig.host,
+  httpAuth: elasticSearchConfig.httpauth,
+  log: 'trace'
+});
 
 const db = admin.database();
 
@@ -138,10 +138,9 @@ exports.isSearchAvailable = functions.https.onRequest((request, response) => {
       requestTimeout: 30000,
     }, function (error) {
       if (error) {
-        console.error('elasticsearch cluster is down!');
+        console.error(error);
         response.send('elasticsearch cluster is down!');
       } else {
-        console.log('All is well');
         response.send('All is well');
       }
     });
@@ -156,7 +155,6 @@ exports.search = functions.https.onRequest((request, response) => {
       q: request.query.keyword
     }).then(function (resp) {
       var hits = resp.hits.hits;
-      console.log(hits);
       response.send(resp);
     }, function (err) {
       console.trace(err.message);

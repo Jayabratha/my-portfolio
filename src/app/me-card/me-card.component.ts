@@ -271,7 +271,7 @@ export class MeCardComponent implements OnInit, OnDestroy {
       this.searchSubscription = this.elasticsearch.search(keyword).subscribe((response) => {
         let resBody = response.json();
         this.searchResults.length = 0;
-        if (resBody.hits.total > 0) {
+        if (resBody.hits.total.value > 0) {
           this.noResults = false;
           resBody.hits.hits.forEach(result => {
             if (result._index === "images") {
