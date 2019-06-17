@@ -252,7 +252,10 @@ export class MeCardComponent implements OnInit, OnDestroy {
 
   hideSearch(targetElem) {
     this.loading = false;
+    this.resultsPage = false;
     this.noResults = false;
+    this.searchResults = [];
+    this.keyword = "";
     if (this.searchSubscription) {
       this.searchSubscription.unsubscribe();
     }

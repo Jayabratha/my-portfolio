@@ -195,7 +195,7 @@
 
 .main-loader {
     position: fixed;
-    top: 213px;
+    top: 223px;
     font-size: 43px;
 }
 
@@ -549,12 +549,10 @@
     position: fixed;
     top: 58px;
     z-index: -1;
-    max-width: 55em;
     margin: 0 auto;
     left: 0;
     right: 0;
-    max-width: 55em;
-    padding: 20px 0;
+    padding: 30px 0;
     color: #212121;
 }
 
@@ -574,10 +572,10 @@
     align-items: center;
     justify-content: space-between;
     width: 100%;
-    padding: 0.5em 1em;
+    padding: 0.5em 1.5em;
     border: thin solid #ebebeb;
     background: #FFFFFF;
-    box-shadow: 0 5px 20px rgba(0, 0, 0, .1);
+    box-shadow: 0 5px 10px rgba(0, 0, 0, .1);
     cursor: pointer;
     transition: transform .2s ease-in-out;
 }
@@ -587,18 +585,25 @@
 }
 
 .result-thumb {
-    height: 60px;
-    width: 60px;
+    height: 75px;
+    width: 75px;
     border-radius: 50%;
     background: #ccc;
-    margin: 0.25em 1em;
+    margin: 0.25em 1.5em 0.25em 0;
     overflow: hidden;
     background-repeat: no-repeat;
-    background-size: 100%;
+    background-size: cover;
+    background-position: center;
+    border: thin solid #ccc;
 }
 
 .result-name {
     font-size: 1.5em;
+}
+
+.result-desc {
+    font-family: 'Roboto';
+    color: #6f6f6f;
 }
 
 .result-type {

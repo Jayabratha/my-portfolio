@@ -1,12 +1,12 @@
 export class SearchResult {
-    name: string;
+    title: string;
     type: string;
     thumbLink: string;
     desc: string;
     src: any;
 
-    constructor(name, type, thumbLink, desc, src) {
-        this.name = name;
+    constructor(title, type, thumbLink, desc, src) {
+        this.title = title;
         this.type = type;
         this.thumbLink = thumbLink;
         this.desc = desc;
