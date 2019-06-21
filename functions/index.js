@@ -1,7 +1,7 @@
 const functions = require('firebase-functions');
 const admin = require('firebase-admin');
 const request = require('request-promise');
-const {Storage} = require('@google-cloud/storage');
+const { Storage } = require('@google-cloud/storage');
 const sharp = require('sharp');
 const path = require('path');
 const os = require('os');
@@ -12,6 +12,7 @@ const corsFn = cors();
 admin.initializeApp(functions.config().firebase);
 
 const gcs = new Storage();
+const db = admin.database();
 
 const nodemailer = require('nodemailer');
 const firebaseConfig = functions.config();
@@ -26,8 +27,6 @@ const esClient = new elasticsearch.Client({
   httpAuth: elasticSearchConfig.httpauth,
   log: 'trace'
 });
-
-const db = admin.database();
 
 //Send Contact Email
 exports.sendContactMessage = functions.database.ref('/messages/{pushKey}').onWrite((snapshot) => {
@@ -49,36 +48,18 @@ exports.sendContactMessage = functions.database.ref('/messages/{pushKey}').onWri
   });
 });
 
-//Process Image upload to create thumbnail, DB entry
+//Process Image upload to create thumbnail and DB entry
 exports.processImgUploads = functions.storage.object().onFinalize((object) => {
 
-  console.log(gcs);
-
-  const fileBucket = object.bucket;
+  const bucket = gcs.bucket(object.bucket);
   const filePath = object.name;
   const fileName = filePath.split('/').pop();
   const fileNameSplit = fileName.split('.');
   const fileNameWithoutExtn = fileNameSplit[0];
   const fileExtn = fileNameSplit[1];
   const fileSize = object.size;
-  const bucket = gcs.bucket(fileBucket);
   const tempFilePath = path.join(os.tmpdir(), fileName);
   const contentType = object.contentType;
-  const resourceState = object.resourceState;
-  const metageneration = object.metageneration;
-
-  // Exit if this is a move or deletion event.
-  if (resourceState === 'not_exists') {
-    console.log('This is a deletion event.');
-    return;
-  }
-
-  // Exit if file exists but is not new and is only being triggered
-  // because of a metadata change.
-  if (resourceState === 'exists' && metageneration > 1) {
-    console.log('This is a metadata change event.');
-    return;
-  }
 
   //If an art image is added make a file entry to DB and create a thumbnail
   if (contentType.startsWith('image/') && filePath.startsWith('artImages/')) {
@@ -86,11 +67,12 @@ exports.processImgUploads = functions.storage.object().onFinalize((object) => {
     return bucket.file(filePath).download({
       destination: tempFilePath
     }).then(() => {
-
+      //Create the thumbnail
       let newFileName = `${fileNameWithoutExtn}_thumb.${fileExtn}`;
       let newFileTemp = path.join(os.tmpdir(), newFileName);
       let newFilePath = `thumbs/${newFileName}`;
       let thumbPath = newFilePath;
+
       let imageFileObj = { fileName, filePath, thumbPath, fileSize, contentType };
 
       console.log(imageFileObj);
@@ -106,15 +88,58 @@ exports.processImgUploads = functions.storage.object().onFinalize((object) => {
           });
         });
     });
+  } else {
+    return false;
   }
 });
 
+//Process Image delete to remove thumbnail and DB entry
+exports.processImgDelete = functions.storage.object().onDelete((object) => {
+  const bucket = gcs.bucket(object.bucket);
+  const filePath = object.name;
+  const fileName = filePath.split('/').pop();
+  const fileNameSplit = fileName.split('.');
+  const fileNameWithoutExtn = fileNameSplit[0];
+  const fileExtn = fileNameSplit[1];
+
+  let thumbFilePath = `thumbs/${fileNameWithoutExtn}_thumb.${fileExtn}`;
+
+  console.log(filePath);
+
+  if (filePath.startsWith('artImages/')) {
+    //Delete the thumbnail
+    return bucket.file(thumbFilePath).delete().then(() => {
+      console.log("Thumb removed successfully");
+      //Delete DB entry
+      let query = db.ref('/artImages').orderByChild("filePath").equalTo(filePath);
+      query.once("value", function (snapshot) {
+        console.log(snapshot);
+        snapshot.forEach(function (child) {
+          child.ref.remove();
+        });
+      });
+    });
+  } else {
+    return false;
+  }
+
+})
+
 //Update the Elasticsearch Index when image is uploaded
 exports.updateImagesIndex = functions.database.ref('/artImages/{pushKey}').onWrite((snapshot, context) => {
-  let postData = snapshot.after.val();
+  let postData, elasticSearchMethod = 'DELETE';
+  const snapshotVal = snapshot.after.val();
+  if (snapshotVal) {
+    postData = {
+      title: snapshotVal.title,
+      desc: snapshotVal.desc,
+      thumbPath: snapshotVal.thumbPath,
+      type: 'Art'
+    };
+    elasticSearchMethod = 'POST';
+  }
   let imageId = context.params.pushKey;
-  let elasticSearchUrl = elasticSearchConfig.url + '/images/image/' + imageId;
-  let elasticSearchMethod = postData ? 'POST' : 'DELETE';
+  let elasticSearchUrl = elasticSearchConfig.host + '/images/image/' + imageId;
 
   return request({
     method: elasticSearchMethod,
@@ -128,7 +153,6 @@ exports.updateImagesIndex = functions.database.ref('/artImages/{pushKey}').onWri
   }).then(response => {
     console.log(response);
   });
-
 });
 
 //Check if Elasticsearch server is avialable
