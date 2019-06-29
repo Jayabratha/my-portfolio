@@ -2,11 +2,11 @@
 
 @font-face {
   font-family: "untitled-font-2";
-  src:url("./assets/fonts/untitled-font-2.eot");
-  src:url("./assets/fonts/untitled-font-2.eot?#iefix") format("embedded-opentype"),
-    url("./assets/fonts/untitled-font-2.woff") format("woff"),
-    url("./assets/fonts/untitled-font-2.ttf") format("truetype"),
-    url("./assets/fonts/untitled-font-2.svg#untitled-font-2") format("svg");
+  src:url("assets/fonts/untitled-font-2.eot");
+  src:url("assets/fonts/untitled-font-2.eot?#iefix") format("embedded-opentype"),
+    url("assets/fonts/untitled-font-2.woff") format("woff"),
+    url("assets/fonts/untitled-font-2.ttf") format("truetype"),
+    url("assets/fonts/untitled-font-2.svg#untitled-font-2") format("svg");
   font-weight: normal;
   font-style: normal;
 
@@ -38,9 +38,6 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-.icon-logo-svg:before {
-  content: "\61";
-}
 .icon-load-c:before {
   content: "\6a";
 }
@@ -271,4 +268,7 @@
 }
 .icon-image:before {
   content: "\3f";
+}
+.icon-js-logo:before {
+  content: "\61";
 }

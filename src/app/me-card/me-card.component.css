@@ -31,9 +31,9 @@
     display: inline-block;
     vertical-align: top;
     width: 3em;
-    height: 2.4em;
+    height: 2.3em;
     padding: 0;
-    background: #212121;
+    background: #fff;
     opacity: 1;
     transition: background-color 0.5s, margin 0.5s, opacity 0.3s;
     outline: none;
@@ -48,7 +48,7 @@
 .menu-icon, .menu-icon-top, .menu-icon-bottom {
     position: absolute;
     background-color: #212121;
-    top: 1.2em;
+    top: 1.15em;
     left: 0;
     right: 0;
     margin: auto;
@@ -61,6 +61,12 @@
 
 .logo-section {
     margin-left: -3em;
+}
+.logo-section i {
+    font-size: 3em;
+    top: -0.2em;
+    position: absolute;
+    color: #212121;
 }
 
 .search-button {
@@ -295,9 +301,12 @@
 .fix .logo-section {
     margin-left: 0;
 }
+.fix .logo-section i {
+    color: #212121;
+}
 
 .fix .menu-icon-top {
-    top: 0.7em;
+    top: 0.6em;
 }
 
 .fix .menu-icon-bottom {
@@ -395,10 +404,10 @@
 
 .show-menu .menu-icon {
     opacity: 0;
-    left: -20px;
 }
 
-.show-menu .menu-icon-top {
+.fix.show-menu .menu-icon-top,
+.mobile.show-menu .menu-icon-top {
     top: 1.2em;
     -webkit-transform: rotate(135deg);
     -moz-transform: rotate(135deg);
@@ -406,7 +415,8 @@
     transform: rotate(135deg);
 }
 
-.show-menu .menu-icon-bottom {
+.fix.show-menu .menu-icon-bottom,
+.mobile.show-menu .menu-icon-bottom  {
     top: 1.2em;
     -webkit-transform: rotate(-135deg);
     -moz-transform: rotate(-135deg);
@@ -466,11 +476,6 @@
 /* Nav Highlighter - End */
 
 /* Logo Style - Start */
-
-.logo-section i {
-    color: #FFFFFF;
-}
-
 .icon-logo-svg:before {
     content: "a";
     margin-top: -0.03em;
@@ -626,8 +631,8 @@
         box-shadow: 0 0.125em 10px rgba(0, 0, 0, .05);
     }
     .logo-header {
-        padding: 3vw 1.2vw;
-        background: transparent;
+        padding: 0.8em;
+        background: linear-gradient(rgba(0, 0, 0, 0.12), transparent);
     }
     .menu-icon, .menu-icon-top, .menu-icon-bottom {
         background-color: #FFFFFF;
@@ -639,7 +644,10 @@
     }
     .logo-section {
         margin-left: 0;
-        background-color: #FFFFFF;
+        background-color: transparent;
+    }
+    .logo-section i {
+        color: #fff;
     }
     .search-wrapper {
         opacity: 0;
@@ -681,7 +689,7 @@
         margin-top: 3em;
     }
     .me-card-wrapper {
-        padding: 0.65em;
+        padding: 0;
         height: 165vw;
     }
     .info-wrapper {
@@ -726,19 +734,13 @@
     .main-header.fix {
         position: fixed;
         overflow: visible;
-        height: 4.2em;
-        min-height: 4.2em;
+        height: 4em;
+        min-height: 4em;
     }
     .fix .logo-header {
         background: transparent;
         box-shadow: none;
         z-index: 8;
-    }
-    .fix .logo-section, .search-header .logo-section {
-        background: #212121;
-    }
-    .fix .logo-section i {
-        color: #FFFFFF;
     }
     .fix .menu-icon, .fix .menu-icon-top, .fix .menu-icon-bottom, .search-header .menu-icon, .search-header .menu-icon-top, .search-header .menu-icon-bottom {
         background: #212121;
@@ -765,12 +767,19 @@
     /* Fixed Header Styles - End */
     /* Initial Header Styles - Start */
     .initial-header .me-card {
-        transform: translate3d(0, 40px, 0);
+        transform: translate3d(0, 0, 0);
         opacity: 0;
     }
     .initial-header .info-wrapper {
         position: relative;
+        transform: translate3d(0, 20px, 0);
+        opacity: 0;
         margin-top: 0;
+    }
+    .info-wrapper {
+        transform: translate3d(0, 0, 0);
+        opacity: 1;
+        transition: transform 0.5s, opacity 0.5s;
     }
     .initial-header .my-dp {
         display: none;
@@ -788,7 +797,7 @@
         color: #FFFFFF;
     }
     .show-menu .site-nav {
-        margin-top: 0.65em;
+        margin-top: 0;
         z-index: 7;
         top: 0;
     }
@@ -805,9 +814,6 @@
     .dp.my-dp {
         height: 94vw;
         float: none;
-    }
-    .logo-section i {
-        color: #212121;
     }
     .me-card .button-wrapper {
         display: block;

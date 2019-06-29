@@ -3,7 +3,8 @@
                 'fix-header': fixHeader, 
                 'initial-header': headerState.state === HEADER_STATE.Initial, 
                 'search-header': headerState.showSearch, 
-                'show-menu': headerState.showMenu }" #mecard>
+                'show-menu': headerState.showMenu,
+                'mobile': isMobile }" #mecard>
     <header class="logo-header">
         <div class="header-content-wrapper center-stage">
             <div class="menu-section" (click)="toggleMenu(); $event.stopPropagation();">
@@ -12,7 +13,7 @@
                 <div class="menu-icon-bottom"></div>
             </div>
             <div class="logo-section" (click)="goToHome()">
-                <i class="icon-logo-svg"></i>
+                <i class="icon-js-logo"></i>
             </div>
             <div class="search-wrapper" (clickedOut)="hideSearch($event)">
                 <form class="search-form" (ngSubmit)="search(keyword)">

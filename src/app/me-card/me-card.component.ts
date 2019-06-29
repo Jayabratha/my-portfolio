@@ -164,9 +164,7 @@ export class MeCardComponent implements OnInit, OnDestroy {
   }
 
   scrollDown() {
-    window.dispatchEvent(new KeyboardEvent('keydown', {
-      code: 'ArrowDown'
-    }));
+    this.homeService.setSlideCount(1);
   }
 
   @HostListener('window:scroll') onScroll() {

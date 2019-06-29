@@ -436,7 +436,7 @@ button {
 
 @media (max-width: 650px) {
     .center-stage {
-        width: 96%;
+        width: 100%;
         min-width: 0;
     }
     .dp {
@@ -452,6 +452,9 @@ button {
     }
     .main-content.fix-header {
         margin-top: 31em;
+    }
+    .content {
+        padding: 2em 0.8em;
     }
     .content .main {
         width: 100%;

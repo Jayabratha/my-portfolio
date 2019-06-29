@@ -217,14 +217,13 @@
 
 @media (max-width: 650px) {
     .home-content {
-        margin-top: 0;
-    }
-    .home-content {
         margin-top: 165vw;
+        padding: 0 0.8em;
     }
     .overview-wrapper {
         min-height: 550px;
         height: 80vh;
+        margin: 3em 0;
     }
     .dp.overview-dp {
         height: 25em;
