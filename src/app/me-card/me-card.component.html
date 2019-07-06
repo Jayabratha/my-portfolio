@@ -6,7 +6,7 @@
                 'show-menu': headerState.showMenu,
                 'mobile': isMobile }" #mecard>
     <header class="logo-header">
-        <div class="header-content-wrapper center-stage">
+        <div class="header-content center-stage">
             <div class="menu-section" (click)="toggleMenu(); $event.stopPropagation();">
                 <div class="menu-icon-top"></div>
                 <div class="menu-icon"></div>
@@ -39,26 +39,28 @@
         </div>
     </section>
     <section class="me-card-wrapper center-stage">
-        <div class="me-card" [style.width]="carouselLoadProgress + '%'">
+        <div class="prime-card me-card" [style.width]="carouselLoadProgress + '%'">
             <div class="dp my-dp">
                 <js-ng-carousel [slideItems]=slideList [play]=play [config]="carouselConfig" [style.width.%]="100"
                     [style.height.%]="100" (carouselLoading)="onCarouselLoadProgress($event)"></js-ng-carousel>
             </div>
             <div class="info-wrapper">
-                <div>
-                    <h1 class="intro">
-                        <span class="im">I'm</span>
-                        <span class="name">Jayabratha Saha</span>
-                    </h1>
-                    <div class="title">Artist & Developer</div>
+                <div class="info">
+                    <div>
+                        <h1 class="intro">
+                            <span class="im">I'm</span>
+                            <span class="name">Jayabratha Saha</span>
+                        </h1>
+                        <div class="title">Artist & Developer</div>
+                    </div>
+                    <div class="button-wrapper" (click)="scrollDown()">
+                        <div class="background"></div>
+                        <button>EXPLORE</button>
+                    </div>
+                    <a class="github-link" href="https://github.com/Jayabratha">
+                        <i class="icon-social-github"></i>
+                    </a>
                 </div>
-                <div class="button-wrapper" (click)="scrollDown()">
-                    <div class="background"></div>
-                    <button>EXPLORE</button>
-                </div>
-                <a class="github-link" href="https://github.com/Jayabratha">
-                    <i class="icon-social-github"></i>
-                </a>
             </div>
         </div>
     </section>

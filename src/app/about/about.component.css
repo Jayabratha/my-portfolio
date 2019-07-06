@@ -10,40 +10,40 @@
     justify-content: flex-start;
 }
 
-.tile-wrapper.angular {
+.tile.angular {
     background-color: #c22b28;
 }
-.tile-wrapper.react {
+.tile.react {
     background-color: #20232a;
 }
-.tile-wrapper.js {
+.tile.js {
     background-color: #fdc72c;
 }
-.tile-wrapper.css {
+.tile.css {
     background-color: #007acc;
 }
-.tile-wrapper.html {
+.tile.html {
     background-color: #ff5426;
 }
-.tile-wrapper.ts {
+.tile.ts {
     background-color: #0074c1
 }
-.tile-wrapper.firebase {
+.tile.firebase {
     background-color: #ffffff;
 }
-.tile-wrapper.jasmine {
+.tile.jasmine {
     background-color: #ffffff;
 }
-.tile-wrapper.sass {
+.tile.sass {
     background-color: #ffffff;
 }
-.tile-wrapper.nodejs {
+.tile.nodejs {
     background-color: #78b743;
 }
-.tile-wrapper.pwa {
+.tile.pwa {
     background-color: #3d3d3d;
 }
-.tile-wrapper.mongodb {
+.tile.mongodb {
     background-color: #ffffff;
 }
 

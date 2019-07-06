@@ -1,6 +1,6 @@
 <div class="home-content center-stage" [class.adjust-fix]="headerState.state === HEADER_STATE.Fixed">
   <div class="overview-wrapper">
-    <div class="overview art-overview" [class.above-view]="steps[1].isAboveView" [class.below-view]="steps[1].isBelowView"
+    <div class="prime-card overview art-overview" [class.above-view]="steps[1].isAboveView" [class.below-view]="steps[1].isBelowView"
       viewportCheck [padding]=padding [checkAboveView]=true >
       <div class="dp overview-dp">
         <h2>Art</h2>
@@ -11,7 +11,7 @@
           <button routerLink="/art">VIEW GALLERY</button>
         </div>
       </div>
-      <div class="overview-content-wrapper">
+      <div class="info-wrapper">
         <div class="overview-content-background"></div>
         <div class="overview-content">
           A collection of my sketches and paintings
@@ -20,7 +20,7 @@
     </div>
   </div>
   <div class="overview-wrapper">
-    <div class="overview projects-overview" [class.above-view]="steps[2].isAboveView" [class.below-view]="steps[2].isBelowView"
+    <div class="prime-card overview projects-overview" [class.above-view]="steps[2].isAboveView" [class.below-view]="steps[2].isBelowView"
       viewportCheck  [padding]=padding [checkAboveView]=true >
       <div class="dp overview-dp">
         <h2>Projects</h2>
@@ -31,7 +31,7 @@
           <button routerLink="/projects">VIEW PROJECTS</button>
         </div>
       </div>
-      <div class="overview-content-wrapper">
+      <div class="info-wrapper">
         <div class="overview-content-background"></div>
         <div class="overview-content">
           How I learn new technologies. See my hobby projects
@@ -40,7 +40,7 @@
     </div>
   </div>
   <div class="overview-wrapper">
-    <div class="overview blog-overview" [class.above-view]="steps[3].isAboveView" [class.below-view]="steps[3].isBelowView"
+    <div class="prime-card overview blog-overview" [class.above-view]="steps[3].isAboveView" [class.below-view]="steps[3].isBelowView"
       viewportCheck  [padding]=padding [checkAboveView]=true >
       <div class="dp overview-dp">
         <h2>Blog</h2>
@@ -51,7 +51,7 @@
           <button routerLink="/blog">GO TO BLOG</button>
         </div>
       </div>
-      <div class="overview-content-wrapper">
+      <div class="info-wrapper">
         <div class="overview-content-background"></div>
         <div class="overview-content">
           My thoughts on technology and life. See my blog posts
@@ -60,7 +60,7 @@
     </div>
   </div>
   <div class="overview-wrapper">
-    <div class="overview about-overview" [class.above-view]="steps[4].isAboveView" [class.below-view]="steps[4].isBelowView"
+    <div class="prime-card overview about-overview" [class.above-view]="steps[4].isAboveView" [class.below-view]="steps[4].isBelowView"
       viewportCheck  [padding]=padding [checkAboveView]=true >
       <div class="dp overview-dp">
         <h2>About</h2>
@@ -71,7 +71,7 @@
           <button routerLink="/about">ABOUT ME</button>
         </div>
       </div>
-      <div class="overview-content-wrapper">
+      <div class="info-wrapper">
         <div class="overview-content-background"></div>
         <div class="overview-content">
           I am artist, developer and wanna be ....
@@ -81,7 +81,7 @@
     </div>
   </div>
   <div class="overview-wrapper">
-    <div class="overview contact-overview" [class.above-view]="steps[5].isAboveView" [class.below-view]="steps[5].isBelowView"
+    <div class="prime-card overview contact-overview" [class.above-view]="steps[5].isAboveView" [class.below-view]="steps[5].isBelowView"
       viewportCheck  [padding]=padding [checkAboveView]=true >
       <div class="dp overview-dp">
         <h2>Contact</h2>
@@ -92,7 +92,7 @@
           <button routerLink="/contact">CONTACT ME</button>
         </div>
       </div>
-      <div class="overview-content-wrapper">
+      <div class="info-wrapper">
         <div class="overview-content-background"></div>
         <div class="overview-content">
           Interested to work with me. Contact me

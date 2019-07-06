@@ -1,20 +1,22 @@
 <div class="content blog-content center-stage">
   <h1>Blog</h1>
   <div class="feature-wrapper">
-    <div class="content-wrapper clearfix below-view" viewportCheck>
-      <div class="main">
+    <div class="prime-card clearfix below-view" viewportCheck>
+      <div class="dp main">
         <h2>My blogs posts</h2>
         <i class="icon-ios-chatboxes"></i>
       </div>
-      <div class="blog-card feature-content featured-blog">
-        <div class="title">
-          <h3>Work in progress</h3>
-          <a routerLink="/blog/new-article">
-            <div class="button-wrapper">
-              <div class="background"></div>
-              <button>READ</button>
-            </div>
-          </a>
+      <div class="info-wrapper">
+        <div class="card feature-content featured-blog">
+          <div class="title">
+            <h3>Work in progress</h3>
+            <a routerLink="/blog/new-article">
+              <div class="button-wrapper">
+                <div class="background"></div>
+                <button>READ</button>
+              </div>
+            </a>
+          </div>
         </div>
       </div>
     </div>
@@ -22,8 +24,8 @@
   <section class="blog-list">
     <h2>All Blog posts</h2>
     <ul>
-      <li *ngFor="let post of posts | async" class="blog-card view-check below-view" viewportCheck>
-        <div class="cover-art"></div>
+      <li *ngFor="let post of posts | async" class="card view-check below-view" viewportCheck>
+        <!-- <div class="cover-art"></div> -->
         <div class="info">
           <div class="title">
             <h3>{{post.title}}</h3>

@@ -51,7 +51,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   stepCount: number = 0;
   decounce: boolean = false;
   isMobile: boolean = false;
-  padding: number = 100;
+  padding: number = 200;
   subs: Subscription;
 
   constructor(private store: Store<AppState>, private homeService: HomeService) { }
@@ -82,15 +82,32 @@ export class HomeComponent implements OnInit, OnDestroy {
     }
 
     this.homeService.getSlideCount().subscribe((slideCount) => {
+      console.log(slideCount);
       this.setStepCount(slideCount);
     })
   }
 
   setStepCount(stepCount) {
-    let nextScrollPosition = stepCount * (95 * window.innerHeight) / 100;
+    let height = 75;
+    let nextScrollPosition = 0;
+    let firstScrollPosition = (95 * window.innerHeight) / 100;
+
+    if (this.isMobile) {
+      height = 86;
+    }
+
+    if (stepCount === 1) {
+      if (this.isMobile) {
+        nextScrollPosition = (175 * this.screenWidth) / 100;
+      } else {
+        nextScrollPosition = firstScrollPosition;
+      }    
+    } else if (stepCount) {
+      nextScrollPosition = firstScrollPosition + (stepCount - 1) * (height * window.innerHeight) / 100;
+    }
 
     if (stepCount === 1 && this.isMobile) {
-      nextScrollPosition = (165 * this.screenWidth) / 100;
+      nextScrollPosition = (175 * this.screenWidth) / 100;
     }
 
     window.scrollTo(0, nextScrollPosition);
@@ -98,32 +115,32 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.stepCount = stepCount;
   }
 
-  @HostListener('window:wheel', ['$event'])
-  onWheelRotate(ev) {
-    let delta, stepCount;
-    if (!this.isMobile) {
-      if (!this.decounce) {
-        if (ev.wheelDelta) {
-          delta = ev.wheelDelta;
-        } else {
-          delta = -1 * ev.deltaY;
-        }
+  // @HostListener('window:wheel', ['$event'])
+  // onWheelRotate(ev) {
+  //   let delta, stepCount;
+  //   if (!this.isMobile) {
+  //     if (!this.decounce) {
+  //       if (ev.wheelDelta) {
+  //         delta = ev.wheelDelta;
+  //       } else {
+  //         delta = -1 * ev.deltaY;
+  //       }
 
-        if (delta < 0) {
-          stepCount = this.stepCount < 5 ? this.stepCount + 1 : 5;
-          this.setStepCount(stepCount);
-        } else {
-          stepCount = this.stepCount > 0 ? this.stepCount - 1 : 0;
-          this.setStepCount(stepCount);
-        }
+  //       if (delta < 0) {
+  //         stepCount = this.stepCount < 5 ? this.stepCount + 1 : 5;
+  //         this.setStepCount(stepCount);
+  //       } else {
+  //         stepCount = this.stepCount > 0 ? this.stepCount - 1 : 0;
+  //         this.setStepCount(stepCount);
+  //       }
 
-        this.decounce = true;
-        setTimeout(() => {
-          this.decounce = false;
-        }, 1000);
-      }
-    }
-  }
+  //       this.decounce = true;
+  //       setTimeout(() => {
+  //         this.decounce = false;
+  //       }, 1000);
+  //     }
+  //   }
+  // }
 
   @HostListener('window:keydown', ['$event'])
   onArrowUpDown(ev) {

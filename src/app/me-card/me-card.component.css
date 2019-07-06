@@ -16,13 +16,12 @@
     position: fixed;
     top: 0;
     padding: 0.65em 0;
-    left: 0;
-    right: 0;
+    width: 100%;
     z-index: 8;
     background: #FFFFFF;
 }
 
-.header-content-wrapper {
+.header-content {
     position: relative;
 }
 
@@ -52,7 +51,7 @@
     left: 0;
     right: 0;
     margin: auto;
-    width: 1.8em;
+    width: 2em;
     height: 0.125em;
     content: '';
     -webkit-transition: all .5s;
@@ -62,6 +61,7 @@
 .logo-section {
     margin-left: -3em;
 }
+
 .logo-section i {
     font-size: 3em;
     top: -0.2em;
@@ -98,12 +98,14 @@
 .me-card-wrapper {
     position: relative;
     box-sizing: content-box;
-    padding-top: 25vh;
-    min-height: 19.3em;
-    height: 22vw;
+    padding-top: 24vh;
     overflow: hidden;
     z-index: 4;
-    transition: height 0.5s;
+    color: #ffffff;
+}
+
+.me-card-wrapper .info {
+    padding: 2em;
 }
 
 .menu-background {
@@ -145,18 +147,6 @@
     position: absolute;
     top: 0;
     transition: opacity 0.5s ease-out;
-}
-
-.info-wrapper {
-    display: flex;
-    position: relative;
-    height: 100%;
-    padding: 3em 2em;
-    color: #FFFFFF;
-    opacity: 1;
-    transition: opacity 0.5s ease-out;
-    flex-direction: column;
-    justify-content: space-around;
 }
 
 .intro {
@@ -217,7 +207,7 @@
 }
 
 .initial-header .me-card {
-    transform: translate3d(0, 19.2em, 0);
+    transform: translate3d(0, 21.88em, 0);
     transition: none;
 }
 
@@ -282,11 +272,8 @@
 
 .main-header.fix-header {
     height: 3.7em;
+    min-height: 3.7em;
     box-shadow: none;
-}
-
-.fix .me-card-wrapper {
-    display: none;
 }
 
 .fix .logo-header {
@@ -301,6 +288,7 @@
 .fix .logo-section {
     margin-left: 0;
 }
+
 .fix .logo-section i {
     color: #212121;
 }
@@ -406,8 +394,7 @@
     opacity: 0;
 }
 
-.fix.show-menu .menu-icon-top,
-.mobile.show-menu .menu-icon-top {
+.fix.show-menu .menu-icon-top, .mobile.show-menu .menu-icon-top {
     top: 1.2em;
     -webkit-transform: rotate(135deg);
     -moz-transform: rotate(135deg);
@@ -415,8 +402,7 @@
     transform: rotate(135deg);
 }
 
-.fix.show-menu .menu-icon-bottom,
-.mobile.show-menu .menu-icon-bottom  {
+.fix.show-menu .menu-icon-bottom, .mobile.show-menu .menu-icon-bottom {
     top: 1.2em;
     -webkit-transform: rotate(-135deg);
     -moz-transform: rotate(-135deg);
@@ -476,6 +462,7 @@
 /* Nav Highlighter - End */
 
 /* Logo Style - Start */
+
 .icon-logo-svg:before {
     content: "a";
     margin-top: -0.03em;
@@ -627,13 +614,6 @@
         height: auto;
         top: 0;
     }
-    .main-header.fix-header {
-        box-shadow: 0 0.125em 10px rgba(0, 0, 0, .05);
-    }
-    .logo-header {
-        padding: 0.8em;
-        background: linear-gradient(rgba(0, 0, 0, 0.12), transparent);
-    }
     .menu-icon, .menu-icon-top, .menu-icon-bottom {
         background-color: #FFFFFF;
         height: 2px;
@@ -673,10 +653,10 @@
     .search-header .logo-section, .search-header .menu-section {
         opacity: 0;
     }
-    .menu-icon-top, .fix-header .menu-icon-top {
+    .menu-icon-top, .fix .menu-icon-top {
         top: 9px;
     }
-    .menu-icon-bottom, .fix-header .menu-icon-bottom {
+    .menu-icon-bottom, .fix .menu-icon-bottom {
         top: 23px;
     }
     .fix-header.show-menu .menu-icon-top, .fix-header.show-menu .menu-icon-bottom {
@@ -684,18 +664,17 @@
     }
     .menu-section {
         float: right;
+        width: 2em;
     }
     .hello-card {
         margin-top: 3em;
     }
     .me-card-wrapper {
         padding: 0;
-        height: 165vw;
+        height: 175vw;
     }
-    .info-wrapper {
-        font-size: 3vw;
-        padding: 2em;
-        height: 70vw;
+    .me-card-wrapper .me-card {
+        height: 100%;
     }
     .site-nav {
         display: block;
@@ -731,16 +710,25 @@
         display: block;
     }
     /* Fixed & Search Header Styles - Start */
-    .main-header.fix {
-        position: fixed;
-        overflow: visible;
-        height: 4em;
-        min-height: 4em;
-    }
-    .fix .logo-header {
-        background: transparent;
+    .logo-header {
+        padding: 0.8em;
+        background: linear-gradient(rgba(0, 0, 0, 0.12), transparent);
         box-shadow: none;
         z-index: 8;
+    }
+    .fix.show-menu .logo-header {
+        box-shadow: none;
+        background: transparent;
+    }
+    .fix.show-menu:after {
+        content: "";
+        height: 4em;
+        width: 100%;
+        position: fixed;
+        top: 0;
+        left: 0;
+        background: white;
+        z-index: 4;
     }
     .fix .menu-icon, .fix .menu-icon-top, .fix .menu-icon-bottom, .search-header .menu-icon, .search-header .menu-icon-top, .search-header .menu-icon-bottom {
         background: #212121;
@@ -753,16 +741,11 @@
     }
     .fix-header .site-nav {
         display: block;
-        position: absolute;
+        position: fixed;
         top: 0;
         margin-top: 4.1em;
         z-index: 6;
         transition: height 0.5s, margin-top 0.5s;
-    }
-    .fix-header .me-card-wrapper, .search-header .me-card-wrapper {
-        padding-top: 4.1em;
-        padding-bottom: 0;
-        height: 2px;
     }
     /* Fixed Header Styles - End */
     /* Initial Header Styles - Start */
@@ -811,9 +794,8 @@
         color: #FFFFFF;
     }
     /* Show Menu Styles - End */
-    .dp.my-dp {
+    .prime-card .dp.my-dp {
         height: 94vw;
-        float: none;
     }
     .me-card .button-wrapper {
         display: block;
@@ -821,11 +803,8 @@
 }
 
 @media (min-width: 1400px) {
-    .me-card-wrapper {
-        min-height: 22vw;
-    }
     .initial-header .me-card {
-        transform: translate3d(0, 21.8vw, 0);
+        transform: translate3d(0, 23.88vw, 0);
         transition: none;
     }
 }

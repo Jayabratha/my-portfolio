@@ -172,7 +172,7 @@ export class MeCardComponent implements OnInit, OnDestroy {
     let scrollLimit = this.meCard.nativeElement.offsetHeight - 60;
 
     if (this.isMobile) {
-      scrollLimit = (165 * window.innerWidth) / 100 - 60;
+      scrollLimit = (165 * window.innerWidth) / 100 - 360;
     }
 
     if (this.activateScroll && scrollTop < scrollLimit) {

@@ -1,36 +1,38 @@
 <div class="content projects-content center-stage">
   <h1>Projects</h1>
   <div class="feature-wrapper">
-    <div class="content-wrapper clearfix below-view" viewportCheck>
-      <div class="main">
+    <div class="prime-card clearfix below-view" viewportCheck>
+      <div class="dp main">
         <h2>My hobby projects</h2>
         <i class="icon-social-github"></i>
       </div>
-      <div class="project-card feature-content featured-project">
-        <div class="title">
-          <h3>My Portfolio</h3>
-          <a class="github-link" href="https://github.com/Jayabratha/my-portfolio">
-            <span>my-portfolio</span><i class="icon-social-github"></i>
-          </a>
-        </div>
-        <div class="desc">This project is my personal portfolio showcaseing my art works, projects and blog</div>
-        <div class="footer">
-          <div class="tags">
-            <ul class="tag-list">
-              <li>
-                <div class="tag-color firebase"></div>firebase
-              </li>
-              <li>
-                <div class="tag-color angular"></div>angular
-              </li>
-            </ul>
+      <div class="info-wrapper">
+        <div class="card feature-content featured-project">
+          <div class="title">
+            <h3>My Portfolio</h3>
+            <a class="github-link" href="https://github.com/Jayabratha/my-portfolio">
+              <span>my-portfolio</span><i class="icon-social-github"></i>
+            </a>
           </div>
-          <a href="https://github.com/Jayabratha/my-portfolio">
-            <div class="button-wrapper">
-              <div class="background"></div>
-              <button>VIEW PROJECT</button>
+          <div class="desc">This project is my personal portfolio showcaseing my art works, projects and blog</div>
+          <div class="footer">
+            <div class="tags">
+              <ul class="tag-list">
+                <li>
+                  <div class="tag-color firebase"></div>firebase
+                </li>
+                <li>
+                  <div class="tag-color angular"></div>angular
+                </li>
+              </ul>
             </div>
-          </a>
+            <a href="https://github.com/Jayabratha/my-portfolio">
+              <div class="button-wrapper">
+                <div class="background"></div>
+                <button>VIEW PROJECT</button>
+              </div>
+            </a>
+          </div>
         </div>
       </div>
     </div>
@@ -38,7 +40,7 @@
   <section class="all-projects-container">
     <h2>All projects</h2>
     <ul class="project-list">
-      <li class="project project-card view-check below-view" viewportCheck *ngFor="let project of projects | async">
+      <li class="project card view-check below-view" viewportCheck *ngFor="let project of projects | async">
         <div class="title">
           <h3>{{project.title}}</h3>
           <a class="github-link" [href]="project.githubUrl">

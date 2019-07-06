@@ -1,5 +1,8 @@
+.contact-form {
+    padding-left: 1em;
+}
 .message {
-    height: 139px;
+    height: 10.15em;
 }
 
 .button-wrapper {
@@ -97,18 +100,28 @@ button.submit-contact {
     height: 500px;
 }
 
-@media (min-width: 650px) and (max-width: 950px) {
-    .message {
-        height: 89px;
-    }
-}
-
 @media (min-width: 650px) {
     .name-wrapper {
         float: left;
         width: 50%;
-    }
+    }   
     .input-wrapper input.last-name {
         border-left: none;
+    }
+}
+
+@media (max-width: 650px) {
+    .contact-form {
+        padding-left: 0;
+    }
+}
+@media (min-width: 650px) and (max-width: 950px) {
+    .message {
+        height: 8.4em;
+    }
+}
+@media (min-width: 1450px) {
+    .message {
+        height: 13em;
     }
 }

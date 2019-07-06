@@ -6,6 +6,38 @@
     height: 4em;
 }
 
+/* Center Stage Design - Start */
+
+.center-stage {
+    width: 65%;
+    min-width: 55em;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+@media (min-width: 1300px) and (max-width: 1450px) {
+    .center-stage {
+        width: 70%;
+        min-width: 0;
+    }
+}
+
+@media (min-width: 1200px) and (max-width: 1300px) {
+    .center-stage {
+        width: 75%;
+        min-width: 0;
+    }
+}
+
+@media (max-width: 650px) {
+    .center-stage {
+        width: 100%;
+        min-width: 0;
+    }
+}
+
+/* Center Stage Design - End */
+
 /* Route Components Base Styles - Start */
 
 .main-content {
@@ -32,11 +64,6 @@
     border-bottom: thin dotted #cdcdcd;
 }
 
-.content-wrapper {
-    min-height: 19.3em;
-    height: 22vw;
-}
-
 .content h2 {
     font-size: 2em;
     font-family: Roboto;
@@ -55,7 +82,7 @@
     width: 40%;
     float: left;
     color: #FFFFFF;
-    padding: 0.65em;;
+    padding: 0.65em;
     line-height: 1.5em;
     height: 100%;
     overflow: hidden;
@@ -73,14 +100,6 @@
     font-size: 10em;
     opacity: 0.15;
     left: -50px;
-}
-
-.content .feature-content {
-    width: 60%;
-    float: left;
-    padding-left: 1em;
-    height: 100%;
-    margin-bottom: 2em;
 }
 
 .content.art-content .main {
@@ -111,8 +130,6 @@
     text-align: center;
     padding-top: 1em;
 }
-
-/* Route Components Base Styles - End */
 
 .content section {
     padding: 20px 0;
@@ -158,7 +175,141 @@ p.sub_desc {
     padding: 1vw 0;
 }
 
-.tile-wrapper {
+/* Route Components Base Styles - End */
+
+/* Prime Card Design - Start */
+
+.prime-card {
+    display: flex;
+    min-height: 22em;
+    height: 24vw;
+    flex-direction: row;
+}
+
+.prime-card .dp {
+    position: relative;
+    width: 40%;
+    height: 100%;
+    overflow: hidden;
+    z-index: 5;
+}
+
+.prime-card .dp>img {
+    height: 100%;
+    float: right;
+}
+
+.prime-card .info-wrapper {
+    position: relative;
+    width: 60%;
+}
+
+@media (max-width: 650px) {
+    .prime-card {
+        flex-direction: column;
+        min-height: 30em;
+        height: auto;
+    }
+    .prime-card .dp {
+        width: 100%;
+        height: 25em;
+    }
+    .prime-card .dp>img {
+        width: 100%;
+        height: auto;
+    }
+    .prime-card .info-wrapper {
+        width: 100%;
+        height: auto;
+    }
+}
+
+@media (min-width: 1200px) {
+    .prime-card .dp {
+        width: 38%;
+    }
+    .prime-card .info-wrapper {
+        width: 62%;
+    }
+}
+
+/* Prime Card Design - End */
+
+/* Card Design - Start */
+
+.card {
+    position: relative;
+    width: 48%;
+    min-height: 300px;
+    background: #FFFFFF;
+    padding: 1.5em 1.5em 7em;
+    border: thin solid #efefef;
+    box-shadow: 0 3px 10px rgba(56, 55, 55, 0.06);
+    font-family: Roboto;
+    font-weight: 200;
+    margin-bottom: 2em;
+}
+
+.card .title {
+    margin: 0 0 1em;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.card:not(.featured-project) .title {
+    margin: -1.5em -1.5em 0.5em;
+    padding: 1.5em;
+    min-height: 7em;
+}
+
+.card .title h3 {
+    font-size: 1.6em;
+    margin: 0;
+    font-weight: 200;
+    margin-top: -0.2em;
+}
+
+.card .tag-list {
+    margin: 1em 0 1.5em;
+}
+
+.card .tag-list li {
+    display: inline-block;
+    padding: 5px 10px 5px 5px;
+    font-size: 0.75em;
+    background: #f0f0f0;
+    margin-right: 5px;
+    border-radius: 15px;
+}
+
+.card .tag-color {
+    height: 1em;
+    width: 1em;
+    display: inline-block;
+    border-radius: 50%;
+    margin-right: 5px;
+    vertical-align: middle;
+}
+
+.card.feature-content {
+    width: 100%;
+    height: 100%;
+    margin-bottom: 2em;
+}
+
+@media (max-width: 650px) {
+    .card {
+        width: 100%;
+        font-size: 1.25em;
+    }
+}
+
+/* Card Design - End */
+
+/* Tile Design - Start */
+
+.tile {
     width: 24.4%;
     padding-bottom: 24.4%;
     position: relative;
@@ -169,17 +320,17 @@ p.sub_desc {
     transition: transform 0.5s ease-out, opacity 0.5s;
 }
 
-.tile-wrapper.small {
+.tile.small {
     width: 16%;
     padding-bottom: 16%;
 }
 
-.tile-wrapper.hide {
+.tile.hide {
     transform: translate3d(0, 100px, 0);
     opacity: 0;
 }
 
-.tile-wrapper i {
+.tile i {
     display: flex;
     position: absolute;
     align-items: center;
@@ -193,19 +344,19 @@ p.sub_desc {
     transition: transform 0.5s;
 }
 
-.tile-wrapper.small i {
+.tile.small i {
     font-size: 5vw;
 }
 
-.tile-wrapper:hover i, .tile-wrapper:hover img {
+.tile:hover i, .tile:hover img {
     transform: scale3d(1.2, 1.2, 1);
 }
 
-.tile-wrapper a {
+.tile a {
     text-decoration: none;
 }
 
-.tile-wrapper img {
+.tile img {
     height: 7em;
     max-width: 100%;
     position: absolute;
@@ -218,35 +369,35 @@ p.sub_desc {
     transition: transform 0.5s;
 }
 
-.tile-wrapper.small img {
+.tile.small img {
     height: 5vw;
 }
+
+@media (max-width: 650px) {
+    .tile.small {
+        width: 24.4%;
+        padding-bottom: 24.4%;
+    }
+    .tile i {
+        font-size: 4em;
+    }
+    .tile img {
+        height: 4em;
+    }
+    .tile.small i {
+        font-size: 10vw;
+    }
+    .tile.small img {
+        height: 10vw;
+    }
+}
+
+/* Tile Design - End */
 
 .alert {
     text-align: center;
     font-family: Roboto;
     font-size: 1.5em;
-}
-
-.center-stage {
-    width: 65%;
-    min-width: 55em;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-.dp {
-    position: relative;
-    float: left;
-    width: 35%;
-    height: 100%;
-    overflow: hidden;
-    z-index: 5;
-}
-
-.dp>img {
-    height: 100%;
-    float: right;
 }
 
 ul {
@@ -427,28 +578,10 @@ button {
 
 /* Tab Styles - Start */
 
-@media (max-width: 950px) {
-    .center-stage {
-        width: 80%;
-        min-width: 0;
-    }
-}
-
 @media (max-width: 650px) {
-    .center-stage {
-        width: 100%;
-        min-width: 0;
-    }
-    .dp {
-        width: 100%;
-    }
-    .dp>img {
-        width: 100%;
-        height: auto;
-    }
     .main-content {
         padding-top: 1em;
-        margin-bottom: 0;
+        margin: 0;
     }
     .main-content.fix-header {
         margin-top: 31em;
@@ -456,21 +589,16 @@ button {
     .content {
         padding: 2em 0.8em;
     }
-    .content .main {
-        width: 100%;
-        min-height: 5em;
+    .content .dp.main {
+        height: 5em;
     }
     .content .main i {
         left: -10px;
         bottom: -30px;
     }
-    .content-wrapper {
-        min-height: 12em;
-    }
     .content .feature-content {
         width: 100%;
         padding-top: 1em;
-        padding-left: 0;
         min-height: 18em;
         height: auto;
         margin-bottom: 3em;
@@ -489,23 +617,6 @@ button {
         transform: translateY(0);
         opacity: 1;
     }
-    .tile-wrapper.small {
-        width: 24.4%;
-        padding-bottom: 24.4%;
-    }
-    .tile-wrapper i {
-        font-size: 4em;
-    }
-    .tile-wrapper img {
-        height: 4em;
-    }
-    .tile-wrapper.small i {
-        font-size: 10vw;
-    }
-    .tile-wrapper.small img {
-        height: 10vw;
-    }
-
 }
 
 /* Tab Styles - End */
