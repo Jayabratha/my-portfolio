@@ -11,10 +11,18 @@ export class ProjectsComponent implements OnInit {
   projects: Observable<any[]>;
 
   constructor(private flService: FlamelinkService) {
-    this.projects = this.flService.getContent("projects");
   }
 
   ngOnInit() {
+    this.flService.getContent("projects").subscribe((projects) => {
+      this.projects = projects.map((project) => {
+        return Object.assign(project, {showTags: false});
+      });
+    });
+  }
+
+  toggleTagShow(project) {
+    project.showTags = !project.showTags;
   }
 
 }

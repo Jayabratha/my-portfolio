@@ -19,10 +19,10 @@
             <div class="tags">
               <ul class="tag-list">
                 <li>
-                  <div class="tag-color firebase"></div>firebase
+                  <div class="tag-color firebase"></div><div class="tag-text">firebase</div>
                 </li>
                 <li>
-                  <div class="tag-color angular"></div>angular
+                  <div class="tag-color angular"></div><div class="tag-text">angular</div>
                 </li>
               </ul>
             </div>
@@ -40,25 +40,25 @@
   <section class="all-projects-container">
     <h2>All projects</h2>
     <ul class="project-list">
-      <li class="project card view-check below-view" viewportCheck *ngFor="let project of projects | async">
+      <li class="project card view-check below-view" viewportCheck *ngFor="let project of projects">
         <div class="title">
-          <h3>{{project.title}}</h3>
-          <a class="github-link" [href]="project.githubUrl">
-            <span>{{project.appName}}</span>
+          <h3>{{project?.title}}</h3>
+          <a class="github-link" [href]="project?.githubUrl">
+            <span>{{project?.appName}}</span>
             <i class="icon-social-github"></i>
           </a>
         </div>
-        <div class="desc">{{project.description}}</div>
+        <div class="desc">{{project?.description}}</div>
         <div class="footer">
           <div class="tags">
-            <ul class="tag-list">
-              <li *ngFor="let tag of project.tags.split(',')">
-                <div class="tag-color {{tag}}"></div>
-                {{tag}}
+            <ul class="tag-list" (click)="toggleTagShow(project)" [class.show-tags]="project?.showTags">
+              <li *ngFor="let tag of project?.tags.split(', ')">
+                <div class="tag-color {{tag}}">{{tag.charAt(0)}}</div>
+                <div class="tag-text">{{tag}}</div>
               </li>
             </ul>
           </div>
-          <a [href]="project.appUrl">
+          <a [href]="project?.appUrl">
             <div class="button-wrapper">
               <div class="background"></div>
               <button>VIEW PROJECT</button>
