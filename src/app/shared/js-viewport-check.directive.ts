@@ -16,7 +16,6 @@ export class ViewportCheck implements OnInit, OnDestroy {
 
   elem: HTMLElement;
   elemViewportOffset: number;
-  hasEntered: boolean = false;
   hasLeft: boolean = false;
   isMobile: boolean = false;
 
@@ -64,8 +63,16 @@ export class ViewportCheck implements OnInit, OnDestroy {
       if (this.checkAboveView && !this.noDecorate) {
         if (this.elemViewportOffset + this.padding < 0) {
           this.renderer.setElementClass(this.elem, this.aboveClass, true);
-        } else {
+          if (this.hasEntered) {
+            this.hasEntered = false;
+            this.leftViewport.emit(true);
+          }
+        } else if (this.elem.classList.contains(this.aboveClass)) {
           this.renderer.setElementClass(this.elem, this.aboveClass, false);
+          if (!this.hasEntered) {
+            this.hasEntered = true;
+            this.enteredViewport.emit(true);
+          }
         }
       }
     }, this.checkDelay);

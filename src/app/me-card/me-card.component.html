@@ -1,9 +1,9 @@
 <div class="main-header" [ngClass]="{
-                'fix': headerState.state === HEADER_STATE.Fixed, 
+                'fix': header.state === HEADER_STATE.Fixed, 
                 'fix-header': fixHeader, 
-                'initial-header': headerState.state === HEADER_STATE.Initial, 
-                'search-header': headerState.showSearch, 
-                'show-menu': headerState.showMenu,
+                'initial-header': header.state === HEADER_STATE.Initial, 
+                'search-header': header.showSearch, 
+                'show-menu': header.showMenu,
                 'mobile': isMobile }" #mecard>
     <header class="logo-header">
         <div class="header-content center-stage">
@@ -31,7 +31,7 @@
         </div>
     </header>
     <div class="main-loader loading-icon animate" [hidden]="!loading"></div>
-    <section class="hello-card" [hidden]="headerState.state != HEADER_STATE.Initial">
+    <section class="hello-card" [hidden]="header.state != HEADER_STATE.Initial">
         <div class="overlay"></div>
         <div class="initial-loader loading-icon animate"></div>
         <div class="hello">
@@ -64,7 +64,7 @@
             </div>
         </div>
     </section>
-    <div class="search-result-wrapper center-stage" [hidden]="!headerState.showSearch">
+    <div class="search-result-wrapper center-stage" [hidden]="!header.showSearch">
         <div class="initial-message" [hidden]="!(isSearchAvailable && !resultsPage)">
             <i class="icon-ios-search"></i>
             <div>Type in above to see matched content</div>
@@ -105,4 +105,4 @@
     </nav>
 </div>
 <div class="menu-background"
-    [hidden]="!((headerState.state === HEADER_STATE.Fixed && headerState.showMenu) || headerState.showSearch)"></div>
+    [hidden]="!((header.state === HEADER_STATE.Fixed && header.showMenu) || header.showSearch)"></div>

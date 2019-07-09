@@ -1,6 +1,5 @@
 import { Component, OnInit, OnDestroy, HostListener } from '@angular/core';
 import { Subscription, Subject } from 'rxjs';
-import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { AppState } from '../app-store/app.state';
 import { Header } from '../models/header.model';
@@ -17,8 +16,9 @@ import { HomeService } from './home.service';
 export class HomeComponent implements OnInit, OnDestroy {
 
   HEADER_STATE = HeaderState;
-  headerState: Header;
+  headerState: HeaderState;
   screenWidth: number = window.innerWidth;
+  autoScrolling: boolean = false;
   steps: Array<{
     tileName: string,
     isAboveView: boolean,
@@ -65,13 +65,16 @@ export class HomeComponent implements OnInit, OnDestroy {
       this.isMobile = true;
     }
 
-    this.subs = this.store.select('header')
+    this.subs = this.store.select((state: AppState) => state.header.state)
       .pipe(takeUntil(this.onDestroy$))
-      .subscribe((headerState: Header) => {
+      .subscribe((headerState: HeaderState) => {
         this.headerState = headerState;
+        if (this.headerState === HeaderState.Home) {
+          this.stepCount = 0;
+        }
       });
 
-    if (this.headerState.state === HeaderState.Fixed) {
+    if (this.headerState === HeaderState.Fixed) {
       this.store.dispatch(new HeaderActions.UpdateState(HeaderState.Home))
     }
 
@@ -82,7 +85,6 @@ export class HomeComponent implements OnInit, OnDestroy {
     }
 
     this.homeService.getSlideCount().subscribe((slideCount) => {
-      console.log(slideCount);
       this.setStepCount(slideCount);
     })
   }
@@ -91,6 +93,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     let height = 75;
     let nextScrollPosition = 0;
     let firstScrollPosition = (95 * window.innerHeight) / 100;
+    this.autoScrolling = true;
 
     if (this.isMobile) {
       height = 86;
@@ -101,7 +104,7 @@ export class HomeComponent implements OnInit, OnDestroy {
         nextScrollPosition = (175 * this.screenWidth) / 100;
       } else {
         nextScrollPosition = firstScrollPosition;
-      }    
+      }
     } else if (stepCount) {
       nextScrollPosition = firstScrollPosition + (stepCount - 1) * (height * window.innerHeight) / 100;
     }
@@ -113,6 +116,10 @@ export class HomeComponent implements OnInit, OnDestroy {
     window.scrollTo(0, nextScrollPosition);
 
     this.stepCount = stepCount;
+
+    setTimeout(() => {
+      this.autoScrolling = false;
+    }, 2000);
   }
 
   // @HostListener('window:wheel', ['$event'])
@@ -142,6 +149,12 @@ export class HomeComponent implements OnInit, OnDestroy {
   //   }
   // }
 
+  handleCardInView(stepCount) {
+    if (!this.autoScrolling) {
+      console.log(stepCount);
+      this.stepCount = stepCount;
+    }
+  }
   @HostListener('window:keydown', ['$event'])
   onArrowUpDown(ev) {
     let keycode = ev.code;

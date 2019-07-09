@@ -8,19 +8,19 @@ const initialHeader: Header = {
     showSearch: false
 }
 
-export function headerReducer(headerState: Header = initialHeader, action: HeaderActions.Actions) {
+export function headerReducer(header: Header = initialHeader, action: HeaderActions.Actions) {
     switch (action.type) {
         case HeaderActions.UPDATE_STATE:
-            return { ...headerState, state: action.payload };
+            return { ...header, state: action.payload };
 
         case HeaderActions.TOGGLE_MENU:
-            return { ...headerState, showMenu: action.payload };
+            return { ...header, showMenu: action.payload };
 
         case HeaderActions.TOGGLE_SEARCH:
-            return { ...headerState, showSearch: action.payload };
+            return { ...header, showSearch: action.payload };
 
         default:
-            return headerState;
+            return header;
     }
 
 }

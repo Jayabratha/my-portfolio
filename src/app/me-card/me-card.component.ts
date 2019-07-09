@@ -44,7 +44,7 @@ export class MeCardComponent implements OnInit, OnDestroy {
   private onDestory$ = new Subject();
 
   HEADER_STATE = HeaderState;
-  headerState: Header;
+  header: Header;
   showMenu: boolean = false;
   showSearch: boolean = false;
   activeNav: string = "";
@@ -115,10 +115,10 @@ export class MeCardComponent implements OnInit, OnDestroy {
 
     this.store.select('header')
       .pipe(takeUntil(this.onDestory$))
-      .subscribe((headerState: Header) => {
-        this.headerState = headerState;
-        this.showMenu = this.headerState.showMenu;
-        this.showSearch = this.headerState.showSearch;
+      .subscribe((header: Header) => {
+        this.header = header;
+        this.showMenu = this.header.showMenu;
+        this.showSearch = this.header.showSearch;
 
         if (this.showMenu) {
           this.animateNavItems();
@@ -156,7 +156,7 @@ export class MeCardComponent implements OnInit, OnDestroy {
       }
       if (this.carouselLoadProgress >= 100) {
         clearInterval(this.carouselProgressInterval);
-        if (this.router.url === '/home' && this.headerState.state !== HeaderState.Fixed) {
+        if (this.router.url === '/home' && this.header.state !== HeaderState.Fixed) {
           this.store.dispatch(new HeaderActions.UpdateState(this.HEADER_STATE.Home));
         }
       }
@@ -176,9 +176,9 @@ export class MeCardComponent implements OnInit, OnDestroy {
     }
 
     if (this.activateScroll && scrollTop < scrollLimit) {
-      this.headerStateChange('scroll');
+      this.headerChange('scroll');
     } else {
-      this.headerStateChange('fix');
+      this.headerChange('fix');
     }
   }
 
@@ -187,9 +187,6 @@ export class MeCardComponent implements OnInit, OnDestroy {
       this.router.navigate(['/home']);
     } else {
       this.homeService.setSlideCount(0);
-    }
-    if (!this.isMobile) {
-      this.store.dispatch(new HeaderActions.ToggleMenu(true));
     }
   }
 
@@ -218,17 +215,18 @@ export class MeCardComponent implements OnInit, OnDestroy {
     this.nextLoad = 100;
   }
 
-  headerStateChange(state: string) {
-    if (state === 'fix' && this.headerState.state === this.HEADER_STATE.Home) {
+  headerChange(state: string) {
+    if (state === 'fix' && this.header.state === this.HEADER_STATE.Home) {
       if (!this.isMobile) {
         console.log("Test");
         this.store.dispatch(new HeaderActions.ToggleMenu(false));
       }
       this.store.dispatch(new HeaderActions.UpdateState(HeaderState.Fixed));
-    } else if (state === 'scroll' && this.headerState.state === this.HEADER_STATE.Fixed) {
+    } else if (state === 'scroll' && this.header.state === this.HEADER_STATE.Fixed) {
       if (!this.isMobile) {
         this.store.dispatch(new HeaderActions.ToggleMenu(true));
       }
+      console.log("Test1");
       this.store.dispatch(new HeaderActions.UpdateState(HeaderState.Home));
     }
   }
@@ -257,10 +255,10 @@ export class MeCardComponent implements OnInit, OnDestroy {
     if (this.searchSubscription) {
       this.searchSubscription.unsubscribe();
     }
-    if (this.showSearch && this.headerState.state === HeaderState.Home) {
+    if (this.showSearch && this.header.state === HeaderState.Home) {
       this.store.dispatch(new HeaderActions.ToggleMenu(true));
     }
-    if (!targetElem.classList.contains('search-result') && this.headerState.showSearch) {
+    if (!targetElem.classList.contains('search-result') && this.header.showSearch) {
       this.store.dispatch(new HeaderActions.ToggleSearch(false));
     }
   }
