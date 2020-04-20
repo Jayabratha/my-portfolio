@@ -101,16 +101,12 @@ export class HomeComponent implements OnInit, OnDestroy {
 
     if (stepCount === 1) {
       if (this.isMobile) {
-        nextScrollPosition = (175 * this.screenWidth) / 100;
+        nextScrollPosition = (165 * this.screenWidth) / 100;
       } else {
         nextScrollPosition = firstScrollPosition;
       }
     } else if (stepCount) {
       nextScrollPosition = firstScrollPosition + (stepCount - 1) * (height * window.innerHeight) / 100;
-    }
-
-    if (stepCount === 1 && this.isMobile) {
-      nextScrollPosition = (175 * this.screenWidth) / 100;
     }
 
     window.scrollTo(0, nextScrollPosition);

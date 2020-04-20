@@ -129,10 +129,9 @@
 }
 
 .me-card .button-wrapper {
-    display: none;
     border-color: rgba(255, 255, 255, 0.7);
     width: 12em;
-    margin-top: 1em;
+    margin-top: 0.5em;
 }
 
 .me-card .button-wrapper .background {
