@@ -218,7 +218,6 @@ export class MeCardComponent implements OnInit, OnDestroy {
   headerChange(state: string) {
     if (state === 'fix' && this.header.state === this.HEADER_STATE.Home) {
       if (!this.isMobile) {
-        console.log("Test");
         this.store.dispatch(new HeaderActions.ToggleMenu(false));
       }
       this.store.dispatch(new HeaderActions.UpdateState(HeaderState.Fixed));
@@ -226,7 +225,6 @@ export class MeCardComponent implements OnInit, OnDestroy {
       if (!this.isMobile) {
         this.store.dispatch(new HeaderActions.ToggleMenu(true));
       }
-      console.log("Test1");
       this.store.dispatch(new HeaderActions.UpdateState(HeaderState.Home));
     }
   }

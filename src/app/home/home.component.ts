@@ -65,12 +65,16 @@ export class HomeComponent implements OnInit, OnDestroy {
       this.isMobile = true;
     }
 
+    this.homeService.getSlideCount().subscribe((slideCount) => {
+      this.setStepCount(slideCount);
+    });
+
     this.subs = this.store.select((state: AppState) => state.header.state)
       .pipe(takeUntil(this.onDestroy$))
       .subscribe((headerState: HeaderState) => {
         this.headerState = headerState;
         if (this.headerState === HeaderState.Home) {
-          this.stepCount = 0;
+          this.homeService.setSlideCount(0);
         }
       });
 
@@ -83,10 +87,6 @@ export class HomeComponent implements OnInit, OnDestroy {
         this.store.dispatch(new HeaderActions.ToggleMenu(true));
       }, 500);
     }
-
-    this.homeService.getSlideCount().subscribe((slideCount) => {
-      this.setStepCount(slideCount);
-    })
   }
 
   setStepCount(stepCount) {
@@ -94,6 +94,8 @@ export class HomeComponent implements OnInit, OnDestroy {
     let nextScrollPosition = 0;
     let firstScrollPosition = (95 * window.innerHeight) / 100;
     this.autoScrolling = true;
+
+    console.log(stepCount);
 
     if (this.isMobile) {
       height = 86;
